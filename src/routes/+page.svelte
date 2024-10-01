@@ -1,4 +1,13 @@
-<script lang="ts">
+<script lang="ts" type="module">
+	import { onMount } from	'svelte';
+	import Lenis from 'lenis';
+	import 'lenis/dist/lenis.css';
+	import gsap from "gsap/dist/gsap";
+	import ScrollTrigger from "gsap/dist/ScrollTrigger";
+
+	import Footer from '$lib/components/Footer.svelte';
+	import '$lib/styles/index.css';
+
 	let innerWidth: number;
 	let innerHeight: number;
 
@@ -12,24 +21,91 @@
 		mouse.x = event.clientX;
 		mouse.y = event.clientY;
 	}
+
+	let lenis;
+	onMount(() => {
+		lenis = new Lenis();
+		gsap.registerPlugin(ScrollTrigger);
+
+		lenis.on('scroll', (e) => {
+			console.log(e)
+		})
+
+		lenis.on('scroll', ScrollTrigger.update)
+
+		gsap.ticker.add((time)=>{
+			lenis.raf(time * 1000);
+		})
+
+		gsap.ticker.lagSmoothing(0)
+	})
 </script>
 
 <svelte:window bind:innerWidth bind:innerHeight />
 <main on:mousemove={handleMousemove} style="--hue: {value}">
 	<!-- <input type="range" name="hue" id="hue" min="0" max="100" bind:value /> -->
-	<section>
+	<section class="intro">
 		<div class="content">
-			<h1>Lisa Sundberg</h1>
-			<h2>Front end developer</h2>
+			<header>
+			<h2>Hi, I'm Lisa</h2>
 			<p>
-				Lorem ipsum dolor sit amet consectetur, adipisicing elit. Saepe assumenda praesentium
-				dolores labore eligendi autem nesciunt dolorem ipsa excepturi culpa nobis reprehenderit,
-				distinctio quidem. Atque incidunt consequatur enim consectetur sed?
+				Frontend developer based in Stockholm, Sweden, with a passion for beautiful and brand building user experiences.
 			</p>
+		</header>
+		</div>
+	</section>
+
+	<section class="cv">
+		<div class="column">
+			<h3>Work</h3>
+			<ol class="list">
+				<li class="item">
+					<h4 class="place label">Alster, Stockholm</h4>
+					<p class="activity">Frontend developer</p>
+					<time class="year">2022—</time>
+				</li>
+				<li class="item">
+					<h4 class="place label">Another State, Stockholm</h4>
+					<p class="activity">Frontend developer</p>
+					<time class="year">2019—2022</time>
+				</li>
+				<li class="item">
+					<h4 class="place label">Another State, Stockholm</h4>
+					<p class="activity">Frontend developer intern</p>
+					<time class="year">2018—2019</time>
+				</li>
+				<li class="item">
+					<h4 class="place label">Ogilvy & Mather, Amsterdam</h4>
+					<p class="activity">Creative / art director</p>
+					<time class="year">2015-2016</time>
+				</li>
+			</ol>
+		</div>
+		<div class="column">
+			<h3>Education</h3>
+			<ol class="list">
+				<li class="item">
+					<h4 class="place label">Medieinstitutet, Stockholm</h4>
+					<p class="activity">Frontend developer</p>
+					<time class="year">2017-2019</time>
+				</li>
+				<li class="item">
+					<h4 class="place label">Hyper Island, Karlskrona</h4>
+					<p class="activity">Digital media creative</p>
+					<time class="year">2013-2015</time>
+				</li>
+				<li class="item">
+					<h4 class="place label">Södertörn University, Stockholm</h4>
+					<p class="activity">Media technology</p>
+					<time class="year">2012-2013</time>
+				</li>
+			</ol>
 		</div>
 	</section>
 </main>
-<svg width="1920" height="1080" version="1.1" xmlns="http://www.w3.org/2000/svg">
+
+
+<!-- <svg width="1920" height="1080" version="1.1" xmlns="http://www.w3.org/2000/svg">
 	<defs>
 		<radialGradient
 			id="GradientPad"
