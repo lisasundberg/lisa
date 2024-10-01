@@ -121,46 +121,108 @@
 		</radialGradient>
 	</defs>
 	<rect x="0" y="0" rx="0" ry="0" width="100%" height="100%" fill="url(#GradientPad)"></rect>
-</svg>
+</svg> -->
+
+<!-- <Footer /> -->
+<h1 class="heading">Lisa Sundberg</h1>
+ <footer>
+	 <div>
+		<h2 class="label">Get in touch</h2>
+		<p><a href="mailto:hello@lisasundberg.com">hello@lisasundberg.com</a></p>
+	</div> 
+</footer>
 
 <style>
 	main {
 		text-align: left;
 		/* background-color: hsl(var(--hue), 50%, 70%); */
-		height: 100vh;
-		font-family: 'Moon Dream';
 		display: flex;
 		flex-direction: column;
-		align-items: center;
-		justify-content: center;
+		justify-content: space-between;
+		color: var(--color-text-primary);
+		width: var(--content-width);
+		margin: auto;
+		padding-top: 10dvh;
 	}
 
-	h1 {
-		/* color: hsl(calc(217 * var(--hue) / 70), 81%, 68%); */
-		color: #6a9def;
-		font-size: 10vw;
-		line-height: 1;
-		margin: 0;
-	}
-	h2 {
-		color: #6a9def;
+
+	header {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
 	}
 
-	p {
-		color: #722727;
-		font-family: 'DM sans';
-		max-width: 60ch;
+	header p {
+		max-width: 29ch;
+    text-wrap: pretty;
 	}
 
 	svg {
 		width: 100vw;
 		height: 100dvh;
-		position: absolute;
+		position: fixed;
 		top: 0;
 		left: 0;
 		z-index: -1;
 	}
 
 	section {
+		min-height: 100dvh;
 	}
+
+	.cv {
+		min-height: 100dvh;
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		grid-template-rows: 1fr auto 1fr;
+    justify-content: flex-start;
+		gap: 4rem;
+	}
+
+	.column {
+		height: 100%;
+		grid-row: 2 / 3;
+	}
+
+	.list {
+		list-style: none;
+    padding-inline-start: 0;
+	}
+
+	.item {
+		display: grid;
+		gap: 0.25em;
+		justify-content: space-between;
+		margin-top: 2em;
+		padding-top: 1em;
+		border-top: 1px solid var(--color-text-primary);
+
+	}
+
+	.place {
+		grid-column: 1 / 2;
+		grid-row: 1 / 2;
+	}
+
+	.activity {
+		margin-top: 0.125em;
+	}
+	
+	.year {
+		grid-column: 2 / 3;
+		grid-row: 1 / 2;
+	}
+	
+	footer heading {
+		position: sticky;
+		bottom: -7%;
+		color: var(--color-text-primary);
+	}
+
+	footer div {
+		width: var(--content-width);
+		margin: auto;
+		padding-block: 10dvh;
+	}
+
 </style>

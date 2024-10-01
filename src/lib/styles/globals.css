@@ -1,0 +1,30 @@
+:root {
+	--font-heading: 'Moon Dream';
+	--font-heading-2: 'Moon Dream';
+	--font-body: 'DM Sans';
+
+	--heading-offset: 20;
+	--footer-height: 35rem;
+
+	--color-text-secondary: #722727;
+	/* --color-heading: #6a9def; */
+	--color-text-primary: #222;
+
+	--content-width: min(calc(100% - var(--gutter) * 2), 92rem);
+	--gutter: 1rem;
+}
+
+body {
+	font-family: var(--font-body);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+	font-style: normal;
+	margin: 0;
+}

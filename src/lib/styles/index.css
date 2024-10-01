@@ -1,5 +1,6 @@
-@import './base/normalize.css';
+@import './globals.css';
+@import './typography.css';
 
-body {
-	margin: 0;
+html {
+	all: unset;
 }

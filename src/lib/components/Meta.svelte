@@ -20,7 +20,7 @@
 	<meta name="theme-color" content="#212121" />
 
 	<!-- OG tags -->
-	<meta property="og:title" content="Homage" />
+	<meta property="og:title" content="Lisa Sundberg - front end developer" />
 	<meta property="og:url" content="https://www.lisasundberg.com" />
 	<meta property="og:type" content="website" />
 	<meta
@@ -31,7 +31,7 @@
 
 	<!-- Twitter card -->
 	<meta name="twitter:card" content="summary_large_image" />
-	<meta name="twitter:title" content="Homage" />
+	<meta name="twitter:title" content="Lisa Sundberg - front end developer" />
 	<meta
 		name="twitter:description"
 		content="Lisa Sundberg | Front end developer based in Stockholm, Sweden"
