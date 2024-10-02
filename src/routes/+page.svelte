@@ -5,6 +5,7 @@
 	import gsap from "gsap/dist/gsap";
 	import ScrollTrigger from "gsap/dist/ScrollTrigger";
 
+	import CV from '$lib/components/CV.svelte';
 	import Footer from '$lib/components/Footer.svelte';
 	import '$lib/styles/index.css';
 
@@ -55,53 +56,7 @@
 		</div>
 	</section>
 
-	<section class="cv">
-		<div class="column">
-			<h3>Work</h3>
-			<ol class="list">
-				<li class="item">
-					<h4 class="place label">Alster, Stockholm</h4>
-					<p class="activity">Frontend developer</p>
-					<time class="year">2022—</time>
-				</li>
-				<li class="item">
-					<h4 class="place label">Another State, Stockholm</h4>
-					<p class="activity">Frontend developer</p>
-					<time class="year">2019—2022</time>
-				</li>
-				<li class="item">
-					<h4 class="place label">Another State, Stockholm</h4>
-					<p class="activity">Frontend developer intern</p>
-					<time class="year">2018—2019</time>
-				</li>
-				<li class="item">
-					<h4 class="place label">Ogilvy & Mather, Amsterdam</h4>
-					<p class="activity">Creative / art director</p>
-					<time class="year">2015-2016</time>
-				</li>
-			</ol>
-		</div>
-		<div class="column">
-			<h3>Education</h3>
-			<ol class="list">
-				<li class="item">
-					<h4 class="place label">Medieinstitutet, Stockholm</h4>
-					<p class="activity">Frontend developer</p>
-					<time class="year">2017-2019</time>
-				</li>
-				<li class="item">
-					<h4 class="place label">Hyper Island, Karlskrona</h4>
-					<p class="activity">Digital media creative</p>
-					<time class="year">2013-2015</time>
-				</li>
-				<li class="item">
-					<h4 class="place label">Södertörn University, Stockholm</h4>
-					<p class="activity">Media technology</p>
-					<time class="year">2012-2013</time>
-				</li>
-			</ol>
-		</div>
-	</section>
+	<CV />
 </main>
 
 
@@ -112,8 +67,8 @@
 			cx="0.5"
 			cy="0.5"
 			r="0.75"
-			fx={(1 * mouse.x) / innerWidth}
-			fy={(1 * mouse.y) / innerHeight}
+			fx={mouse.x / innerWidth}
+			fy={mouse.y / innerHeight}
 			spreadMethod="pad"
 		>
 			<stop offset="0%" stop-color="hsl({(valueLight * value) / 100}, 75%, 89%)"></stop>
@@ -123,14 +78,7 @@
 	<rect x="0" y="0" rx="0" ry="0" width="100%" height="100%" fill="url(#GradientPad)"></rect>
 </svg> -->
 
-<!-- <Footer /> -->
-<h1 class="heading">Lisa Sundberg</h1>
- <footer>
-	 <div>
-		<h2 class="label">Get in touch</h2>
-		<p><a href="mailto:hello@lisasundberg.com">hello@lisasundberg.com</a></p>
-	</div> 
-</footer>
+<Footer />
 
 <style>
 	main {
@@ -170,14 +118,6 @@
 		min-height: 100dvh;
 	}
 
-	.cv {
-		min-height: 100dvh;
-		display: grid;
-		grid-template-columns: 1fr 1fr;
-		grid-template-rows: 1fr auto 1fr;
-    justify-content: flex-start;
-		gap: 4rem;
-	}
 
 	.column {
 		height: 100%;
@@ -213,16 +153,5 @@
 		grid-row: 1 / 2;
 	}
 	
-	footer heading {
-		position: sticky;
-		bottom: -7%;
-		color: var(--color-text-primary);
-	}
-
-	footer div {
-		width: var(--content-width);
-		margin: auto;
-		padding-block: 10dvh;
-	}
 
 </style>
