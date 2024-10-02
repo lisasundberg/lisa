@@ -3,15 +3,24 @@
 	--font-heading-2: 'Moon Dream';
 	--font-body: 'DM Sans';
 
+	--font-size-body: 2.5rem;
+
 	--heading-offset: 20;
-	--footer-height: 35rem;
+	--footer-height: 100dvh;
 
 	--color-text-secondary: #722727;
-	/* --color-heading: #6a9def; */
 	--color-text-primary: #222;
 
-	--content-width: min(calc(100% - var(--gutter) * 2), 92rem);
-	--gutter: 1rem;
+	--content-margin: 1rem;
+	--content-width: min(calc(100% - var(--content-margin) * 2), 92rem);
+	--content-gap: 2.5rem;
+
+	--two-cols: 1fr;
+
+	@media (width > 768px) {
+		--content-gap: 4rem;
+		--two-cols: 1fr 1fr;
+	}
 }
 
 body {
