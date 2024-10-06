@@ -5,7 +5,6 @@
 		name="description"
 		content="Lisa Sundberg | Front end developer based in Stockholm, Sweden"
 	/>
-	<!-- <meta charset="UTF-8"> -->
 	<link rel="canonical" href="https://www.lisasundberg.com" />
 
 	<!-- Favicons -->
