@@ -1,28 +1,29 @@
-<footer>
-	<h1 class="heading">Lisa Sundberg</h1>
+<script lang="ts">
+	import ExternalLink from '$lib/components/ExternalLink.svelte';
+	import { headingHeight } from "$lib/stores/app";
+</script>
+
+<footer style="--heading-height: {$headingHeight}">
 	<section>
 		<div>
-
-	 <h2 class="label">Get in touch</h2>
-	 <p><a href="mailto:hello@lisasundberg.com">hello@lisasundberg.com</a></p>
-		</div>
-	 <ul>
-		 <li><a href="https://codepen.io/lisasundae/" target="_blank">Codepen</li>
-		<li><a href="https://github.com/lisasundberg" target="_blank">Github</li>
-		<li><a href="https://www.linkedin.com/in/lisasundberg/" target="_blank">Linkedin</li>
-	 </ul>
+			<h2 class="label">Get in touch</h2>
+			<p><a href="mailto:hello@lisasundberg.com">hello@lisasundberg.com</a></p>
+				</div>
+			<ul>
+				<li><ExternalLink href="https://codepen.io/lisasundae/" label="Codepen" /></li>
+				<li><ExternalLink href="https://github.com/lisasundberg" label="Github" /></li>
+				<li><ExternalLink href="https://www.linkedin.com/in/lisasundberg/" label="Linkedin" /></li>
+			</ul>
 	</section>
-	<small>© Drawn & developed by me in {new Date().getFullYear()} :-)</small>
-
+	<small>© Designed & developed by me in {new Date().getFullYear()} :-)</small>
 </footer>
 
 <style>
 	footer {
 		display: flex;
 		flex-direction: column;
-		position: sticky;
-		bottom: calc(var(--footer-height) * -1 + 175px);
-		height: var(--footer-height);
+		height: calc(100dvh - var(--heading-height) * 1px);
+		order: 4;
 	}
 
 	.heading {
@@ -49,8 +50,6 @@
 		list-style: none;
 		margin-top: 0.25em;
 		padding-top: 0.25em;
-		font-size: var(--font-size-body);
-		border-top: 1px solid var(--color-text-primary);
 	}
 
 	small {
