@@ -31,7 +31,7 @@
 		gsap.registerPlugin(ScrollTrigger);
 
 		lenis.on('scroll', (e) => {
-			console.log(e)
+			// console.log(e)
 		})
 
 		lenis.on('scroll', ScrollTrigger.update)
