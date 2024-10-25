@@ -12,8 +12,9 @@
 	--color-text-primary: #222;
 
 	--content-margin: 1rem;
-	--content-width: min(calc(100% - var(--content-margin) * 2), 92rem);
+	--content-width: min(calc(100% - var(--content-margin) * 2), 100rem);
 	--content-gap: 2.5rem;
+	--card-padding: 6rem;
 
 	--two-cols: 1fr;
 
