@@ -1,13 +1,52 @@
 <script lang="ts">
-	import ExternalLink from '$lib/components/ExternalLink.svelte';
+	import { onMount } from 'svelte';
+	import gsap from 'gsap/dist/gsap';
+	import ScrollTrigger from 'gsap/dist/ScrollTrigger';
 	import { headingHeight } from '$lib/stores/app';
+	import ExternalLink from '$lib/components/ExternalLink.svelte';
+	import { split } from '$lib/actions/splitting';
+	import { bodyMaskY, maskY } from '$lib/actions/animations';
+
+	let footer: HTMLElement;
+
+	onMount(() => {
+		gsap.registerPlugin(ScrollTrigger);
+
+		// bodyMaskY(footer, scrollTrigger);
+		const timeline = gsap.timeline({
+			scrollTrigger: {
+				trigger: footer,
+				start: 'top center',
+				end: 'bottom bottom',
+				scrub: true,
+				markers: true,
+				toggleActions: 'play play play play'
+			}
+		});
+
+		timeline.fromTo(
+			footer.querySelectorAll('.char'),
+			{
+				'will-change': 'transform',
+				yPercent: 100,
+				autoAlpha: 0
+			},
+			{
+				autoAlpha: 1,
+				yPercent: 0,
+				duration: 0.8,
+				ease: 'power4.out',
+				stagger: 0.008
+			}
+		);
+	});
 </script>
 
-<footer style="--heading-height: {$headingHeight}">
+<footer class="footer" style="--heading-height: {$headingHeight}" bind:this={footer}>
 	<section>
 		<div>
-			<h2 class="label">Get in touch</h2>
-			<p><a href="mailto:hello@lisasundberg.com">hello@lisasundberg.com</a></p>
+			<h2 class="label" use:split>Get in touch</h2>
+			<p><a href="mailto:hello@lisasundberg.com" use:split>hello@lisasundberg.com</a></p>
 		</div>
 		<ul>
 			<li><ExternalLink href="https://codepen.io/lisasundae/" label="Codepen" /></li>
@@ -19,17 +58,12 @@
 </footer>
 
 <style>
-	footer {
+	.footer {
 		display: flex;
 		flex-direction: column;
 		height: calc(100dvh - var(--heading-height) * 1px);
 		order: 4;
 		z-index: 10;
-	}
-
-	.heading {
-		position: sticky;
-		color: var(--color-text-primary);
 	}
 
 	section {

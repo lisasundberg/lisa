@@ -9,7 +9,6 @@
 		const cardTimeline = gsap.timeline({
 			scrollTrigger: {
 				trigger: '.cv',
-				markers: true,
 				start: 'top bottom',
 				end: 'top center+=20%',
 				scrub: true
@@ -26,7 +25,6 @@
 		const mainTimeline = gsap.timeline({
 			scrollTrigger: {
 				trigger: '.cv',
-				markers: true,
 				start: 'top center+=20%',
 				end: 'center center'
 			}

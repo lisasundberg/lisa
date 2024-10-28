@@ -3,7 +3,7 @@
 }
 
 .display {
-	font-size: 14.6vw;
+	font-size: 14.95vw;
 	line-height: 1;
 	font-weight: 1000;
 	text-box-trim: trim-both;
@@ -24,6 +24,7 @@ p,
 .p {
 	font-size: var(--font-size-body);
 	letter-spacing: 0.01em;
+	line-height: 1.1;
 }
 
 a {

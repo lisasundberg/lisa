@@ -2,13 +2,13 @@
 	import { onMount } from 'svelte';
 	import gsap from 'gsap/dist/gsap';
 	import ScrollTrigger from 'gsap/dist/ScrollTrigger';
-	import splt from 'spltjs';
 	import Lenis from 'lenis';
 	import 'lenis/dist/lenis.css';
-	// import { Canvas } from '@threlte/core'
-	// import Scene from './Scene.svelte'
 
+	import { headingMaskY } from '$lib/actions/animations';
+	import { split } from '$lib/actions/splitting';
 	import { headingHeight } from '$lib/stores/app';
+	import Intro from '$lib/components/Intro.svelte';
 	import Background from '$lib/components/Background.svelte';
 	import CV from '$lib/components/CV.svelte';
 	import Footer from '$lib/components/Footer.svelte';
@@ -44,31 +44,19 @@
 		});
 
 		gsap.ticker.lagSmoothing(0);
-
-		splt({});
 	});
 </script>
 
 <svelte:window bind:innerWidth bind:innerHeight />
 
-<h1 class="heading display" bind:clientHeight={$headingHeight}>Lisa Sundberg</h1>
-<Background />
+<h1 class="heading display" bind:clientHeight={$headingHeight} use:split use:headingMaskY>
+	Lisa Sundberg
+</h1>
+<!-- <Background /> -->
 <main on:mousemove={handleMousemove} style="--hue: {value}">
-	<section class="intro">
-		<div class="content">
-			<header>
-				<h2>Hi, I'm Lisa</h2>
-				<p>
-					Frontend developer based in Stockholm, Sweden, with a passion for beautiful and brand
-					building user experiences.
-				</p>
-			</header>
-		</div>
-	</section>
-	<!-- <input type="range" name="hue" id="hue" min="0" max="100" bind:value /> -->
+	<Intro />
 	<CV />
 </main>
-
 <Footer />
 
 <!-- <svg width="1920" height="1080" version="1.1" xmlns="http://www.w3.org/2000/svg">
@@ -114,18 +102,6 @@
 		order: 3;
 	}
 
-	.intro {
-		display: flex;
-		flex-direction: column;
-		gap: 1rem;
-		z-index: 10;
-	}
-
-	.intro p {
-		max-width: 29ch;
-		text-wrap: pretty;
-	}
-	/* 
 	svg {
 		width: 100vw;
 		height: 100dvh;
@@ -133,9 +109,18 @@
 		top: 0;
 		left: 0;
 		z-index: -1;
-	} */
+	}
 
-	section {
-		min-height: 100dvh;
+	.intro {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+		height: 100dvh;
+		z-index: 10;
+	}
+
+	.intro p {
+		max-width: 29ch;
+		text-wrap: pretty;
 	}
 </style>
