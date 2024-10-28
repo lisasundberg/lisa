@@ -8,7 +8,7 @@
 		let pointerDown = input(0);
 
 		// @ts-ignore
-		setMaxIterations(5);
+		setMaxIterations(7);
 		// @ts-ignore
 		displace(mouse.x * 0.3, mouse.y * 0.3, 0);
 
@@ -20,7 +20,7 @@
 		// @ts-ignore
 		let n1 = noise(r * 4 + vec3(0, 0, 0) * 0.5);
 		// @ts-ignore
-		let n = noise(s + vec3(0, 0, time * 0.1) + n1);
+		let n = noise(s + vec3(n1, 0, time * 0.05) + n1);
 
 		// @ts-ignore
 		metal(n * 0.5 + 0.5);
@@ -28,11 +28,13 @@
 		shine(n * 0.5 + 0.5);
 
 		// @ts-ignore
-		color(normal * 0.1 + vec3(1, 2, 10));
+		color(normal * 0.1 + vec3(0.1, 0, 2));
 		// @ts-ignore
 		boxFrame(vec3(0.5), 0.1);
 		// @ts-ignore
 		mixGeo(pointerDown);
+		// @ts-ignore
+		color(normal * 0.1 + vec3(0.1, 0, 6));
 		// @ts-ignore
 		sphere(n * 0.5 + 0.8);
 	}
@@ -48,7 +50,7 @@
 
 <style>
 	canvas {
-		position: sticky;
+		/* position: fixed; */
 		top: 0;
 		left: 0;
 		width: 100%;
