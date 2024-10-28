@@ -1,4 +1,4 @@
-const { matches: motionOK } = window.matchMedia('(prefers-reduced-motion: no-preference)');
+// const { matches: motionOK } = window.matchMedia('(prefers-reduced-motion: no-preference)');
 // if (motionOK) {}
 
 const span = (text: string, index: number): HTMLSpanElement => {

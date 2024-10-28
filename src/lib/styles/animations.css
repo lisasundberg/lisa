@@ -1,0 +1,19 @@
+.word {
+	white-space: nowrap;
+}
+
+.char:not(.whitespace) {
+	display: inline-block;
+	position: relative;
+	box-sizing: border-box;
+}
+
+.char-wrap:not(:has(.whitespace)) {
+	display: inline-block;
+	position: relative;
+	overflow: hidden;
+}
+
+.whitespace {
+	width: 0.25em;
+}
