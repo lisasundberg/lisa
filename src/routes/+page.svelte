@@ -1,12 +1,15 @@
 <script lang="ts" type="module">
-	import { onMount } from	'svelte';
-	import gsap from "gsap/dist/gsap";
-	import ScrollTrigger from "gsap/dist/ScrollTrigger";
+	import { onMount } from 'svelte';
+	import gsap from 'gsap/dist/gsap';
+	import ScrollTrigger from 'gsap/dist/ScrollTrigger';
 	import splt from 'spltjs';
 	import Lenis from 'lenis';
 	import 'lenis/dist/lenis.css';
+	// import { Canvas } from '@threlte/core'
+	// import Scene from './Scene.svelte'
 
-	import { headingHeight } from "$lib/stores/app";
+	import { headingHeight } from '$lib/stores/app';
+	import Background from '$lib/components/Background.svelte';
 	import CV from '$lib/components/CV.svelte';
 	import Footer from '$lib/components/Footer.svelte';
 	import '$lib/styles/index.css';
@@ -25,38 +28,39 @@
 		mouse.y = event.clientY;
 	}
 
-	let lenis;
+	let lenis: Lenis;
 	onMount(() => {
 		lenis = new Lenis();
 		gsap.registerPlugin(ScrollTrigger);
 
 		lenis.on('scroll', (e) => {
 			// console.log(e)
-		})
+		});
 
-		lenis.on('scroll', ScrollTrigger.update)
+		lenis.on('scroll', ScrollTrigger.update);
 
-		gsap.ticker.add((time)=>{
+		gsap.ticker.add((time) => {
 			lenis.raf(time * 1000);
-		})
+		});
 
 		gsap.ticker.lagSmoothing(0);
 
 		splt({});
-	})
+	});
 </script>
 
 <svelte:window bind:innerWidth bind:innerHeight />
 
-<h1 class="heading" bind:clientHeight={$headingHeight}>Lisa Sundberg</h1>
-
+<h1 class="heading display" bind:clientHeight={$headingHeight}>Lisa Sundberg</h1>
+<Background />
 <main on:mousemove={handleMousemove} style="--hue: {value}">
 	<section class="intro">
 		<div class="content">
 			<header>
 				<h2>Hi, I'm Lisa</h2>
 				<p>
-					Frontend developer based in Stockholm, Sweden, with a passion for beautiful and brand building user experiences.
+					Frontend developer based in Stockholm, Sweden, with a passion for beautiful and brand
+					building user experiences.
 				</p>
 			</header>
 		</div>
@@ -85,6 +89,9 @@
 	<rect x="0" y="0" rx="0" ry="0" width="100%" height="100%" fill="url(#GradientPad)"></rect>
 </svg> -->
 
+<!-- <Canvas>
+  <Scene />
+</Canvas> -->
 
 <style>
 	main {
@@ -105,19 +112,20 @@
 		top: 0;
 		bottom: 0;
 		order: 3;
-	}		
+	}
 
 	.intro {
 		display: flex;
 		flex-direction: column;
 		gap: 1rem;
+		z-index: 10;
 	}
 
 	.intro p {
 		max-width: 29ch;
-    text-wrap: pretty;
+		text-wrap: pretty;
 	}
-
+	/* 
 	svg {
 		width: 100vw;
 		height: 100dvh;
@@ -125,10 +133,9 @@
 		top: 0;
 		left: 0;
 		z-index: -1;
-	}
+	} */
 
 	section {
 		min-height: 100dvh;
 	}
-
 </style>
