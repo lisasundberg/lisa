@@ -39,6 +39,7 @@
 
 <style>
 	.intro {
+		grid-column: main;
 		display: flex;
 		flex-direction: column;
 		gap: 1rem;
