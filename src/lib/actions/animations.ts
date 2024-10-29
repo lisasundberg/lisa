@@ -17,7 +17,8 @@ export const maskY = (node: HTMLElement) =>
 			yPercent: 0,
 			duration: 0.8,
 			ease: 'power4.out',
-			stagger: 0.008
+			stagger: 0.008,
+			delay: node.dataset.delay ? parseFloat(node.dataset.delay) : 0
 		}
 	);
 
@@ -35,7 +36,8 @@ export const bodyMaskY = (node: HTMLElement) => {
 			yPercent: 0,
 			duration: 0.8,
 			ease: 'power4.out',
-			stagger: 0.008
+			stagger: 0.008,
+			delay: node.dataset.delay ? parseFloat(node.dataset.delay) : 0
 		}
 	);
 };
@@ -56,7 +58,8 @@ export const headingMaskY = (node: HTMLElement) => {
 			duration: 1,
 			willChange: 'transform',
 			ease: 'cubic-bezier(.04,1,.08,1)',
-			stagger: 0.07
+			stagger: 0.07,
+			delay: node.dataset.delay ? parseFloat(node.dataset.delay) : 0
 		}
 	);
 };

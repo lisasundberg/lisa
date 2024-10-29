@@ -14,28 +14,13 @@
 	import Footer from '$lib/components/Footer.svelte';
 	import '$lib/styles/index.css';
 
-	let innerWidth: number;
-	let innerHeight: number;
-
-	let value: number = 100;
-	let valueDark: number = 225;
-	let valueLight: number = 70;
-
-	let mouse = { x: 0, y: 0 };
-
-	function handleMousemove(event: MouseEvent) {
-		mouse.x = event.clientX;
-		mouse.y = event.clientY;
-	}
-
 	let lenis: Lenis;
+	let heading: HTMLElement;
+	let timeline: gsap.core.Timeline;
+
 	onMount(() => {
 		lenis = new Lenis();
 		gsap.registerPlugin(ScrollTrigger);
-
-		lenis.on('scroll', (e) => {
-			// console.log(e)
-		});
 
 		lenis.on('scroll', ScrollTrigger.update);
 
@@ -44,42 +29,41 @@
 		});
 
 		gsap.ticker.lagSmoothing(0);
+
+		// timeline = gsap
+		// 	.timeline({
+		// 		scrollTrigger: {
+		// 			trigger: '.heading',
+		// 			start: 'bottom bottom',
+		// 			end: 'bottom center',
+		// 			scrub: 1
+		// 			// markers: true
+		// 		}
+		// 	})
+		// 	.to(heading, {
+		// 		yPercent: 100,
+		// 		scale: 0.2,
+		// 		// ease: 'power4.out',
+		// 		transformOrigin: 'top center'
+		// 	});
 	});
 </script>
 
-<svelte:window bind:innerWidth bind:innerHeight />
-
-<h1 class="heading display" bind:clientHeight={$headingHeight} use:split use:headingMaskY>
+<h1
+	class="heading display"
+	bind:this={heading}
+	bind:clientHeight={$headingHeight}
+	use:split
+	use:headingMaskY
+>
 	Lisa Sundberg
 </h1>
-<!-- <Background /> -->
-<main on:mousemove={handleMousemove} style="--hue: {value}">
+<Background />
+<main>
 	<Intro />
 	<CV />
 </main>
 <Footer />
-
-<!-- <svg width="1920" height="1080" version="1.1" xmlns="http://www.w3.org/2000/svg">
-	<defs>
-		<radialGradient
-			id="GradientPad"
-			cx="0.5"
-			cy="0.5"
-			r="0.75"
-			fx={mouse.x / innerWidth}
-			fy={mouse.y / innerHeight}
-			spreadMethod="pad"
-		>
-			<stop offset="0%" stop-color="hsl({(valueLight * value) / 100}, 75%, 89%)"></stop>
-			<stop offset="100%" stop-color="hsl({(valueDark * value) / 100}, 100%, 75%)"></stop>
-		</radialGradient>
-	</defs>
-	<rect x="0" y="0" rx="0" ry="0" width="100%" height="100%" fill="url(#GradientPad)"></rect>
-</svg> -->
-
-<!-- <Canvas>
-  <Scene />
-</Canvas> -->
 
 <style>
 	.heading {
@@ -97,13 +81,4 @@
 		color: var(--color-text-primary);
 		padding-top: 10dvh;
 	}
-
-	/* svg {
-		width: 100vw;
-		height: 100dvh;
-		position: fixed;
-		top: 0;
-		left: 0;
-		z-index: -1;
-	} */
 </style>

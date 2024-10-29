@@ -4,10 +4,10 @@
 
 .display {
 	font-size: 14.95vw;
-	line-height: 1;
 	font-weight: 1000;
+	line-height: 1.1;
 	text-box-trim: trim-both;
-	text-box-edge: cap alphabetic;
+	text-box-edge: text alphabetic;
 }
 
 h1,
