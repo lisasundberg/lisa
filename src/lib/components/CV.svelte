@@ -174,13 +174,14 @@
 
 <style>
 	.cv {
+		grid-column: main;
 		display: grid;
 		grid-template-columns: var(--two-cols);
 		justify-content: flex-start;
 		gap: var(--content-gap);
 		background-color: white;
 		padding: var(--card-padding);
-		border-radius: 12px;
+		border-radius: var(--border-radius);
 	}
 
 	.column {

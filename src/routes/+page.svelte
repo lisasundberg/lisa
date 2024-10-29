@@ -82,45 +82,28 @@
 </Canvas> -->
 
 <style>
-	main {
-		text-align: left;
-		/* background-color: hsl(var(--hue), 50%, 70%); */
-		display: flex;
-		flex-direction: column;
-		justify-content: space-between;
-		color: var(--color-text-primary);
-		width: var(--content-width);
-		margin: auto;
-		padding-top: 10dvh;
-		order: 2;
-	}
-
 	.heading {
+		grid-column: full;
 		position: sticky;
 		top: 0;
 		bottom: 0;
 		order: 3;
 	}
 
-	svg {
+	main {
+		grid-column: full;
+		display: grid;
+		grid-template-columns: subgrid;
+		color: var(--color-text-primary);
+		padding-top: 10dvh;
+	}
+
+	/* svg {
 		width: 100vw;
 		height: 100dvh;
 		position: fixed;
 		top: 0;
 		left: 0;
 		z-index: -1;
-	}
-
-	.intro {
-		display: flex;
-		flex-direction: column;
-		gap: 1rem;
-		height: 100dvh;
-		z-index: 10;
-	}
-
-	.intro p {
-		max-width: 29ch;
-		text-wrap: pretty;
-	}
+	} */
 </style>

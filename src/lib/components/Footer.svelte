@@ -59,18 +59,22 @@
 
 <style>
 	.footer {
-		display: flex;
-		flex-direction: column;
+		grid-column: full;
+		display: grid;
+		grid-template-columns: subgrid;
+		align-content: center;
 		height: calc(100dvh - var(--heading-height) * 1px);
 		order: 4;
 		z-index: 10;
+		padding-block: 2rem;
 	}
 
 	section {
+		grid-column: main;
 		display: grid;
 		grid-template-columns: var(--two-cols);
 		gap: var(--content-gap);
-		width: var(--content-width);
+		width: 100%;
 		margin: auto;
 		padding-block: 10dvh;
 	}
@@ -88,9 +92,9 @@
 	}
 
 	small {
+		grid-column: main;
+		place-self: end;
 		display: block;
 		text-align: right;
-		width: var(--content-width);
-		margin: 2rem auto;
 	}
 </style>

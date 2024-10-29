@@ -11,12 +11,15 @@
 	--color-text-secondary: #722727;
 	--color-text-primary: #222;
 
-	--content-margin: 1rem;
-	--content-width: min(calc(100% - var(--content-margin) * 2), 100rem);
+	--content-margin: 2.5rem;
 	--content-gap: 2.5rem;
 	--card-padding: 6rem;
+	--main-grid: [full-start] minmax(var(--content-margin), 1fr) [main-start]
+		minmax(auto, max(80vw, 100rem)) [main-end] minmax(var(--content-margin), 1fr) [full-end];
 
 	--two-cols: 1fr;
+
+	--border-radius: 12px;
 
 	@media (width > 768px) {
 		--content-gap: 4rem;
@@ -25,11 +28,12 @@
 }
 
 body {
+	display: grid;
+	grid-template-columns: var(--main-grid);
 	font-family: var(--font-body);
-	display: flex;
-	flex-direction: column;
 	margin: 0;
 	padding: 0;
+	background-color: rgb(207, 207, 255);
 }
 
 h1,
