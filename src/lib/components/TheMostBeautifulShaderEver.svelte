@@ -55,7 +55,7 @@
 		// @ts-ignore
 		mixGeo(pointerDown);
 		// @ts-ignore
-		color(normal * 0.05 + vec3(0.1, 0, 6));
+		color(normal * 0.05 + vec3(0.1, 0, 6) * scrollProgress);
 		// @ts-ignore
 		sphere(n * 0.5 + 0.8 + scrollProgress * 0.9, 0.3);
 	}
@@ -65,7 +65,7 @@
 	}
 
 	let targetMouse = { x: 0, y: 0 };
-	const easingFactor = 0.2;
+	const easingFactor = 0.2; // Adjust this value to control the easing speed
 
 	function handleMouseMove(e: MouseEvent) {
 		targetMouse.x = e.clientX / innerWidth;
@@ -96,13 +96,10 @@
 	on:mousemove={handleMouseMove}
 	on:scroll={handleScroll}
 />
-<div class="background">
-	<canvas bind:this={canvas}></canvas>
-</div>
+<canvas bind:this={canvas}></canvas>
 
 <style>
-	.background {
-		transition: opacity 1s linear 2s;
+	canvas {
 		position: fixed;
 		top: 0;
 		left: 0;
@@ -110,9 +107,4 @@
 		height: 100%;
 		z-index: 0;
 	}
-
-	/* canvas {
-		width: 100%;
-		height: 100%;
-	} */
 </style>
