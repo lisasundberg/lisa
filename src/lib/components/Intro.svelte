@@ -21,7 +21,6 @@
 		gap: 1rem;
 		height: 100dvh;
 		z-index: 10;
-		pointer-events: none;
 	}
 
 	p {

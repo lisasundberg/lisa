@@ -3,14 +3,31 @@
 	// @ts-ignore
 	import { sculptToMinimalRenderer } from 'shader-park-core';
 
+	interface State {
+		x: number;
+		y: number;
+	}
+
+	let innerHeight: number;
+	let innerWidth: number;
+	let canvas: HTMLCanvasElement;
+	let state: State = {
+		x: 0.0,
+		y: 0.0
+	};
+
 	function shader() {
 		// @ts-ignore
 		let pointerDown = input(0);
+		// @ts-ignore
+		let x = input(0);
+		// @ts-ignore
+		let y = input(0);
 
 		// @ts-ignore
 		setMaxIterations(7);
 		// @ts-ignore
-		displace(mouse.x * 0.3, mouse.y * 0.3, 0);
+		displace(x * 0.3, y * 0.3, 0);
 
 		// @ts-ignore
 		let s = getSpace();
@@ -39,13 +56,19 @@
 		sphere(n * 0.5 + 0.8);
 	}
 
-	let canvas: HTMLCanvasElement;
+	function handleMouseMove(e: MouseEvent) {
+		state.x = e.clientX / innerWidth;
+		state.y = e.clientY / innerHeight;
+	}
 
 	onMount(() => {
-		sculptToMinimalRenderer(canvas, shader);
+		sculptToMinimalRenderer(canvas, shader, () => {
+			return state;
+		});
 	});
 </script>
 
+<svelte:window bind:innerHeight bind:innerWidth on:mousemove={handleMouseMove} />
 <canvas bind:this={canvas}></canvas>
 
 <style>
