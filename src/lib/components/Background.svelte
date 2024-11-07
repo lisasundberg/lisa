@@ -6,6 +6,7 @@
 	interface State {
 		x: number;
 		y: number;
+		scrollProgress: number;
 	}
 
 	let innerHeight: number;
@@ -13,7 +14,8 @@
 	let canvas: HTMLCanvasElement;
 	let state: State = {
 		x: 0.0,
-		y: 0.0
+		y: 0.0,
+		scrollProgress: 0.0
 	};
 
 	function shader() {
@@ -23,9 +25,11 @@
 		let x = input(0);
 		// @ts-ignore
 		let y = input(0);
+		// @ts-ignore
+		let scrollProgress = input(0);
 
 		// @ts-ignore
-		setMaxIterations(7);
+		setMaxIterations(5);
 		// @ts-ignore
 		displace(x * 0.3, y * 0.3, 0);
 
@@ -35,9 +39,9 @@
 		let r = getRayDirection();
 
 		// @ts-ignore
-		let n1 = noise(r * 4 + vec3(0, 0, 0) * 0.5);
+		let n1 = noise(r * 2 + vec3(0, 0, 0));
 		// @ts-ignore
-		let n = noise(s + vec3(n1, 0, time * 0.05) + n1);
+		let n = noise(s + vec3(n1, 0, time * 0.03) + n1);
 
 		// @ts-ignore
 		metal(n * 0.5 + 0.5);
@@ -51,14 +55,18 @@
 		// @ts-ignore
 		mixGeo(pointerDown);
 		// @ts-ignore
-		color(normal * 0.1 + vec3(0.1, 0, 6));
+		color(normal * 0.05 + vec3(0.1, 0, 6));
 		// @ts-ignore
-		sphere(n * 0.5 + 0.8);
+		sphere(n * 0.5 + 0.8 + scrollProgress * 0.9, 0.3);
 	}
 
 	function handleMouseMove(e: MouseEvent) {
 		state.x = e.clientX / innerWidth;
 		state.y = e.clientY / innerHeight;
+	}
+
+	function handleScroll(e: Event) {
+		state.scrollProgress = window.scrollY / (document.body.scrollHeight - innerHeight);
 	}
 
 	onMount(() => {
@@ -68,7 +76,12 @@
 	});
 </script>
 
-<svelte:window bind:innerHeight bind:innerWidth on:mousemove={handleMouseMove} />
+<svelte:window
+	bind:innerHeight
+	bind:innerWidth
+	on:mousemove={handleMouseMove}
+	on:scroll={handleScroll}
+/>
 <canvas bind:this={canvas}></canvas>
 
 <style>
