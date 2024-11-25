@@ -1,4 +1,4 @@
-<script lang="ts" type="module">
+<script lang="ts">
 	import { onMount } from 'svelte';
 	import gsap from 'gsap/dist/gsap';
 	import ScrollTrigger from 'gsap/dist/ScrollTrigger';
@@ -9,7 +9,10 @@
 	import { split } from '$lib/actions/splitting';
 	import { headingHeight } from '$lib/stores/app';
 	import Intro from '$lib/components/Intro.svelte';
+	import Work from '$lib/components/Work.svelte';
+	import About from '$lib/components/About.svelte';
 	import Background from '$lib/components/Background.svelte';
+	import TheMostBeautifulShaderEver from '$lib/components/TheMostBeautifulShaderEver.svelte';
 	import CV from '$lib/components/CV.svelte';
 	import Footer from '$lib/components/Footer.svelte';
 	import '$lib/styles/index.css';
@@ -49,7 +52,10 @@
 	});
 </script>
 
-<h1
+<h1 class="heading display" bind:this={heading} bind:clientHeight={$headingHeight}>
+	Lisa Sundberg
+</h1>
+<!-- <h1
 	class="heading display"
 	bind:this={heading}
 	bind:clientHeight={$headingHeight}
@@ -57,10 +63,13 @@
 	use:headingMaskY
 >
 	Lisa Sundberg
-</h1>
+</h1> -->
 <Background />
+<!-- <TheMostBeautifulShaderEver /> -->
 <main>
 	<Intro />
+	<Work />
+	<About />
 	<CV />
 </main>
 <Footer />
@@ -71,7 +80,17 @@
 		position: sticky;
 		top: 0;
 		bottom: 0;
+		margin: 0;
 		order: 3;
+		line-height: 1;
+		font-family: var(--font-heading);
+
+		font-weight: 100;
+		font-style: italic;
+		color: var(--color-cream);
+		font-size: 18.75vw;
+		text-box-trim: trim-both;
+		text-box-edge: cap alphabetic;
 	}
 
 	main {

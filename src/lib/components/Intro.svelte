@@ -5,10 +5,10 @@
 
 <section class="intro">
 	<header>
-		<h2 use:split use:bodyMaskY data-delay="3">Hi, I'm Lisa</h2>
-		<p use:split use:bodyMaskY data-delay="3.5">
-			Frontend developer based in Stockholm, Sweden, with a passion for beautiful and brand building
-			user experiences.
+		<h2 use:split use:bodyMaskY data-delay="0.2">Hi, I'm Lisa</h2>
+		<p use:split use:bodyMaskY data-delay="0.4">
+			Frontend developer with a passion for beautiful and brand building user experiences, based in
+			Stockholm, Sweden.
 		</p>
 	</header>
 </section>
@@ -24,8 +24,10 @@
 	}
 
 	p {
-		max-width: 26ch;
-		/* text-wrap: pretty; */
+		max-width: 25ch;
 		margin-top: 1em;
+		/* max-width: 29ch;
+		font-family: 'RST Thermal (TRIAL)';
+		font-weight: 100; */
 	}
 </style>

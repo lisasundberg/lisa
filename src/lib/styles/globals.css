@@ -1,21 +1,24 @@
 :root {
-	--font-heading: 'Moon Dream';
+	--font-heading: 'RST Thermal (TRIAL)';
 	--font-heading-2: 'Moon Dream';
 	--font-body: 'DM Sans';
 
-	--font-size-body: 2.5rem;
+	--font-size-body: clamp(1.75rem, 2.75vw, 2.5rem);
+	--font-size-body-small: clamp(1.25rem, 1.75vw, 1.5rem);
 
 	--heading-offset: 20;
 	--footer-height: 100dvh;
 
-	--color-text-secondary: #722727;
-	--color-text-primary: #222;
+	--color-cream: rgb(255, 249, 238);
+	/* --color-text-primary: #222; */
+	--color-text-secondary: #222;
+	--color-text-primary: var(--color-cream);
 
 	--content-margin: 2.5rem;
 	--content-gap: 2.5rem;
-	--card-padding: 6rem;
+	--card-padding: clamp(3rem, 5.25vw, 6rem);
 	--main-grid: [full-start] minmax(var(--content-margin), 1fr) [main-start]
-		minmax(auto, max(80vw, 100rem)) [main-end] minmax(var(--content-margin), 1fr) [full-end];
+		minmax(auto, max(80vw, 90rem)) [main-end] minmax(var(--content-margin), 1fr) [full-end];
 
 	--two-cols: 1fr;
 
@@ -30,10 +33,10 @@
 body {
 	display: grid;
 	grid-template-columns: var(--main-grid);
-	font-family: var(--font-body);
 	margin: 0;
 	padding: 0;
-	background-color: rgb(207, 207, 255);
+	background-color: #6400f2;
+	font-family: var(--font-body);
 }
 
 h1,
@@ -41,8 +44,37 @@ h2,
 h3,
 h4,
 h5,
-h6,
+h6 {
+	/* font-family: var(--font-heading); */
+	margin: 0;
+}
+
 p {
 	font-style: normal;
 	margin: 0;
+}
+
+a {
+	display: inline-block;
+	position: relative;
+
+	&::after {
+		content: '';
+		position: absolute;
+		height: 0.075em;
+		width: 100%;
+		bottom: 0;
+		left: 0;
+		margin-top: 0.25em;
+		background-color: var(--color-text-primary);
+		scale: 0 1;
+		transform-origin: right;
+		transition: scale 0.2s ease-in-out;
+	}
+
+	&:hover::after,
+	&:focus-visible::after {
+		scale: 1 1;
+		transform-origin: left;
+	}
 }
