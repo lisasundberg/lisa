@@ -41,7 +41,7 @@
 		// @ts-ignore
 		let n1 = noise(r * 2 + vec3(0, 0, 0));
 		// @ts-ignore
-		let n = noise(s + vec3(n1, 0, time * 0.03) + n1);
+		let n = noise(s + vec3(n1, 0, time * 0.02) + n1);
 
 		// @ts-ignore
 		metal(n * 0.5 + 0.5);
@@ -110,8 +110,8 @@
 		height: 100%;
 		z-index: 0;
 	}
-
-	/* canvas {
+	/* 
+	canvas {
 		width: 100%;
 		height: 100%;
 	} */

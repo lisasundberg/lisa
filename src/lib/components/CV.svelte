@@ -1,4 +1,4 @@
-<script lang="ts" type="module">
+<script lang="ts">
 	import { onMount } from 'svelte';
 	import gsap from 'gsap/dist/gsap';
 	import ScrollTrigger from 'gsap/dist/ScrollTrigger';
@@ -145,7 +145,7 @@
 								<p class="activity">{activity}</p>
 							</div>
 						</div>
-						<time class="year">{year}</time>
+						<time class="year label">{year}</time>
 					</div>
 				</li>
 			{/each}
@@ -164,7 +164,7 @@
 								<p class="activity">{activity}</p>
 							</div>
 						</div>
-						<time class="year">{year}</time>
+						<time class="year label">{year}</time>
 					</div>
 				</li>
 			{/each}
@@ -175,18 +175,24 @@
 <style>
 	.cv {
 		grid-column: main;
-		display: grid;
-		grid-template-columns: var(--two-cols);
+		display: flex;
 		justify-content: flex-start;
+		flex-direction: column;
 		gap: var(--content-gap);
 		background-color: white;
+		color: var(--color-text-secondary);
 		padding: var(--card-padding);
 		border-radius: var(--border-radius);
+
+		@media (width >= 768px) {
+			flex-direction: row;
+		}
 	}
 
 	.column {
 		height: 100%;
 		grid-row: 2 / 3;
+		flex-grow: 1;
 	}
 
 	.list {
@@ -220,11 +226,15 @@
 		display: inline-block;
 	}
 
+	.activity {
+		margin-top: 0.25em;
+	}
+
 	hr {
 		grid-column: 1 / -1;
 		grid-row: 1 / 2;
 		border: none;
-		background: var(--color-text-primary);
+		background: var(--color-text-secondary);
 		width: 100%;
 		height: 1px;
 		transform-origin: left;
@@ -232,5 +242,6 @@
 
 	.year {
 		display: block;
+		white-space: nowrap;
 	}
 </style>

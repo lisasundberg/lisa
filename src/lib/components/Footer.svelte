@@ -45,8 +45,8 @@
 <footer class="footer" style="--heading-height: {$headingHeight}" bind:this={footer}>
 	<section>
 		<div>
-			<h2 class="label" use:split>Get in touch</h2>
-			<p><a href="mailto:hello@lisasundberg.com" use:split>hello@lisasundberg.com</a></p>
+			<h2 class="label">Get in touch</h2>
+			<p><a href="mailto:hello@lisasundberg.com">hello@lisasundberg.com</a></p>
 		</div>
 		<ul>
 			<li><ExternalLink href="https://codepen.io/lisasundae/" label="Codepen" /></li>
@@ -59,24 +59,27 @@
 
 <style>
 	.footer {
-		grid-column: full;
+		grid-column: main;
 		display: grid;
 		grid-template-columns: subgrid;
 		align-content: center;
+		box-sizing: border-box;
+		position: relative;
 		height: calc(100dvh - var(--heading-height) * 1px);
+		padding-block: 2rem;
+		color: var(--color-cream);
 		order: 4;
 		z-index: 10;
-		padding-block: 2rem;
 	}
 
 	section {
-		grid-column: main;
 		display: grid;
 		grid-template-columns: var(--two-cols);
 		gap: var(--content-gap);
 		width: 100%;
 		margin: auto;
 		padding-block: 10dvh;
+		margin-bottom: 2rem;
 	}
 
 	ul {
@@ -91,10 +94,13 @@
 		padding-top: 0.25em;
 	}
 
+	p {
+		margin-top: 0.25em;
+	}
+
 	small {
-		grid-column: main;
-		place-self: end;
-		display: block;
-		text-align: right;
+		position: absolute;
+		bottom: 2rem;
+		right: 2rem;
 	}
 </style>
