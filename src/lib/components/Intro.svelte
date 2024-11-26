@@ -3,7 +3,7 @@
 	import { bodyMaskY } from '$lib/actions/animations';
 </script>
 
-<section class="intro">
+<section class="section intro" id="intro">
 	<header>
 		<h2 use:split use:bodyMaskY data-delay="0.2">Hi, I'm Lisa</h2>
 		<p use:split use:bodyMaskY data-delay="0.4">

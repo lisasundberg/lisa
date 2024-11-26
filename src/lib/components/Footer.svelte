@@ -19,7 +19,7 @@
 				start: 'top center',
 				end: 'bottom bottom',
 				scrub: true,
-				markers: true,
+				// markers: true,
 				toggleActions: 'play play play play'
 			}
 		});
@@ -42,7 +42,12 @@
 	});
 </script>
 
-<footer class="footer" style="--heading-height: {$headingHeight}" bind:this={footer}>
+<footer
+	class="footer section"
+	id="contact"
+	style="--heading-height: {$headingHeight}"
+	bind:this={footer}
+>
 	<section>
 		<div>
 			<h2 class="label">Get in touch</h2>

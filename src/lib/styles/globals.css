@@ -24,6 +24,8 @@
 
 	--border-radius: 12px;
 
+	scroll-behavior: smooth;
+
 	@media (width > 768px) {
 		--content-gap: 4rem;
 		--two-cols: 1fr 1fr;
@@ -58,7 +60,7 @@ a {
 	display: inline-block;
 	position: relative;
 
-	&::after {
+	&:not(.-plain)::after {
 		content: '';
 		position: absolute;
 		height: 0.075em;

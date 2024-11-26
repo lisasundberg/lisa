@@ -8,6 +8,7 @@
 	import { headingMaskY } from '$lib/actions/animations';
 	import { split } from '$lib/actions/splitting';
 	import { headingHeight } from '$lib/stores/app';
+	import Nav from '$lib/components/Nav.svelte';
 	import Intro from '$lib/components/Intro.svelte';
 	import Work from '$lib/components/Work.svelte';
 	import About from '$lib/components/About.svelte';
@@ -64,13 +65,16 @@
 >
 	Lisa Sundberg
 </h1> -->
-<Background />
+<!-- <Background /> -->
 <!-- <TheMostBeautifulShaderEver /> -->
+<header>
+	<Nav />
+</header>
 <main>
 	<Intro />
 	<Work />
 	<About />
-	<CV />
+	<!-- <CV /> -->
 </main>
 <Footer />
 
@@ -93,11 +97,19 @@
 		text-box-edge: cap alphabetic;
 	}
 
+	header {
+		grid-column: full;
+		position: sticky;
+		top: 0;
+		z-index: 2;
+	}
+
 	main {
 		grid-column: full;
 		display: grid;
 		grid-template-columns: subgrid;
 		color: var(--color-text-primary);
 		padding-top: 10dvh;
+		z-index: 1;
 	}
 </style>
