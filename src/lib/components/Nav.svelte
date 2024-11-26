@@ -54,7 +54,7 @@
 		align-items: center;
 		gap: var(--content-gap);
 		padding: var(--content-margin);
-		color: var(--color-text-primary);
+		color: var(--theme-color-primary);
 	}
 
 	ul {
@@ -86,7 +86,7 @@
 			width: 0.375em;
 			height: 0.375em;
 			border-radius: 50%;
-			background-color: var(--color-text-primary);
+			background-color: var(--theme-color-primary);
 			scale: 0;
 			transition: scale 0.09s linear;
 		}
@@ -102,7 +102,7 @@
 		font-family: var(--font-heading);
 		font-weight: 100;
 		font-size: 1.5rem;
-		color: var(--color-text-primary);
+		color: var(--theme-color-primary);
 		flex-grow: 0;
 	}
 </style>

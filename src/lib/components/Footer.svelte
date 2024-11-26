@@ -72,7 +72,7 @@
 		position: relative;
 		height: calc(100dvh - var(--heading-height) * 1px);
 		padding-block: 2rem;
-		color: var(--color-cream);
+		color: var(--theme-color-primary);
 		order: 4;
 		z-index: 10;
 	}

@@ -1,19 +1,20 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
+	import { fade } from 'svelte/transition';
 	import gsap from 'gsap/dist/gsap';
 	import ScrollTrigger from 'gsap/dist/ScrollTrigger';
 	import Lenis from 'lenis';
 	import 'lenis/dist/lenis.css';
-
+	import { currentTheme } from '$lib/stores/app';
 	import { headingMaskY } from '$lib/actions/animations';
 	import { split } from '$lib/actions/splitting';
 	import { headingHeight } from '$lib/stores/app';
 	import Nav from '$lib/components/Nav.svelte';
+	import ThemeNav from '$lib/components/ThemeNav.svelte';
 	import Intro from '$lib/components/Intro.svelte';
 	import Work from '$lib/components/Work.svelte';
 	import About from '$lib/components/About.svelte';
 	import Background from '$lib/components/Background.svelte';
-	import TheMostBeautifulShaderEver from '$lib/components/TheMostBeautifulShaderEver.svelte';
 	import CV from '$lib/components/CV.svelte';
 	import Footer from '$lib/components/Footer.svelte';
 	import '$lib/styles/index.css';
@@ -65,11 +66,12 @@
 >
 	Lisa Sundberg
 </h1> -->
-<!-- <Background /> -->
-<!-- <TheMostBeautifulShaderEver /> -->
+
+<Background />
 <header>
 	<Nav />
 </header>
+<ThemeNav />
 <main>
 	<Intro />
 	<Work />
@@ -108,7 +110,7 @@
 		grid-column: full;
 		display: grid;
 		grid-template-columns: subgrid;
-		color: var(--color-text-primary);
+		color: var(--theme-color-primary);
 		padding-top: 10dvh;
 		z-index: 1;
 	}
