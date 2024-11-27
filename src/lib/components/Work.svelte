@@ -1,4 +1,4 @@
-<section class="work">
+<section class="section work" id="work">
 	<p>
 		I have worked on projects for a wide range of clients - including Homage, Akademiska Hus, H&M,
 		Unicef and Webbdagarna.

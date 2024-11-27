@@ -9,10 +9,13 @@
 	--heading-offset: 20;
 	--footer-height: 100dvh;
 
+	--color-purple: #6400f2;
 	--color-cream: rgb(255, 249, 238);
-	/* --color-text-primary: #222; */
-	--color-text-secondary: #222;
+	--color-brat-green: #8fce23;
+	--color-brown: #513737;
+
 	--color-text-primary: var(--color-cream);
+	--color-text-secondary: #222;
 
 	--content-margin: 2.5rem;
 	--content-gap: 2.5rem;
@@ -23,6 +26,8 @@
 	--two-cols: 1fr;
 
 	--border-radius: 12px;
+
+	scroll-behavior: smooth;
 
 	@media (width > 768px) {
 		--content-gap: 4rem;
@@ -35,8 +40,10 @@ body {
 	grid-template-columns: var(--main-grid);
 	margin: 0;
 	padding: 0;
-	background-color: #6400f2;
 	font-family: var(--font-body);
+	background-color: var(--theme-color-bg);
+	color: var(--theme-color-primary);
+	transition: background-color 0.5s linear;
 }
 
 h1,
@@ -45,7 +52,6 @@ h3,
 h4,
 h5,
 h6 {
-	/* font-family: var(--font-heading); */
 	margin: 0;
 }
 
@@ -58,7 +64,7 @@ a {
 	display: inline-block;
 	position: relative;
 
-	&::after {
+	&:not(.-plain)::after {
 		content: '';
 		position: absolute;
 		height: 0.075em;
@@ -66,7 +72,7 @@ a {
 		bottom: 0;
 		left: 0;
 		margin-top: 0.25em;
-		background-color: var(--color-text-primary);
+		background-color: var(--theme-color-primary);
 		scale: 0 1;
 		transform-origin: right;
 		transition: scale 0.2s ease-in-out;

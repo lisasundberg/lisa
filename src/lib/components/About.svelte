@@ -1,4 +1,4 @@
-<section class="about">
+<section class="section about" id="about">
 	<div>
 		<p class="p-small">
 			With six years of experience at digital agencies, I have a wide experience of working with
