@@ -1,72 +1,7 @@
-<!-- <script lang="ts">
-	import { onMount } from 'svelte';
-	import * as THREE from 'three';
-
-	let canvas: HTMLCanvasElement;
-	let innerHeight: number;
-	let innerWidth: number;
-
-	let camera: THREE.PerspectiveCamera;
-	const scene = new THREE.Scene();
-	// let geometry: THREE.TorusGeometry;
-	// let material: THREE.MeshNormalMaterial;
-	// let donut: THREE.Mesh;
-	const geometry = new THREE.TorusGeometry(0.1, 0.05, 32, 100);
-	const material = new THREE.MeshNormalMaterial();
-	const donut = new THREE.Mesh(geometry, material);
-	let renderer: THREE.WebGLRenderer;
-
-	const resize = () => {
-		renderer.setSize(innerWidth, innerHeight);
-		camera.aspect = innerWidth / innerHeight;
-		camera.updateProjectionMatrix();
-	};
-
-	let donuts: THREE.Mesh[] = [];
-
-	const addDonut = (x: number, y: number, z: number = 0) => {
-		let mesh = donut.clone();
-
-		mesh.position.set(x, y, z);
-
-		scene.add(mesh);
-		donuts.push(mesh);
-
-		console.log(donuts, mesh.position.x, mesh.position.y);
-	};
-
-	const animate = () => {
-		requestAnimationFrame(animate);
-
-		donuts.forEach((donut) => {
-			donut.rotation.x += 0.01;
-			donut.rotation.y += 0.01;
-		});
-
-		renderer.render(scene, camera);
-	};
-
-	onMount(() => {
-		camera = new THREE.PerspectiveCamera(75, innerWidth / innerHeight, 0.1, 100);
-		camera.position.z = 5;
-		camera.position.y = 1;
-		camera.position.x = 1;
-		camera.lookAt(0, 0, 0);
-
-		renderer = new THREE.WebGLRenderer({ antialias: true, canvas, alpha: true });
-
-		scene.add(donut);
-		const gridHelper = new THREE.GridHelper(3, 40);
-		scene.add(gridHelper);
-
-		resize();
-		animate();
-	});
-</script> -->
-
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import * as THREE from 'three';
+	import gsap from 'gsap/dist/gsap';
 
 	let canvas: HTMLCanvasElement;
 	let innerHeight: number;
@@ -107,17 +42,31 @@
 		donut.position.copy(point);
 
 		scene.add(donut);
-		donuts.push(donut);
 
-		console.log(donuts, point.x, point.y, point.z);
+		gsap.fromTo(
+			donut.scale,
+			{
+				x: 0.0,
+				y: 0.0,
+				z: 0.0
+			},
+			{
+				x: 1.0,
+				y: 1.0,
+				z: 1.0,
+				duration: 0.2,
+				ease: 'back.out'
+			}
+		);
+
+		donuts.push(donut);
 	};
 
-	const animate = () => {
-		requestAnimationFrame(animate);
+	const render = () => {
+		requestAnimationFrame(render);
 
 		donuts.forEach((donut) => {
-			donut.rotation.x += 0.01;
-			donut.rotation.y += 0.01;
+			gsap.to(donut.rotation, { x: donut.rotation.x + 0.05, y: donut.rotation.y + 0.05 });
 		});
 
 		renderer.render(scene, camera);
@@ -127,10 +76,14 @@
 		camera = new THREE.PerspectiveCamera(70, innerWidth / innerHeight, 0.1, 10);
 		camera.position.z = 1;
 
+		donuts.forEach((donut) => {
+			gsap.to(donut, { scale: 2, duration: 1, repeat: -1, yoyo: true });
+		});
+
 		renderer = new THREE.WebGLRenderer({ antialias: true, canvas, alpha: true });
 
 		resize();
-		animate();
+		render();
 	});
 </script>
 
