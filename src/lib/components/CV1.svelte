@@ -6,6 +6,22 @@
 	onMount(() => {
 		gsap.registerPlugin(ScrollTrigger);
 
+		const cardTimeline = gsap.timeline({
+			scrollTrigger: {
+				trigger: '.cv',
+				start: 'top bottom',
+				end: 'top center+=20%',
+				scrub: true
+			}
+		});
+
+		cardTimeline.from('.cv', {
+			opacity: 0,
+			y: 200,
+			scale: 0.8,
+			transformOrigin: 'bottom center'
+		});
+
 		const items = gsap.utils.toArray('.item');
 		const mainTimeline = gsap.timeline({
 			scrollTrigger: {
@@ -53,28 +69,25 @@
 
 			mainTimeline.add(itemTimeline, '<+0.09'); // Add the item timeline to the main timeline
 		});
-	});
 
-	const competences = [
-		{
-			name: 'HTML / CSS / JavaScript'
-		},
-		{
-			name: 'Svelte'
-		},
-		{
-			name: 'React'
-		},
-		{
-			name: 'GSAP'
-		},
-		{
-			name: 'Three.js'
-		},
-		{
-			name: 'A11y'
-		}
-	];
+		// 	ScrollTrigger.create({
+		// 		trigger: '.cv',
+		// 		start: 'top top',
+		// 		end: 'bottom bottom',
+		// 		markers: true
+		// 	});
+
+		// const nested = gsap.timeline();
+		// nested.fromTo(".item", {
+		// 	opacity: 0
+		// }, {
+		// 	duration: 0.5,
+		// 	opacity: 1,
+		// 	stagger: 0.2
+		// });
+
+		// mainTimeline.add(nested);
+	});
 
 	const work = [
 		{
@@ -118,109 +131,64 @@
 	];
 </script>
 
-<div class="cv">
-	<div class="competences column -narrow">
-		<h3 class="label-bold">Competences</h3>
-		<ol class="list -small">
-			{#each competences as { name }}
+<section class="cv">
+	<div class="column">
+		<h3>Relevant work experience</h3>
+		<ol class="list">
+			{#each work as { place, activity, year }}
 				<li class="item">
 					<hr />
-					<div class="mask">
-						<p class="activity p-small">{name}</p>
+					<div class="content">
+						<div class="text">
+							<h4 class="place label">{place}</h4>
+							<div class="wrapper">
+								<p class="activity">{activity}</p>
+							</div>
+						</div>
+						<time class="year label">{year}</time>
 					</div>
 				</li>
 			{/each}
 		</ol>
 	</div>
-	<div class="work column">
-		<h3 class="label-bold">Work experience</h3>
-		<ol class="list">
-			{#each work as { place, activity, year }}
-				<li class="item">
-					<hr />
-					<article>
-						<div class="info">
-							<h4 class="place label">{place}</h4>
-							<time class="year label">{year}</time>
-						</div>
-						<div class="mask">
-							<p class="activity">{activity}</p>
-						</div>
-					</article>
-				</li>
-			{/each}
-		</ol>
-	</div>
-	<div class="education column">
-		<h3 class="label-bold">Education</h3>
+	<div class="column">
+		<h3>Education</h3>
 		<ol class="list">
 			{#each education as { place, activity, year }}
 				<li class="item">
 					<hr />
-					<article>
-						<div class="info">
+					<div class="content">
+						<div class="text">
 							<h4 class="place label">{place}</h4>
-							<time class="year label">{year}</time>
+							<div class="wrapper">
+								<p class="activity">{activity}</p>
+							</div>
 						</div>
-						<div class="mask">
-							<p class="activity">{activity}</p>
-						</div>
-					</article>
+						<time class="year label">{year}</time>
+					</div>
 				</li>
 			{/each}
 		</ol>
 	</div>
-</div>
+</section>
 
 <style>
 	.cv {
-		display: grid;
-		grid-template-columns: 1fr;
-		grid-template-rows: auto auto auto;
+		display: flex;
+		justify-content: flex-start;
+		flex-direction: column;
 		gap: var(--content-gap);
-		color: var(--theme-color-primary);
-		grid-template-areas:
-			'competences'
-			'work'
-			'education';
+		color: var(--color-text-secondary);
 
 		@media (width >= 768px) {
-			grid-template-columns: 1fr 1fr;
-			grid-template-rows: auto auto auto;
-			grid-template-areas:
-				'competences .'
-				'work work'
-				'education education';
-		}
-
-		@media (width >= 900px) {
-			grid-template-columns: 1fr 1fr;
-			grid-template-rows: auto auto;
-			grid-template-areas:
-				'competences .'
-				'work education';
-		}
-		@media (width >= 1200px) {
-			grid-template-columns: 1fr 2fr 2fr;
-			grid-template-rows: auto;
-			grid-template-areas: 'competences work education';
+			flex-direction: row;
 		}
 	}
 
 	.column {
 		height: 100%;
-
-		&.competences {
-			grid-area: competences;
-		}
-
-		&.work {
-			grid-area: work;
-		}
-
-		&.education {
-			grid-area: education;
-		}
+		grid-row: 2 / 3;
+		flex-grow: 1;
 	}
 
 	.list {
@@ -232,34 +200,37 @@
 		display: flex;
 		flex-direction: column;
 		gap: var(--gutter);
+		margin-top: 2em;
+		padding-top: 1em;
 		position: relative;
 	}
 
-	.info {
+	.content {
 		display: flex;
+		gap: 2em;
 		justify-content: space-between;
-		gap: var(--gutter);
+	}
+
+	.text {
+		display: flex;
+		flex-direction: column;
+		gap: 0.25em;
+	}
+
+	.wrapper {
+		overflow: hidden;
+		display: inline-block;
 	}
 
 	.activity {
-		margin-block: 0.25em;
-
-		.-small & {
-			margin-block: 0.125em;
-		}
-	}
-
-	.mask {
-		overflow: hidden;
-		display: inline-block;
-		margin-block: 0.375em;
+		margin-top: 0.25em;
 	}
 
 	hr {
 		grid-column: 1 / -1;
 		grid-row: 1 / 2;
 		border: none;
-		background: var(--theme-color-primary);
+		background: var(--color-text-secondary);
 		width: 100%;
 		height: 1px;
 		transform-origin: left;

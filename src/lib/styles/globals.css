@@ -1,10 +1,14 @@
 :root {
-	--font-heading: 'RST Thermal (TRIAL)';
+	--font-heading: 'PP Pangaia';
+	--font-heading-1: 'RST Thermal (TRIAL)';
 	--font-heading-2: 'Moon Dream';
 	--font-body: 'DM Sans';
 
-	--font-size-body: clamp(1.75rem, 2.75vw, 2.5rem);
-	--font-size-body-small: clamp(1.25rem, 1.75vw, 1.5rem);
+	/* --font-size-body: clamp(1.75rem, 2.75vw, 2.5rem); */
+	--font-size-body: clamp(1.5rem, 2.5vw, 2rem);
+	/* --font-size-body-small: clamp(1.25rem, 1.75vw, 1.5rem); */
+	--font-size-body-small: clamp(1.125rem, 1.5vw, 1.25rem);
+	--font-size-label: 0.75rem;
 
 	--heading-offset: 20;
 	--footer-height: 100dvh;
@@ -31,6 +35,7 @@
 	scroll-behavior: smooth;
 
 	@media (width > 768px) {
+		--font-size-label: 0.85rem;
 		--content-gap: 4rem;
 		--two-cols: 1fr 1fr;
 	}

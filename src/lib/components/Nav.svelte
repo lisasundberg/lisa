@@ -17,7 +17,7 @@
 				start: 'top center',
 				end: 'bottom center',
 				toggleClass: 'active',
-				markers: true,
+				// markers: true,
 				onEnter: () => {
 					currentSection = section.id;
 				},
