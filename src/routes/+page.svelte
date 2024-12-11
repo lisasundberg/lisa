@@ -15,7 +15,6 @@
 	import Work from '$lib/components/Work.svelte';
 	import About from '$lib/components/About.svelte';
 	import Background from '$lib/components/Background.svelte';
-	import CV from '$lib/components/CV.svelte';
 	import Footer from '$lib/components/Footer.svelte';
 	import '$lib/styles/index.css';
 
@@ -90,11 +89,10 @@
 		order: 3;
 		line-height: 1;
 		font-family: var(--font-heading);
-
 		font-weight: 100;
 		font-style: italic;
-		color: var(--color-cream);
-		font-size: 18.75vw;
+		color: var(--theme-color-primary);
+		font-size: 17.8vw;
 		text-box-trim: trim-both;
 		text-box-edge: cap alphabetic;
 	}

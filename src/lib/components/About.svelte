@@ -1,5 +1,9 @@
+<script lang="ts">
+	import CV from '$lib/components/CV.svelte';
+</script>
+
 <section class="section about" id="about">
-	<div>
+	<div class="intro">
 		<p class="p-small">
 			With six years of experience at digital agencies, I have a wide experience of working with
 			different brands and tech stacks. Having a background in the creative field, I am a true
@@ -11,7 +15,14 @@
 			collaborating – <a href="mailto:hello@lisasundberg.com">drop me a line</a>!
 		</p>
 	</div>
-	<img src="images/lisa-bw.jpeg" alt="Lisa" />
+
+	<div class="cv">
+		<CV />
+	</div>
+
+	<div class="image">
+		<img src="images/lisa-bw.jpeg" alt="Lisa" />
+	</div>
 </section>
 
 <style>
@@ -21,8 +32,29 @@
 		grid-template-columns: var(--two-cols);
 		gap: var(--content-gap);
 		align-items: center;
-		height: 100dvh;
+		min-height: 100dvh;
 		z-index: 0;
+	}
+
+	.intro {
+		grid-column: 1 / -1;
+
+		@media (width >= 768px) {
+			grid-column: 1 / 2;
+		}
+	}
+
+	.cv {
+		grid-column: 1 / -1;
+		margin: clamp(4rem, 6vw, 12rem) 0 clamp(2rem, 3vw, 6rem);
+	}
+
+	.image {
+		grid-column: 1 / -1;
+
+		@media (width >= 768px) {
+			grid-column: 2 / 3;
+		}
 	}
 
 	p {

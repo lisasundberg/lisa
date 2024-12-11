@@ -16,5 +16,5 @@ export const themes: Theme[] = [
 	}
 ];
 
-export const currentTheme = writable<ThemeName>(themes[0].name);
+export const currentTheme = writable<ThemeName>(themes[2].name);
 export const headingHeight = writable<number>(undefined);
