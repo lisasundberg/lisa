@@ -1,3 +1,4 @@
+@import './fonts.css';
 @import './globals.css';
 @import './typography.css';
 @import './animations.css';
@@ -7,9 +8,6 @@ html {
 	all: unset;
 }
 
-/* body {
-	background: linear-gradient(90deg, rgb(109, 109, 255) 35%, rgb(187, 244, 255) 100%);
-} */
 
 main {
 	padding-bottom: 10vh;

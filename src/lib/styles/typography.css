@@ -2,14 +2,6 @@
 	--font-size-h1: 4rem;
 }
 
-.display {
-	font-size: 14.95vw;
-	font-weight: 1000;
-	line-height: 1.1;
-	text-box-trim: trim-both;
-	text-box-edge: text alphabetic;
-}
-
 h1,
 .h1 {
 	font-size: var(--font-size-h1);
@@ -26,6 +18,7 @@ p,
 	letter-spacing: 0.01em;
 	line-height: 1.1;
 	font-weight: 300;
+	max-width: 50ch;
 }
 
 .p-small {

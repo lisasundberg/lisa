@@ -1,7 +1,6 @@
 :root {
-	--font-heading: 'PP Pangaia';
-	--font-heading-1: 'RST Thermal (TRIAL)';
-	--font-heading-2: 'Moon Dream';
+	--font-heading: 'pangaia-ultralight-italic';
+	--font-display: 'pangaia-ultralight';
 	--font-body: 'DM Sans';
 
 	/* --font-size-body: clamp(1.75rem, 2.75vw, 2.5rem); */
@@ -66,7 +65,7 @@ p {
 	margin: 0;
 }
 
-a {
+a, .a {
 	display: inline-block;
 	position: relative;
 
