@@ -1,5 +1,11 @@
 :root {
-	--font-size-h1: 4rem;
+	--font-heading: 'pangaia-ultralight-italic';
+	--font-display: 'pangaia-ultralight';
+	--font-body: 'DM Sans';
+	--font-size-h1: clamp(2.25rem, 5vw, 4rem);
+	--font-size-body: clamp(1.5rem, 2.5vw, 2rem);
+	--font-size-body-small: clamp(1.125rem, 1.5vw, 1.25rem);
+	--font-size-label: 0.75rem;
 }
 
 h1,

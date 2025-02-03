@@ -3,57 +3,57 @@
 	import gsap from 'gsap/dist/gsap';
 	import ScrollTrigger from 'gsap/dist/ScrollTrigger';
 
-	onMount(() => {
-		gsap.registerPlugin(ScrollTrigger);
+	// onMount(() => {
+	// 	gsap.registerPlugin(ScrollTrigger);
 
-		const items = gsap.utils.toArray('.item');
-		const mainTimeline = gsap.timeline({
-			scrollTrigger: {
-				trigger: '.cv',
-				start: 'top center+=20%',
-				end: 'center center'
-			}
-		});
+	// 	const items = gsap.utils.toArray('.item');
+	// 	const mainTimeline = gsap.timeline({
+	// 		scrollTrigger: {
+	// 			trigger: '.cv',
+	// 			start: 'top center+=20%',
+	// 			end: 'center center'
+	// 		}
+	// 	});
 
-		items.forEach((item) => {
-			const itemTimeline = gsap.timeline();
-			const hr = item.querySelector('hr');
-			const place = item.querySelector('.place');
-			const activity = item.querySelector('.activity');
-			const year = item.querySelector('.year');
+	// 	items.forEach((item) => {
+	// 		const itemTimeline = gsap.timeline();
+	// 		const hr = item.querySelector('hr');
+	// 		const place = item.querySelector('.place');
+	// 		const activity = item.querySelector('.activity');
+	// 		const year = item.querySelector('.year');
 
-			itemTimeline.fromTo(hr, { scale: 0 }, { scale: 1, duration: 0.7 });
-			itemTimeline.from(place, { opacity: 0 }, '<');
-			itemTimeline.fromTo(
-				activity,
-				{
-					y: 200
-				},
-				{
-					y: 0,
-					duration: 1,
-					ease: 'power2.out'
-				},
-				'<'
-			);
+	// 		itemTimeline.fromTo(hr, { scale: 0 }, { scale: 1, duration: 0.7 });
+	// 		itemTimeline.from(place, { opacity: 0 }, '<');
+	// 		itemTimeline.fromTo(
+	// 			activity,
+	// 			{
+	// 				y: 200
+	// 			},
+	// 			{
+	// 				y: 0,
+	// 				duration: 1,
+	// 				ease: 'power2.out'
+	// 			},
+	// 			'<'
+	// 		);
 
-			itemTimeline.fromTo(
-				activity,
-				{
-					opacity: 0
-				},
-				{
-					duration: 1,
-					opacity: 1,
-					ease: 'none'
-				},
-				'<'
-			);
-			itemTimeline.from(year, { opacity: 0 }, '<)');
+	// 		itemTimeline.fromTo(
+	// 			activity,
+	// 			{
+	// 				opacity: 0
+	// 			},
+	// 			{
+	// 				duration: 1,
+	// 				opacity: 1,
+	// 				ease: 'none'
+	// 			},
+	// 			'<'
+	// 		);
+	// 		itemTimeline.from(year, { opacity: 0 }, '<)');
 
-			mainTimeline.add(itemTimeline, '<+0.09'); // Add the item timeline to the main timeline
-		});
-	});
+	// 		mainTimeline.add(itemTimeline, '<+0.09'); // Add the item timeline to the main timeline
+	// 	});
+	// });
 
 	const competences = [
 		{
@@ -178,7 +178,7 @@
 		grid-template-columns: 1fr;
 		grid-template-rows: auto auto auto;
 		gap: var(--content-gap);
-		color: var(--theme-color-primary);
+		color: var(--_theme-color-primary);
 		grid-template-areas:
 			'competences'
 			'work'
@@ -259,7 +259,7 @@
 		grid-column: 1 / -1;
 		grid-row: 1 / 2;
 		border: none;
-		background: var(--theme-color-primary);
+		background: var(--_theme-color-primary);
 		width: 100%;
 		height: 1px;
 		transform-origin: left;

@@ -1,12 +1,14 @@
-<script lang="ts">
+<!-- <script lang="ts">
 	import { split } from '$lib/actions/splitting';
 	import { bodyMaskY } from '$lib/actions/animations';
-</script>
+</script> -->
 
 <section class="section intro" id="intro">
 	<header>
-		<h2 use:split use:bodyMaskY data-delay="0.2">Hi, I'm Lisa</h2>
-		<p use:split use:bodyMaskY data-delay="0.4">
+		<h2 class="label-bold">Hi, I'm Lisa</h2>
+		<!-- <h2 use:bodyMaskY data-delay="0.2" class="label-bold">Hi, I'm Lisa</h2> -->
+		<!-- <p use:bodyMaskY data-delay="0.4"> -->
+		<p>
 			Frontend developer with a passion for beautiful and brand building user experiences, based in
 			Stockholm, Sweden.
 		</p>
@@ -25,9 +27,6 @@
 
 	p {
 		max-width: 25ch;
-		margin-top: 1em;
-		/* max-width: 29ch;
-		font-family: 'RST Thermal (TRIAL)';
-		font-weight: 100; */
+		margin-top: 0.5em;
 	}
 </style>

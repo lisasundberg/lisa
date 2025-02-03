@@ -35,7 +35,6 @@
 		name="twitter:description"
 		content="Lisa Sundberg | Front end developer based in Stockholm, Sweden"
 	/>
-	<!-- <meta name="twitter:image" content="/static/img.jpg" /> -->
 
 	<title>Lisa Sundberg | Front end developer</title>
 </svelte:head>

@@ -1,16 +1,16 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { fade } from 'svelte/transition';
+	// import { fade } from 'svelte/transition';
 	import gsap from 'gsap/dist/gsap';
 	import ScrollTrigger from 'gsap/dist/ScrollTrigger';
 	import Lenis from 'lenis';
 	import 'lenis/dist/lenis.css';
-	import { currentTheme } from '$lib/stores/app';
-	import { headingMaskY } from '$lib/actions/animations';
-	import { split } from '$lib/actions/splitting';
+	// import { currentTheme } from '$lib/stores/app';
+	// import { headingMaskY } from '$lib/actions/animations';
+	// import { split } from '$lib/actions/splitting';
 	import { headingHeight } from '$lib/stores/app';
 	import Nav from '$lib/components/Nav.svelte';
-	import ThemeNav from '$lib/components/ThemeNav.svelte';
+	// import ThemeNav from '$lib/components/ThemeNav.svelte';
 	import Intro from '$lib/components/Intro.svelte';
 	import Work from '$lib/components/Work.svelte';
 	import About from '$lib/components/About.svelte';
@@ -50,12 +50,24 @@
 		// 		// ease: 'power4.out',
 		// 		transformOrigin: 'top center'
 		// 	});
+
+		let mm = gsap.matchMedia();
+		mm.add("(max-width: 768px)", () => {
+			gsap.to(heading, {
+				autoAlpha: 0.1,
+				scrollTrigger: {
+					trigger: heading,
+					start: "top top+=10%",
+					end: "top top",
+					toggleActions: "play resume resume reverse",
+				},
+			});
+		});
+
 	});
 </script>
 
-<h1 class="heading display" bind:this={heading} bind:clientHeight={$headingHeight}>
-	Lisa Sundberg
-</h1>
+<h1 class="heading" bind:this={heading} bind:clientHeight={$headingHeight}>Lisa Sundberg</h1>
 <!-- <h1
 	class="heading display"
 	bind:this={heading}
@@ -70,7 +82,6 @@
 <header>
 	<Nav />
 </header>
-<ThemeNav />
 <main>
 	<Intro />
 	<Work />
@@ -78,6 +89,7 @@
 	<!-- <CV /> -->
 </main>
 <Footer />
+<!-- <ThemeNav /> -->
 
 <style>
 	.heading {
@@ -90,9 +102,8 @@
 		line-height: 1;
 		font-family: var(--font-heading);
 		font-weight: 100;
-		font-style: italic;
-		color: var(--theme-color-primary);
 		font-size: 17.8vw;
+		text-align: center;
 		text-box-trim: trim-both;
 		text-box-edge: cap alphabetic;
 	}
@@ -108,7 +119,8 @@
 		grid-column: full;
 		display: grid;
 		grid-template-columns: subgrid;
-		color: var(--theme-color-primary);
+		overflow: hidden;
+		color: var(--_theme-color-primary);
 		padding-top: 10dvh;
 		z-index: 1;
 	}

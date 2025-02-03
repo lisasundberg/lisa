@@ -1,52 +1,48 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
-	import gsap from 'gsap/dist/gsap';
-	import ScrollTrigger from 'gsap/dist/ScrollTrigger';
+	// import { onMount } from 'svelte';
+	// import gsap from 'gsap/dist/gsap';
+	// import ScrollTrigger from 'gsap/dist/ScrollTrigger';
 	import { headingHeight } from '$lib/stores/app';
 	import ExternalLink from '$lib/components/ExternalLink.svelte';
-	import { split } from '$lib/actions/splitting';
-	import { bodyMaskY, maskY } from '$lib/actions/animations';
+	// import { split } from '$lib/actions/splitting';
+	// import { bodyMaskY, maskY } from '$lib/actions/animations';
 
-	let footer: HTMLElement;
+	// let footer: HTMLElement;
+	// onMount(() => {
+	// 	gsap.registerPlugin(ScrollTrigger);
 
-	onMount(() => {
-		gsap.registerPlugin(ScrollTrigger);
+	// 	const timeline = gsap.timeline({
+	// 		scrollTrigger: {
+	// 			trigger: footer,
+	// 			start: 'top center',
+	// 			end: 'bottom bottom',
+	// 			scrub: true,
+	// 			toggleActions: 'play play play play'
+	// 		}
+	// 	});
 
-		// bodyMaskY(footer, scrollTrigger);
-		const timeline = gsap.timeline({
-			scrollTrigger: {
-				trigger: footer,
-				start: 'top center',
-				end: 'bottom bottom',
-				scrub: true,
-				// markers: true,
-				toggleActions: 'play play play play'
-			}
-		});
-
-		timeline.fromTo(
-			footer.querySelectorAll('.char'),
-			{
-				'will-change': 'transform',
-				yPercent: 100,
-				autoAlpha: 0
-			},
-			{
-				autoAlpha: 1,
-				yPercent: 0,
-				duration: 0.8,
-				ease: 'power4.out',
-				stagger: 0.008
-			}
-		);
-	});
+	// 	timeline.fromTo(
+	// 		footer.querySelectorAll('.char'),
+	// 		{
+	// 			'will-change': 'transform',
+	// 			yPercent: 100,
+	// 			autoAlpha: 0
+	// 		},
+	// 		{
+	// 			autoAlpha: 1,
+	// 			yPercent: 0,
+	// 			duration: 0.8,
+	// 			ease: 'power4.out',
+	// 			stagger: 0.008
+	// 		}
+	// 	);
+	// });
 </script>
 
 <footer
 	class="footer section"
 	id="contact"
 	style="--heading-height: {$headingHeight}"
-	bind:this={footer}
 >
 	<section>
 		<div>
@@ -72,7 +68,7 @@
 		position: relative;
 		height: calc(100dvh - var(--heading-height) * 1px);
 		padding-block: 2rem;
-		color: var(--theme-color-primary);
+		color: var(--_theme-color-primary);
 		order: 4;
 		z-index: 10;
 	}

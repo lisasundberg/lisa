@@ -17,3 +17,8 @@
 	--theme-color-bg: var(--color-brat-green);
 	--theme-color-primary: var(--color-black);
 }
+
+.five {
+	--theme-color-bg: var(--color-cream);
+	--theme-color-primary: var(--color-hyperlink-blue);
+}

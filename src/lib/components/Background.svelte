@@ -1,16 +1,14 @@
-<script lang="ts">
+<!-- <script lang="ts">
 	import { themes, currentTheme } from '$lib/stores/app';
 	import { fade } from 'svelte/transition';
 
 	import Shader from '$lib/components/Shader.svelte';
 	import TheMostBeautifulShaderEver from '$lib/components/TheMostBeautifulShaderEver.svelte';
 	import Donuts from '$lib/components/Donuts.svelte';
-
-	console.log($currentTheme);
-</script>
+</script> -->
 
 <div class="background">
-	{#if $currentTheme === themes[0].name}
+	<!-- {#if $currentTheme === themes[0].name}
 		<div transition:fade>
 			<Shader />
 		</div>
@@ -26,7 +24,7 @@
 		<div transition:fade>
 			<Donuts />
 		</div>
-	{/if}
+	{/if} -->
 </div>
 
 <style>

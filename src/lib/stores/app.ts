@@ -13,8 +13,11 @@ export const themes: Theme[] = [
 	},
 	{
 		name: 'four'
+	},
+	{
+		name: 'five'
 	}
 ];
 
-export const currentTheme = writable<ThemeName>(themes[2].name);
+export const currentTheme = writable<ThemeName>(themes[4].name);
 export const headingHeight = writable<number>(undefined);
