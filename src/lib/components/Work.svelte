@@ -22,6 +22,7 @@
 				Homage3,
 				Homage4,
 			]}
+			link="https://homage.se"
 		/>,
 		 <WorkItem
 			title="Akademiska Hus"
@@ -31,6 +32,7 @@
 				AH3,
 				AH4
 			]}
+			link="https://akademiskahus.se"
 		/>, 
 	<!--	<WorkItem
 			title="H&M Foundation"

@@ -1,7 +1,9 @@
 <script lang="ts">
+
 	export let title: string;
-	export let images: string[] = [];
-	let active = false;
+	export let link: string = "";
+	export let images: any[] = [];
+	let active = true;
 </script>
 
 <span class="work-item a{active ? ' active' : ''}">
@@ -15,7 +17,7 @@
 
 	<span class="images">
 		{#each images as image, i}
-			<img src={image} alt={title} style="--index: {i}; --total: {images.length}" class="img-{i}" />
+			<enhanced:img src={image} alt={title} style="--index: {i}; --total: {images.length}" class="image image-{i}" />
 		{/each}
 	</span>
 </span>
@@ -36,18 +38,16 @@
 	.title {
 		all: unset;
 		cursor: pointer;
+		position: relative;
+		
+		.active & {
+			z-index: 2;
+		}
 	}
 
-	.images {
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		translate: -50% -50%;
-	}
-
-	img {
-		max-width: 45vw;
-		max-height: 45dvh;
+	.image {
+		max-width: 50vw;
+		max-height: 50dvh;
 		object-fit: cover;
 		position: fixed;
 		opacity: 0;
@@ -56,47 +56,25 @@
 			opacity 0.375s calc(var(--index) * 0.05s) linear,
 			scale 0.375s calc(var(--index) * 0.05s) ease-in-out;
 		pointer-events: none;
+		z-index: 1;
 
-		--transform-factor: 1;
-		--top: translate(-50%, calc(var(--transform-factor) * -150%));
-		--right: translate(calc(var(--transform-factor) * 50%), -50%);
-		--bottom: translate(-50%, calc(var(--transform-factor) * 50%));
-		--left: translate(calc(var(--transform-factor) * -150%), -50%);
-
-
-		/* &.img-0 {
-			transform: var(--top);
-			transform-origin: bottom center;
-		}
-		&.img-1 {
-			transform: var(--right);
-			transform-origin: center left;
-		}
-		&.img-2 {
-			transform: var(--bottom);
-			transform-origin: top center;
-		}
-		&.img-3 {
-			transform: var(--left);
-			transform-origin: center right;
-		} */
-
-		&.img-0 {
+		&.image-0 {
 			top: 0;
 			left: 0;
 			transform-origin: bottom center;
 		}
-		&.img-1 {
+
+		&.image-1 {
 			top: 0;
 			right: 0;
 			transform-origin: center left;
 		}
-		&.img-2 {
+		&.image-2 {
 			bottom: 0;
 			right: 0;
 			transform-origin: top center;
 		}
-		&.img-3 {
+		&.image-3 {
 			bottom: 0;
 			left: 0;
 			transform-origin: center right;
@@ -106,5 +84,12 @@
 			opacity: 1;
 			scale: 1;
 		}
+		
+		& img {
+			width: 100%;
+			height: 100%;
+		}
+	
 	}
+
 </style>
