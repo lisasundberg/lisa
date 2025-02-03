@@ -1,5 +1,15 @@
 <script lang="ts">
 	import WorkItem from './WorkItem.svelte';
+
+	import Homage1 from './work/homage/homage-mockup-1.jpg?enhanced';
+	import Homage2 from './work/homage/homage-mockup-2.jpg?enhanced';
+	import Homage3 from './work/homage/homage-mockup-3.jpg?enhanced';
+	import Homage4 from './work/homage/homage-mockup-4.jpg?enhanced';
+	
+	import AH1 from './work/akademiskahus/ah-mockup-1.jpg?enhanced';
+	import AH2 from './work/akademiskahus/ah-mockup-2.jpg?enhanced';
+	import AH3 from './work/akademiskahus/ah-mockup-3.png?enhanced';
+	import AH4 from './work/akademiskahus/ah-mockup-4.jpg?enhanced';
 </script>
 
 <section class="section work" id="work">
@@ -7,21 +17,22 @@
 		I have worked on projects for a wide range of clients - including <WorkItem
 			title="Homage"
 			images={[
-				'/work/homage/homage-mockup-3.jpg',
-				'/work/homage/homage-mockup-4.jpg',
-				'/work/homage/homage-longscroll-mockup-2.jpg',
-				'/work/homage/homage-mockup-5.jpg'
+				Homage1,
+				Homage2,
+				Homage3,
+				Homage4,
 			]}
 		/>,
-		<WorkItem
+		 <WorkItem
 			title="Akademiska Hus"
 			images={[
-				'/work/akademiskahus/ah-mockup-mobile-1.jpg',
-				'/work/akademiskahus/ah-mockup-mobile-2.png',
-				'/work/akademiskahus/ah-mockup-6.jpg',
-				'/work/akademiskahus/ah-mockup-8.jpg'
+				AH1,
+				AH2,
+				AH3,
+				AH4
 			]}
-		/>, <WorkItem
+		/>, 
+	<!--	<WorkItem
 			title="H&M Foundation"
 			images={[
 				'/work/babytalk/mobile-2.png',
@@ -36,7 +47,7 @@
 				'/work/webbdagarna/webbdagarna-mockup-2.png',
 				'/work/webbdagarna/webbdagarna-mockup-3.png',
 			]}
-		/>.
+		/>. -->
 	</p>
 </section>
 
