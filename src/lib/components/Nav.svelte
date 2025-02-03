@@ -2,6 +2,7 @@
 	import { onMount } from 'svelte';
 	import gsap from 'gsap/dist/gsap';
 	import ScrollTrigger from 'gsap/dist/ScrollTrigger';
+	import OpenToWork from './OpenToWork.svelte';
 
 	let sections: NodeListOf<HTMLElement>;
 	let currentSection: string;
@@ -17,7 +18,6 @@
 				start: 'top center',
 				end: 'bottom center',
 				toggleClass: 'active',
-				// markers: true,
 				onEnter: () => {
 					currentSection = section.id;
 				},
@@ -30,13 +30,13 @@
 </script>
 
 <nav>
-	<a class="logo -plain" href="/">Logo</a>
+	<a class="logo -plain" href="/">LS</a>
 	<ul>
 		{#each sections as section}
 			{#if section.id !== 'intro'}
 				<li>
 					<a
-						class="label-bold"
+						class="-plain label-bold"
 						class:active={currentSection === section.id}
 						href={`#${section.id}`}
 					>
@@ -46,6 +46,9 @@
 			{/if}
 		{/each}
 	</ul>
+	<div class="open-to-work">
+		<OpenToWork active />
+	</div>
 </nav>
 
 <style>
@@ -54,7 +57,7 @@
 		align-items: center;
 		gap: var(--content-gap);
 		padding: var(--content-margin);
-		color: var(--theme-color-primary);
+		color: var(--_theme-color-primary);
 	}
 
 	ul {
@@ -86,12 +89,14 @@
 			width: 0.375em;
 			height: 0.375em;
 			border-radius: 50%;
-			background-color: var(--theme-color-primary);
+			background-color: var(--_theme-color-primary);
 			scale: 0;
 			transition: scale 0.09s linear;
 		}
 
-		&:has(.active) {
+		&:has(.active),
+		&:has(:hover),
+		&:has(:focus-visible) {
 			&::before {
 				scale: 1;
 			}
@@ -104,5 +109,12 @@
 		font-size: 1.5rem;
 		color: var(--theme-color-primary);
 		flex-grow: 0;
+	}
+
+	.open-to-work {
+		flex-shrink: 0;
+		@media (width < 768px) {
+			display: none;
+		}
 	}
 </style>
