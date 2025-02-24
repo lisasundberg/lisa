@@ -1,5 +1,14 @@
-@import './base/normalize.css';
+@import './typography.css';
+@import './fonts.css';
+@import './globals.css';
+@import './animations.css';
+@import './themes.css';
 
-body {
-	margin: 0;
+html {
+	all: unset;
+}
+
+
+main {
+	padding-bottom: 10vh;
 }

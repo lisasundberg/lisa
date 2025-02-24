@@ -1,0 +1,24 @@
+.one {
+	--theme-color-bg: var(--color-purple);
+	--theme-color-primary: var(--color-cream);
+}
+
+.two {
+	--theme-color-bg: var(--color-purple);
+	--theme-color-primary: var(--color-cream);
+}
+
+.three {
+	--theme-color-bg: var(--color-cream);
+	--theme-color-primary: var(--color-brown);
+}
+
+.four {
+	--theme-color-bg: var(--color-brat-green);
+	--theme-color-primary: var(--color-black);
+}
+
+.five {
+	--theme-color-bg: var(--color-cream);
+	--theme-color-primary: var(--color-hyperlink-blue);
+}

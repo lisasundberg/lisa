@@ -1,90 +1,95 @@
 <script lang="ts">
-	let innerWidth: number;
-	let innerHeight: number;
+	import { onMount } from 'svelte';
+	import gsap from 'gsap/dist/gsap';
+	import ScrollTrigger from 'gsap/dist/ScrollTrigger';
+	import Lenis from 'lenis';
+	import 'lenis/dist/lenis.css';
+	import { headingHeight } from '$lib/stores/app';
+	import Nav from '$lib/components/Nav.svelte';
+	import Intro from '$lib/components/Intro.svelte';
+	import Work from '$lib/components/Work.svelte';
+	import About from '$lib/components/About.svelte';
+	import Background from '$lib/components/Background.svelte';
+	import Footer from '$lib/components/Footer.svelte';
+	import '$lib/styles/index.css';
 
-	let value: number = 100;
-	let valueDark: number = 225;
-	let valueLight: number = 70;
+	let lenis: Lenis;
+	let heading: HTMLElement;
+	let timeline: gsap.core.Timeline;
+	let mm;
 
-	let mouse = { x: 0, y: 0 };
+	onMount(() => {
+		lenis = new Lenis();
+		gsap.registerPlugin(ScrollTrigger);
 
-	function handleMousemove(event: MouseEvent) {
-		mouse.x = event.clientX;
-		mouse.y = event.clientY;
-	}
+		lenis.on('scroll', ScrollTrigger.update);
+
+		gsap.ticker.add((time) => {
+			lenis.raf(time * 1000);
+		});
+
+		gsap.ticker.lagSmoothing(0);
+
+		mm = gsap.matchMedia();
+		mm.add("(max-width: 768px)", () => {
+			gsap.to(heading, {
+				autoAlpha: 0.1,
+				scrollTrigger: {
+					trigger: heading,
+					start: "top top+=5%",
+					end: "top top",
+					scrub: true,
+				},
+			});
+		});
+
+	});
 </script>
 
-<svelte:window bind:innerWidth bind:innerHeight />
-<main on:mousemove={handleMousemove} style="--hue: {value}">
-	<!-- <input type="range" name="hue" id="hue" min="0" max="100" bind:value /> -->
-	<section>
-		<div class="content">
-			<h1>Lisa Sundberg</h1>
-			<h2>Front end developer</h2>
-			<p>
-				Lorem ipsum dolor sit amet consectetur, adipisicing elit. Saepe assumenda praesentium
-				dolores labore eligendi autem nesciunt dolorem ipsa excepturi culpa nobis reprehenderit,
-				distinctio quidem. Atque incidunt consequatur enim consectetur sed?
-			</p>
-		</div>
-	</section>
+<h1 class="heading" bind:this={heading} bind:clientHeight={$headingHeight}>Lisa Sundberg</h1>
+
+<Background />
+<header>
+	<Nav />
+</header>
+<main>
+	<Intro />
+	<Work />
+	<About />
 </main>
-<svg width="1920" height="1080" version="1.1" xmlns="http://www.w3.org/2000/svg">
-	<defs>
-		<radialGradient
-			id="GradientPad"
-			cx="0.5"
-			cy="0.5"
-			r="0.75"
-			fx={(1 * mouse.x) / innerWidth}
-			fy={(1 * mouse.y) / innerHeight}
-			spreadMethod="pad"
-		>
-			<stop offset="0%" stop-color="hsl({(valueLight * value) / 100}, 75%, 89%)"></stop>
-			<stop offset="100%" stop-color="hsl({(valueDark * value) / 100}, 100%, 75%)"></stop>
-		</radialGradient>
-	</defs>
-	<rect x="0" y="0" rx="0" ry="0" width="100%" height="100%" fill="url(#GradientPad)"></rect>
-</svg>
+<Footer />
 
 <style>
-	main {
-		text-align: left;
-		/* background-color: hsl(var(--hue), 50%, 70%); */
-		height: 100vh;
-		font-family: 'Moon Dream';
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-	}
-
-	h1 {
-		/* color: hsl(calc(217 * var(--hue) / 70), 81%, 68%); */
-		color: #6a9def;
-		font-size: 10vw;
-		line-height: 1;
-		margin: 0;
-	}
-	h2 {
-		color: #6a9def;
-	}
-
-	p {
-		color: #722727;
-		font-family: 'DM sans';
-		max-width: 60ch;
-	}
-
-	svg {
-		width: 100vw;
-		height: 100dvh;
-		position: absolute;
+	.heading {
+		grid-column: full;
+		position: sticky;
 		top: 0;
-		left: 0;
-		z-index: -1;
+		bottom: 0;
+		margin: 0;
+		order: 3;
+		line-height: 1;
+		font-family: var(--font-heading);
+		font-weight: 100;
+		font-size: 17.8vw;
+		text-align: center;
+		text-box-trim: trim-both;
+		text-box-edge: cap alphabetic;
 	}
 
-	section {
+	header {
+		grid-column: full;
+		position: sticky;
+		top: 0;
+		z-index: 2;
+	}
+
+	main {
+		grid-column: full;
+		display: grid;
+		grid-template-columns: subgrid;
+		overflow: hidden;
+		color: var(--_theme-color-primary);
+		padding-top: 10dvh;
+		z-index: 1;
 	}
 </style>
