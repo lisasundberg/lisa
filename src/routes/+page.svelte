@@ -21,6 +21,7 @@
 	let lenis: Lenis;
 	let heading: HTMLElement;
 	let timeline: gsap.core.Timeline;
+	let mm;
 
 	onMount(() => {
 		lenis = new Lenis();
@@ -51,15 +52,15 @@
 		// 		transformOrigin: 'top center'
 		// 	});
 
-		let mm = gsap.matchMedia();
+		mm = gsap.matchMedia();
 		mm.add("(max-width: 768px)", () => {
 			gsap.to(heading, {
 				autoAlpha: 0.1,
 				scrollTrigger: {
 					trigger: heading,
-					start: "top top+=10%",
+					start: "top top+=5%",
 					end: "top top",
-					toggleActions: "play resume resume reverse",
+					scrub: true,
 				},
 			});
 		});

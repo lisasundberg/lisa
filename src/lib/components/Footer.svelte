@@ -55,7 +55,7 @@
 			<li><ExternalLink href="https://www.linkedin.com/in/lisasundberg/" label="Linkedin" /></li>
 		</ul>
 	</section>
-	<small>© Designed & developed by me in {new Date().getFullYear()} :-)</small>
+	<small>© I built this in {new Date().getFullYear()} :-)</small>
 </footer>
 
 <style>
@@ -102,6 +102,6 @@
 	small {
 		position: absolute;
 		bottom: 2rem;
-		right: 2rem;
+		right: 0;
 	}
 </style>

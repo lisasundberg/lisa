@@ -3,7 +3,7 @@
 	export let title: string;
 	export let link: string = "";
 	export let images: any[] = [];
-	let active = true;
+	let active = false;
 </script>
 
 <span class="work-item a{active ? ' active' : ''}">
@@ -37,7 +37,7 @@
 
 	.title {
 		all: unset;
-		cursor: pointer;
+		/* cursor: pointer; */
 		position: relative;
 		
 		.active & {
@@ -46,10 +46,12 @@
 	}
 
 	.image {
-		max-width: 50vw;
-		max-height: 50dvh;
+		/* max-width: 50vw;
+		max-height: 50dvh; */
+		max-width: 80vw;
+		max-height: 53vw;
 		object-fit: cover;
-		position: fixed;
+		position: absolute;
 		opacity: 0;
 		scale: 0.5;
 		transition:
@@ -59,9 +61,13 @@
 		z-index: 1;
 
 		&.image-0 {
-			top: 0;
+			top: 50%;
+			left: 50%;
+			translate: -50% -50%;
+			/* top: 0;
 			left: 0;
-			transform-origin: bottom center;
+			transform-origin: bottom center; */
+			
 		}
 
 		&.image-1 {
@@ -71,12 +77,12 @@
 		}
 		&.image-2 {
 			bottom: 0;
-			right: 0;
+			left: 0;
 			transform-origin: top center;
 		}
 		&.image-3 {
 			bottom: 0;
-			left: 0;
+			right: 0;
 			transform-origin: center right;
 		}
 
@@ -87,7 +93,12 @@
 		
 		& img {
 			width: 100%;
-			height: 100%;
+			height: auto;
+		}
+
+		@media (width >= 768px) {
+			max-width: 45vw;
+			max-height: 30vw;
 		}
 	
 	}

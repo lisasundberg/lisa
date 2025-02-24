@@ -28,7 +28,7 @@
 
 	scroll-behavior: smooth;
 
-	@media (width > 768px) {
+	@media (width >= 768px) {
 		--font-size-label: 0.85rem;
 		--content-gap: 4rem;
 		--two-cols: 1fr 1fr;
