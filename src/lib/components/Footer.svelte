@@ -55,7 +55,7 @@
 			<li><ExternalLink href="https://www.linkedin.com/in/lisasundberg/" label="Linkedin" /></li>
 		</ul>
 	</section>
-	<small>© I built this in {new Date().getFullYear()} :-)</small>
+	<small>© Drawn and developed by me in {new Date().getFullYear()} :-)</small>
 </footer>
 
 <style>
