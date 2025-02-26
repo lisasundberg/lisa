@@ -7,8 +7,8 @@
 </script>
 
 <section class="section work" id="work">
-	<p>
-		I have worked on projects for a wide range of clients - including  <WorkItem
+	<p class="heading display">
+		I have worked on projects for a wide range of clients - such as  <WorkItem
 		title="Akademiska Hus"
 		images={[
 			AH2
@@ -25,31 +25,43 @@
 			images={[
 				Babytalk3,
 			]}
-		/>
+		/> 
+		<!-- and <WorkItem
+			title="Storyblok & Webbdagarna"
+			images={[
+				Storyblok1,
+				Storyblok2,
+				Storyblok3,
+			]}
+		/> -->
 		.
 	</span>
 	</p>
+	<p class="body p-xsmall">Other clients include but are not limited to:<br /> H&M, Previa, Länsförsäkringar, TV4, Red Bull,
+		Urban deli, Storyblok, Bambora.</p>
 </section>
 
 <style>
 	.work {
 		grid-column: main;
 		display: flex;
+		flex-direction: column;
 		justify-content: flex-start;
+		align-items: center;
 		gap: var(--content-gap);
 		height: 100dvh;
 		z-index: 1;
 	}
 
-	p {
-		width: 100%;
+	.heading {
 		width: min(100%, 32ch);
-		margin: auto;
-		font-family: var(--font-display);
-		font-size: var(--font-size-h1);
-		font-weight: 100;
 		text-align: center;
 		text-wrap: pretty;
+	}
+
+	.body {
+		text-align: center;
+		width: 100%;
 	}
 	
 	span {
