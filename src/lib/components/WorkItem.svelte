@@ -1,7 +1,5 @@
 <script lang="ts">
-
 	export let title: string;
-	export let link: string = "";
 	export let images: any[] = [];
 	let active = false;
 </script>
@@ -37,7 +35,6 @@
 
 	.title {
 		all: unset;
-		/* cursor: pointer; */
 		position: relative;
 		
 		.active & {
@@ -46,8 +43,6 @@
 	}
 
 	.image {
-		/* max-width: 50vw;
-		max-height: 50dvh; */
 		max-width: 80vw;
 		max-height: 53vw;
 		object-fit: cover;
@@ -64,26 +59,6 @@
 			top: 50%;
 			left: 50%;
 			translate: -50% -50%;
-			/* top: 0;
-			left: 0;
-			transform-origin: bottom center; */
-			
-		}
-
-		&.image-1 {
-			top: 0;
-			right: 0;
-			transform-origin: center left;
-		}
-		&.image-2 {
-			bottom: 0;
-			left: 0;
-			transform-origin: top center;
-		}
-		&.image-3 {
-			bottom: 0;
-			right: 0;
-			transform-origin: center right;
 		}
 
 		.active & {

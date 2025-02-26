@@ -1,14 +1,6 @@
-<!-- <script lang="ts">
-	import { split } from '$lib/actions/splitting';
-	import { bodyMaskY } from '$lib/actions/animations';
-</script> -->
-
 <section class="section intro" id="intro">
 	<header>
-		<h2 class="label-bold">Hi, I'm Lisa</h2>
-		<!-- <h2 use:bodyMaskY data-delay="0.2" class="label-bold">Hi, I'm Lisa</h2> -->
-		<!-- <p use:bodyMaskY data-delay="0.4"> -->
-		<p>
+		<h2 class="label-bold">Hi, I'm Lisa</h2>		<p>
 			Frontend developer with a passion for beautiful and brand building user experiences, based in
 			Stockholm, Sweden.
 		</p>

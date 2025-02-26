@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { split } from '$lib/actions/splitting';
 	export let href: string;
 	export let label: string;
 	export let target: string = '_blank';
