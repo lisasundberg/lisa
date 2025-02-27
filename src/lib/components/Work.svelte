@@ -26,14 +26,6 @@
 				Babytalk3,
 			]}
 		/> 
-		<!-- and <WorkItem
-			title="Storyblok & Webbdagarna"
-			images={[
-				Storyblok1,
-				Storyblok2,
-				Storyblok3,
-			]}
-		/> -->
 		.
 	</span>
 	</p>
