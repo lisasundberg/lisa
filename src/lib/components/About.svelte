@@ -5,7 +5,7 @@
 <section class="section about" id="about">
 	<div class="intro">
 		<p class="p-small">
-			With six years of experience at digital agencies, I have a wide experience of working with
+			After over five years at digital agencies, I have a wide experience of working with
 			different brands and tech stacks. Having a background in the creative field, I am a true
 			digital multitasker, and I love to get my hands dirty in all things visual. Especially when
 			you can click on it!
