@@ -4,19 +4,18 @@
 	import ScrollTrigger from 'gsap/dist/ScrollTrigger';
 	import Lenis from 'lenis';
 	import 'lenis/dist/lenis.css';
-	import { headingHeight } from '$lib/stores/app';
+	
 	import Nav from '$lib/components/Nav.svelte';
 	import Intro from '$lib/components/Intro.svelte';
 	import Work from '$lib/components/Work.svelte';
 	import About from '$lib/components/About.svelte';
 	import Background from '$lib/components/Background.svelte';
+	import Heading from '$lib/components/Heading.svelte';
 	import Footer from '$lib/components/Footer.svelte';
 	import '$lib/styles/index.css';
 
 	let lenis: Lenis;
-	let heading: HTMLElement;
-	let timeline: gsap.core.Timeline;
-	let mm;
+
 
 	onMount(() => {
 		lenis = new Lenis();
@@ -30,23 +29,13 @@
 
 		gsap.ticker.lagSmoothing(0);
 
-		mm = gsap.matchMedia();
-		mm.add("(max-width: 768px)", () => {
-			gsap.to(heading, {
-				autoAlpha: 0.1,
-				scrollTrigger: {
-					trigger: heading,
-					start: "top top+=5%",
-					end: "top top",
-					scrub: true,
-				},
-			});
-		});
+
 
 	});
 </script>
 
-<h1 class="heading" bind:this={heading} bind:clientHeight={$headingHeight}>Lisa Sundberg</h1>
+<!-- <h1 class="heading" bind:this={heading} bind:clientHeight={$headingHeight}>Lisa Sundberg</h1> -->
+ <Heading />
 
 <Background />
 <header>
@@ -60,21 +49,7 @@
 <Footer />
 
 <style>
-	.heading {
-		grid-column: full;
-		position: sticky;
-		top: 0;
-		bottom: 0;
-		margin: 0;
-		order: 3;
-		line-height: 1;
-		font-family: var(--font-heading);
-		font-weight: 100;
-		font-size: 17.8vw;
-		text-align: center;
-		text-box-trim: trim-both;
-		text-box-edge: cap alphabetic;
-	}
+
 
 	header {
 		grid-column: full;
