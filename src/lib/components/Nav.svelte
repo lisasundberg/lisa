@@ -104,7 +104,7 @@
 	}
 
 	.logo {
-		font-family: var(--font-heading);
+		font-family: var(--font-display);
 		font-weight: 100;
 		font-size: 1.5rem;
 		color: var(--theme-color-primary);

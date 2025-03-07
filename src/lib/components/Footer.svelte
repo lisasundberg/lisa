@@ -11,7 +11,7 @@
 	<section>
 		<div>
 			<h2 class="label">Get in touch</h2>
-			<p><a href="mailto:lisa.em.sundberg@gmail.com">lisa.em.sundberg@gmail.com</a></p>
+			<p><a href="mailto:hello@lisasundberg.com">hello@lisasundberg.com</a></p>
 		</div>
 		<ul>
 			<li><ExternalLink href="https://codepen.io/lisasundae/" label="Codepen" /></li>
@@ -19,7 +19,7 @@
 			<li><ExternalLink href="https://www.linkedin.com/in/lisasundberg/" label="Linkedin" /></li>
 		</ul>
 	</section>
-	<small>© Drawn and developed by me in {new Date().getFullYear()} :-)</small>
+	<small>© {new Date().getFullYear()} :-)</small>
 </footer>
 
 <style>

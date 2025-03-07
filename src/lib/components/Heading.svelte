@@ -1,30 +1,30 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
-    import gsap from 'gsap/dist/gsap';
-	import ScrollTrigger from 'gsap/dist/ScrollTrigger';
+	// import { onMount } from 'svelte';
+    // import gsap from 'gsap/dist/gsap';
+	// import ScrollTrigger from 'gsap/dist/ScrollTrigger';
     import { headingHeight } from '$lib/stores/app';
 
-	let heading: HTMLElement;
-	let timeline: gsap.core.Timeline;
-	let mm;
+	// let heading: HTMLElement;
+	// let timeline: gsap.core.Timeline;
+	// let mm;
 
-    onMount(() => {
-        mm = gsap.matchMedia();
-		mm.add("(max-width: 768px)", () => {
-			gsap.to(heading, {
-				autoAlpha: 0.1,
-				scrollTrigger: {
-					trigger: heading,
-					start: "top top+=5%",
-					end: "top top",
-					scrub: true,
-				},
-			});
-		});
-    })
+    // onMount(() => {
+    //     mm = gsap.matchMedia();
+	// 	mm.add("(max-width: 768px)", () => {
+	// 		gsap.to(heading, {
+	// 			autoAlpha: 0.1,
+	// 			scrollTrigger: {
+	// 				trigger: heading,
+	// 				start: "top top+=5%",
+	// 				end: "top top",
+	// 				scrub: true,
+	// 			},
+	// 		});
+	// 	});
+    // })
 </script>
 
-<div class="heading" bind:this={heading} bind:clientHeight={$headingHeight}>
+<div class="heading" bind:clientHeight={$headingHeight}>
     <h1 class="visually-hidden">Lisa Sundberg - frontend developer</h1>
     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 1546 269">
         <g class="Lisa Sundberg">
