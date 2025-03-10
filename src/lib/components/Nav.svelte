@@ -79,7 +79,7 @@
 	.link {
 		padding: 1em 0;
 
-		&:active,
+		&.active,
 		&:hover,
 		&:focus-visible {
 			.link-content::before {
