@@ -116,10 +116,49 @@
 			year: '2012-2013'
 		}
 	];
+	
+	const awards = [
+		{
+			award: 'Awwwards Honorable Mention',
+			project: 'Homage (new web)',
+			year: '2023',
+			link: 'https://www.awwwards.com/sites/homage-2',
+			agency: 'Alster'
+		},
+		{
+			award: 'Awwwards Honorable Mention',
+			project: 'Alster web',
+			year: '2023',
+			link: 'https://www.awwwards.com/sites/alster',
+			agency: 'Alster'
+		},
+		{
+			award: 'CSSDA Special Kudos',
+			project: 'Alster web',
+			year: '2023',
+			link: 'https://www.cssdesignawards.com/sites/alster/42896/',
+			agency: 'Alster'
+		},
+		{
+			award: 'Awwwards Honorable Mention',
+			project: 'Homage',
+			year: '2020',
+			link: 'https://www.awwwards.com/sites/homage',
+			agency: 'Another State'
+		},
+		{
+			award: 'Awwwards Mobile Excellence',
+			project: 'Homage',
+			year: '2020',
+			link: 'https://www.awwwards.com/sites/homage',
+			agency: 'Another State'
+		},
+		
+	];
 </script>
 
 <div class="cv">
-	<div class="competences column -narrow">
+	<div class="competences column">
 		<h3 class="label-bold">Competences</h3>
 		<ol class="list -small">
 			{#each competences as { name }}
@@ -170,41 +209,57 @@
 			{/each}
 		</ol>
 	</div>
+	<div class="awards column">
+		<h3 class="label-bold">Awards</h3>
+		<ol class="list -small">
+			{#each awards as { award, project, agency, year, link }}
+				<li class="item">
+					<hr />
+					<article>
+						<a class="-simple mask" href={link} target="_blank" rel="noopener">
+							<p class="activity p-small">{award} — {project}</p>
+						</a>
+						<div class="info">
+							<h4 class="place label">{agency}</h4>
+							<time class="year label">{year}</time>
+						</div>
+					</article>
+				</li>
+			{/each}
+		</ol>
+	</div>
 </div>
 
 <style>
 	.cv {
 		display: grid;
 		grid-template-columns: 1fr;
-		grid-template-rows: auto auto auto;
 		gap: var(--content-gap);
 		color: var(--_theme-color-primary);
 		grid-template-areas:
-			'competences'
-			'work'
-			'education';
+			"work"
+			"education"
+			"competences"
+			"awards";
 
 		@media (width >= 768px) {
 			grid-template-columns: 1fr 1fr;
-			grid-template-rows: auto auto auto;
+			/* grid-template-areas:
+				"work work"
+				"competences awards"
+				"education education"; */
 			grid-template-areas:
-				'competences .'
-				'work work'
-				'education education';
+				"work education"
+				"competences awards";
 		}
+		
+		/* @media (width > 1200px) {
+			grid-template-columns: 2fr 2fr 1fr;
+			grid-template-areas:
+				"work education ."
+				". awards competences";
+		} */
 
-		@media (width >= 900px) {
-			grid-template-columns: 1fr 1fr;
-			grid-template-rows: auto auto;
-			grid-template-areas:
-				'competences .'
-				'work education';
-		}
-		@media (width >= 1200px) {
-			grid-template-columns: 1fr 2fr 2fr;
-			grid-template-rows: auto;
-			grid-template-areas: 'competences work education';
-		}
 	}
 
 	.column {
@@ -220,6 +275,10 @@
 
 		&.education {
 			grid-area: education;
+		}
+		
+		&.awards {
+			grid-area: awards;
 		}
 	}
 

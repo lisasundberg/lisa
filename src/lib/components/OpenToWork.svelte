@@ -2,7 +2,7 @@
     export let active: boolean = false;
 </script>
 
-<a class="-plain {active ? '-open' : '-not-open'}" href="mailto:lisa.em.sundberg@gmail.com">
+<a class="-plain {active ? '-open' : '-not-open'}" href="mailto:hello@lisasundberg.com">
     <span class="label-bold">
         {#if active}
         Open to work

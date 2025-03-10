@@ -12,7 +12,7 @@
 		</p>
 		<p class="p-small">
 			I am currently on the hunt for a new full/part time position, so if you're interested in
-			collaborating – <a href="mailto:lisa.em.sundberg@gmail.com">drop me a line</a>!
+			collaborating – <a href="mailto:hello@lisasundberg.com" class="-simple">drop me a line</a>!
 		</p>
 	</div>
 
