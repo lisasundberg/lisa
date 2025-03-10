@@ -64,7 +64,7 @@ a, .a {
 	display: inline-block;
 	position: relative;
 
-	&:not(.-plain)::after {
+	&:not(.-plain, .-simple)::after {
 		content: '';
 		position: absolute;
 		height: 0.075em;
@@ -76,6 +76,12 @@ a, .a {
 		transform: scaleX(0);
 		transform-origin: right;
 		transition: transform 0.2s ease-in-out;
+	}
+
+	&.-simple:hover {
+		text-decoration: underline;
+		text-underline-offset: 0.1em;
+		text-decoration-thickness: 1px;
 	}
 	
 	&:focus-visible,
