@@ -36,11 +36,13 @@
 			{#if section.id !== 'intro'}
 				<li>
 					<a
-						class="-plain label-bold"
+						class="link -plain"
 						class:active={currentSection === section.id}
 						href={`#${section.id}`}
 					>
-						{section.id}
+						<div class="link-content">
+							<span class="label label-bold">{section.id}</span>
+						</div>
 					</a>
 				</li>
 			{/if}
@@ -56,7 +58,7 @@
 		display: flex;
 		align-items: center;
 		gap: var(--content-gap);
-		padding: var(--content-margin);
+		padding: 1.5rem var(--content-margin);
 		color: var(--_theme-color-primary);
 	}
 
@@ -72,15 +74,26 @@
 
 	li {
 		list-style: none;
-		display: grid;
+	}
+
+	.link {
+		padding: 1em 0;
+
+		&:active,
+		&:hover,
+		&:focus-visible {
+			.link-content::before {
+				scale: 1;
+			}
+		}
+	}
+
+	.link-content {
+		display: inline-grid;
 		grid-template-columns: 0.375em 1fr;
 		grid-template-areas: 'dot label';
 		align-items: center;
 		gap: 0.5em;
-
-		& a {
-			grid-area: label;
-		}
 
 		&::before {
 			content: '';
@@ -93,14 +106,10 @@
 			scale: 0;
 			transition: scale 0.09s linear;
 		}
+	}
 
-		&:has(.active),
-		&:has(:hover),
-		&:has(:focus-visible) {
-			&::before {
-				scale: 1;
-			}
-		}
+	.label {
+		grid-area: label;
 	}
 
 	.logo {
@@ -113,6 +122,7 @@
 
 	.open-to-work {
 		flex-shrink: 0;
+
 		@media (width < 768px) {
 			display: none;
 		}
