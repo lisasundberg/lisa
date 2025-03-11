@@ -4,8 +4,8 @@
 	import ScrollTrigger from 'gsap/dist/ScrollTrigger';
 	import OpenToWork from './OpenToWork.svelte';
 
-	let sections: NodeListOf<HTMLElement>;
-	let currentSection: string;
+	let sections: NodeListOf<HTMLElement> = $state();
+	let currentSection: string = $state();
 
 	onMount(() => {
 		gsap.registerPlugin(ScrollTrigger);

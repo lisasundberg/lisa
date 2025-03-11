@@ -1,7 +1,11 @@
 <script lang="ts">
-	export let href: string;
-	export let label: string;
-	export let target: string = '_blank';
+	interface Props {
+		href: string;
+		label: string;
+		target?: string;
+	}
+
+	let { href, label, target = '_blank' }: Props = $props();
 </script>
 
 <div class="externalLink">
