@@ -13,19 +13,22 @@
 		images={[
 			AH2
 		]}
+		link="/work/akademiskahus"
 	/>, <WorkItem
 			title="Homage"
 			images={[
 				Homage4,
 			]}
-		/> and
-		<span>
-		<WorkItem
+		link="/work/homage"
+			/> and
+			<span>
+			<WorkItem
 			title="Unicef"
 			images={[
 				Babytalk3,
 			]}
-		/> 
+		link="/work/babytalk"
+	/> 
 		.
 	</span>
 	</p>

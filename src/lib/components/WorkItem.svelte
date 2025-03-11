@@ -1,24 +1,41 @@
 <script lang="ts">
 	export let title: string;
+	export let link: string;
 	export let images: any[] = [];
 	let active = false;
 </script>
 
-<span class="work-item a{active ? ' active' : ''}">
-	<button
-		class="title"
-		on:mouseover={() => (active = true)}
-		on:mouseleave={() => (active = false)}
-		on:focus={() => (active = true)}
-		on:blur={() => (active = false)}>{title}</button
-	>
+<a class="work-item a{active ? ' active' : ''}" href={link} 
+	on:mouseover={() => (active = true)}
+	on:mouseleave={() => (active = false)}
+	on:focus={() => (active = true)}
+	on:blur={() => (active = false)}>
+	
+	<span class="title">
+		{title}
+	</span>
 
 	<span class="images">
 		{#each images as image, i}
 			<enhanced:img src={image} alt={title} style="--index: {i}; --total: {images.length}" class="image image-{i}" />
 		{/each}
 	</span>
-</span>
+</a>
+<!-- <span class="work-item a{active ? ' active' : ''}">
+	<button
+		class="title"
+		on:mouseover={() => (active = true)}
+		on:mouseleave={() => (active = false)}
+		on:focus={() => (active = true)}
+		on:blur={() => (active = false)}>{title}
+	</button>
+
+	<span class="images">
+		{#each images as image, i}
+			<enhanced:img src={image} alt={title} style="--index: {i}; --total: {images.length}" class="image image-{i}" />
+		{/each}
+	</span>
+</span> -->
 
 <style>
 	.work-item {
