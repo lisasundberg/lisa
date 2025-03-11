@@ -1,5 +1,9 @@
 <script lang="ts">
-    export let active: boolean = false;
+    interface Props {
+        active?: boolean;
+    }
+
+    let { active = false }: Props = $props();
 </script>
 
 <a class="-plain {active ? '-open' : '-not-open'}" href="mailto:hello@lisasundberg.com">

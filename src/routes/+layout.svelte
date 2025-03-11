@@ -9,6 +9,11 @@
     import Nav from '$lib/components/Nav.svelte';
     import Footer from '$lib/components/Footer.svelte';
     import '$lib/styles/index.css';
+	interface Props {
+		children?: import('svelte').Snippet;
+	}
+
+	let { children }: Props = $props();
 
 	let lenis: Lenis;
 
@@ -30,7 +35,7 @@
 <header>
 	<Nav />
 </header>
-<slot />
+{@render children?.()}
 <Footer />
 <style>
 	header {
