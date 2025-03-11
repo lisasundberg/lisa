@@ -1,9 +1,9 @@
 <script lang="ts">
 	import WorkItem from './WorkItem.svelte';
 
-	import Homage4 from './work/homage/homage-mockup-4.jpg?enhanced';
-	import AH2 from './work/akademiskahus/ah-mockup-2.jpg?enhanced';
-	import Babytalk3 from './work/babytalk/babytalk-mockup-3.png?enhanced';
+	import Homage4 from './work/homage/homage-mockup-1.jpg?enhanced';
+	import AH2 from './work/akademiskahus/ah-mockup-1.jpg?enhanced';
+	import Babytalk3 from './work/babytalk/babytalk-mockup-1.png?enhanced';
 </script>
 
 <section class="section work" id="work">

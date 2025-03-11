@@ -9,6 +9,7 @@
     import Nav from '$lib/components/Nav.svelte';
     import Footer from '$lib/components/Footer.svelte';
     import '$lib/styles/index.css';
+
 	interface Props {
 		children?: import('svelte').Snippet;
 	}
@@ -35,8 +36,11 @@
 <header>
 	<Nav />
 </header>
+
 {@render children?.()}
+
 <Footer />
+
 <style>
 	header {
 		grid-column: full;

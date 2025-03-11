@@ -28,9 +28,13 @@ p,
 .p {
 	font-size: var(--font-size-body);
 	letter-spacing: 0.01em;
-	line-height: 1.1;
+	line-height: 1.2;
 	font-weight: 300;
 	max-width: 52ch;
+
+	& + & {
+		margin-top: 0.5em;
+	}
 }
 
 .p-small {
@@ -41,6 +45,7 @@ p,
 	font-size: var(--font-size-body-xsmall);
 	line-height: 1.5;
 }
+
 
 a {
 	color: inherit;
