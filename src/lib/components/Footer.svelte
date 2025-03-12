@@ -19,7 +19,7 @@
 			<li><ExternalLink href="https://www.linkedin.com/in/lisasundberg/" label="Linkedin" /></li>
 		</ul>
 	</section>
-	<small>© {new Date().getFullYear()} :-)</small>
+	<!-- <small>© {new Date().getFullYear()} :-)</small> -->
 </footer>
 
 <style>

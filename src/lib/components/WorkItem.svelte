@@ -1,16 +1,20 @@
 <script lang="ts">
-	export let title: string;
-	export let images: any[] = [];
-	let active = false;
+	interface Props {
+		title: string;
+		images?: any[];
+	}
+
+	let { title, images = [] }: Props = $props();
+	let active = $state(false);
 </script>
 
 <span class="work-item a{active ? ' active' : ''}">
 	<button
 		class="title"
-		on:mouseover={() => (active = true)}
-		on:mouseleave={() => (active = false)}
-		on:focus={() => (active = true)}
-		on:blur={() => (active = false)}>{title}</button
+		onmouseover={() => (active = true)}
+		onmouseleave={() => (active = false)}
+		onfocus={() => (active = true)}
+		onblur={() => (active = false)}>{title}</button
 	>
 
 	<span class="images">

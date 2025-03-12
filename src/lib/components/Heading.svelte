@@ -51,10 +51,14 @@
     grid-column: full;
     position: sticky;
     top: 0;
-    bottom: 0;
+    bottom: -4.4vw;
     margin: 0;
     order: 3;
     line-height: 1;
+
+    @media (width >= 1000px) {
+        bottom: -3.99vw;
+    }
 }
 
 svg {
