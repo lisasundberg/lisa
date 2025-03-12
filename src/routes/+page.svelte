@@ -35,17 +35,25 @@
 </script>
 
 <!-- <h1 class="heading" bind:this={heading} bind:clientHeight={$headingHeight}>Lisa Sundberg</h1> -->
- <Heading />
+ <!-- <Heading /> -->
 
 <Background />
-<header>
+<!-- <header>
 	<Nav />
-</header>
+</header> -->
+<main>
+	<div>
+		<h1>Lisa Sundberg</h1>
+		<h2 class="label">Frontend developer</h2>
+	</div>
+</main>
+<!-- 
 <main>
 	<Intro />
 	<Work />
-	<About />
-</main>
+	<About /> 
+</main> 
+-->
 <Footer />
 
 <style>
@@ -66,5 +74,13 @@
 		color: var(--_theme-color-primary);
 		padding-top: 10dvh;
 		z-index: 1;
+	}
+
+	div {
+		grid-column: main;
+	
+		h1 {
+			font-family: var(--font-display);
+		}
 	}
 </style>
