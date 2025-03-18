@@ -8,9 +8,7 @@
 </script>
 
 <main class="work">
-	<article>
-		{@render children?.()}
-	</article>
+	{@render children?.()}
 </main>
 
 
@@ -23,11 +21,5 @@
 		padding-top: 10dvh;
 		z-index: 1;
 	}
-	
-	article {
-		display: flex;
-		flex-direction: row-reverse;
-		align-items: flex-start;
-		gap: var(--content-margin);
-	}
+
 </style>
