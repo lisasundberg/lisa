@@ -1,6 +1,8 @@
-<div class="text">
-    <h1>Akademiska Hus</h1>
-    <div class="info">
+<article>
+
+    <div class="text">
+        <h1>Akademiska Hus</h1>
+        <div class="info">
         <p class="label">Project at Alster 2024</p>
         <p class="label">My responsibility: design system development</p>
         <p class="label">Technologies: Optimizely, Stimulus.js, CSS</p>
@@ -14,19 +16,27 @@
 		</p>
     </div>
     <a class="link button" href="https://akademiskahus.se/" target="_blank" rel="noopener"><span class="label-bold">Visit page ↗</span></a>
-</div>
+    </div>
 
-<div class="images">
-    <enhanced:img class="image" src="./assets/ah-mockup-1.jpg" alt="Akademiska Hus" />
-    <enhanced:img class="image" src="./assets/ah-mockup-2.jpg" alt="Akademiska Hus" />
-    <enhanced:img class="image" src="./assets/ah-mockup-3.png" alt="Akademiska Hus" />
-    <enhanced:img class="image" src="./assets/ah-mockup-4.jpg" alt="Akademiska Hus" />
-    <enhanced:img class="image" src="./assets/ah-mockup-5.jpg" alt="Akademiska Hus" />
-    <enhanced:img class="image" src="./assets/ah-mockup-6.jpg" alt="Akademiska Hus" />
-</div>
+    <div class="images">
+        <enhanced:img class="image" src="./assets/ah-mockup-1.jpg" alt="Akademiska Hus" />
+        <enhanced:img class="image" src="./assets/ah-mockup-2.jpg" alt="Akademiska Hus" />
+        <enhanced:img class="image" src="./assets/ah-mockup-3.png" alt="Akademiska Hus" />
+        <enhanced:img class="image" src="./assets/ah-mockup-4.jpg" alt="Akademiska Hus" />
+        <enhanced:img class="image" src="./assets/ah-mockup-5.jpg" alt="Akademiska Hus" />
+        <enhanced:img class="image" src="./assets/ah-mockup-6.jpg" alt="Akademiska Hus" />
+    </div>
 
+</article>
 
 <style>
+    article {
+		display: flex;
+		flex-direction: row-reverse;
+		align-items: flex-start;
+		gap: var(--content-margin);
+	}
+
     h1 {
         font-family: var(--font-display);
     }
