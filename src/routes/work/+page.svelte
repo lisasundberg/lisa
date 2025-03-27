@@ -1,5 +1,5 @@
 <script lang="ts">
-	import WorkCard from '$lib/components/WorkCard.svelte';
+	import Card from '$lib/components/Card.svelte';
 
 	import AH from './akademiskahus/assets/ah-mockup-1.jpg?enhanced';
 	import Homage from './homage/assets/homage-mockup-1.jpg?enhanced';
@@ -203,7 +203,7 @@
 	<h2 class="label-bold">Select work</h2>
 	<div class="cases">
 		{#each featuredWork as { heading, label, link, image }}
-			<WorkCard {heading} {label} {link} {image} />
+			<Card {heading} {label} {link} {image} />
 		{/each}
 	</div>
 </section>
