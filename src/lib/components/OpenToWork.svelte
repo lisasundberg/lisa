@@ -6,7 +6,7 @@
     let { active = false }: Props = $props();
 </script>
 
-<a class="-plain {active ? '-open' : '-not-open'}" href="mailto:hello@lisasundberg.com">
+<a class="button {active ? '-open' : '-not-open'}" href="mailto:hello@lisasundberg.com">
     <span class="label-bold">
         {#if active}
         Open to work
@@ -26,11 +26,6 @@
         grid-template-areas: 'dot label';
         align-items: center;
         gap: 0.75em;
-        flex-shrink: 0;
-        padding: 0.75em 1.125em;
-        border: 0.075em solid var(--_theme-color-primary);
-        border-radius: 1.5em;
-        box-sizing: border-box;
     }
 
     a::before {

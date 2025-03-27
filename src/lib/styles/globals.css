@@ -64,7 +64,7 @@ a, .a {
 	display: inline-block;
 	position: relative;
 
-	&:not(.-plain, .-simple)::after {
+	&:not(.-plain, .-simple, .button)::after {
 		content: '';
 		position: absolute;
 		height: 0.075em;
@@ -95,4 +95,13 @@ a, .a {
 		transform: scaleX(1);
 		transform-origin: left;
 	}
+}
+
+.button {
+	box-sizing: border-box;
+	flex-shrink: 0;
+	padding: 0.75em 1.125em;
+	border: 0.075em solid var(--_theme-color-primary);
+	border-radius: 1.5em;
+	line-height: 1;
 }
