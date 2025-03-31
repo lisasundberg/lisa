@@ -4,11 +4,12 @@
 	--color-purple: #6400f2;
 	--color-cream: rgb(255, 249, 238);
 	--color-brat-green: #8fce23;
-	--color-green: #3fe83f; 
+	--color-green: #3fe83f;
 	--color-red: #CC341D;
 	--color-brown: #513737;
 	--color-black: #000;
 	--color-hyperlink-blue: blue;
+	--color-pink: #fbc5ec;
 
 	--color-text-primary: var(--color-cream);
 	--color-text-secondary: #222;
@@ -19,8 +20,7 @@
 	--content-margin: 2.5rem;
 	--content-gap: 2.5rem;
 	--card-padding: clamp(3rem, 5.25vw, 6rem);
-	--main-grid: [full-start] minmax(var(--content-margin), 1fr) [main-start]
-		minmax(auto, max(80vw, 90rem)) [main-end] minmax(var(--content-margin), 1fr) [full-end];
+	--main-grid: [full-start] minmax(var(--content-margin), 1fr) [main-start] minmax(auto, max(80vw, 90rem)) [main-end] minmax(var(--content-margin), 1fr) [full-end];
 
 	--two-cols: 1fr;
 
@@ -28,7 +28,7 @@
 
 	scroll-behavior: smooth;
 
-	@media (width >= 768px) {
+	@media (width >=768px) {
 		--font-size-label: 0.85rem;
 		--content-gap: 4rem;
 		--two-cols: 1fr 1fr;
@@ -60,11 +60,12 @@ p {
 	margin: 0;
 }
 
-a, .a {
+a,
+.a {
 	display: inline-block;
 	position: relative;
 
-	&:not(.-plain, .-simple)::after {
+	&:not(.-plain, .-simple, .button)::after {
 		content: '';
 		position: absolute;
 		height: 0.075em;
@@ -83,16 +84,25 @@ a, .a {
 		text-underline-offset: 0.1em;
 		text-decoration-thickness: 1px;
 	}
-	
+
 	&:focus-visible,
 	&.active {
 		outline: none;
 	}
-	
+
 	&:hover::after,
 	&.active::after,
 	&:focus-visible::after {
 		transform: scaleX(1);
 		transform-origin: left;
 	}
+}
+
+.button {
+	box-sizing: border-box;
+	flex-shrink: 0;
+	padding: 0.75em 1.125em;
+	border: 0.075em solid var(--_theme-color-primary);
+	border-radius: 1.5em;
+	line-height: 1;
 }
