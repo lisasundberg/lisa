@@ -5,10 +5,10 @@
 	import Lenis from 'lenis';
 	import 'lenis/dist/lenis.css';
 
-    import Meta from '$lib/components/Meta.svelte';
-    import Nav from '$lib/components/Nav.svelte';
-    import Footer from '$lib/components/Footer.svelte';
-    import '$lib/styles/index.css';
+	import Meta from '$lib/components/Meta.svelte';
+	import Nav from '$lib/components/Nav.svelte';
+	import Footer from '$lib/components/Footer.svelte';
+	import '$lib/styles/index.css';
 
 	interface Props {
 		children?: import('svelte').Snippet;
