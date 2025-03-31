@@ -3,11 +3,7 @@
 	import ExternalLink from '$lib/components/ExternalLink.svelte';
 </script>
 
-<footer
-	class="footer section"
-	id="contact"
-	style="--heading-height: {$headingHeight}"
->
+<footer class="footer section" id="contact" style="--heading-height: {$headingHeight}">
 	<section>
 		<div>
 			<h2 class="label">Get in touch</h2>
@@ -47,14 +43,7 @@
 		margin-bottom: 2rem;
 	}
 
-	ul {
-		margin-block-start: 0;
-		margin-block-end: 0;
-		padding-inline-start: 0;
-	}
-
 	li {
-		list-style: none;
 		margin-top: 0.25em;
 		padding-top: 0.25em;
 	}

@@ -39,7 +39,7 @@
 
 {@render children?.()}
 
-<Footer />
+<!-- <Footer /> -->
 
 <style>
 	header {

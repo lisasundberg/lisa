@@ -1,57 +1,60 @@
 <script lang="ts">
-	import ExternalLink from './ExternalLink.svelte';
+	import ExternalLink from '$lib/components/ExternalLink.svelte';
 </script>
 
 <main class="maintenance-mode">
-	<div>
-		<h1>Lisa Sundberg</h1>
-		<h2 class="label">Frontend developer</h2>
+	<div class="content">
+		<div>
+			<!-- <h1>Lisa Sundberg</h1> -->
+			<h1 class="label-bold">Lisa Sundberg</h1>
+			<h2 class="label">Frontend developer</h2>
+		</div>
+
+		<div class="email">
+			<p class="label-bold">Get in touch</p>
+			<a class="label" href="mailto:hello@lisasundberg.com">hello@lisasundberg.com</a>
+		</div>
+		<div class="links">
+			<a class="label" href="https://codepen.io/lisasundae/">Codepen</a>
+			<a class="label" href="https://github.com/lisasundberg">Github</a>
+			<a class="label" href="https://www.linkedin.com/in/lisasundberg/">Linkedin</a>
+		</div>
+		<!-- <small>© {new Date().getFullYear()} :-)</small> -->
 	</div>
 </main>
-<footer>
-	<div>
-		<ul>
-			<li><ExternalLink href="mailto:hello@lisasundberg.com" label="hello@lisasundberg.com" /></li>
-			<li><ExternalLink href="https://codepen.io/lisasundae/" label="Codepen" /></li>
-			<li><ExternalLink href="https://github.com/lisasundberg" label="Github" /></li>
-			<li><ExternalLink href="https://www.linkedin.com/in/lisasundberg/" label="Linkedin" /></li>
-		</ul>
-	</div>
-</footer>
 
 <style>
-	main,
-	footer {
-		grid-column: full;
+	.maintenance-mode {
+		align-self: flex-end;
 		display: grid;
+		grid-column: full;
 		grid-template-columns: subgrid;
-		overflow: hidden;
-		color: var(--_theme-color-primary);
-		padding-top: 10dvh;
-		z-index: 1;
-	}
+		background-color: white;
+		color: var(--color-brown);
+		z-index: 2;
 
-	div {
-		grid-column: main;
+		h1,
+		h2,
+		p,
+		a {
+			line-height: 1.8;
+		}
 
-		h1 {
-			font-family: var(--font-display);
+		a {
+			display: block;
 		}
 	}
 
-	ul {
-		margin-block-start: 0;
-		margin-block-end: 0;
-		padding-inline-start: 0;
-	}
+	.content {
+		grid-column: main;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		gap: 2em;
+		padding: 2em 0;
 
-	li {
-		list-style: none;
-		margin-top: 0.25em;
-		padding-top: 0.25em;
-	}
-
-	p {
-		margin-top: 0.25em;
+		@media (width > 768px) {
+			flex-direction: row;
+		}
 	}
 </style>

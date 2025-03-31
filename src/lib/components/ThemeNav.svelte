@@ -5,7 +5,7 @@
 
 <div class="theme-nav">
 	{#each themes as theme, i}
-		<button on:click|preventDefault={() => currentTheme.set(theme.name)}>
+		<button class="label" on:click|preventDefault={() => currentTheme.set(theme.name)}>
 			{i + 1}
 		</button>
 	{/each}

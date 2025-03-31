@@ -35,12 +35,9 @@
 <!-- <h1 class="heading" bind:this={heading} bind:clientHeight={$headingHeight}>Lisa Sundberg</h1> -->
 <!-- <Heading /> -->
 
-<!-- 
 <Background />
-<header>
-	<Nav />
-</header> -->
 <MaintenanceMode />
+<ThemeNav />
 
 <!-- 
 <main>
@@ -50,30 +47,3 @@
 	</main> 
 <Footer />
 -->
-
-<style>
-	header {
-		grid-column: full;
-		position: sticky;
-		top: 0;
-		z-index: 2;
-	}
-
-	main {
-		grid-column: full;
-		display: grid;
-		grid-template-columns: subgrid;
-		overflow: hidden;
-		color: var(--_theme-color-primary);
-		padding-top: 10dvh;
-		z-index: 1;
-	}
-
-	div {
-		grid-column: main;
-
-		h1 {
-			font-family: var(--font-display);
-		}
-	}
-</style>
