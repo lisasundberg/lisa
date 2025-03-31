@@ -68,7 +68,7 @@ a,
 	&:not(.-plain, .-simple, .button)::after {
 		content: '';
 		position: absolute;
-		height: 0.075em;
+		height: 2px;
 		width: 100%;
 		bottom: 0;
 		left: 0;
