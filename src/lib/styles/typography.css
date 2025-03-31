@@ -55,6 +55,7 @@ a {
 }
 
 .label {
+	font-family: var(--font-body);
 	text-transform: uppercase;
 	font-size: var(--font-size-label);
 	letter-spacing: 0.025em;
@@ -63,6 +64,7 @@ a {
 }
 
 .label-bold {
+	font-family: var(--font-body);
 	text-transform: uppercase;
 	font-size: var(--font-size-label);
 	letter-spacing: 0.025em;

@@ -36,6 +36,9 @@
 }
 
 body {
+	width: 100vw;
+	min-height: 100dvh;
+	overflow-x: hidden;
 	display: grid;
 	grid-template-columns: var(--main-grid);
 	margin: 0;
@@ -60,6 +63,17 @@ p {
 	margin: 0;
 }
 
+
+ul {
+	margin-block-start: 0;
+	margin-block-end: 0;
+	padding-inline-start: 0;
+}
+
+li {
+	list-style: none;
+}
+
 a,
 .a {
 	display: inline-block;
@@ -68,12 +82,12 @@ a,
 	&:not(.-plain, .-simple, .button)::after {
 		content: '';
 		position: absolute;
-		height: 0.075em;
+		height: 0.025em;
 		width: 100%;
 		bottom: 0;
 		left: 0;
 		margin-top: 0.25em;
-		background-color: var(--_theme-color-primary);
+		background-color: currentColor;
 		transform: scaleX(0);
 		transform-origin: right;
 		transition: transform 0.2s ease-in-out;
