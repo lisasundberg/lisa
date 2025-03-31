@@ -3,21 +3,16 @@ import { type Theme, type ThemeName } from '../types';
 
 export const themes: Theme[] = [
 	{
-		name: 'one'
+		name: 'plain'
 	},
 	{
-		name: 'two'
+		name: 'shader'
 	},
 	{
-		name: 'three'
-	},
-	{
-		name: 'four'
-	},
-	{
-		name: 'five'
+		name: 'donuts'
 	}
 ];
 
-export const currentTheme = writable<ThemeName>(themes[4].name);
+const DEFAULT_THEME = themes[0].name;
+export const currentTheme = writable<ThemeName>(DEFAULT_THEME);
 export const headingHeight = writable<number>(undefined);

@@ -4,6 +4,7 @@
 	import About from '$lib/components/About.svelte';
 	import Background from '$lib/components/Background.svelte';
 	import Heading from '$lib/components/Heading.svelte';
+	import ThemeNav from '$lib/components/ThemeNav.svelte';
 </script>
 
 <!-- <h1 class="heading" bind:this={heading} bind:clientHeight={$headingHeight}>Lisa Sundberg</h1> -->
@@ -18,12 +19,13 @@
 		</main> -->
 
 <Heading />
-<Background />
+<ThemeNav />
 <main>
 	<Intro />
 	<Work />
 	<About />
 </main>
+<Background />
 
 <style>
 	main {
