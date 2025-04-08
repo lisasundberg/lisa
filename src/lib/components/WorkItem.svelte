@@ -1,28 +1,45 @@
 <script lang="ts">
 	interface Props {
 		title: string;
+		link: string;
 		images?: any[];
 	}
 
-	let { title, images = [] }: Props = $props();
+	let { title, link, images = [] }: Props = $props();
 	let active = $state(false);
 </script>
 
-<span class="work-item a{active ? ' active' : ''}">
-	<button
-		class="title"
-		onmouseover={() => (active = true)}
-		onmouseleave={() => (active = false)}
-		onfocus={() => (active = true)}
-		onblur={() => (active = false)}>{title}</button
-	>
+<a class="work-item a{active ? ' active' : ''}" href={link} 
+	onmouseover={() => (active = true)}
+	onmouseleave={() => (active = false)}
+	onfocus={() => (active = true)}
+	onblur={() => (active = false)}>
+	
+	<span class="title">
+		{title}
+	</span>
 
 	<span class="images">
 		{#each images as image, i}
 			<enhanced:img src={image} alt={title} style="--index: {i}; --total: {images.length}" class="image image-{i}" />
 		{/each}
 	</span>
-</span>
+</a>
+<!-- <span class="work-item a{active ? ' active' : ''}">
+	<button
+		class="title"
+		on:mouseover={() => (active = true)}
+		on:mouseleave={() => (active = false)}
+		on:focus={() => (active = true)}
+		on:blur={() => (active = false)}>{title}
+	</button>
+
+	<span class="images">
+		{#each images as image, i}
+			<enhanced:img src={image} alt={title} style="--index: {i}; --total: {images.length}" class="image image-{i}" />
+		{/each}
+	</span>
+</span> -->
 
 <style>
 	.work-item {
