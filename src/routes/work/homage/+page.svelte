@@ -38,14 +38,15 @@
 
 <style>
 	article {
+		grid-column: main;
 		display: flex;
-		flex-direction: row-reverse;
+		flex-direction: column;
 		align-items: flex-start;
 		gap: var(--content-margin);
-	}
 
-	h1 {
-		font-family: var(--font-display);
+		@media (width >=768px) {
+			flex-direction: row-reverse;
+		}
 	}
 
 	.info {
@@ -53,8 +54,10 @@
 	}
 
 	.text {
-		position: sticky;
-		top: 6em;
+		@media (width >=768px) {
+			position: sticky;
+			top: 6em;
+		}
 	}
 
 	.images {

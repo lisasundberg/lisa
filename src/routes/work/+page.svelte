@@ -197,7 +197,7 @@
 	];
 </script>
 
-<h1>Work</h1>
+<h1 class="title">Work</h1>
 
 <section class="featured">
 	<h2 class="label-bold">Select work</h2>
@@ -235,6 +235,11 @@
 </section>
 
 <style>
+	.title {
+		font-family: var(--font-display);
+		grid-column: main;
+	}
+
 	.featured {
 		margin-top: 4em;
 	}

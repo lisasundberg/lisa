@@ -36,6 +36,7 @@
 <header>
 	<Nav />
 </header>
+
 <main>
 	{@render children?.()}
 </main>
@@ -48,12 +49,5 @@
 		position: sticky;
 		top: 0;
 		z-index: 2;
-	}
-
-	main {
-		display: grid;
-		grid-template-columns: subgrid;
-		grid-column: full;
-		padding-block: 10vh;
 	}
 </style>
