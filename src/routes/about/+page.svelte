@@ -1,4 +1,10 @@
-<section class="section about" id="about">
+<script lang="ts">
+	import CV from '$lib/components/CV.svelte';
+</script>
+
+<h1 class="title">About</h1>
+
+<section class="about">
 	<div class="intro">
 		<p class="p-small">
 			After over five years at digital agencies, I have a wide experience of working with different
@@ -11,6 +17,13 @@
 			collaborating – <a href="mailto:hello@lisasundberg.com" class="-simple">drop me a line</a>!
 		</p>
 	</div>
+
+	<div class="image">
+		<img src="images/lisa-bw.jpeg" alt="Lisa" />
+	</div>
+</section>
+<section class="cv">
+	<CV />
 </section>
 
 <style>
@@ -24,19 +37,26 @@
 		z-index: 0;
 	}
 
-	.intro {
-		grid-column: 1 / -1;
+	.title {
+		font-family: var(--font-display);
+		grid-column: main;
+	}
 
-		@media (width >= 768px) {
-			grid-column: 1 / 2;
+	section {
+		& + & {
+			margin-top: var(--content-gap);
 		}
 	}
 
-	p {
-		line-height: 1.3;
+	.cv {
+		grid-column: main;
+		margin: clamp(4rem, 6vw, 12rem) 0 clamp(2rem, 3vw, 6rem);
 	}
 
-	p + p {
-		margin-top: 0.75em;
+	img {
+		display: block;
+		width: 100%;
+		height: auto;
+		object-fit: contain;
 	}
 </style>

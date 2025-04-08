@@ -46,6 +46,7 @@
 		gap: var(--content-gap);
 		padding: 1.5rem var(--content-margin);
 		color: var(--_theme-color-primary);
+		z-index: 10;
 	}
 
 	ul {
