@@ -3,11 +3,14 @@
 	--_theme-color-primary: var(--color-hyperlink-blue);
 }
 
+.bokeh {
+	--_theme-color-bg: var(--color-cream);
+	--_theme-color-primary: var(--color-brown);
+}
+
 .donuts {
-	--_theme-color-bg: var(--color-purple);
-	--_theme-color-primary: var(--color-cream);
-	/* --_theme-color-bg: var(--color-cream);
-	--_theme-color-primary: var(--color-brown); */
+	--_theme-color-bg: var(--color-greige);
+	--_theme-color-primary: var(--color-brown);
 }
 
 .shader {

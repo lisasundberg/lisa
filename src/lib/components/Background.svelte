@@ -4,15 +4,16 @@
 
 	import Shader from '$lib/components/Backgrounds/Shader.svelte';
 	import Donuts from '$lib/components/Backgrounds/Donuts.svelte';
+	import Bokeh from '$lib/components/Backgrounds/Bokeh.svelte';
 	// import TheMostBeautifulShaderEver from '$lib/components/TheMostBeautifulShaderEver.svelte';
 </script>
 
 <div class="background">
-	<!-- {#if $currentTheme === themes[1].name}
+	{#if $currentTheme === themes[0].name}
 		<div transition:fade>
-			<TheMostBeautifulShaderEver />
+			<Bokeh />
 		</div>
-	{/if} -->
+	{/if}
 	{#if $currentTheme === themes[1].name}
 		<div transition:fade>
 			<Shader />
