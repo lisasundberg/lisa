@@ -34,19 +34,14 @@
 	// Function to create random geometries
 	const createRandomGeometries = () => {
 		const geometries = [
-			new THREE.BoxGeometry(1),
-			new THREE.SphereGeometry((1 * innerWidth) / 900, 32, 32),
-			new THREE.BoxGeometry(
-				(0.7 * innerWidth) / 900,
-				(0.6 * innerWidth) / 900,
-				(0.6 * innerWidth) / 900
-			),
+			new THREE.BoxGeometry((0.8 * innerWidth) / 900),
 			new THREE.DodecahedronGeometry((0.7 * innerWidth) / 900),
 			new THREE.IcosahedronGeometry((0.8 * innerWidth) / 900),
+			new THREE.TetrahedronGeometry((0.5 * innerWidth) / 900),
 			new THREE.TetrahedronGeometry((0.5 * innerWidth) / 900)
 		];
 
-		for (let i = 0; i < 10; i++) {
+		for (let i = 0; i < 7; i++) {
 			const geometry = geometries[Math.floor(Math.random() * geometries.length)];
 			const material = new THREE.MeshStandardMaterial({
 				color: new THREE.Color(Math.random() - 0.2, Math.random() - 0.7, 1)
@@ -55,9 +50,9 @@
 
 			// Random position
 			mesh.position.set(
-				(Math.random() - 0.5) * 1.5, // Spread across X-axis
-				(Math.random() - 0.5) * 1.5, // Spread across Y-axis
-				Math.random() * -0.1 // Spread across Z-axis
+				(Math.random() - 0.5) * 2, // Spread across X-axis
+				(Math.random() - 0.5) * 2, // Spread across Y-axis
+				Math.random() - 1 // Spread across Z-axis
 			);
 
 			// Random scale
@@ -86,8 +81,8 @@
 
 		// Tilt the group based on mouse position
 		gsap.to(group.rotation, {
-			x: mouse.y * 0.3, // Tilt on the X-axis
-			y: mouse.x * 0.3, // Tilt on the Y-axis
+			x: mouse.y * 0.2, // Tilt on the X-axis
+			y: mouse.x * 0.2, // Tilt on the Y-axis
 			duration: 0.5,
 			ease: 'power2.out'
 		});
