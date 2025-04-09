@@ -37,7 +37,7 @@
 
 <Background />
 <MaintenanceMode />
-<ThemeNav />
+<!-- <ThemeNav /> -->
 
 <!-- 
 <main>

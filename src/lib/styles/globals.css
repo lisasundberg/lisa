@@ -94,22 +94,24 @@ a,
 		transition: transform 0.2s ease-in-out;
 	}
 
-	&.-simple:hover {
-		text-decoration: underline;
-		text-underline-offset: 0.1em;
-		text-decoration-thickness: 1px;
+	@media (hover: hover) {
+		&.-simple:hover {
+			text-decoration: underline;
+			text-underline-offset: 0.1em;
+			text-decoration-thickness: 1px;
+		}
+
+		&:hover::after,
+		&.active::after,
+		&:focus-visible::after {
+			transform: scaleX(1);
+			transform-origin: left;
+		}
 	}
 
 	&:focus-visible,
 	&.active {
 		outline: none;
-	}
-
-	&:hover::after,
-	&.active::after,
-	&:focus-visible::after {
-		transform: scaleX(1);
-		transform-origin: left;
 	}
 }
 

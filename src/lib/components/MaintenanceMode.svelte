@@ -50,11 +50,12 @@
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;
-		gap: 2em;
+		gap: 1em;
 		padding: 2em 0;
 
 		@media (width > 768px) {
 			flex-direction: row;
+			gap: 2em;
 		}
 	}
 </style>
