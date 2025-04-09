@@ -35,36 +35,29 @@
 	const createRandomGeometries = () => {
 		const geometries = [
 			new THREE.BoxGeometry(1),
-			new THREE.SphereGeometry(1, 32, 32),
-			new THREE.ConeGeometry(0.8, 1, 1),
-			new THREE.CylinderGeometry(0.7, 1, 0.7, 32),
-			new THREE.BoxGeometry(0.7, 0.6, 0.6),
-			new THREE.DodecahedronGeometry(0.7),
-			new THREE.IcosahedronGeometry(0.8),
-			new THREE.TetrahedronGeometry(0.5),
-			new THREE.OctahedronGeometry(0.5)
-			// new THREE.BoxGeometry(1.0, 1.0, 1.0),
-			// new THREE.BoxGeometry(1.5, 1.2, 1.2)
+			new THREE.SphereGeometry((1 * innerWidth) / 900, 32, 32),
+			new THREE.BoxGeometry(
+				(0.7 * innerWidth) / 900,
+				(0.6 * innerWidth) / 900,
+				(0.6 * innerWidth) / 900
+			),
+			new THREE.DodecahedronGeometry((0.7 * innerWidth) / 900),
+			new THREE.IcosahedronGeometry((0.8 * innerWidth) / 900),
+			new THREE.TetrahedronGeometry((0.5 * innerWidth) / 900)
 		];
 
 		for (let i = 0; i < 10; i++) {
 			const geometry = geometries[Math.floor(Math.random() * geometries.length)];
 			const material = new THREE.MeshStandardMaterial({
-				color: new THREE.Color().setHSL(
-					Math.random() < 0.5 // 50% chance to pick from either range
-						? Math.random() * 0.4 // Hue between 0 and 4
-						: 0.6 + Math.random() * 0.2, // Hue between 6 and 8
-					1, // Full saturation
-					0.6 // Medium lightness
-				)
+				color: new THREE.Color(Math.random() - 0.2, Math.random() - 0.7, 1)
 			});
 			const mesh = new THREE.Mesh(geometry, material);
 
 			// Random position
 			mesh.position.set(
-				(Math.random() - 0.5) * 3, // Spread across X-axis
-				(Math.random() - 0.5) * 3, // Spread across Y-axis
-				Math.random() * -0.4 // Spread across Z-axis
+				(Math.random() - 0.5) * 1.5, // Spread across X-axis
+				(Math.random() - 0.5) * 1.5, // Spread across Y-axis
+				Math.random() * -0.1 // Spread across Z-axis
 			);
 
 			// Random scale
@@ -75,8 +68,8 @@
 			meshes.push(mesh);
 
 			gsap.to(mesh.rotation, {
-				x: mesh.rotation.x + Math.random() * Math.PI * 1.1,
-				y: mesh.rotation.y + Math.random() * Math.PI * 1.1,
+				x: mesh.rotation.x + Math.random() * Math.PI * 1.2,
+				y: mesh.rotation.y + Math.random() * Math.PI * 1.2,
 				duration: 20 + Math.random() * 2,
 				repeat: -1,
 				yoyo: true,
@@ -93,8 +86,8 @@
 
 		// Tilt the group based on mouse position
 		gsap.to(group.rotation, {
-			x: mouse.y * 0.2, // Tilt on the X-axis
-			y: mouse.x * 0.2, // Tilt on the Y-axis
+			x: mouse.y * 0.3, // Tilt on the X-axis
+			y: mouse.x * 0.3, // Tilt on the Y-axis
 			duration: 0.5,
 			ease: 'power2.out'
 		});
@@ -117,7 +110,7 @@
 		const ambient = new THREE.HemisphereLight(0xeeeeee, 0x999999, 1);
 
 		// Can catch shadows
-		const light = new THREE.DirectionalLight(0xcccccc, 1);
+		const light = new THREE.DirectionalLight(0xeeeeee, 1);
 		light.position.set(0, 6, 2);
 		scene.add(ambient);
 		scene.add(light);
