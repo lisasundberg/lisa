@@ -1,7 +1,7 @@
 :root {
 	--font-display: 'pangaia-ultralight';
 	--font-body: 'DM Sans';
-	--font-size-h1: clamp(2.25rem, 5vw, 4rem);
+	--font-size-h1: clamp(2.25rem, 4.1vw, 4rem);
 	--font-size-body: clamp(1.5rem, 2.5vw, 2rem);
 	--font-size-body-small: clamp(1.125rem, 1.5vw, 1.25rem);
 	--font-size-body-xsmall: clamp(0.85rem, 1.25vw, 1rem);
@@ -33,7 +33,7 @@ p,
 	font-weight: 300;
 	max-width: 52ch;
 
-	&+& {
+	&:where(&+&) {
 		margin-top: 0.75em;
 	}
 
