@@ -54,7 +54,7 @@ main {
 	display: grid;
 	grid-template-columns: subgrid;
 	grid-column: full;
-	padding-block: 10vh;
+	padding-top: clamp(2rem, 8vw, 6rem);
 }
 
 :where(section) {
@@ -122,6 +122,13 @@ a,
 		transform: scaleX(1);
 		transform-origin: left;
 	}
+}
+
+img {
+	display: block;
+	width: 100%;
+	height: auto;
+	object-fit: contain;
 }
 
 .button {

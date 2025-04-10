@@ -2,10 +2,9 @@
 	import CV from '$lib/components/CV.svelte';
 </script>
 
-<h1 class="title">About</h1>
-
 <section class="about">
 	<div class="intro">
+		<h1 class="title">About</h1>
 		<p class="p-small">
 			After over five years at digital agencies, I have a wide experience of working with different
 			brands and tech stacks. Having a background in the creative field, I am a true digital
@@ -33,24 +32,12 @@
 		grid-template-columns: var(--two-cols);
 		gap: var(--content-gap);
 		align-items: center;
-		min-height: 100dvh;
 		z-index: 0;
-	}
-
-	.title {
-		font-family: var(--font-display);
-		grid-column: main;
-	}
-
-	section {
-		& + & {
-			margin-top: var(--content-gap);
-		}
 	}
 
 	.cv {
 		grid-column: main;
-		margin: clamp(4rem, 6vw, 12rem) 0 clamp(2rem, 3vw, 6rem);
+		margin-top: clamp(4rem, 10vw, 16rem);
 	}
 
 	img {
