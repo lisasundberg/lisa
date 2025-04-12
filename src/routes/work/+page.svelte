@@ -259,19 +259,20 @@
 		<tbody>
 			{#each experiences as { year, client, description, link, tech }}
 				<tr>
-					<td>{year}</td>
-					<td>{client}</td>
+					<td class="year">{year}<span class="client -mobile">, {client}</span></td>
+					<td class="client -desktop">{client}</td>
 
 					{#if link}
-						<td>
+						<td class="description">
 							<a href={link} target="_blank" rel="noopener noreferrer">
 								{description} <span class="external-indicator">↗</span>
 							</a>
 						</td>
 					{:else}
-						<td>{description}</td>
+						<td class="description">{description}</td>
 					{/if}
-					<td>{tech}</td>
+					<td class="tech -mobile label">{tech}</td>
+					<td class="tech -desktop">{tech}</td>
 				</tr>
 			{/each}
 		</tbody>
@@ -309,51 +310,85 @@
 	.work-index {
 		grid-column: main;
 		display: grid;
-		grid-template-columns: min-content auto 1fr auto;
+		grid-template-columns: auto auto;
+		gap: 0 1em;
 
 		width: 100%;
 		border: none;
 		margin-top: 2em;
+
+		@media (width >= 768px) {
+			grid-template-columns: min-content auto 1fr auto;
+			gap: 0;
+		}
 	}
 
-	tbody,
-	tr {
+	tbody {
 		display: contents;
+	}
+
+	tr {
+		display: grid;
+		grid-column: 1 / -1;
+		grid-template-columns: subgrid;
+		border-bottom: 1px solid var(--_theme-color-primary);
+
+		@media (width >= 768px) {
+			display: contents;
+		}
 	}
 
 	td {
 		text-align: left;
-		border-bottom: 1px solid var(--_theme-color-primary);
-		padding: 0.375em;
+		padding: 0.75em 0;
+
+		&:not(&.label) {
+			font-size: var(--font-size-body-xsmall);
+		}
+
+		@media (width < 768px) {
+			&.year {
+				grid-column: 1;
+				grid-row: 1;
+			}
+
+			&.client {
+				grid-column: 1;
+				grid-row: 2;
+			}
+
+			&.description {
+				grid-column: 2;
+				grid-row: 1 / span 2;
+			}
+
+			&.tech {
+				grid-column: 1;
+				grid-row: 2;
+			}
+		}
+
+		@media (width >= 768px) {
+			border-bottom: 1px solid var(--_theme-color-primary);
+			padding: 0.375em;
+		}
+	}
+
+	.-mobile {
+		@media (width >= 768px) {
+			display: none;
+		}
+	}
+	.-desktop {
+		@media (width < 768px) {
+			display: none;
+		}
 	}
 
 	a {
 		font-weight: inherit;
 		font-size: inherit;
 	}
-
-	/* @media (width >= 900px) {
-		table,
-		thead {
-			display: none;
-		}
-		tbody {
-			display: flex;
-			flex-direction: column;
-			gap: 10px;
-		}
-		tr {
-			display: flex;
-			flex-direction: column;
-			padding: 10px;
-			border-bottom: 1px solid #ddd;
-		}
-		td {
-			padding: 5px 0;
-		}
-	} */
-
-	/* end mobile */
 
 	section {
 		& + & {
