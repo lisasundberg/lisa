@@ -21,7 +21,6 @@
 		gap: var(--content-gap);
 		align-items: center;
 		min-height: 100dvh;
-		z-index: 0;
 	}
 
 	.intro {
