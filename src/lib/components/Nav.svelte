@@ -1,51 +1,37 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
-	import gsap from 'gsap/dist/gsap';
-	import ScrollTrigger from 'gsap/dist/ScrollTrigger';
+	import { page } from '$app/stores';
 	import OpenToWork from './OpenToWork.svelte';
 
-	let sections: NodeListOf<HTMLElement> = $state();
-	let currentSection: string = $state();
-
-	onMount(() => {
-		gsap.registerPlugin(ScrollTrigger);
-
-		sections = document.querySelectorAll('.section');
-
-		sections.forEach((section) => {
-			ScrollTrigger.create({
-				trigger: section,
-				start: 'top center',
-				end: 'bottom center',
-				toggleClass: 'active',
-				onEnter: () => {
-					currentSection = section.id;
-				},
-				onEnterBack: () => {
-					currentSection = section.id;
-				}
-			});
-		});
-	});
+	const links = [
+		{
+			id: 'work',
+			label: 'Work',
+			slug: '/work'
+		},
+		{
+			id: 'about',
+			label: 'About',
+			slug: '/about'
+		},
+		{
+			id: 'contact',
+			label: 'Contact',
+			slug: '/contact'
+		}
+	];
 </script>
 
 <nav>
 	<a class="logo -plain" href="/">LS</a>
 	<ul>
-		{#each sections as section}
-			{#if section.id !== 'intro'}
-				<li>
-					<a
-						class="link -plain"
-						class:active={currentSection === section.id}
-						href={`#${section.id}`}
-					>
-						<div class="link-content">
-							<span class="label label-bold">{section.id}</span>
-						</div>
-					</a>
-				</li>
-			{/if}
+		{#each links as { id, label, slug }}
+			<li>
+				<a class="link -plain" class:active={$page.url.pathname === `/${id}`} href={slug}>
+					<div class="link-content">
+						<span class="label label-bold">{label}</span>
+					</div>
+				</a>
+			</li>
 		{/each}
 	</ul>
 	<div class="open-to-work">
@@ -60,6 +46,7 @@
 		gap: var(--content-gap);
 		padding: 1.5rem var(--content-margin);
 		color: var(--_theme-color-primary);
+		z-index: 10;
 	}
 
 	ul {
