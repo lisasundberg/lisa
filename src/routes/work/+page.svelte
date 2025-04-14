@@ -244,7 +244,6 @@
 <h1 class="title">Work</h1>
 
 <section class="featured">
-	<h2 class="label-bold">Select work</h2>
 	<div class="cases">
 		{#each featuredWork as { heading, label, link, image }}
 			<Card {heading} {label} {link} {image} />
@@ -286,14 +285,14 @@
 	}
 
 	.featured {
-		margin-top: 4em;
+		margin-top: 2em;
 	}
 
 	.archive {
-		margin-top: 4em;
+		margin-top: 5em;
 
 		p {
-			margin-top: 1em;
+			margin-top: 0.5em;
 		}
 	}
 
@@ -303,7 +302,7 @@
 		@media (width >= 768px) {
 			display: grid;
 			grid-template-columns: 1fr 1fr 1fr;
-			gap: 1rem;
+			gap: var(--content-margin);
 		}
 	}
 
@@ -388,11 +387,5 @@
 	a {
 		font-weight: inherit;
 		font-size: inherit;
-	}
-
-	section {
-		& + & {
-			margin-top: var(--content-gap);
-		}
 	}
 </style>
