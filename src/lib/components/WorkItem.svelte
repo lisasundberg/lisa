@@ -9,22 +9,30 @@
 	let active = $state(false);
 </script>
 
-<a class="work-item a{active ? ' active' : ''}" href={link} 
+<a
+	class="work-item a{active ? ' active' : ''}"
+	href={link}
 	onmouseover={() => (active = true)}
 	onmouseleave={() => (active = false)}
 	onfocus={() => (active = true)}
-	onblur={() => (active = false)}>
-	
+	onblur={() => (active = false)}
+>
 	<span class="title">
 		{title}
 	</span>
 
 	<span class="images">
 		{#each images as image, i}
-			<enhanced:img src={image} alt={title} style="--index: {i}; --total: {images.length}" class="image image-{i}" />
+			<enhanced:img
+				src={image}
+				alt={title}
+				style="--index: {i}; --total: {images.length}"
+				class="image image-{i}"
+			/>
 		{/each}
 	</span>
 </a>
+
 <!-- <span class="work-item a{active ? ' active' : ''}">
 	<button
 		class="title"
@@ -57,13 +65,15 @@
 	.title {
 		all: unset;
 		position: relative;
-		
+
 		.active & {
 			z-index: 2;
 		}
 	}
 
 	.image {
+		width: unset;
+		height: unset;
 		max-width: 80vw;
 		max-height: 53vw;
 		object-fit: cover;
@@ -86,7 +96,7 @@
 			opacity: 1;
 			scale: 1;
 		}
-		
+
 		& img {
 			width: 100%;
 			height: auto;
@@ -96,7 +106,5 @@
 			max-width: 45vw;
 			max-height: 30vw;
 		}
-	
 	}
-
 </style>
