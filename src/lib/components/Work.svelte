@@ -8,32 +8,21 @@
 
 <section class="section work" id="work">
 	<p class="heading display">
-		I have worked on projects for a wide range of clients - such as  <WorkItem
-		title="Akademiska Hus"
-		images={[
-			AH2
-		]}
-		link="/work/akademiskahus"
-	/>, <WorkItem
-			title="Homage"
-			images={[
-				Homage4,
-			]}
-		link="/work/homage"
-			/> and
-			<span>
-			<WorkItem
-			title="Unicef"
-			images={[
-				Babytalk3,
-			]}
-		link="/work/babytalk"
-	/> 
-		.
-	</span>
+		I have worked on projects for a wide range of clients - such as <WorkItem
+			title="Akademiska Hus"
+			images={[AH2]}
+			link="/work/akademiskahus"
+		/>, <WorkItem title="Homage" images={[Homage4]} link="/work/homage" /> and
+		<span>
+			<WorkItem title="Unicef" images={[Babytalk3]} link="/work/babytalk" />
+			.
+		</span>
 	</p>
-	<p class="body p-xsmall">Other clients include but are not limited to:<br /> H&M, Previa, Länsförsäkringar, TV4, Red Bull,
-		Urban deli, Storyblok, Bambora.</p>
+	<p class="body p-xsmall">
+		Other clients include but are not limited to:<br /> H&M, Previa, Länsförsäkringar, TV4, Red Bull,
+		Urban deli, Storyblok, Bambora.
+	</p>
+	<a class="button label" href="/work">See all work</a>
 </section>
 
 <style>
@@ -58,7 +47,7 @@
 		text-align: center;
 		width: 100%;
 	}
-	
+
 	span {
 		white-space: nowrap;
 	}
