@@ -4,7 +4,7 @@
 		<div class="info">
 			<p class="label">Project at Another State 2019</p>
 			<p class="label">My responsibility: co-ideation, all development</p>
-			<p class="label">Technologies: React, GSAP, Sass</p>
+			<p class="label">Technologies: React (Next.js), GSAP, Sass</p>
 		</div>
 		<div class="body">
 			<!-- <p class="p-small">Web presence for Stockholm based brand experience agency Homage.</p>
@@ -25,7 +25,15 @@
 	</div>
 
 	<div class="images">
-		<enhanced:img class="image" src="./assets/envolve-1.jpg" alt="Envolve" />
+		<enhanced:img class="image" src="./assets/envolve-mockup-1.jpg" alt="Envolve" />
+		<enhanced:img class="image" src="./assets/envolve-mockup-2.jpg" alt="Envolve" />
+		<enhanced:img class="image" src="./assets/envolve-mockup-3.jpg" alt="Envolve" />
+		<enhanced:img class="image" src="./assets/envolve-mockup-4.jpg" alt="Envolve" />
+		<enhanced:img class="image" src="./assets/envolve-mockup-5.jpg" alt="Envolve" />
+		<enhanced:img class="image" src="./assets/envolve-mockup-6.jpg" alt="Envolve" />
+		<enhanced:img class="image" src="./assets/envolve-6.jpg" alt="Envolve" />
+		<enhanced:img class="image" src="./assets/envolve-mockup-7.jpg" alt="Envolve" />
+		<enhanced:img class="image" src="./assets/envolve-mockup-8.jpg" alt="Envolve" />
 	</div>
 </article>
 
