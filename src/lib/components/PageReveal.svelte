@@ -6,11 +6,14 @@
 	let chars: Element[];
 	let dot: Element | null;
 	let tl: gsap.core.Timeline;
+	let themeColor: string;
 
 	function homeReveal(heading: HTMLDivElement) {
 		chars = [...heading.querySelectorAll('.char')];
 		dot = document.querySelector('.hero-heading');
-
+		themeColor = getComputedStyle(document.documentElement).getPropertyValue(
+			'--_theme-color-primary'
+		);
 		// Blink
 		if (!dot) return;
 		const dotTween = gsap.fromTo(
@@ -70,7 +73,7 @@
 		tl.to(
 			heading,
 			{
-				color: 'var(--_theme-color-primary)',
+				color: themeColor,
 				duration: 1,
 				delay: 0.8
 			},
