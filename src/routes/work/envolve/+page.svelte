@@ -7,20 +7,13 @@
 			<p class="label">Technologies: React (Next.js), GSAP, Sass</p>
 		</div>
 		<div class="body">
-			<!-- <p class="p-small">Web presence for Stockholm based brand experience agency Homage.</p>
 			<p class="p-small">
-				On this short and intense project I collaborated closely with design from start to end. We
-				worked in total around two weeks to create an unconventional website with the purpose to
-				showcase work and attract new clients as well as staff.
+				Web presence for media studio Envolve. The site features scroll-triggered animations and
+				switches seamlessly between vertical- & horizontal orientation.
 			</p>
-
 			<p class="p-small">
-				Was awarded an <a
-					href="https://www.awwwards.com/sites/homage-2"
-					target="_blank"
-					rel="noopener">Awwwards Honorable Mention</a
-				>.
-			</p> -->
+				On this short project I collaborated closely with design from start to end.
+			</p>
 		</div>
 	</div>
 
