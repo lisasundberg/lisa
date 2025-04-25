@@ -4,20 +4,20 @@
 
 	let heading: HTMLDivElement | null;
 	let chars: Element[];
+	let dot: Element | null;
 	let tl: gsap.core.Timeline;
-	let dotTl: gsap.core.Timeline;
-	let charTl: gsap.core.Timeline;
+	let themeColor: string;
 
-	$effect(() => {
-		tl = gsap.timeline({
-			onComplete: () => {
-				pageRevealFinished.set(true);
-			}
-		});
-
+	function homeReveal(heading: HTMLDivElement) {
+		chars = [...heading.querySelectorAll('.char')];
+		dot = document.querySelector('.hero-heading');
+		themeColor = getComputedStyle(document.documentElement).getPropertyValue(
+			'--_theme-color-primary'
+		);
 		// Blink
+		if (!dot) return;
 		const dotTween = gsap.fromTo(
-			'.dot',
+			dot,
 			{
 				opacity: 0
 			},
@@ -31,15 +31,8 @@
 		);
 
 		// Text
-		heading = document.querySelector('.hero-heading');
-
-		if (!heading) return;
-		chars = [...heading.querySelectorAll('.char')];
-
-		charTl = gsap.timeline();
-
 		if (!chars.length) return;
-		charTl.fromTo(
+		const charTween = gsap.fromTo(
 			chars,
 			{
 				'will-change': 'opacity, transform',
@@ -60,11 +53,11 @@
 			}
 		);
 
-		// Timeline
 		tl.to(heading, { color: 'white' });
 		tl.add(dotTween, '<');
-		tl.to('.dot', { opacity: 1, duration: 0.5 });
-		tl.add(charTl, '<-0.1');
+		tl.to(dot, { opacity: 1, duration: 0.5 });
+		tl.add(charTween, '<-0.1');
+
 		tl.to(
 			'.curtain',
 			{
@@ -76,15 +69,35 @@
 			},
 			'-=0.5'
 		);
+
 		tl.to(
 			heading,
 			{
-				color: 'blue',
+				color: themeColor,
 				duration: 1,
 				delay: 0.8
 			},
 			'<'
 		);
+	}
+
+	function simpleReveal() {
+		tl.to('.curtain', {
+			duration: 1,
+			opacity: 0,
+			pointerEvents: 'none'
+		});
+	}
+
+	$effect(() => {
+		heading = document.querySelector('.hero-heading');
+		tl = gsap.timeline({
+			onComplete: () => {
+				pageRevealFinished.set(true);
+			}
+		});
+
+		heading ? homeReveal(heading) : simpleReveal();
 	});
 </script>
 

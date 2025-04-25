@@ -4,28 +4,29 @@
 		<div class="info">
 			<p class="label">Project at Another State 2019</p>
 			<p class="label">My responsibility: co-ideation, all development</p>
-			<p class="label">Technologies: React, GSAP, Sass</p>
+			<p class="label">Technologies: React (Next.js), GSAP, Sass</p>
 		</div>
 		<div class="body">
-			<!-- <p class="p-small">Web presence for Stockholm based brand experience agency Homage.</p>
 			<p class="p-small">
-				On this short and intense project I collaborated closely with design from start to end. We
-				worked in total around two weeks to create an unconventional website with the purpose to
-				showcase work and attract new clients as well as staff.
+				Web presence for media studio Envolve. The site features scroll-triggered animations and
+				switches seamlessly between vertical- & horizontal orientation.
 			</p>
-
 			<p class="p-small">
-				Was awarded an <a
-					href="https://www.awwwards.com/sites/homage-2"
-					target="_blank"
-					rel="noopener">Awwwards Honorable Mention</a
-				>.
-			</p> -->
+				On this short project I collaborated closely with design from start to end.
+			</p>
 		</div>
 	</div>
 
 	<div class="images">
-		<enhanced:img class="image" src="./assets/envolve-1.jpg" alt="Envolve" />
+		<enhanced:img class="image" src="./assets/envolve-mockup-1.jpg" alt="Envolve" />
+		<enhanced:img class="image" src="./assets/envolve-mockup-2.jpg" alt="Envolve" />
+		<enhanced:img class="image" src="./assets/envolve-mockup-3.jpg" alt="Envolve" />
+		<enhanced:img class="image" src="./assets/envolve-mockup-4.jpg" alt="Envolve" />
+		<enhanced:img class="image" src="./assets/envolve-mockup-5.jpg" alt="Envolve" />
+		<enhanced:img class="image" src="./assets/envolve-mockup-6.jpg" alt="Envolve" />
+		<enhanced:img class="image" src="./assets/envolve-6.jpg" alt="Envolve" />
+		<enhanced:img class="image" src="./assets/envolve-mockup-7.jpg" alt="Envolve" />
+		<enhanced:img class="image" src="./assets/envolve-mockup-8.jpg" alt="Envolve" />
 	</div>
 </article>
 
