@@ -1,3 +1,12 @@
+<script lang="ts">
+	import ah1 from '$lib/assets/akademiskahus/ah-mockup-1.jpg';
+	import ah2 from '$lib/assets/akademiskahus/ah-mockup-2.jpg';
+	import ah3 from '$lib/assets/akademiskahus/ah-mockup-3.png';
+	import ah4 from '$lib/assets/akademiskahus/ah-mockup-4.jpg';
+	import ah5 from '$lib/assets/akademiskahus/ah-mockup-5.jpg';
+	import ah6 from '$lib/assets/akademiskahus/ah-mockup-6.jpg';
+</script>
+
 <article>
 	<div class="text">
 		<h1>Akademiska Hus</h1>
@@ -27,12 +36,12 @@
 	</div>
 
 	<div class="images">
-		<enhanced:img class="image" src="./assets/ah-mockup-1.jpg" alt="Akademiska Hus" />
-		<enhanced:img class="image" src="./assets/ah-mockup-2.jpg" alt="Akademiska Hus" />
-		<enhanced:img class="image" src="./assets/ah-mockup-3.png" alt="Akademiska Hus" />
-		<enhanced:img class="image" src="./assets/ah-mockup-4.jpg" alt="Akademiska Hus" />
-		<enhanced:img class="image" src="./assets/ah-mockup-5.jpg" alt="Akademiska Hus" />
-		<enhanced:img class="image" src="./assets/ah-mockup-6.jpg" alt="Akademiska Hus" />
+		<enhanced:img class="image" src={ah1} alt="Akademiska Hus" />
+		<enhanced:img class="image" src={ah2} alt="Akademiska Hus" />
+		<enhanced:img class="image" src={ah3} alt="Akademiska Hus" />
+		<enhanced:img class="image" src={ah4} alt="Akademiska Hus" />
+		<enhanced:img class="image" src={ah5} alt="Akademiska Hus" />
+		<enhanced:img class="image" src={ah6} alt="Akademiska Hus" />
 	</div>
 </article>
 

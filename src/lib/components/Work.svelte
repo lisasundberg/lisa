@@ -1,9 +1,9 @@
 <script lang="ts">
 	import WorkItem from './WorkItem.svelte';
 
-	import Homage4 from './work/homage/homage-mockup-1.jpg?enhanced';
-	import AH2 from './work/akademiskahus/ah-mockup-1.jpg?enhanced';
-	import Babytalk3 from './work/babytalk/babytalk-mockup-1.png?enhanced';
+	import Homage4 from '$lib/assets/homage/homage-mockup-1.jpg?enhanced';
+	import AH2 from '$lib/assets/akademiskahus/ah-mockup-1.jpg?enhanced';
+	import Envolve from '$lib/assets/envolve/envolve-mockup-1.jpg?enhanced';
 </script>
 
 <section class="section work" id="work">
@@ -14,7 +14,7 @@
 			link="/work/akademiskahus"
 		/>, <WorkItem title="Homage" images={[Homage4]} link="/work/homage" /> and
 		<span>
-			<WorkItem title="Unicef" images={[Babytalk3]} link="/work/babytalk" />
+			<WorkItem title="Envolve" images={[Envolve]} link="/work/envolve" />
 			.
 		</span>
 	</p>

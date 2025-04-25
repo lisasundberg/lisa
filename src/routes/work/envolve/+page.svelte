@@ -1,3 +1,15 @@
+<script lang="ts">
+	import envolve1 from '$lib/assets/envolve/envolve-mockup-1.jpg';
+	import envolve2 from '$lib/assets/envolve/envolve-mockup-2.jpg';
+	import envolve3 from '$lib/assets/envolve/envolve-mockup-3.jpg';
+	import envolve4 from '$lib/assets/envolve/envolve-mockup-4.jpg';
+	import envolve5 from '$lib/assets/envolve/envolve-mockup-5.jpg';
+	import envolve6 from '$lib/assets/envolve/envolve-mockup-6.jpg';
+	import envolve7 from '$lib/assets/envolve/envolve-6.jpg';
+	import envolve8 from '$lib/assets/envolve/envolve-mockup-7.jpg';
+	import envolve9 from '$lib/assets/envolve/envolve-mockup-8.jpg';
+</script>
+
 <article>
 	<div class="text">
 		<h1>Envolve</h1>
@@ -18,15 +30,15 @@
 	</div>
 
 	<div class="images">
-		<enhanced:img class="image" src="./assets/envolve-mockup-1.jpg" alt="Envolve" />
-		<enhanced:img class="image" src="./assets/envolve-mockup-2.jpg" alt="Envolve" />
-		<enhanced:img class="image" src="./assets/envolve-mockup-3.jpg" alt="Envolve" />
-		<enhanced:img class="image" src="./assets/envolve-mockup-4.jpg" alt="Envolve" />
-		<enhanced:img class="image" src="./assets/envolve-mockup-5.jpg" alt="Envolve" />
-		<enhanced:img class="image" src="./assets/envolve-mockup-6.jpg" alt="Envolve" />
-		<enhanced:img class="image" src="./assets/envolve-6.jpg" alt="Envolve" />
-		<enhanced:img class="image" src="./assets/envolve-mockup-7.jpg" alt="Envolve" />
-		<enhanced:img class="image" src="./assets/envolve-mockup-8.jpg" alt="Envolve" />
+		<enhanced:img class="image" src={envolve1} alt="Envolve" />
+		<enhanced:img class="image" src={envolve2} alt="Envolve" />
+		<enhanced:img class="image" src={envolve3} alt="Envolve" />
+		<enhanced:img class="image" src={envolve4} alt="Envolve" />
+		<enhanced:img class="image" src={envolve5} alt="Envolve" />
+		<enhanced:img class="image" src={envolve6} alt="Envolve" />
+		<enhanced:img class="image" src={envolve7} alt="Envolve" />
+		<enhanced:img class="image" src={envolve8} alt="Envolve" />
+		<enhanced:img class="image" src={envolve9} alt="Envolve" />
 	</div>
 </article>
 
