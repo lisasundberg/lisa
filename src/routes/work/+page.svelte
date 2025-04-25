@@ -1,10 +1,10 @@
 <script lang="ts">
 	import Card from '$lib/components/Card.svelte';
 
-	import AH from './akademiskahus/assets/ah-mockup-1.jpg?enhanced';
-	import Homage from './homage/assets/homage-mockup-1.jpg?enhanced';
-	import Babytalk from './babytalk/assets/babytalk-1.png?enhanced';
-	import Envolve from './envolve/assets/envolve.png?enhanced';
+	import AH from '$lib/assets/akademiskahus/ah-mockup-1.jpg?enhanced';
+	import Homage from '$lib/assets/homage/homage-mockup-1.jpg?enhanced';
+	import Babytalk from '$lib/assets/babytalk/babytalk-1.png?enhanced';
+	import Envolve from '$lib/assets/envolve/envolve.png?enhanced';
 
 	const featuredWork = [
 		{

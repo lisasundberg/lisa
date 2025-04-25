@@ -1,3 +1,11 @@
+<script lang="ts">
+	import babytalk1 from '$lib/assets/babytalk/babytalk-1.png?enhanced';
+	import babytalkMockup1 from '$lib/assets/babytalk/babytalk-mockup-1.png?enhanced';
+	import babytalk2 from '$lib/assets/babytalk/babytalk-2.jpg?enhanced';
+	import babytalk3 from '$lib/assets/babytalk/babytalk-3.jpg?enhanced';
+	import babytalk4 from '$lib/assets/babytalk/babytalk-4.jpg?enhanced';
+</script>
+
 <article>
 	<div class="text">
 		<h1>Unicef & H&M Foundation – Baby Talk For Parents</h1>
@@ -25,12 +33,12 @@
 	</div>
 
 	<div class="images">
-		<enhanced:img class="image" src="./assets/babytalk-1.png" alt="Babytalk" />
-		<!-- <enhanced:img class="image" src="./assets/babytalk-mockup-2.png" alt="Babytalk" /> -->
-		<enhanced:img class="image" src="./assets/babytalk-mockup-1.png" alt="Babytalk" />
-		<enhanced:img class="image" src="./assets/babytalk-2.jpg" alt="Babytalk" />
-		<enhanced:img class="image" src="./assets/babytalk-3.jpg" alt="Babytalk" />
-		<enhanced:img class="image" src="./assets/babytalk-4.jpg" alt="Babytalk" />
+		<enhanced:img class="image" src={babytalk1} alt="Babytalk" />
+		<!-- <enhanced:img class="image" src="$lib/assets/babytalk/babytalk-mockup-2.png" alt="Babytalk" /> -->
+		<enhanced:img class="image" src={babytalkMockup1} alt="Babytalk" />
+		<enhanced:img class="image" src={babytalk2} alt="Babytalk" />
+		<enhanced:img class="image" src={babytalk3} alt="Babytalk" />
+		<enhanced:img class="image" src={babytalk4} alt="Babytalk" />
 	</div>
 </article>
 

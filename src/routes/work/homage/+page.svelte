@@ -1,3 +1,11 @@
+<script lang="ts">
+	import homage1 from '$lib/assets/homage/homage-mockup-1.jpg';
+	import homage2 from '$lib/assets/homage/homage-mockup-2.jpg';
+	import homage3 from '$lib/assets/homage/homage-mockup-3.jpg';
+	import homage4 from '$lib/assets/homage/homage-mockup-4.jpg';
+	import homage5 from '$lib/assets/homage/homage-mockup-5.jpg';
+</script>
+
 <article>
 	<div class="text">
 		<h1>Homage</h1>
@@ -28,11 +36,11 @@
 	</div>
 
 	<div class="images">
-		<enhanced:img class="image" src="./assets/homage-mockup-1.jpg" alt="Homage" />
-		<enhanced:img class="image" src="./assets/homage-mockup-2.jpg" alt="Homage" />
-		<enhanced:img class="image" src="./assets/homage-mockup-3.jpg" alt="Homage" />
-		<enhanced:img class="image" src="./assets/homage-mockup-4.jpg" alt="Homage" />
-		<enhanced:img class="image" src="./assets/homage-mockup-5.jpg" alt="Homage" />
+		<enhanced:img class="image" src={homage1} alt="Homage" />
+		<enhanced:img class="image" src={homage2} alt="Homage" />
+		<enhanced:img class="image" src={homage3} alt="Homage" />
+		<enhanced:img class="image" src={homage4} alt="Homage" />
+		<enhanced:img class="image" src={homage5} alt="Homage" />
 	</div>
 </article>
 
