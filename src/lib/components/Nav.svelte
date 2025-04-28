@@ -21,7 +21,7 @@
 	];
 </script>
 
-<nav>
+<nav class="nav">
 	<a class="logo -plain" href="/">LS</a>
 	<ul>
 		{#each links as { id, label, slug }}
@@ -45,13 +45,12 @@
 </nav>
 
 <style>
-	nav {
+	.nav {
 		display: flex;
 		align-items: center;
 		gap: var(--content-gap);
 		padding: 1.5rem var(--content-margin);
 		color: var(--_theme-color-primary);
-		z-index: 10;
 	}
 
 	ul {

@@ -53,7 +53,7 @@
 			}
 		);
 
-		tl.to(heading, { color: 'white' });
+		tl.set(heading, { color: 'white' });
 		tl.add(dotTween, '<');
 		tl.to(dot, { opacity: 1, duration: 0.5 });
 		tl.add(charTween, '<-0.1');
@@ -111,6 +111,6 @@
 		width: 100vw;
 		height: 100vh;
 		background-color: var(--_theme-color-primary);
-		z-index: 2;
+		z-index: 9;
 	}
 </style>
