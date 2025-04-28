@@ -57,6 +57,6 @@
 		grid-column: full;
 		position: sticky;
 		top: 0;
-		z-index: 10;
+		z-index: 8;
 	}
 </style>
