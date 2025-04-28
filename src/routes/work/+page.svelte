@@ -3,7 +3,6 @@
 
 	import AH from '$lib/assets/akademiskahus/ah-mockup-1.jpg?enhanced';
 	import Homage from '$lib/assets/homage/homage-mockup-1.jpg?enhanced';
-	import Babytalk from '$lib/assets/babytalk/babytalk-1.png?enhanced';
 	import Envolve from '$lib/assets/envolve/envolve.png?enhanced';
 
 	const featuredWork = [
@@ -19,12 +18,6 @@
 			link: '/work/homage',
 			image: Homage
 		},
-		// {
-		// 	heading: 'Babytalk',
-		// 	label: 'React',
-		// 	link: 'https://babytalkforparents.org/',
-		// 	image: Babytalk
-		// },
 		{
 			heading: 'Envolve',
 			label: 'React, GSAP',
@@ -38,55 +31,48 @@
 			year: '2024',
 			client: 'Alster',
 			description: 'AI chat bot for customer service',
-			tech: 'Next.js, Open AI'
+			tech: 'React (Next.js), Open AI'
 		},
 		{
 			year: '2024',
 			client: 'Akademiska Hus',
 			description: 'Web platform',
 			tech: 'Optimizely, Stimulus.js',
-			link: 'https://www.akademiskahus.se/',
-			image: ''
+			link: 'https://www.akademiskahus.se/'
 		},
 		{
 			year: '2023',
 			client: 'Akademiska Hus',
 			description: 'Landing pages for specific spaces',
 			tech: 'SvelteKit, GSAP',
-			link: 'https://nobelsvag3.se/',
-			image: ''
+			link: 'https://nobelsvag3.se/'
 		},
 		{
 			year: '2023',
 			client: 'A Working Lab / Akademiska Hus',
-			description: 'Website with booking system',
+			description: 'Website / booking system',
 			tech: 'Optimizely, Svelte',
-			link: 'https://www.aworkinglab.se/',
-			image: ''
+			link: 'https://www.aworkinglab.se/'
 		},
 		{
 			year: '2023',
 			client: 'Webbdagarna / Storybook',
 			description: 'Conference fair activation – "Hole in the wall" body tracking game',
-			tech: 'Three.js, Mediapipe',
-			link: '',
-			image: ''
+			tech: 'Three.js, Mediapipe'
 		},
 		{
 			year: '2023',
 			client: 'Homage',
-			description: 'Website update (Awwwards Honorable Mention)',
+			description: 'Website (Awwwards Honorable Mention)',
 			tech: 'SvelteKit, GSAP',
 			link: 'https://homage.se/'
 		},
-		// { year: '2023', client: 'Homage', description: 'Website 2 (Awwwards Honorable Mention)', tech: 'SvelteKit, GSAP', link: 'https://homage.se/', image: '' },
 		{
 			year: '2023',
 			client: 'Alster',
 			description: 'Website (Awwwards honorable mention, CSSDA special kudos)',
 			tech: 'SvelteKit, GSAP',
-			link: 'https://alster.se/',
-			image: ''
+			link: 'https://alster.se/'
 		},
 		{
 			year: '2022',
@@ -96,57 +82,78 @@
 		},
 		{
 			year: '2022',
-			client: 'Previa',
-			description: 'Design system rebranding',
-			tech: 'Optimizely',
-			link: '',
-			image: ''
+			client: 'Previa / Falck',
+			description: 'Reskin',
+			tech: 'CSS'
 		},
 		{
-			year: '2021',
+			year: '2022',
 			client: 'Styrelseakademien',
 			description: 'Web platform / shop',
-			tech: 'React, Storyblok',
-			link: '',
-			image: ''
+			tech: 'React (Next.js), Storyblok'
 		},
 		{
 			year: '2021',
 			client: 'Babybjörn',
-			description: 'Webshop',
-			tech: 'React (Gatsby), Storyblok',
-			link: '',
-			image: ''
+			description: 'E-commerce site',
+			tech: 'React (Gatsby), Material UI, Storyblok',
+			link: 'https://www.babybjorn.se/'
 		},
 		{
 			year: '2021',
-			client: 'Wirepas',
-			description: 'Website',
-			tech: 'React, Hubspot'
+			client: 'Trustly',
+			description: 'Animations',
+			tech: 'React'
+		},
+		{
+			year: '2021',
+			client: 'The Band Socks',
+			description: 'E-commerce site',
+			tech: 'Shopify'
+		},
+		{
+			year: '2021',
+			client: 'PBX',
+			description: 'Landing page',
+			tech: 'HTML, CSS'
 		},
 		{
 			year: '2021',
 			client: 'Amphi Produktion',
 			description: '"Vän med virus" campaign site',
-			tech: 'React, Framer motion'
+			tech: 'React, Framer motion',
+			link: 'https://vmv.noaksark.org/'
 		},
 		{
-			year: '2020',
+			year: '2021',
+			client: 'Wirepas',
+			description: 'Website',
+			tech: 'React (Gatsby), Hubspot',
+			link: 'https://wirepas.com/'
+		},
+		{
+			year: '2021',
+			client: 'Neonode',
+			description: 'Website',
+			tech: 'React (Gatsby)',
+			link: 'https://neonode.com/'
+		},
+		{
+			year: '2021',
 			client: 'H&M',
 			description: 'Brand experience website',
-			tech: 'React',
-			image: ''
+			tech: 'React'
 		},
 		{
 			year: '2020',
 			client: 'Chef & The Craftsman',
-			description: 'Webshop',
+			description: 'E-commerce site',
 			tech: 'Shopify'
 		},
 		{
 			year: '2020',
 			client: 'Urban Deli',
-			description: 'Webshop',
+			description: 'E-commerce site',
 			tech: 'Shopify'
 		},
 		{
@@ -164,7 +171,7 @@
 		{
 			year: '2020',
 			client: 'Mistr',
-			description: 'Webshop',
+			description: 'E-commerce site',
 			tech: 'Shopify (headless)'
 		},
 		{
@@ -176,61 +183,46 @@
 			year: '2020',
 			client: 'Utellus',
 			description: '"Solvärdering" project',
-			tech: 'React',
-			link: '',
-			image: ''
+			tech: 'React'
 		},
 		{
 			year: '2019',
 			client: 'H&M Foundation',
 			description: '"Unfounded" project',
-			tech: 'React, Contentful',
-			link: '',
-			image: ''
+			tech: 'React, Contentful'
 		},
 		{
 			year: '2019',
 			client: 'TV4',
 			description: '"Så mycket bättre" activation/quiz at Way Out West festival',
-			tech: 'React',
-			image: ''
+			tech: 'React'
 		},
 		{
 			year: '2019',
 			client: 'Homage',
-			description: 'Website 1 (Awwwards honorable mention + mobile excellence)',
+			description: 'Website (Awwwards honorable mention + mobile excellence)',
 			tech: 'React',
-			link: 'https://www.awwwards.com/sites/homage',
-			image: ''
+			link: 'https://www.awwwards.com/sites/homage'
 		},
 		{
 			year: '2019',
 			client: 'Envolve',
 			description: 'Website',
-			tech: 'React, GSAP',
-			link: '',
-			image: ''
+			tech: 'React, GSAP'
 		},
+
 		{
 			year: '2019',
-			client: 'Red Bull',
-			description: 'Snapchat activation',
-			tech: '',
-			link: '',
-			image: ''
-		},
-		{
-			year: '2019',
-			client: 'Bores',
-			description: 'Website',
-			tech: ''
-		},
-		{
-			year: '2018',
 			client: 'Unicef / H&M Foundation',
 			description: '“Babytalk for Parents” activation/game',
 			tech: 'React',
 			link: 'https://babytalkforparents.org/'
+		},
+		{
+			year: '2019',
+			client: 'Bores',
+			description: 'Website (graduation project)',
+			tech: 'Craft, Stimulus.js'
 		},
 		{
 			year: '2018',
