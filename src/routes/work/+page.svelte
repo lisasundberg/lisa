@@ -255,7 +255,7 @@
 
 					{#if link}
 						<td class="description">
-							<a href={link} target="_blank" rel="noopener noreferrer">
+							<a class="-plain" href={link} target="_blank" rel="noopener noreferrer">
 								{description} <span class="external-indicator">↗</span>
 							</a>
 						</td>
@@ -323,9 +323,16 @@
 		grid-column: 1 / -1;
 		grid-template-columns: subgrid;
 		border-bottom: 1px solid var(--_theme-color-primary);
+		transition:
+			color 0.2s ease-in-out,
+			background-color 0.2s ease-in-out;
+	}
 
-		@media (width >= 768px) {
-			display: contents;
+	@media (hover: hover) {
+		:global(tr:has(a:hover)),
+		:global(tr:has(a:focus)) {
+			background-color: var(--_theme-color-primary);
+			color: var(--_theme-color-bg);
 		}
 	}
 
@@ -360,7 +367,6 @@
 		}
 
 		@media (width >= 768px) {
-			border-bottom: 1px solid var(--_theme-color-primary);
 			padding: 0.375em;
 		}
 	}
