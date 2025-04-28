@@ -1,10 +1,10 @@
 <script lang="ts">
-	import ah1 from '$lib/assets/akademiskahus/ah-mockup-1.jpg';
-	import ah2 from '$lib/assets/akademiskahus/ah-mockup-2.jpg';
-	import ah3 from '$lib/assets/akademiskahus/ah-mockup-3.png';
-	import ah4 from '$lib/assets/akademiskahus/ah-mockup-4.jpg';
-	import ah5 from '$lib/assets/akademiskahus/ah-mockup-5.jpg';
-	import ah6 from '$lib/assets/akademiskahus/ah-mockup-6.jpg';
+	import ah1 from '$lib/assets/akademiskahus/ah-mockup-1.jpg?enhanced';
+	import ah2 from '$lib/assets/akademiskahus/ah-mockup-2.jpg?enhanced';
+	import ah3 from '$lib/assets/akademiskahus/ah-mockup-3.png?enhanced';
+	import ah4 from '$lib/assets/akademiskahus/ah-mockup-4.jpg?enhanced';
+	import ah5 from '$lib/assets/akademiskahus/ah-mockup-5.jpg?enhanced';
+	import ah6 from '$lib/assets/akademiskahus/ah-mockup-6.jpg?enhanced';
 </script>
 
 <article>

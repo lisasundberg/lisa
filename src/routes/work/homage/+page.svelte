@@ -1,9 +1,9 @@
 <script lang="ts">
-	import homage1 from '$lib/assets/homage/homage-mockup-1.jpg';
-	import homage2 from '$lib/assets/homage/homage-mockup-2.jpg';
-	import homage3 from '$lib/assets/homage/homage-mockup-3.jpg';
-	import homage4 from '$lib/assets/homage/homage-mockup-4.jpg';
-	import homage5 from '$lib/assets/homage/homage-mockup-5.jpg';
+	import homage1 from '$lib/assets/homage/homage-mockup-1.jpg?enhanced';
+	import homage2 from '$lib/assets/homage/homage-mockup-2.jpg?enhanced';
+	import homage3 from '$lib/assets/homage/homage-mockup-3.jpg?enhanced';
+	import homage4 from '$lib/assets/homage/homage-mockup-4.jpg?enhanced';
+	import homage5 from '$lib/assets/homage/homage-mockup-5.jpg?enhanced';
 </script>
 
 <article>
