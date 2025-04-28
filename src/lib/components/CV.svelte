@@ -57,7 +57,7 @@
 
 	const competences = [
 		{
-			name: 'HTML / CSS / JavaScript'
+			name: 'HTML + CSS + JavaScript / TypeScript'
 		},
 		{
 			name: 'Svelte'
@@ -72,7 +72,10 @@
 			name: 'Three.js'
 		},
 		{
-			name: 'A11y'
+			name: 'Accessibility'
+		},
+		{
+			name: 'Team development'
 		}
 	];
 
@@ -80,7 +83,7 @@
 		{
 			place: 'Alster, Stockholm',
 			activity: 'Frontend developer',
-			year: '2022—'
+			year: '2022—2025'
 		},
 		{
 			place: 'Another State, Stockholm',
@@ -116,7 +119,7 @@
 			year: '2012-2013'
 		}
 	];
-	
+
 	const awards = [
 		{
 			award: 'Awwwards Honorable Mention',
@@ -152,8 +155,7 @@
 			year: '2020',
 			link: 'https://www.awwwards.com/sites/homage',
 			agency: 'Another State'
-		},
-		
+		}
 	];
 </script>
 
@@ -237,29 +239,17 @@
 		gap: var(--content-gap);
 		color: var(--_theme-color-primary);
 		grid-template-areas:
-			"work"
-			"education"
-			"competences"
-			"awards";
+			'work'
+			'education'
+			'competences'
+			'awards';
 
 		@media (width >= 768px) {
 			grid-template-columns: 1fr 1fr;
-			/* grid-template-areas:
-				"work work"
-				"competences awards"
-				"education education"; */
 			grid-template-areas:
-				"work education"
-				"competences awards";
+				'work education'
+				'competences awards';
 		}
-		
-		/* @media (width > 1200px) {
-			grid-template-columns: 2fr 2fr 1fr;
-			grid-template-areas:
-				"work education ."
-				". awards competences";
-		} */
-
 	}
 
 	.column {
@@ -276,7 +266,7 @@
 		&.education {
 			grid-area: education;
 		}
-		
+
 		&.awards {
 			grid-area: awards;
 		}
@@ -290,7 +280,6 @@
 	.item {
 		display: flex;
 		flex-direction: column;
-		gap: var(--gutter);
 		position: relative;
 	}
 
@@ -311,7 +300,6 @@
 	.mask {
 		overflow: hidden;
 		display: inline-block;
-		margin-block: 0.375em;
 	}
 
 	hr {
