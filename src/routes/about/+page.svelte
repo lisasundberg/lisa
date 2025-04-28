@@ -6,10 +6,19 @@
 	<div class="intro">
 		<h1 class="title">About</h1>
 		<p class="p-small">
+			I am a frontend developer who loves beautiful things. My passion lies in creating user
+			friendly and visually appealing web experiences.
+		</p>
+		<p class="p-small">
 			After over five years at digital agencies, I have a wide experience of working with different
 			brands and tech stacks. Having a background in the creative field, I am a true digital
 			multitasker, and I love to get my hands dirty in all things visual. Especially when you can
 			click on it!
+		</p>
+		<p class="p-small">
+			Outside of coding I love to explore my creativity through knitting, gardening, DJ:ing and
+			trying to build things out of wood in my home. I also do plenty of yoga. At the moment I am
+			studying a course in immersive media at Stockholm University of the Arts.
 		</p>
 		<p class="p-small">
 			I am currently on the hunt for a new full/part time position, so if you're interested in
