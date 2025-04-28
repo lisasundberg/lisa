@@ -1,5 +1,6 @@
 <script lang="ts">
-	import WorkItem from './WorkItem.svelte';
+	import WorkItem from '$lib/components/WorkItem.svelte';
+	import Button from '$lib/components/Button.svelte';
 
 	import Homage4 from '$lib/assets/homage/homage-mockup-1.jpg?enhanced';
 	import AH2 from '$lib/assets/akademiskahus/ah-mockup-1.jpg?enhanced';
@@ -22,7 +23,7 @@
 		Other clients include but are not limited to:<br /> H&M, Previa, Länsförsäkringar, TV4, Red Bull,
 		Urban deli, Storyblok, Bambora.
 	</p>
-	<a class="button label" href="/work">See all work</a>
+	<Button href="/work">See all work</Button>
 </section>
 
 <style>
