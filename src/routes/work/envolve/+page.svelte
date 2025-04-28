@@ -1,13 +1,14 @@
 <script lang="ts">
-	import envolve1 from '$lib/assets/envolve/envolve-mockup-1.jpg';
-	import envolve2 from '$lib/assets/envolve/envolve-mockup-2.jpg';
-	import envolve3 from '$lib/assets/envolve/envolve-mockup-3.jpg';
-	import envolve4 from '$lib/assets/envolve/envolve-mockup-4.jpg';
-	import envolve5 from '$lib/assets/envolve/envolve-mockup-5.jpg';
-	import envolve6 from '$lib/assets/envolve/envolve-mockup-6.jpg';
-	import envolve7 from '$lib/assets/envolve/envolve-6.jpg';
-	import envolve8 from '$lib/assets/envolve/envolve-mockup-7.jpg';
-	import envolve9 from '$lib/assets/envolve/envolve-mockup-8.jpg';
+	import envolve1 from '$lib/assets/envolve/envolve-mockup-1.jpg?enhanced';
+	import envolve2 from '$lib/assets/envolve/envolve-mockup-2.jpg?enhanced';
+	import envolve3 from '$lib/assets/envolve/envolve-mockup-3.jpg?enhanced';
+	import envolve4 from '$lib/assets/envolve/envolve-mockup-4.jpg?enhanced';
+	import envolve5 from '$lib/assets/envolve/envolve-mockup-5.jpg?enhanced';
+	import envolve6 from '$lib/assets/envolve/envolve-mockup-6.jpg?enhanced';
+	import envolve7 from '$lib/assets/envolve/envolve-6.jpg?enhanced';
+	import envolve8 from '$lib/assets/envolve/envolve-mockup-7.jpg?enhanced';
+	import envolve9 from '$lib/assets/envolve/envolve-mockup-8.jpg?enhanced';
+	console.log(envolve1);
 </script>
 
 <article>

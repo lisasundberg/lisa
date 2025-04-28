@@ -97,7 +97,7 @@
 			scale: 1;
 		}
 
-		& img {
+		:global(& img) {
 			width: 100%;
 			height: auto;
 		}
