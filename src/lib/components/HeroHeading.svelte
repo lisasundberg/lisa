@@ -71,7 +71,7 @@
 		margin: 0;
 		order: 3;
 		line-height: 1;
-		z-index: 10;
+		z-index: 3;
 
 		@media (width >= 1000px) {
 			bottom: -3.99vw;
