@@ -26,12 +26,7 @@
 	<ul>
 		{#each links as { id, label, slug }}
 			<li>
-				<a
-					class="link -plain"
-					class:active={$page.url.pathname === `/${id}`}
-					href={slug}
-					data-sveltekit-noscroll
-				>
+				<a class="link -plain" class:active={$page.url.pathname === `/${id}`} href={slug}>
 					<div class="link-content">
 						<span class="label">{label}</span>
 					</div>
