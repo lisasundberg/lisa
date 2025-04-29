@@ -2,21 +2,27 @@
 	import WorkItem from '$lib/components/WorkItem.svelte';
 	import Button from '$lib/components/Button.svelte';
 
-	import Homage4 from '$lib/assets/homage/homage-mockup-1.jpg?enhanced';
-	import AH2 from '$lib/assets/akademiskahus/ah-mockup-1.jpg?enhanced';
-	import Envolve from '$lib/assets/envolve/envolve-mockup-1.jpg?enhanced';
+	import Homage1 from '$lib/assets/homage/homage-mockup-1.jpg?enhanced';
+	// import Homage2 from '$lib/assets/homage/homage-mockup-2.jpg?enhanced';
+	// import Homage3 from '$lib/assets/homage/homage-mockup-3.jpg?enhanced';
+	import AH1 from '$lib/assets/akademiskahus/ah-mockup-1.jpg?enhanced';
+	// import AH2 from '$lib/assets/akademiskahus/ah-mockup-2.jpg?enhanced';
+	// import AH3 from '$lib/assets/akademiskahus/ah-mockup-3.png?enhanced';
+	// import Envolve from '$lib/assets/envolve/envolve.png?enhanced';
+	// import Envolve1 from '$lib/assets/envolve/envolve-mockup-1.jpg?enhanced';
+	import Envolve2 from '$lib/assets/envolve/envolve-mockup-2.jpg?enhanced';
+	// import Envolve3 from '$lib/assets/envolve/envolve-mockup-3.jpg?enhanced';
 </script>
 
 <section class="section work" id="work">
 	<p class="heading display">
 		I have worked on projects for a wide range of clients - such as <WorkItem
 			title="Akademiska Hus"
-			images={[AH2]}
+			images={[AH1]}
 			link="/work/akademiskahus"
-		/>, <WorkItem title="Homage" images={[Homage4]} link="/work/homage" /> and
+		/>, <WorkItem title="Homage" images={[Homage1]} link="/work/homage" /> and
 		<span>
-			<WorkItem title="Envolve" images={[Envolve]} link="/work/envolve" />
-			.
+			<WorkItem title="Envolve" images={[Envolve2]} link="/work/envolve" />.
 		</span>
 	</p>
 	<p class="body p-xsmall">
