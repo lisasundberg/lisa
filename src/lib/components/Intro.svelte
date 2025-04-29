@@ -14,7 +14,8 @@
 		display: flex;
 		flex-direction: column;
 		gap: 1rem;
-		height: 100dvh;
+		height: 80dvh;
+		background-color: pink;
 	}
 
 	p {

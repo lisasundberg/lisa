@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { animate } from '$lib/animations/animate';
+
 	import WorkItem from '$lib/components/WorkItem.svelte';
 	import Button from '$lib/components/Button.svelte';
 
@@ -7,7 +9,24 @@
 	import Envolve from '$lib/assets/envolve/envolve-mockup-1.jpg?enhanced';
 </script>
 
-<section class="section work" id="work">
+<section
+	class="section work"
+	id="work"
+	use:animate={{
+		type: 'from',
+		vars: {
+			opacity: 0,
+			ease: 'power4.out'
+		},
+		scroll: {
+			start: 'top top',
+			end: 'top -=100%',
+			scrub: true,
+			markers: true,
+			pin: true
+		}
+	}}
+>
 	<p class="heading display">
 		I have worked on projects for a wide range of clients - such as <WorkItem
 			title="Akademiska Hus"
@@ -50,7 +69,7 @@
 		grid-column: main;
 		display: flex;
 		flex-direction: column;
-		justify-content: flex-start;
+		justify-content: center;
 		align-items: center;
 		gap: var(--content-gap);
 		height: 100dvh;

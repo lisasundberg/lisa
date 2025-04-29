@@ -7,11 +7,10 @@
 		type: 'from',
 		vars: {
 			opacity: 0,
-			y: 100,
 			ease: 'power4.out'
 		},
 		scroll: {
-			start: 'top center',
+			start: 'top top',
 			end: 'bottom top',
 			scrub: true,
 			markers: true,
@@ -30,6 +29,11 @@
 <style>
 	section {
 		grid-column: main;
-		padding: 10vh;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		height: 100dvh;
+		background-color: skyblue;
 	}
 </style>
