@@ -1,30 +1,23 @@
 <script lang="ts">
 	import Card from '$lib/components/Card.svelte';
 
-	import AH from './akademiskahus/assets/ah-mockup-1.jpg?enhanced';
-	import Homage from './homage/assets/homage-mockup-1.jpg?enhanced';
-	import Babytalk from './babytalk/assets/babytalk-1.png?enhanced';
-	import Envolve from './envolve/assets/envolve.png?enhanced';
+	import AH from '$lib/assets/akademiskahus/ah-mockup-1.jpg?enhanced';
+	import Homage from '$lib/assets/homage/homage-mockup-1.jpg?enhanced';
+	import Envolve from '$lib/assets/envolve/envolve.png?enhanced';
 
 	const featuredWork = [
-		{
-			heading: 'Akademiska Hus',
-			label: 'Optimizely, Stimulus.js',
-			link: '/work/akademiskahus',
-			image: AH
-		},
 		{
 			heading: 'Homage',
 			label: 'SvelteKit, GSAP',
 			link: '/work/homage',
 			image: Homage
 		},
-		// {
-		// 	heading: 'Babytalk',
-		// 	label: 'React',
-		// 	link: 'https://babytalkforparents.org/',
-		// 	image: Babytalk
-		// },
+		{
+			heading: 'Akademiska Hus',
+			label: 'Optimizely, Stimulus.js',
+			link: '/work/akademiskahus',
+			image: AH
+		},
 		{
 			heading: 'Envolve',
 			label: 'React, GSAP',
@@ -34,173 +27,216 @@
 	];
 
 	const experiences = [
-		// { year: '2024', client: 'Akademiska Hus', description: 'Web platform', tech: 'Optimizely, Stimulus.js', link: 'https://www.akademiskahus.se/', image: '' },
+		{
+			year: '2024',
+			client: 'Alster',
+			description: 'AI chat bot for customer service',
+			tech: 'React (Next.js), Open AI'
+		},
+		{
+			year: '2024',
+			client: 'Akademiska Hus',
+			description: 'Web platform',
+			tech: 'Optimizely, Stimulus.js',
+			link: 'https://www.akademiskahus.se/'
+		},
 		{
 			year: '2023',
 			client: 'Akademiska Hus',
 			description: 'Landing pages for specific spaces',
 			tech: 'SvelteKit, GSAP',
-			link: 'https://nobelsvag3.se/',
-			image: ''
+			link: 'https://nobelsvag3.se/'
 		},
 		{
 			year: '2023',
 			client: 'A Working Lab / Akademiska Hus',
-			description: 'Website with booking system',
+			description: 'Website / booking system',
 			tech: 'Optimizely, Svelte',
-			link: 'https://www.aworkinglab.se/',
-			image: ''
+			link: 'https://www.aworkinglab.se/'
 		},
 		{
 			year: '2023',
 			client: 'Webbdagarna / Storybook',
-			description: 'Conference fair activation, body tracking game',
-			tech: 'Three.js, Mediapipe',
-			link: '',
-			image: ''
+			description: 'Conference fair activation – "Hole in the wall" body tracking game',
+			tech: 'Three.js, Mediapipe'
 		},
-		// { year: '2023', client: 'Homage', description: 'Website 2 (Awwwards Honorable Mention)', tech: 'SvelteKit, GSAP', link: 'https://homage.se/', image: '' },
 		{
 			year: '2023',
-			client: 'Alster web 2',
+			client: 'Homage',
+			description: 'Website (Awwwards Honorable Mention)',
+			tech: 'SvelteKit, GSAP',
+			link: 'https://homage.se/'
+		},
+		{
+			year: '2023',
+			client: 'Alster',
 			description: 'Website (Awwwards honorable mention, CSSDA special kudos)',
 			tech: 'SvelteKit, GSAP',
-			link: 'https://alster.se/',
-			image: ''
+			link: 'https://alster.se/'
 		},
 		{
 			year: '2022',
-			client: 'Alster web 1',
+			client: 'Alster',
 			description: 'Landing page',
-			tech: 'Three.js',
-			link: '',
-			image: ''
+			tech: 'Three.js'
 		},
 		{
 			year: '2022',
-			client: 'Previa',
-			description: 'Design system rebranding',
-			tech: 'Optimizely',
-			link: '',
-			image: ''
+			client: 'Previa / Falck',
+			description: 'Reskin',
+			tech: 'CSS'
 		},
 		{
-			year: '2021',
+			year: '2022',
 			client: 'Styrelseakademien',
 			description: 'Web platform / shop',
-			tech: 'React, Storyblok',
-			link: '',
-			image: ''
+			tech: 'React (Next.js), Storyblok'
 		},
 		{
 			year: '2021',
 			client: 'Babybjörn',
-			description: 'Web shop',
-			tech: 'React (Gatsby), Storyblok',
-			link: '',
-			image: ''
+			description: 'E-commerce site',
+			tech: 'React (Gatsby), Material UI, Storyblok',
+			link: 'https://www.babybjorn.se/'
 		},
 		{
-			year: '2020',
+			year: '2021',
+			client: 'Trustly',
+			description: 'Animations',
+			tech: 'React'
+		},
+		{
+			year: '2021',
+			client: 'The Band Socks',
+			description: 'E-commerce site',
+			tech: 'Shopify'
+		},
+		{
+			year: '2021',
+			client: 'PBX',
+			description: 'Landing page',
+			tech: 'HTML, CSS'
+		},
+		{
+			year: '2021',
+			client: 'Amphi Produktion',
+			description: '"Vän med virus" campaign site',
+			tech: 'React, Framer motion',
+			link: 'https://vmv.noaksark.org/'
+		},
+		{
+			year: '2021',
+			client: 'Wirepas',
+			description: 'Website',
+			tech: 'React (Gatsby), Hubspot',
+			link: 'https://wirepas.com/'
+		},
+		{
+			year: '2021',
+			client: 'Neonode',
+			description: 'Website',
+			tech: 'React (Gatsby)',
+			link: 'https://neonode.com/'
+		},
+		{
+			year: '2021',
 			client: 'H&M',
 			description: 'Brand experience website',
-			tech: 'React',
-			image: ''
+			tech: 'React'
 		},
 		{
 			year: '2020',
 			client: 'Chef & The Craftsman',
-			description: 'Webshop',
-			tech: 'Shopify',
-			link: '',
-			image: ''
+			description: 'E-commerce site',
+			tech: 'Shopify'
 		},
 		{
 			year: '2020',
 			client: 'Urban Deli',
-			description: 'Webshop',
-			tech: 'Shopify',
-			link: '',
-			image: ''
+			description: 'E-commerce site',
+			tech: 'Shopify'
 		},
 		{
 			year: '2020',
-			client: 'Red Bull',
-			description: '"Secret gig" campaign site',
-			tech: '',
-			link: '',
-			image: ''
-		},
-		{
-			year: '',
-			client: 'Utellus',
-			description: '"Solvärdering" project',
-			tech: 'React',
-			link: '',
-			image: ''
+			client: 'SAS',
+			description: 'Campaign site',
+			tech: 'React'
 		},
 		{
 			year: '2020',
 			client: 'Länsförsäkringar',
 			description: 'Quiz for selecting health insurance',
-			tech: 'React',
-			link: '',
-			image: ''
+			tech: 'React'
 		},
 		{
-			year: '',
+			year: '2020',
+			client: 'Mistr',
+			description: 'E-commerce site',
+			tech: 'Shopify (headless)'
+		},
+		{
+			year: '2020',
+			client: 'Red Bull',
+			description: '"Secret gig" campaign site'
+		},
+		{
+			year: '2020',
+			client: 'Utellus',
+			description: '"Solvärdering" project',
+			tech: 'React'
+		},
+		{
+			year: '2019',
 			client: 'H&M Foundation',
 			description: '"Unfounded" project',
-			tech: 'React, Contentful',
-			link: '',
-			image: ''
+			tech: 'React, Contentful'
 		},
 		{
 			year: '2019',
 			client: 'TV4',
-			description: 'Quiz at Way Out West festival',
-			tech: 'React',
-			image: ''
+			description: '"Så mycket bättre" activation/quiz at Way Out West festival',
+			tech: 'React'
 		},
 		{
 			year: '2019',
 			client: 'Homage',
-			description: 'Website 1 (Awwwards honorable mention + mobile excellence)',
+			description: 'Website (Awwwards honorable mention + mobile excellence)',
 			tech: 'React',
-			link: 'https://www.awwwards.com/sites/homage',
-			image: ''
+			link: 'https://www.awwwards.com/sites/homage'
 		},
 		{
 			year: '2019',
 			client: 'Envolve',
 			description: 'Website',
-			tech: 'React, GSAP',
-			link: '',
-			image: ''
+			tech: 'React, GSAP'
 		},
+
 		{
 			year: '2019',
-			client: 'Red Bull',
-			description: 'Snapchat activation',
-			tech: '',
-			link: '',
-			image: ''
-		},
-		{
-			year: '2018',
 			client: 'Unicef / H&M Foundation',
 			description: '“Babytalk for Parents” activation/game',
 			tech: 'React',
-			link: 'https://babytalkforparents.org/',
-			image: ''
+			link: 'https://babytalkforparents.org/'
+		},
+		{
+			year: '2019',
+			client: 'Bores',
+			description: 'Website (graduation project)',
+			tech: 'Craft, Stimulus.js'
+		},
+		{
+			year: '2018',
+			client: 'Bambora',
+			description: 'Website',
+			tech: 'Craft, Stimulus.js'
 		}
 	];
 </script>
 
-<h1>Work</h1>
+<h1 class="title">Work</h1>
 
 <section class="featured">
-	<h2 class="label-bold">Select work</h2>
+	<h2 class="label-bold">Selected projects</h2>
 	<div class="cases">
 		{#each featuredWork as { heading, label, link, image }}
 			<Card {heading} {label} {link} {image} />
@@ -215,19 +251,20 @@
 		<tbody>
 			{#each experiences as { year, client, description, link, tech }}
 				<tr>
-					<td>{year}</td>
-					<td>{client}</td>
+					<td class="year">{year}<span class="client -mobile">, {client}</span></td>
+					<td class="client -desktop">{client}</td>
 
 					{#if link}
-						<td>
-							<a href={link} target="_blank" rel="noopener noreferrer">
+						<td class="description">
+							<a class="-plain" href={link} target="_blank" rel="noopener noreferrer">
 								{description} <span class="external-indicator">↗</span>
 							</a>
 						</td>
 					{:else}
-						<td>{description}</td>
+						<td class="description">{description}</td>
 					{/if}
-					<td>{tech}</td>
+					<td class="tech -mobile label">{tech}</td>
+					<td class="tech -desktop">{tech}</td>
 				</tr>
 			{/each}
 		</tbody>
@@ -235,73 +272,114 @@
 </section>
 
 <style>
+	.title {
+		font-family: var(--font-display);
+		grid-column: main;
+	}
+
 	.featured {
-		margin-top: 4em;
+		margin-top: 2em;
 	}
 
 	.archive {
-		margin-top: 4em;
+		margin-top: 5em;
 
 		p {
-			margin-top: 1em;
+			margin-top: 0.5em;
 		}
 	}
 
 	.cases {
 		margin-top: 2em;
-
-		@media (width >= 768px) {
-			display: grid;
-			grid-template-columns: 1fr 1fr 1fr;
-			gap: 1rem;
-		}
 	}
 
 	.work-index {
 		grid-column: main;
 		display: grid;
-		grid-template-columns: min-content auto 1fr auto;
+		grid-template-columns: auto auto;
+		gap: 0 1em;
 
 		width: 100%;
 		border: none;
 		margin-top: 2em;
+
+		@media (width >= 768px) {
+			grid-template-columns: min-content auto 1fr auto;
+			gap: 0;
+		}
 	}
 
-	tbody,
-	tr {
+	tbody {
 		display: contents;
+	}
+
+	tr {
+		display: grid;
+		grid-column: 1 / -1;
+		grid-template-columns: subgrid;
+		border-bottom: 1px solid var(--_theme-color-primary);
+		padding-inline: 0.5em;
+		transition:
+			color 0.2s ease-in-out,
+			background-color 0.2s ease-in-out;
+	}
+
+	@media (hover: hover) {
+		:global(tr:has(a:hover)),
+		:global(tr:has(a:focus)) {
+			background-color: var(--_theme-color-primary);
+			color: var(--_theme-color-bg);
+		}
 	}
 
 	td {
 		text-align: left;
-		border-bottom: 1px solid var(--_theme-color-primary);
-		padding: 0.375em;
+		padding: 0.75em 0;
+
+		&:not(&.label) {
+			font-size: var(--font-size-body-xsmall);
+		}
+
+		@media (width < 768px) {
+			&.year {
+				grid-column: 1;
+				grid-row: 1;
+			}
+
+			&.client {
+				grid-column: 1;
+				grid-row: 2;
+			}
+
+			&.description {
+				grid-column: 2;
+				grid-row: 1 / span 2;
+			}
+
+			&.tech {
+				grid-column: 1;
+				grid-row: 2;
+			}
+		}
+
+		@media (width >= 768px) {
+			padding: 0.375em;
+		}
+	}
+
+	.-mobile {
+		@media (width >= 768px) {
+			display: none;
+		}
+	}
+	.-desktop {
+		@media (width < 768px) {
+			display: none;
+		}
 	}
 
 	a {
 		font-weight: inherit;
 		font-size: inherit;
-	}
-
-	/* @media (max-width: 768px) {
-        table, thead { display: none; }
-        tbody { display: flex; flex-direction: column; gap: 10px; }
-        tr {
-            display: flex;
-            flex-direction: column;
-            padding: 10px;
-            border-bottom: 1px solid #ddd;
-        }
-        td {
-            padding: 5px 0;
-        }
-    } */
-
-	/* end mobile */
-
-	section {
-		& + & {
-			margin-top: var(--content-gap);
-		}
 	}
 </style>

@@ -9,22 +9,30 @@
 	let active = $state(false);
 </script>
 
-<a class="work-item a{active ? ' active' : ''}" href={link} 
+<a
+	class="work-item -plain{active ? ' active' : ''}"
+	href={link}
 	onmouseover={() => (active = true)}
 	onmouseleave={() => (active = false)}
 	onfocus={() => (active = true)}
-	onblur={() => (active = false)}>
-	
+	onblur={() => (active = false)}
+>
 	<span class="title">
 		{title}
 	</span>
 
 	<span class="images">
 		{#each images as image, i}
-			<enhanced:img src={image} alt={title} style="--index: {i}; --total: {images.length}" class="image image-{i}" />
+			<enhanced:img
+				src={image}
+				alt={title}
+				style="--index: {i}; --total: {images.length}"
+				class="image image-{i}"
+			/>
 		{/each}
 	</span>
 </a>
+
 <!-- <span class="work-item a{active ? ' active' : ''}">
 	<button
 		class="title"
@@ -57,22 +65,31 @@
 	.title {
 		all: unset;
 		position: relative;
-		
+		transition: color 0.375s linear;
+
 		.active & {
 			z-index: 2;
+			color: white;
+			text-shadow: 0 0 0.5em #000;
 		}
 	}
 
 	.image {
+		--opacity-duration: 0.18s;
+		--scale-duration: 0.25s;
+		--ease: var(--ease-in-out-sine);
+
+		width: unset;
+		height: unset;
 		max-width: 80vw;
 		max-height: 53vw;
 		object-fit: cover;
 		position: absolute;
 		opacity: 0;
-		scale: 0.5;
+		scale: 0.8;
 		transition:
-			opacity 0.375s calc(var(--index) * 0.05s) linear,
-			scale 0.375s calc(var(--index) * 0.05s) ease-in-out;
+			opacity var(--opacity-duration) calc(var(--index) * 0.05s) linear,
+			scale var(--scale-duration) calc(var(--index) * 0.05s) var(--ease);
 		pointer-events: none;
 		z-index: 1;
 
@@ -83,11 +100,13 @@
 		}
 
 		.active & {
+			--opacity-duration: 0.25s;
+			--scale-duration: 0.3s;
 			opacity: 1;
 			scale: 1;
 		}
-		
-		& img {
+
+		:global(& img) {
 			width: 100%;
 			height: auto;
 		}
@@ -96,7 +115,5 @@
 			max-width: 45vw;
 			max-height: 30vw;
 		}
-	
 	}
-
 </style>

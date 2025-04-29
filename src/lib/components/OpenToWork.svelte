@@ -1,55 +1,60 @@
 <script lang="ts">
-    interface Props {
-        active?: boolean;
-    }
+	import Button from '$lib/components/Button.svelte';
 
-    let { active = false }: Props = $props();
+	interface Props {
+		active?: boolean;
+	}
+
+	let { active = false }: Props = $props();
 </script>
 
-<a class="button {active ? '-open' : '-not-open'}" href="mailto:hello@lisasundberg.com">
-    <span class="label-bold">
-        {#if active}
-        Open to work
-        {:else}
-        Not open to work
-        {/if}
-    </span>
-</a>
+<Button class="open-to-work {active ? '-open' : '-not-open'}" href="mailto:hello@lisasundberg.com">
+	{#snippet iconLeft()}
+		<span class="indicator" role="presentation"></span>
+	{/snippet}
+	{#if active}
+		Open to work
+	{:else}
+		Not open to work
+	{/if}
+</Button>
 
 <style>
-    a {
-        --_color-active: var(--theme-color-active, var(--color-green));
-        --_color-inactive: var(--theme-color-inactive, var(--color-red));
-        --_color-current: var(--_color-active);
-        display: grid;
-        grid-template-columns: 0.375em 1fr;
-        grid-template-areas: 'dot label';
-        align-items: center;
-        gap: 0.75em;
-    }
+	:global(.open-to-work) {
+		--_color-active: var(--theme-color-active, var(--color-green));
+		--_color-inactive: var(--theme-color-inactive, var(--color-red));
+		--_color-current: var(--_color-active);
+		--_box-shadow-size: 0 0 0.375em 0.09375em;
 
-    a::before {
-        content: '';
-        grid-area: dot;
-        display: block;
-        width: 0.375em;
-        height: 0.375em;
-        border-radius: 50%;
-        background-color: var(--_color-current);
-        box-shadow: 0px 0px 6px 1.5px var(--_color-current);
-    }
+		.indicator {
+			width: 1em;
+			height: 1em;
+			display: grid;
+			place-content: center;
+		}
 
-    span {
-        grid-area: label;
-        line-height: 1;
-    }
+		.indicator::before {
+			content: '';
+			grid-area: dot;
+			display: block;
+			width: 0.375em;
+			height: 0.375em;
+			border-radius: 50%;
+			background-color: var(--_color-current);
+			box-shadow: var(--_box-shadow-size) var(--_color-current);
+			transition: box-shadow 0.3s ease-in-out;
+		}
 
-    .-open {
-        --_color-current: var(--_color-active);
-    }
+		&:hover {
+			--_box-shadow-size: 0 0 0.5em 0.2em;
+		}
 
-    .-not-open {
-        --_color-current: var(--_color-inactive);
-    }
+		&.-open {
+			--_color-current: var(--_color-active);
+		}
 
+		&.-not-open {
+			--_color-current: var(--_color-inactive);
+		}
+	}
 </style>

@@ -8,13 +8,19 @@
 	import Meta from '$lib/components/Meta.svelte';
 	import Nav from '$lib/components/Nav.svelte';
 	import Footer from '$lib/components/Footer.svelte';
+	import PageReveal from '$lib/components/PageReveal.svelte';
+	import PageTransition from '$lib/components/PageTransition.svelte';
+
 	import '$lib/styles/index.css';
 
 	interface Props {
 		children?: import('svelte').Snippet;
+		data: {
+			pathname: string;
+		};
 	}
 
-	let { children }: Props = $props();
+	let { children, data }: Props = $props();
 
 	let lenis: Lenis;
 
@@ -37,15 +43,20 @@
 	<Nav />
 </header>
 
-{@render children?.()}
+<PageTransition url={data.pathname}>
+	<main>
+		{@render children?.()}
+	</main>
+	<Footer />
+</PageTransition>
 
-<!-- <Footer /> -->
+<PageReveal />
 
 <style>
 	header {
 		grid-column: full;
 		position: sticky;
 		top: 0;
-		z-index: 2;
+		z-index: 8;
 	}
 </style>

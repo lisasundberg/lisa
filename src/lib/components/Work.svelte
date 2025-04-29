@@ -1,39 +1,54 @@
 <script lang="ts">
-	import WorkItem from './WorkItem.svelte';
+	import WorkItem from '$lib/components/WorkItem.svelte';
+	import Button from '$lib/components/Button.svelte';
 
-	import Homage4 from './work/homage/homage-mockup-1.jpg?enhanced';
-	import AH2 from './work/akademiskahus/ah-mockup-1.jpg?enhanced';
-	import Babytalk3 from './work/babytalk/babytalk-mockup-1.png?enhanced';
+	import Homage1 from '$lib/assets/homage/homage-mockup-1.jpg?enhanced';
+	// import Homage2 from '$lib/assets/homage/homage-mockup-2.jpg?enhanced';
+	// import Homage3 from '$lib/assets/homage/homage-mockup-3.jpg?enhanced';
+	import AH1 from '$lib/assets/akademiskahus/ah-mockup-1.jpg?enhanced';
+	// import AH2 from '$lib/assets/akademiskahus/ah-mockup-2.jpg?enhanced';
+	// import AH3 from '$lib/assets/akademiskahus/ah-mockup-3.png?enhanced';
+	// import Envolve from '$lib/assets/envolve/envolve.png?enhanced';
+	// import Envolve1 from '$lib/assets/envolve/envolve-mockup-1.jpg?enhanced';
+	import Envolve2 from '$lib/assets/envolve/envolve-mockup-2.jpg?enhanced';
+	// import Envolve3 from '$lib/assets/envolve/envolve-mockup-3.jpg?enhanced';
 </script>
 
 <section class="section work" id="work">
 	<p class="heading display">
-		I have worked on projects for a wide range of clients - such as  <WorkItem
-		title="Akademiska Hus"
-		images={[
-			AH2
-		]}
-		link="/work/akademiskahus"
-	/>, <WorkItem
-			title="Homage"
-			images={[
-				Homage4,
-			]}
-		link="/work/homage"
-			/> and
-			<span>
-			<WorkItem
-			title="Unicef"
-			images={[
-				Babytalk3,
-			]}
-		link="/work/babytalk"
-	/> 
-		.
-	</span>
+		I have worked on projects for a wide range of clients - such as <WorkItem
+			title="Akademiska Hus"
+			images={[AH1]}
+			link="/work/akademiskahus"
+		/>, <WorkItem title="Homage" images={[Homage1]} link="/work/homage" /> and
+		<span>
+			<WorkItem title="Envolve" images={[Envolve2]} link="/work/envolve" />.
+		</span>
 	</p>
-	<p class="body p-xsmall">Other clients include but are not limited to:<br /> H&M, Previa, Länsförsäkringar, TV4, Red Bull,
-		Urban deli, Storyblok, Bambora.</p>
+	<p class="body p-xsmall">
+		Other clients include but are not limited to:<br /> H&M, Previa, Länsförsäkringar, TV4, Red Bull,
+		Urban deli, Storyblok, Bambora.
+	</p>
+	<Button href="/work">
+		See all work
+		{#snippet iconRight()}
+			<svg
+				width="16"
+				height="16"
+				viewBox="0 0 16 16"
+				fill="none"
+				xmlns="http://www.w3.org/2000/svg"
+			>
+				<path
+					d="M1 7.5H14.5314M9.37663 2L15 7.5L9.37663 13"
+					stroke="currentColor"
+					stroke-width="1.2"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+				/>
+			</svg>
+		{/snippet}
+	</Button>
 </section>
 
 <style>
@@ -58,7 +73,7 @@
 		text-align: center;
 		width: 100%;
 	}
-	
+
 	span {
 		white-space: nowrap;
 	}

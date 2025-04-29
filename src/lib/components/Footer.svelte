@@ -15,7 +15,7 @@
 			<li><ExternalLink href="https://www.linkedin.com/in/lisasundberg/" label="Linkedin" /></li>
 		</ul>
 	</section>
-	<!-- <small>© {new Date().getFullYear()} :-)</small> -->
+	<small>© {new Date().getFullYear()}</small>
 </footer>
 
 <style>
@@ -27,10 +27,14 @@
 		box-sizing: border-box;
 		position: relative;
 		height: calc(100dvh - var(--heading-height) * 1px);
-		padding-block: 2rem;
+		padding-block: 2em;
 		color: var(--_theme-color-primary);
 		order: 4;
 		z-index: 10;
+
+		@media (width >= 768px) {
+			padding-block: 4em;
+		}
 	}
 
 	section {
