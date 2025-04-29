@@ -7,16 +7,16 @@
 
 	const featuredWork = [
 		{
-			heading: 'Akademiska Hus',
-			label: 'Optimizely, Stimulus.js',
-			link: '/work/akademiskahus',
-			image: AH
-		},
-		{
 			heading: 'Homage',
 			label: 'SvelteKit, GSAP',
 			link: '/work/homage',
 			image: Homage
+		},
+		{
+			heading: 'Akademiska Hus',
+			label: 'Optimizely, Stimulus.js',
+			link: '/work/akademiskahus',
+			image: AH
 		},
 		{
 			heading: 'Envolve',
