@@ -19,7 +19,7 @@
 			<a class="label" href="https://github.com/lisasundberg">Github</a>
 			<a class="label" href="https://www.linkedin.com/in/lisasundberg/">Linkedin</a>
 		</div>
-		<!-- <small>© {new Date().getFullYear()} :-)</small> -->
+		<small>© {new Date().getFullYear()} :-)</small>
 	</div>
 </main>
 
