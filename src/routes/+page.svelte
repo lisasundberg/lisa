@@ -5,6 +5,7 @@
 	import HeroHeading from '$lib/components/HeroHeading.svelte';
 	// import ThemeNav from '$lib/components/ThemeNav.svelte';
 	import '$lib/styles/index.css';
+	import Component from '$lib/components/Component.svelte';
 </script>
 
 <!-- <Background /> -->
@@ -12,4 +13,5 @@
 
 <HeroHeading />
 <Intro />
+<Component />
 <Work />
