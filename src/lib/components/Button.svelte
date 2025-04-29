@@ -24,7 +24,7 @@
 </script>
 
 {#if as === 'button'}
-	<button class="button {className}" onclick={onClick}>
+	<button class="button {className}" onclick={onClick} onmousedown={onClick} type="button">
 		<span class="label">
 			{@render children?.()}
 		</span>
