@@ -23,7 +23,26 @@
 		Other clients include but are not limited to:<br /> H&M, Previa, Länsförsäkringar, TV4, Red Bull,
 		Urban deli, Storyblok, Bambora.
 	</p>
-	<Button href="/work">See all work</Button>
+	<Button href="/work">
+		See all work
+		{#snippet iconRight()}
+			<svg
+				width="16"
+				height="16"
+				viewBox="0 0 16 16"
+				fill="none"
+				xmlns="http://www.w3.org/2000/svg"
+			>
+				<path
+					d="M1 7.5H14.5314M9.37663 2L15 7.5L9.37663 13"
+					stroke="currentColor"
+					stroke-width="1.2"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+				/>
+			</svg>
+		{/snippet}
+	</Button>
 </section>
 
 <style>

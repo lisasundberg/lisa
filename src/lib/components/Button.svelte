@@ -4,10 +4,21 @@
 		as?: 'button' | 'a';
 		href?: string;
 		target?: '_blank' | '_self' | '_parent' | '_top';
+		iconLeft?: import('svelte').Snippet;
+		iconRight?: import('svelte').Snippet;
 		onClick?: () => void;
-		className?: string;
+		class?: string;
 	}
-	const { children, as = 'a', href, target, onClick, className }: Props = $props();
+	const {
+		children,
+		as = 'a',
+		href,
+		target,
+		iconLeft,
+		iconRight,
+		onClick,
+		class: className = ''
+	}: Props = $props();
 </script>
 
 {#if as === 'button'}
@@ -18,20 +29,23 @@
 	</button>
 {:else}
 	<a class="button {className}" {href} {target} rel={target === '_blank' ? 'noreferrer' : ''}>
+		{#if iconLeft}
+			<span class="icon-left">
+				<span class="icon">
+					{@render iconLeft()}
+				</span>
+			</span>
+		{/if}
 		<span class="label">
 			{@render children?.()}
 		</span>
-		<span class="arrow">
-			<svg
-				xmlns="http://www.w3.org/2000/svg"
-				width="1em"
-				height="1em"
-				fill="none"
-				viewBox="0 0 17 14"
-			>
-				<path stroke="currentColor" d="M0 7h15.5M10 1l6 6-6 6" stroke-width="1.25" />
-			</svg>
-		</span>
+		{#if iconRight}
+			<span class="icon-right">
+				<span class="icon">
+					{@render iconRight()}
+				</span>
+			</span>
+		{/if}
 	</a>
 {/if}
 
@@ -47,7 +61,7 @@
 		padding: 0.75em 1.125em;
 		border: 0.075em solid var(--_theme-color-primary);
 		border-radius: 1.5em;
-		line-height: 1;
+		line-height: 1.1;
 		transition:
 			grid-template-columns 0.25s var(--ease-in-out-quart),
 			color 0.2s linear,
@@ -70,17 +84,28 @@
 		height: 1em;
 	}
 
-	.arrow {
-		grid-area: icon-right;
+	.icon-left,
+	.icon-right {
 		display: flex;
-		justify-content: right;
 		align-items: center;
-		overflow: hidden;
 
-		& svg {
+		& .icon {
+			display: inline-block;
 			flex-grow: 1;
 			flex-shrink: 0;
 			width: 1em;
+			height: 1em;
+			color: currentColor;
 		}
+	}
+
+	.icon-left {
+		grid-area: icon-left;
+	}
+
+	.icon-right {
+		overflow: hidden;
+		grid-area: icon-right;
+		justify-content: flex-end;
 	}
 </style>
