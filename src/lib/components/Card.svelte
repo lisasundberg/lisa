@@ -32,7 +32,7 @@
 
 		@media (width >= 768px) {
 			grid-template-columns: 4fr 1fr 50%;
-			transition: grid-template-columns 0.6s var(--ease-in-out-cubic);
+			transition: grid-template-columns 0.5s var(--ease-in-out-cubic);
 			padding-block: 2em;
 
 			&:has(a:hover, a:focus-visible) {
@@ -85,6 +85,7 @@
 	}
 
 	.heading {
+		font-family: var(--font-body);
 		line-height: 1;
 	}
 </style>
