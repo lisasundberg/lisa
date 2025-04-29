@@ -33,7 +33,7 @@
 					data-sveltekit-noscroll
 				>
 					<div class="link-content">
-						<span class="label label-bold">{label}</span>
+						<span class="label">{label}</span>
 					</div>
 				</a>
 			</li>

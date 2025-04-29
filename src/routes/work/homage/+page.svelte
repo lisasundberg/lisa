@@ -103,10 +103,6 @@
 		}
 	}
 
-	h1 {
-		font-family: var(--font-display);
-	}
-
 	.info {
 		margin-top: 1em;
 		p {
