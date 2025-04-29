@@ -2,7 +2,7 @@
 	--font-display: 'pangaia-ultralight';
 	--font-body: 'DM Sans';
 	--font-body: 'pangaia-ultralight';
-	--font-size-h1: clamp(2.25rem, 4.1vw, 4rem);
+	--font-size-h1: clamp(2.25rem, 4vw, 3.5rem);
 	--font-size-h2: clamp(1.5rem, 3vw, 2rem);
 	--font-size-body: clamp(1.5rem, 2.5vw, 2rem);
 	--font-size-body-small: clamp(1.125rem, 1.5vw, 1.25rem);
@@ -14,6 +14,7 @@ h1,
 .h1 {
 	font-size: var(--font-size-h1);
 	font-family: var(--font-display);
+	line-height: 1.1;
 }
 
 h2,
@@ -31,7 +32,7 @@ p,
 .p {
 	font-size: var(--font-size-body);
 	letter-spacing: 0.01em;
-	line-height: 1.2;
+	line-height: 1.3;
 	font-weight: 300;
 	max-width: 52ch;
 
