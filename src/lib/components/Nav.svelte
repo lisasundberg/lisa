@@ -35,7 +35,7 @@
 		{/each}
 	</ul>
 	<div class="open-to-work">
-		<OpenToWork active />
+		<!-- <OpenToWork active /> -->
 	</div>
 </nav>
 
@@ -102,8 +102,8 @@
 		font-family: var(--font-display);
 		font-weight: 100;
 		font-size: 1.5rem;
-		color: var(--theme-color-primary);
 		flex-grow: 0;
+		color: var(--color-brown);
 	}
 
 	.open-to-work {

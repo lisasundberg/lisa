@@ -4,8 +4,11 @@ import { type Theme, type ThemeName } from '../types';
 export const pageRevealFinished = writable<boolean>(false);
 
 export const themes: Theme[] = [
+	// {
+	// 	name: 'plain'
+	// },
 	{
-		name: 'plain'
+		name: 'bokeh'
 	},
 	{
 		name: 'shader'

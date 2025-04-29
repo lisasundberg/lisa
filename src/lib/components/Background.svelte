@@ -2,20 +2,21 @@
 	import { themes, currentTheme } from '$lib/stores/app';
 	import { fade } from 'svelte/transition';
 
-	import Shader from '$lib/components/Backgrounds/Shader.svelte';
+	// import Shader from '$lib/components/Backgrounds/Shader.svelte';
 	import Donuts from '$lib/components/Backgrounds/Donuts.svelte';
+	import Bokeh from '$lib/components/Backgrounds/Bokeh.svelte';
 	// import TheMostBeautifulShaderEver from '$lib/components/TheMostBeautifulShaderEver.svelte';
 </script>
 
 <div class="background">
-	<!-- {#if $currentTheme === themes[1].name}
+	{#if $currentTheme === themes[0].name}
 		<div transition:fade>
-			<TheMostBeautifulShaderEver />
+			<Bokeh />
 		</div>
-	{/if} -->
+	{/if}
 	{#if $currentTheme === themes[1].name}
 		<div transition:fade>
-			<Shader />
+			<!-- <Shader /> -->
 		</div>
 	{/if}
 	{#if $currentTheme === themes[2].name}
@@ -30,8 +31,8 @@
 		position: fixed;
 		top: 0;
 		left: 0;
-		width: 100dvw;
-		height: 100dvh;
+		width: 100%;
+		height: 100%;
 		z-index: 0;
 	}
 </style>
