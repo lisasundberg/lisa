@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Button from '$lib/components/Button.svelte';
 	import homage1 from '$lib/assets/homage/homage-mockup-1.jpg?enhanced';
 	import homage2 from '$lib/assets/homage/homage-mockup-2.jpg?enhanced';
 	import homage3 from '$lib/assets/homage/homage-mockup-3.jpg?enhanced';
@@ -30,9 +31,9 @@
 				>.
 			</p>
 		</div>
-		<a class="link button" href="https://homage.se/" target="_blank" rel="noopener"
-			><span class="label-bold">Visit page ↗</span></a
-		>
+		<div class="link">
+			<Button href="https://homage.se/" target="_blank">Visit page</Button>
+		</div>
 	</div>
 
 	<div class="images">

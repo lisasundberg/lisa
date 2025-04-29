@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Button from '$lib/components/Button.svelte';
 	import ah1 from '$lib/assets/akademiskahus/ah-mockup-1.jpg?enhanced';
 	import ah2 from '$lib/assets/akademiskahus/ah-mockup-2.jpg?enhanced';
 	import ah3 from '$lib/assets/akademiskahus/ah-mockup-3.png?enhanced';
@@ -30,9 +31,9 @@
 				implementation.
 			</p>
 		</div>
-		<a class="link button" href="https://akademiskahus.se/" target="_blank" rel="noopener"
-			><span class="label-bold">Visit page ↗</span></a
-		>
+		<div class="link">
+			<Button href="https://akademiskahus.se/" target="_blank">Visit page</Button>
+		</div>
 	</div>
 
 	<div class="images">
