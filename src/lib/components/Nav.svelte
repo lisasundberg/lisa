@@ -103,7 +103,6 @@
 		font-weight: 100;
 		font-size: 1.5rem;
 		flex-grow: 0;
-		color: var(--color-brown);
 	}
 
 	.open-to-work {
