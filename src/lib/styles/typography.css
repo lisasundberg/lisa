@@ -56,8 +56,8 @@ p,
 	font-weight: 300;
 	max-width: 52ch;
 
-	&:where(&+&) {
-		margin-top: 0.75em;
+	:global(:where(&+&)) {
+		margin-top: 0.5em;
 	}
 
 	h1+&,

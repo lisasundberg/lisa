@@ -90,9 +90,6 @@
 
 	.info {
 		margin-top: 1em;
-		p {
-			line-height: 1.8;
-		}
 	}
 
 	.text {
