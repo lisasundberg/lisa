@@ -67,6 +67,7 @@
 		width: min(100%, 32ch);
 		text-align: center;
 		text-wrap: pretty;
+		line-height: 1.1;
 	}
 
 	.body {
