@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { animate } from '$lib/animations/animate';
+	import { animate } from '$lib/actions/animate';
 
 	import WorkItem from '$lib/components/WorkItem.svelte';
 	import Button from '$lib/components/Button.svelte';

@@ -1,23 +1,8 @@
 <script lang="ts">
-	import { animate } from '$lib/animations/animate';
+	import { animate } from '$lib/actions/animate';
 </script>
 
-<section
-	use:animate={{
-		type: 'from',
-		vars: {
-			opacity: 0,
-			ease: 'power4.out'
-		},
-		scroll: {
-			start: 'top top',
-			end: 'bottom top',
-			scrub: true,
-			markers: true,
-			pin: true
-		}
-	}}
->
+<section>
 	<div class="image">
 		<h1>Component</h1>
 		<p>Component description</p>
