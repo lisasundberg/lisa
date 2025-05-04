@@ -56,7 +56,7 @@
 		type: 'from',
 		scrollTrigger: {
 			trigger: '[data-work-section]',
-			start: 'top -=7%',
+			start: 'top -=6%',
 			end: '+=1000%',
 			scrub: 1,
 			pin: true,
@@ -226,7 +226,7 @@
 		width: min(100%, 36ch);
 		text-align: center;
 		text-wrap: pretty;
-		font-family: var(--font-heading);
+		font-family: var(--font-sansserif);
 		text-transform: uppercase;
 		font-size: clamp(2rem, 3.3vw, 3rem);
 		letter-spacing: 0;
