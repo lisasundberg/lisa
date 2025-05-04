@@ -8,6 +8,11 @@
 	}
 }
 
+.bokeh {
+	--_theme-color-bg: var(--color-cream);
+	--_theme-color-primary: var(--color-brown);
+}
+
 .donuts {
 	--theme-color-bg: var(--color-purple);
 	--theme-color-primary: var(--color-cream);

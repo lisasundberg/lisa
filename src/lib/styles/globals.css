@@ -3,6 +3,7 @@
 	--footer-height: 100dvh;
 	--color-purple: #6400f2;
 	--color-cream: rgb(255, 249, 238);
+	--color-greige: rgb(236 229 217);
 	--color-brat-green: #8fce23;
 	--color-green: #3fe83f;
 	--color-red: #CC341D;
@@ -26,13 +27,11 @@
 	--ease-in-out-circ: cubic-bezier(0.85, 0, 0.15, 1);
 	--ease-in-out-expo: cubic-bezier(0.87, 0, 0.13, 1);
 	--ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+	--ease-super-snappy: cubic-bezier(.77, 0, .175, 1);
 
 	--two-cols: 1fr;
 
 	--border-radius: 12px;
-
-
-	scroll-behavior: smooth;
 
 	@media (width >=768px) {
 		--font-size-label: 0.85rem;
@@ -76,6 +75,7 @@ h4,
 h5,
 h6 {
 	margin: 0;
+	font-weight: normal;
 }
 
 p {
@@ -98,6 +98,10 @@ a,
 .a {
 	display: inline-block;
 	position: relative;
+	color: inherit;
+	text-decoration: none;
+	font-weight: normal;
+
 
 	&:not(.-plain, .-simple, .button)::after {
 		content: '';
@@ -113,10 +117,19 @@ a,
 		transition: transform 0.2s ease-in-out;
 	}
 
-	&.-simple:hover {
-		text-decoration: underline;
-		text-underline-offset: 0.1em;
-		text-decoration-thickness: 1px;
+	@media (hover: hover) {
+		&.-simple:hover {
+			text-decoration: underline;
+			text-underline-offset: 0.1em;
+			text-decoration-thickness: 1px;
+		}
+
+		&:hover::after,
+		&.active::after,
+		&:focus-visible::after {
+			transform: scaleX(1);
+			transform-origin: left;
+		}
 	}
 
 	&:focus-visible,
@@ -126,6 +139,7 @@ a,
 
 	&:hover::after,
 	&.active::after,
+	&:focus::after,
 	&:focus-visible::after {
 		transform: scaleX(1);
 		transform-origin: left;

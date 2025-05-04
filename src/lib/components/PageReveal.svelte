@@ -53,6 +53,7 @@
 			}
 		);
 
+		tl.timeScale(1.2);
 		tl.set(heading, { color: 'white' });
 		tl.add(dotTween, '<');
 		tl.to(dot, { opacity: 1, duration: 0.5 });
@@ -83,7 +84,7 @@
 
 	function simpleReveal() {
 		tl.to('.curtain', {
-			duration: 1,
+			duration: 0.75,
 			opacity: 0,
 			pointerEvents: 'none'
 		});

@@ -7,16 +7,16 @@
 
 	const featuredWork = [
 		{
-			heading: 'Akademiska Hus',
-			label: 'Optimizely, Stimulus.js',
-			link: '/work/akademiskahus',
-			image: AH
-		},
-		{
 			heading: 'Homage',
 			label: 'SvelteKit, GSAP',
 			link: '/work/homage',
 			image: Homage
+		},
+		{
+			heading: 'Akademiska Hus',
+			label: 'Optimizely, Stimulus.js',
+			link: '/work/akademiskahus',
+			image: AH
 		},
 		{
 			heading: 'Envolve',
@@ -236,6 +236,7 @@
 <h1 class="title">Work</h1>
 
 <section class="featured">
+	<h2 class="label-bold">Selected projects</h2>
 	<div class="cases">
 		{#each featuredWork as { heading, label, link, image }}
 			<Card {heading} {label} {link} {image} />
@@ -290,12 +291,6 @@
 
 	.cases {
 		margin-top: 2em;
-
-		@media (width >= 768px) {
-			display: grid;
-			grid-template-columns: 1fr 1fr 1fr;
-			gap: var(--content-margin);
-		}
 	}
 
 	.work-index {
@@ -323,6 +318,7 @@
 		grid-column: 1 / -1;
 		grid-template-columns: subgrid;
 		border-bottom: 1px solid var(--_theme-color-primary);
+		padding-inline: 0.5em;
 		transition:
 			color 0.2s ease-in-out,
 			background-color 0.2s ease-in-out;

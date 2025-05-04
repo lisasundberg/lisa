@@ -7,3 +7,8 @@
     font-family: 'pangaia-ultralightitalic';
     src: url('/fonts/pangaia-ultralightitalic.woff2') format('woff2');
 }
+
+@font-face {
+    font-family: 'pangaia-medium';
+    src: url('/fonts/pangaia-medium.woff2') format('woff2');
+}
