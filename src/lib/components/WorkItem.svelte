@@ -67,6 +67,7 @@
 		font-size: inherit;
 		font-family: inherit;
 		position: relative;
+		line-height: 0.8;
 
 		&::after {
 			height: 0.005em;
@@ -76,7 +77,10 @@
 	.title {
 		all: unset;
 		position: relative;
-
+		font-family: var(--font-display-italic);
+		text-transform: none;
+		font-size: 1.25em;
+		letter-spacing: 0;
 		.active & {
 			z-index: 2;
 		}

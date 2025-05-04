@@ -11,6 +11,7 @@
 	import Homage from '$lib/assets/homage/homage-mockup-1.jpg?enhanced';
 	import AH from '$lib/assets/akademiskahus/ah-mockup-1.jpg?enhanced';
 	import Envolve from '$lib/assets/envolve/envolve.png?enhanced';
+	import { clamp } from 'three/src/math/MathUtils.js';
 
 	const images = [
 		{
@@ -55,7 +56,7 @@
 		type: 'from',
 		scrollTrigger: {
 			trigger: '[data-work-section]',
-			start: 'top top',
+			start: 'top -=7%',
 			end: '+=1000%',
 			scrub: 1,
 			pin: true,
@@ -81,6 +82,14 @@
 				},
 				position: '-=0.5'
 			},
+			// {
+			// 	target: '[data-work-heading]',
+			// 	vars: {
+			// 		type: 'to',
+			// 		textShadow: '0 0 0.5em #222'
+			// 	},
+			// 	position: '<'
+			// },
 			{
 				target: '[data-work-image]',
 				vars: {
@@ -98,13 +107,6 @@
 				}
 			},
 			{
-				target: '[data-work-heading]',
-				vars: {
-					textShadow: '0 0 0.5em #222'
-				},
-				position: '<'
-			},
-			{
 				target: '[data-work-body]',
 				vars: { opacity: 0, yPercent: 50, duration: 1, ease: 'power4.out', pointerEvents: 'none' }
 			},
@@ -117,13 +119,14 @@
 	}}
 >
 	<div class="content">
-		<p class="heading display" data-work-heading use:split={{ type: 'char', className: 'char' }}>
+		<p class="heading" data-work-heading use:split={{ type: 'char', className: 'char' }}>
 			I have worked on projects for a wide range of clients - such as <WorkItem
-				title="Akademiska Hus"
+				title="Akademiska Hus,"
 				images={[AH]}
 				link="/work/akademiskahus"
 				index={0}
-			/>, <WorkItem title="Homage" images={[Homage]} link="/work/homage" index={1} /> and
+			/>
+			<WorkItem title="Homage" images={[Homage]} link="/work/homage" index={1} /> and
 			<span>
 				<WorkItem title="Envolve." images={[Envolve]} link="/work/envolve" index={2} />
 			</span>
@@ -193,7 +196,6 @@
 		display: grid;
 		grid-template-rows: subgrid;
 		place-items: center;
-		gap: var(--content-gap);
 		z-index: 1;
 	}
 
@@ -216,6 +218,7 @@
 		aspect-ratio: 4 / 3;
 		object-fit: cover;
 		object-position: center;
+		filter: brightness(0.75);
 	}
 
 	.heading {
@@ -223,6 +226,11 @@
 		width: min(100%, 36ch);
 		text-align: center;
 		text-wrap: pretty;
+		font-family: var(--font-heading);
+		text-transform: uppercase;
+		font-size: clamp(2rem, 3.3vw, 3rem);
+		letter-spacing: 0;
+		font-weight: 400;
 	}
 
 	.body {
@@ -230,10 +238,16 @@
 		text-align: center;
 		width: 100%;
 		z-index: 0;
+		margin-top: 2em;
+
+		@media (width >= 768px) {
+			margin-top: -1em;
+		}
 	}
 
 	.cta {
 		grid-area: button;
+		margin-top: var(--content-margin);
 	}
 
 	span {
