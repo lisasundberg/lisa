@@ -3,7 +3,7 @@
 	import { animate } from '$lib/actions/animate';
 	import { split } from '$lib/actions/textSplitter';
 
-	// import { themeColor, themeColorBg } from '$lib/stores/theme';
+	import { INVERTED_CLASSNAME } from '$lib/stores/theme';
 
 	import WorkItem from '$lib/components/WorkItem.svelte';
 	import Button from '$lib/components/Button.svelte';
@@ -49,6 +49,14 @@
 		},
 		animations: [
 			{
+				target: 'body',
+				vars: {
+					onStart: () => document.body.classList.add(INVERTED_CLASSNAME),
+					onReverseComplete: () => document.body.classList.remove(INVERTED_CLASSNAME)
+				},
+				position: 0
+			},
+			{
 				target: '[data-work-heading] .char',
 				vars: {
 					filter: 'blur(10px)',
@@ -57,7 +65,7 @@
 					duration: 0.45,
 					stagger: 0.03
 				},
-				position: 0
+				position: '<'
 			},
 			{
 				target: '[data-work-body]',

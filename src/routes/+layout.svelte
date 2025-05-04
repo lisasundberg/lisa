@@ -4,6 +4,9 @@
 	import ScrollTrigger from 'gsap/dist/ScrollTrigger';
 	import Lenis from 'lenis';
 	import 'lenis/dist/lenis.css';
+	import { Body } from 'svelte-body';
+
+	import { currentTheme } from '$lib/stores/theme';
 
 	import Meta from '$lib/components/Meta.svelte';
 	import Nav from '$lib/components/Nav.svelte';
@@ -38,6 +41,7 @@
 	});
 </script>
 
+<Body class={$currentTheme} />
 <Meta />
 <header>
 	<Nav />
