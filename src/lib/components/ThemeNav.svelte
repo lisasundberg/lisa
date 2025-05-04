@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { themes, currentTheme } from '$lib/stores/app';
+	import { themes, currentTheme } from '$lib/stores/theme';
 	import { Body } from 'svelte-body';
 </script>
 
@@ -10,7 +10,6 @@
 		</button>
 	{/each}
 </div>
-
 <Body class={$currentTheme} />
 
 <style>

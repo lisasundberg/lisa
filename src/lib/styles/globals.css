@@ -14,9 +14,6 @@
 	--color-text-primary: var(--color-cream);
 	--color-text-secondary: #222;
 
-	--_theme-color-primary: var(--theme-color-primary, var(--color-hyperlink-blue));
-	--_theme-color-bg: var(--theme-color-bg, var(--color-cream));
-
 	--content-margin: 2.5em;
 	--content-gap: 2.5em;
 	--card-padding: clamp(3rem, 5.25vw, 6rem);
@@ -45,6 +42,8 @@
 }
 
 body {
+	--_theme-color-primary: var(--theme-color-primary, var(--color-hyperlink-blue));
+	--_theme-color-bg: var(--theme-color-bg, var(--color-cream));
 	width: 100vw;
 	min-height: 100dvh;
 	overflow-x: hidden;
@@ -138,4 +137,9 @@ img {
 	width: 100%;
 	height: auto;
 	object-fit: contain;
+}
+
+.split-word {
+	display: inline-block;
+	white-space: nowrap;
 }
