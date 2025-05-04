@@ -26,6 +26,24 @@
 			alt: 'Envolve'
 		}
 	];
+
+	// function handleMouseEnter(index: number) {
+	// 	gsap.to(`[data-work-image="${index}"]`, {
+	// 		opacity: 1,
+	// 		duration: 0.5
+	// 	});
+
+	// 	console.log('mouse enter', index);
+	// }
+
+	// function handleMouseLeave(index: number) {
+	// 	gsap.to(`[data-work-image="${index}"]`, {
+	// 		opacity: 0,
+	// 		duration: 0.5
+	// 	});
+	// 	console.log('mouse out', index);
+	// }
+
 	const timeline = gsap.timeline();
 </script>
 
@@ -58,27 +76,42 @@
 					filter: 'blur(10px)',
 					opacity: 0,
 					willChange: 'filter, opacity',
-					duration: 1,
-					stagger: 0.05
-				}
+					duration: 0.5,
+					stagger: 0.01
+				},
+				position: '-=0.5'
 			},
 			{
 				target: '[data-work-image]',
 				vars: {
 					opacity: 0,
-					stagger: 2,
-					duration: 2
+					stagger: 1,
+					duration: 1
+				}
+			},
+			{
+				target: '[data-work-image]',
+				type: 'to',
+				vars: {
+					opacity: 0,
+					duration: 0.5
+				}
+			},
+			{
+				target: '[data-work-heading]',
+				vars: {
+					textShadow: '0 0 0.5em #222'
 				},
-				position: '+=1'
+				position: '<'
 			},
 			{
 				target: '[data-work-body]',
-				vars: { opacity: 0, yPercent: 50, duration: 1, ease: 'power4.out', pointerEvents: 'none' },
-				position: '+=1'
+				vars: { opacity: 0, yPercent: 50, duration: 1, ease: 'power4.out', pointerEvents: 'none' }
 			},
 			{
 				target: '[data-work-button]',
-				vars: { opacity: 0, yPercent: 50, duration: 1, ease: 'power4.out' }
+				vars: { opacity: 0, yPercent: 50, duration: 1, ease: 'power4.out' },
+				position: '-=0.3'
 			}
 		]
 	}}
@@ -89,9 +122,10 @@
 				title="Akademiska Hus"
 				images={[AH]}
 				link="/work/akademiskahus"
-			/>, <WorkItem title="Homage" images={[Homage]} link="/work/homage" /> and
+				index={0}
+			/>, <WorkItem title="Homage" images={[Homage]} link="/work/homage" index={1} /> and
 			<span>
-				<WorkItem title="Envolve." images={[Envolve]} link="/work/envolve" />
+				<WorkItem title="Envolve." images={[Envolve]} link="/work/envolve" index={2} />
 			</span>
 		</p>
 
@@ -124,7 +158,7 @@
 		</div>
 	</div>
 
-	<div class="images">
+	<div class="images" data-work-images>
 		{#each images as { src, alt }, i}
 			<enhanced:img
 				{src}
@@ -189,7 +223,6 @@
 		width: min(100%, 36ch);
 		text-align: center;
 		text-wrap: pretty;
-		text-shadow: 0 0 0.5em #222;
 	}
 
 	.body {

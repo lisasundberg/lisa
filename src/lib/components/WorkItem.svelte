@@ -3,19 +3,30 @@
 		title: string;
 		link: string;
 		images?: any[];
+		index: number;
+		// mouseenter?: (index: number) => void;
+		// mouseleave?: (index: number) => void;
 	}
 
-	let { title, link, images = [] }: Props = $props();
+	let { title, link, images = [], index }: Props = $props();
+
 	let active = $state(false);
 </script>
 
 <a
 	class="work-item a{active ? ' active' : ''}"
 	href={link}
-	onmouseover={() => (active = true)}
-	onmouseleave={() => (active = false)}
+	onmouseenter={() => {
+		active = true;
+		// mouseenter && mouseenter(index);
+	}}
+	onmouseleave={() => {
+		active = false;
+		// mouseleave && mouseleave(index);
+	}}
 	onfocus={() => (active = true)}
 	onblur={() => (active = false)}
+	data-workitem-index={index}
 >
 	<span class="title">
 		{title}
