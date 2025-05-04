@@ -10,12 +10,8 @@
 
 	import Homage from '$lib/assets/homage/homage-mockup-1.jpg?enhanced';
 	import AH from '$lib/assets/akademiskahus/ah-mockup-1.jpg?enhanced';
-	import Envolve from '$lib/assets/envolve/envolve-mockup-1.jpg?enhanced';
+	import Envolve from '$lib/assets/envolve/envolve.png?enhanced';
 
-	// $effect(() => {
-	// 	console.log('themeColor in component', $themeColor);
-	// 	console.log('themeColorBg in component', $themeColorBg);
-	// });
 	const images = [
 		{
 			src: Homage,
@@ -42,8 +38,8 @@
 		scrollTrigger: {
 			trigger: '[data-work-section]',
 			start: 'top top',
-			end: 'top -=100%',
-			scrub: true,
+			end: '+=1000%',
+			scrub: 1,
 			pin: true,
 			markers: true
 		},
@@ -62,20 +58,27 @@
 					filter: 'blur(10px)',
 					opacity: 0,
 					willChange: 'filter, opacity',
-					duration: 0.45,
-					stagger: 0.03
+					duration: 1,
+					stagger: 0.05
+				}
+			},
+			{
+				target: '[data-work-image]',
+				vars: {
+					opacity: 0,
+					stagger: 2,
+					duration: 2
 				},
-				position: '<'
+				position: '+=1'
 			},
 			{
 				target: '[data-work-body]',
-				vars: { opacity: 0, yPercent: 50, duration: 0.5, ease: 'power4.out' },
-				position: '-=0.5'
+				vars: { opacity: 0, yPercent: 50, duration: 1, ease: 'power4.out', pointerEvents: 'none' },
+				position: '+=1'
 			},
 			{
 				target: '[data-work-button]',
-				vars: { opacity: 0, yPercent: 50, duration: 0.5, ease: 'power4.out' },
-				position: '-=0.3'
+				vars: { opacity: 0, yPercent: 50, duration: 1, ease: 'power4.out' }
 			}
 		]
 	}}
@@ -128,6 +131,7 @@
 				{alt}
 				style="--index: {i}; --total: {images.length}"
 				class="image image-{i}"
+				data-work-image={i}
 			/>
 		{/each}
 	</div>
@@ -166,7 +170,7 @@
 		grid-template-areas: 'image';
 		place-items: center;
 		justify-self: center;
-		width: min(100%, 36rem);
+		width: min(50%, 32rem);
 		z-index: 0;
 
 		:global(picture) {
@@ -174,11 +178,18 @@
 		}
 	}
 
+	.image {
+		aspect-ratio: 4 / 3;
+		object-fit: cover;
+		object-position: center;
+	}
+
 	.heading {
 		grid-area: heading;
-		width: min(100%, 32ch);
+		width: min(100%, 36ch);
 		text-align: center;
 		text-wrap: pretty;
+		text-shadow: 0 0 0.5em #222;
 	}
 
 	.body {
@@ -191,6 +202,7 @@
 	.cta {
 		grid-area: button;
 	}
+
 	span {
 		white-space: nowrap;
 	}
