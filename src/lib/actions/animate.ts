@@ -14,6 +14,7 @@ interface AnimationOptions extends GSAPTweenVars {
         target: string | HTMLElement; // Selector or element
         vars: GSAPTweenVars; // Animation properties
         position?: string | number; // Timeline position
+        type?: AnimationType; // Specific animation type for this tween
     }>;
 }
 
@@ -21,11 +22,17 @@ function handleTimelineAnimation(
     timeline: gsap.core.Timeline,
     animations: AnimationOptions['animations']
 ): void {
-    animations?.forEach(({ target, vars, position }) => {
-        timeline.from(target, vars, position);
+    animations?.forEach(({ target, vars, position, type = 'from' }) => {
+        if (type === 'from') {
+            timeline.from(target, vars, position);
+        } else if (type === 'to') {
+            timeline.to(target, vars, position);
+        } else if (type === 'fromTo') {
+            const { from, to, ...restVars } = vars as any; // Ensure `from` and `to` are extracted
+            timeline.fromTo(target, from, to, { ...restVars, position });
+        }
     });
 }
-
 export function animate(
     node: HTMLElement,
     {
