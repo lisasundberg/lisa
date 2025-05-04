@@ -13,13 +13,19 @@ function splitTextNode(
     const frag = document.createDocumentFragment();
     const text = node.textContent ?? '';
     if (type === 'char') {
-        Array.from(text).forEach((char, i) => {
-            const span = document.createElement('span');
-            // Use non-breaking space for normal spaces to preserve layout
-            span.textContent = char === ' ' ? '\u00A0' : char;
-            if (className) span.className = className;
-            span.dataset.index = i.toString();
-            frag.appendChild(span);
+        const words = text.split(' ');
+        words.forEach((word, wordIndex) => {
+            const wordSpan = document.createElement('span');
+            wordSpan.className = 'split-word'; // Add a class to group letters of a word
+            Array.from(word).forEach((char, charIndex) => {
+                const span = document.createElement('span');
+                span.textContent = char;
+                if (className) span.className = className;
+                span.dataset.index = `${wordIndex}-${charIndex}`;
+                wordSpan.appendChild(span);
+            });
+            frag.appendChild(wordSpan);
+            frag.appendChild(document.createTextNode(' ')); // Add space between words
         });
     } else {
         const parts = text.split(' ');
@@ -43,11 +49,18 @@ function processNode(
     if (node.nodeType === Node.TEXT_NODE) {
         return splitTextNode(node as Text, type, className);
     } else if (node.nodeType === Node.ELEMENT_NODE) {
-        const el = node.cloneNode(false) as Element;
+        const el = node as HTMLElement;
+
+        // Skip processing if the element has the class "images"
+        if (el.classList.contains('images')) {
+            return el.cloneNode(true); // Clone the element as-is
+        }
+
+        const clonedElement = el.cloneNode(false) as Element;
         node.childNodes.forEach(child => {
-            el.appendChild(processNode(child, type, className));
+            clonedElement.appendChild(processNode(child, type, className));
         });
-        return el;
+        return clonedElement;
     } else {
         return node.cloneNode();
     }
