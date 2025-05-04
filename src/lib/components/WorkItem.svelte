@@ -21,7 +21,7 @@
 		{title}
 	</span>
 
-	<span class="images">
+	<!-- <span class="images">
 		{#each images as image, i}
 			<enhanced:img
 				src={image}
@@ -30,7 +30,7 @@
 				class="image image-{i}"
 			/>
 		{/each}
-	</span>
+	</span> -->
 </a>
 
 <!-- <span class="work-item a{active ? ' active' : ''}">
@@ -71,7 +71,7 @@
 		}
 	}
 
-	.image {
+	/* .image {
 		width: unset;
 		height: unset;
 		max-width: 80vw;
@@ -106,5 +106,5 @@
 			max-width: 45vw;
 			max-height: 30vw;
 		}
-	}
+	} */
 </style>
