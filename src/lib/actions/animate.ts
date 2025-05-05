@@ -33,6 +33,7 @@ function handleTimelineAnimation(
         }
     });
 }
+
 export function animate(
     node: HTMLElement,
     {
@@ -45,6 +46,7 @@ export function animate(
     }: AnimationOptions
 ): { destroy?: () => void } {
     let tween: gsap.core.Tween | gsap.core.Timeline | null;
+    let scrollTriggerInstance: ScrollTrigger | null = null;
 
     if (timeline) {
         // Add animations to the timeline
@@ -52,7 +54,7 @@ export function animate(
 
         // Attach ScrollTrigger to the timeline if scrollTrigger options are provided
         if (scrollTrigger) {
-            ScrollTrigger.create({
+            scrollTriggerInstance = ScrollTrigger.create({
                 trigger: scrollTrigger.trigger ?? node,
                 animation: timeline, // Attach the timeline to the ScrollTrigger
                 ...scrollTrigger
@@ -78,7 +80,7 @@ export function animate(
 
         // Attach ScrollTrigger to the tween if scrollTrigger options are provided
         if (scrollTrigger) {
-            ScrollTrigger.create({
+            scrollTriggerInstance = ScrollTrigger.create({
                 trigger: scrollTrigger.trigger ?? node,
                 animation: tween, // Attach the tween to the ScrollTrigger
                 ...scrollTrigger
@@ -98,8 +100,11 @@ export function animate(
                 timeline.kill(); // Kill the timeline
             }
 
-            // Kill all ScrollTriggers associated with the animation
-            ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+            // Kill the specific ScrollTrigger instance
+            if (scrollTriggerInstance) {
+                scrollTriggerInstance.kill();
+                scrollTriggerInstance = null;
+            }
         }
     };
 }
