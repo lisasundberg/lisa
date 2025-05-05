@@ -73,6 +73,9 @@
 		line-height: 1;
 		z-index: 10;
 		pointer-events: none;
+		transition:
+			color 0.3s linear,
+			fill 0.3s linear;
 
 		@media (width >= 1000px) {
 			bottom: -3.99vw;
