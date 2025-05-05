@@ -1,8 +1,10 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
+
 	// Clone with JS to prevent SEO issues
 	let clonesContainer: HTMLDivElement;
 
-	$effect(() => {
+	onMount(() => {
 		const cloneCount = 9;
 		const email = 'hello@lisasundberg.com';
 

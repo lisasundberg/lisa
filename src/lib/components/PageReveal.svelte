@@ -24,7 +24,7 @@
 			{
 				opacity: 1,
 				duration: 0.6,
-				repeat: 3,
+				repeat: 2,
 				yoyo: true,
 				ease: 'linear'
 			}

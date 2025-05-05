@@ -13,8 +13,8 @@
 		grid-column: main;
 		display: flex;
 		flex-direction: column;
+		min-height: 40dvh;
 		gap: 1rem;
-		height: 100dvh;
 	}
 
 	p {

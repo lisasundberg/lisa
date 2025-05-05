@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { themes, currentTheme } from '$lib/stores/app';
+	import { themes, currentTheme } from '$lib/stores/theme';
 	import { fade } from 'svelte/transition';
 
 	// import Shader from '$lib/components/Backgrounds/Shader.svelte';
