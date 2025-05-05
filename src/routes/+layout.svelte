@@ -2,7 +2,7 @@
 	import { onMount } from 'svelte';
 	import { afterNavigate } from '$app/navigation';
 
-	import gsap from 'gsap';
+	import { gsap } from 'gsap';
 	import { ScrollTrigger } from 'gsap/ScrollTrigger';
 	import { Body } from 'svelte-body';
 	import Lenis from 'lenis';

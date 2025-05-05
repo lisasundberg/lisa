@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import * as THREE from 'three';
-	import gsap from 'gsap/dist/gsap';
+	import { gsap } from 'gsap';
 
 	let canvas: HTMLCanvasElement;
 	let innerHeight: number;
