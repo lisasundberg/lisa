@@ -35,7 +35,7 @@
 		{/each}
 	</ul>
 	<div class="open-to-work">
-		<!-- <OpenToWork active /> -->
+		<OpenToWork active />
 	</div>
 </nav>
 
