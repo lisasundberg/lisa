@@ -3,25 +3,36 @@
 		title: string;
 		link: string;
 		images?: any[];
+		index: number;
+		// mouseenter?: (index: number) => void;
+		// mouseleave?: (index: number) => void;
 	}
 
-	let { title, link, images = [] }: Props = $props();
+	let { title, link, images = [], index }: Props = $props();
+
 	let active = $state(false);
 </script>
 
 <a
 	class="work-item -plain{active ? ' active' : ''}"
 	href={link}
-	onmouseover={() => (active = true)}
-	onmouseleave={() => (active = false)}
+	onmouseenter={() => {
+		active = true;
+		// mouseenter && mouseenter(index);
+	}}
+	onmouseleave={() => {
+		active = false;
+		// mouseleave && mouseleave(index);
+	}}
 	onfocus={() => (active = true)}
 	onblur={() => (active = false)}
+	data-workitem-index={index}
 >
 	<span class="title">
 		{title}
 	</span>
 
-	<span class="images">
+	<!-- <span class="images">
 		{#each images as image, i}
 			<enhanced:img
 				src={image}
@@ -30,7 +41,7 @@
 				class="image image-{i}"
 			/>
 		{/each}
-	</span>
+	</span> -->
 </a>
 
 <!-- <span class="work-item a{active ? ' active' : ''}">
@@ -56,6 +67,8 @@
 		font-size: inherit;
 		font-family: inherit;
 		position: relative;
+		line-height: 0.8;
+		transition: color 0.2s linear;
 
 		&::after {
 			height: 0.005em;
@@ -65,20 +78,20 @@
 	.title {
 		all: unset;
 		position: relative;
-		transition: color 0.375s linear;
+		font-family: var(--font-display-italic);
+		text-transform: none;
+		font-size: 1.25em;
+		letter-spacing: 0;
+		transition: color 0.2s linear;
 
 		.active & {
 			z-index: 2;
-			color: white;
+			/* color: white; */
 			text-shadow: 0 0 0.5em #000;
 		}
 	}
 
-	.image {
-		--opacity-duration: 0.18s;
-		--scale-duration: 0.25s;
-		--ease: var(--ease-in-out-sine);
-
+	/* .image {
 		width: unset;
 		height: unset;
 		max-width: 80vw;
@@ -115,5 +128,5 @@
 			max-width: 45vw;
 			max-height: 30vw;
 		}
-	}
+	} */
 </style>

@@ -1,6 +1,7 @@
 :root {
-	--font-display: 'pangaia-ultralight';
-	/* --font-body: 'DM Sans'; */
+	--font-display: 'pangaia-ultralight', serif;
+	--font-display-italic: 'pangaia-ultralightitalic', serif;
+	--font-sansserif: 'Karla', sans-serif;
 	--font-body-medium: 'pangaia-medium';
 	--font-body: 'pangaia-ultralight';
 	--font-size-h1: clamp(2.25rem, 4vw, 3.5rem);
@@ -10,6 +11,12 @@
 	--font-size-body-xsmall: clamp(0.85rem, 1.25vw, 1rem);
 	--font-size-label: 0.75rem;
 }
+
+/* font-family: "Karla",
+sans-serif;
+font-optical-sizing: auto;
+font-weight: 400;
+font-style: normal; */
 
 h1,
 h2,
@@ -80,18 +87,19 @@ p,
 }
 
 .label {
-	font-family: var(--font-body);
+	font-family: var(--font-sansserif);
 	text-transform: uppercase;
 	font-size: var(--font-size-label);
-	letter-spacing: 0.05em;
-	font-weight: normal;
+	letter-spacing: -0.01em;
+	font-weight: 400;
 	margin: 0;
 }
 
 .label-bold {
-	font-family: var(--font-body-medium);
+	font-family: var(--font-sansserif);
 	text-transform: uppercase;
 	font-size: var(--font-size-label);
-	letter-spacing: 0.05em;
+	letter-spacing: -0.01em;
 	margin: 0;
+	font-weight: 600;
 }
