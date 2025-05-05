@@ -47,12 +47,13 @@
 	<Nav />
 </header>
 
-<PageTransition url={data.pathname}>
-	<main>
-		{@render children?.()}
-	</main>
-	<Footer />
-</PageTransition>
+<!-- <PageTransition url={data.pathname}> -->
+<main>
+	{@render children?.()}
+</main>
+<Footer />
+
+<!-- </PageTransition> -->
 
 <PageReveal />
 
