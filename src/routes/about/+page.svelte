@@ -1,5 +1,15 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
+
+	import { INVERTED_CLASSNAME } from '$lib/stores/theme';
+
 	import CV from '$lib/components/CV.svelte';
+
+	onMount(() => {
+		if (document.body.classList.contains(INVERTED_CLASSNAME)) {
+			document.body.classList.remove(INVERTED_CLASSNAME);
+		}
+	});
 </script>
 
 <section class="about">

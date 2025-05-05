@@ -1,8 +1,12 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
+
+	import { INVERTED_CLASSNAME } from '$lib/stores/theme';
+
 	// Clone with JS to prevent SEO issues
 	let clonesContainer: HTMLDivElement;
 
-	$effect(() => {
+	onMount(() => {
 		const cloneCount = 9;
 		const email = 'hello@lisasundberg.com';
 
@@ -12,6 +16,10 @@
 			link.textContent = email;
 			link.className = 'email';
 			clonesContainer.appendChild(link);
+		}
+
+		if (document.body.classList.contains(INVERTED_CLASSNAME)) {
+			document.body.classList.remove(INVERTED_CLASSNAME);
 		}
 	});
 </script>
