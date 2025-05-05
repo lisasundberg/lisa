@@ -7,10 +7,6 @@
 	/>
 	<link rel="canonical" href="https://www.lisasundberg.com" />
 
-	<style>
-		@import url('https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800;1,200..800&display=swap');
-	</style>
-
 	<!-- Favicons -->
 	<link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
 	<link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
