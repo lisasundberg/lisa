@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { page } from '$app/stores';
+	// import { page } from '$app/stores';
 	import OpenToWork from './OpenToWork.svelte';
 
 	const links = [
@@ -26,7 +26,8 @@
 	<ul>
 		{#each links as { id, label, slug }}
 			<li>
-				<a class="link -plain" class:active={$page.url.pathname === `/${id}`} href={slug}>
+				<!-- <a class="link -plain" class:active={$page.url.pathname === `/${id}`} href={slug}> -->
+				<a class="link -plain" href={slug}>
 					<div class="link-content">
 						<span class="label">{label}</span>
 					</div>
