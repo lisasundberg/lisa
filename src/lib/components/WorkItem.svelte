@@ -68,6 +68,7 @@
 		font-family: inherit;
 		position: relative;
 		line-height: 0.8;
+		transition: color 0.2s linear;
 
 		&::after {
 			height: 0.005em;
@@ -81,9 +82,11 @@
 		text-transform: none;
 		font-size: 1.25em;
 		letter-spacing: 0;
+		transition: color 0.2s linear;
+
 		.active & {
 			z-index: 2;
-			color: white;
+			/* color: white; */
 			text-shadow: 0 0 0.5em #000;
 		}
 	}

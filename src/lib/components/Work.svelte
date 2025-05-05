@@ -1,9 +1,8 @@
 <script lang="ts">
 	import { gsap } from 'gsap';
+
 	import { animate } from '$lib/actions/animate';
 	import { split } from '$lib/actions/textSplitter';
-
-	import { INVERTED_CLASSNAME } from '$lib/stores/theme';
 
 	import WorkItem from '$lib/components/WorkItem.svelte';
 	import Button from '$lib/components/Button.svelte';
@@ -11,7 +10,6 @@
 	import Homage from '$lib/assets/homage/homage-mockup-1.jpg?enhanced';
 	import AH from '$lib/assets/akademiskahus/ah-mockup-1.jpg?enhanced';
 	import Envolve from '$lib/assets/envolve/envolve.png?enhanced';
-	import { clamp } from 'three/src/math/MathUtils.js';
 
 	const images = [
 		{
@@ -57,20 +55,12 @@
 		scrollTrigger: {
 			trigger: '[data-work-section]',
 			start: 'top -=6%',
-			end: '+=1000%',
-			scrub: 1,
+			end: '+=100%',
+			scrub: 3,
 			pin: true,
-			markers: true
+			once: true
 		},
 		animations: [
-			{
-				target: 'body',
-				vars: {
-					onStart: () => document.body.classList.add(INVERTED_CLASSNAME),
-					onReverseComplete: () => document.body.classList.remove(INVERTED_CLASSNAME)
-				},
-				position: 0
-			},
 			{
 				target: '[data-work-heading] .char',
 				vars: {
@@ -82,14 +72,6 @@
 				},
 				position: '-=0.5'
 			},
-			// {
-			// 	target: '[data-work-heading]',
-			// 	vars: {
-			// 		type: 'to',
-			// 		textShadow: '0 0 0.5em #222'
-			// 	},
-			// 	position: '<'
-			// },
 			{
 				target: '[data-work-image]',
 				vars: {
@@ -108,12 +90,23 @@
 			},
 			{
 				target: '[data-work-body]',
-				vars: { opacity: 0, yPercent: 50, duration: 1, ease: 'power4.out', pointerEvents: 'none' }
+				vars: {
+					opacity: 0,
+					yPercent: 50,
+					duration: 1,
+					ease: 'power4.out'
+				},
+				position: '-=0.2'
 			},
 			{
 				target: '[data-work-button]',
-				vars: { opacity: 0, yPercent: 50, duration: 1, ease: 'power4.out' },
-				position: '-=0.3'
+				vars: {
+					opacity: 0,
+					yPercent: 50,
+					duration: 1,
+					ease: 'power4.out'
+				},
+				position: '-=0.5'
 			}
 		]
 	}}
