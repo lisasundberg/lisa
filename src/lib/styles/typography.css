@@ -1,8 +1,8 @@
 :root {
 	--font-display: 'pangaia-ultralight', serif;
 	--font-display-italic: 'pangaia-ultralightitalic', serif;
-	--font-sansserif: 'Karla', sans-serif;
-	--font-body-medium: 'pangaia-medium';
+	--font-sansserif: 'karla-regular', sans-serif;
+	--font-sansserif-bold: 'karla-semibold', sans-serif;
 	--font-body: 'pangaia-ultralight';
 	--font-size-h1: clamp(2.25rem, 4vw, 3.5rem);
 	--font-size-h2: clamp(1.5rem, 3vw, 2rem);
@@ -31,7 +31,7 @@ h6,
 .h5,
 .h6 {
 	font-weight: normal;
-	font-family: var(--font-body-medium);
+	font-family: var(--font-display);
 }
 
 h1,
@@ -91,15 +91,13 @@ p,
 	text-transform: uppercase;
 	font-size: var(--font-size-label);
 	letter-spacing: -0.01em;
-	font-weight: 400;
 	margin: 0;
 }
 
 .label-bold {
-	font-family: var(--font-sansserif);
+	font-family: var(--font-sansserif-bold);
 	text-transform: uppercase;
 	font-size: var(--font-size-label);
 	letter-spacing: -0.01em;
 	margin: 0;
-	font-weight: 600;
 }

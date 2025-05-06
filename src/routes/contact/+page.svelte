@@ -39,7 +39,7 @@
 
 		:global(.email) {
 			font-size: 7vw;
-			margin-top: 0;
+			margin: 0 auto;
 			text-align: center;
 		}
 	}

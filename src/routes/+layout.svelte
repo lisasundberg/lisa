@@ -2,7 +2,7 @@
 	import { onMount } from 'svelte';
 	import { afterNavigate } from '$app/navigation';
 
-	import gsap from 'gsap';
+	import { gsap } from 'gsap';
 	import { ScrollTrigger } from 'gsap/ScrollTrigger';
 	import { Body } from 'svelte-body';
 	import Lenis from 'lenis';
@@ -14,7 +14,7 @@
 	import Nav from '$lib/components/Nav.svelte';
 	import Footer from '$lib/components/Footer.svelte';
 	import PageReveal from '$lib/components/PageReveal.svelte';
-	import PageTransition from '$lib/components/PageTransition.svelte';
+	// import PageTransition from '$lib/components/PageTransition.svelte';
 
 	import '$lib/styles/index.css';
 
@@ -43,7 +43,7 @@
 	});
 
 	afterNavigate(() => {
-		if (document.body.classList.contains(INVERTED_CLASSNAME)) {
+		if (typeof document !== 'undefined' && document.body.classList.contains(INVERTED_CLASSNAME)) {
 			document.body.classList.remove(INVERTED_CLASSNAME);
 		}
 	});

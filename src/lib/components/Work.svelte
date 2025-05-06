@@ -4,12 +4,12 @@
 	import { animate } from '$lib/actions/animate';
 	import { split } from '$lib/actions/textSplitter';
 
-	import WorkItem from '$lib/components/WorkItem.svelte';
 	import Button from '$lib/components/Button.svelte';
 
 	import Homage from '$lib/assets/homage/homage-mockup-1.jpg?enhanced';
 	import AH from '$lib/assets/akademiskahus/ah-mockup-1.jpg?enhanced';
-	import Envolve from '$lib/assets/envolve/envolve.png?enhanced';
+	import Envolve from '$lib/assets/envolve/envolve-cover.jpg?enhanced';
+	// import { onMount } from 'svelte';
 
 	const images = [
 		{
@@ -26,22 +26,30 @@
 		}
 	];
 
-	// function handleMouseEnter(index: number) {
-	// 	gsap.to(`[data-work-image="${index}"]`, {
-	// 		opacity: 1,
-	// 		duration: 0.5
-	// 	});
+	// let currentImageIndex: number | null = $state(null);
+	// function handleMouseEnter(i: number) {
+	// 	currentImageIndex = i;
 
-	// 	console.log('mouse enter', index);
+	// 	gsap.to(`[data-work-image="${i}]"`, { opacity: 1 });
+
+	// 	console.log('in', currentImageIndex);
 	// }
 
-	// function handleMouseLeave(index: number) {
-	// 	gsap.to(`[data-work-image="${index}"]`, {
-	// 		opacity: 0,
-	// 		duration: 0.5
-	// 	});
-	// 	console.log('mouse out', index);
+	// function handleMouseLeave(i: number) {
+	// 	currentImageIndex = null;
+
+	// 	gsap.to(`[data-work-image="${i}"]`, { opacity: 0 });
+	// 	console.log('out');
 	// }
+
+	// onMount(() => {
+	// 	const links = document.querySelectorAll('[data-work-item]');
+
+	// 	links.forEach((link, i) => {
+	// 		link.addEventListener('mouseenter', () => handleMouseEnter(i));
+	// 		link.addEventListener('mouseleave', () => handleMouseLeave(i));
+	// 	});
+	// });
 
 	const timeline = gsap.timeline();
 </script>
@@ -54,10 +62,10 @@
 		type: 'from',
 		scrollTrigger: {
 			trigger: '[data-work-section]',
-			start: 'top -=6%',
-			end: '+=100%',
-			scrub: 3,
+			start: 'top -=5%',
+			end: '+=105%',
 			pin: true,
+			scrub: 4,
 			once: true
 		},
 		animations: [
@@ -68,16 +76,22 @@
 					opacity: 0,
 					willChange: 'filter, opacity',
 					duration: 0.5,
-					stagger: 0.01
-				},
-				position: '-=0.5'
+					stagger: 0.02
+				}
+			},
+			{
+				target: '[data-work-item]',
+				vars: {
+					pointerEvents: 'none'
+				}
 			},
 			{
 				target: '[data-work-image]',
 				vars: {
 					opacity: 0,
-					stagger: 1,
-					duration: 1
+					stagger: 4,
+					duration: 1,
+					delay: 1
 				}
 			},
 			{
@@ -85,7 +99,8 @@
 				type: 'to',
 				vars: {
 					opacity: 0,
-					duration: 0.5
+					duration: 1,
+					delay: 2
 				}
 			},
 			{
@@ -93,36 +108,44 @@
 				vars: {
 					opacity: 0,
 					yPercent: 50,
-					duration: 1,
+					duration: 2,
 					ease: 'power4.out'
-				},
-				position: '-=0.2'
+				}
 			},
 			{
 				target: '[data-work-button]',
 				vars: {
 					opacity: 0,
 					yPercent: 50,
-					duration: 1,
+					duration: 2,
 					ease: 'power4.out'
 				},
-				position: '-=0.5'
+				position: '-=1'
+			},
+			{
+				target: '[data-work-body]',
+				vars: {
+					display: 'block',
+					duration: 5
+				}
 			}
 		]
 	}}
 >
 	<div class="content">
 		<p class="heading" data-work-heading use:split={{ type: 'char', className: 'char' }}>
-			I have worked on projects for a wide range of clients - such as <WorkItem
+			I have worked on projects for a wide range of clients - such as
+			<a class="work-item" href="/work/akademiskahus" data-work-item="0">Akademiska Hus,</a>
+			<a class="work-item" href="/work/homage" data-work-item="1">Homage</a> and
+			<a class="work-item" href="/work/envolve" data-work-item="2">Envolve. </a>
+			<!-- <WorkItem
 				title="Akademiska Hus,"
 				images={[AH]}
 				link="/work/akademiskahus"
 				index={0}
 			/>
 			<WorkItem title="Homage" images={[Homage]} link="/work/homage" index={1} /> and
-			<span>
-				<WorkItem title="Envolve." images={[Envolve]} link="/work/envolve" index={2} />
-			</span>
+			<WorkItem title="Envolve." images={[Envolve]} link="/work/envolve" index={2} /> -->
 		</p>
 
 		<p class="body p-xsmall" data-work-body>
@@ -192,6 +215,20 @@
 		z-index: 1;
 	}
 
+	.work-item {
+		font-family: var(--font-display-italic);
+		text-transform: none;
+		font-size: 1.25em;
+		letter-spacing: 0;
+		transition: color 0.2s linear;
+		line-height: 0.8;
+
+		&::after {
+			bottom: -0.125em !important;
+			height: 1px !important;
+		}
+	}
+
 	.images {
 		grid-area: heading;
 		grid-column: 1 / -1;
@@ -241,9 +278,5 @@
 	.cta {
 		grid-area: button;
 		margin-top: var(--content-margin);
-	}
-
-	span {
-		white-space: nowrap;
 	}
 </style>

@@ -106,7 +106,7 @@ a,
 	&:not(.-plain, .-simple, .button)::after {
 		content: '';
 		position: absolute;
-		height: 0.025em;
+		height: 1px;
 		width: 100%;
 		bottom: 0;
 		left: 0;
@@ -156,4 +156,8 @@ img {
 .split-word {
 	display: inline-block;
 	white-space: nowrap;
+}
+
+.no-scroll {
+	overflow: hidden;
 }

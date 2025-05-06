@@ -10,6 +10,10 @@ function splitTextNode(
     type: SplitType,
     className: string
 ): DocumentFragment {
+    if (typeof document === 'undefined') {
+        throw new Error('splitTextNode can only be used in a browser environment.');
+    }
+
     const frag = document.createDocumentFragment();
     const text = node.textContent ?? '';
     if (type === 'char') {
@@ -46,6 +50,10 @@ function processNode(
     type: SplitType,
     className: string
 ): Node | DocumentFragment {
+    if (typeof document === 'undefined') {
+        throw new Error('processNode can only be used in a browser environment.');
+    }
+
     if (node.nodeType === Node.TEXT_NODE) {
         return splitTextNode(node as Text, type, className);
     } else if (node.nodeType === Node.ELEMENT_NODE) {
@@ -70,6 +78,10 @@ export function split(
     node: HTMLElement,
     { type = 'word', className = '' }: TextSplitterParams = {}
 ) {
+    if (typeof document === 'undefined') {
+        throw new Error('split can only be used in a browser environment.');
+    }
+
     const original = node.cloneNode(true);
 
     function split() {
