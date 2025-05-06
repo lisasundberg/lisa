@@ -2,7 +2,7 @@
 	import { onMount } from 'svelte';
 	import { gsap } from 'gsap';
 
-	import { animate } from '$lib/actions/animate';
+	// import { animate } from '$lib/actions/animate';
 	// import { split } from '$lib/actions/textSplitter';
 
 	import WorkItem from '$lib/components/WorkItem.svelte';
