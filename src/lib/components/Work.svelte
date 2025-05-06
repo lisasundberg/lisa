@@ -65,8 +65,8 @@
 			start: 'top -=5%',
 			end: '+=105%',
 			pin: true,
-			scrub: 4
-			// once: true
+			scrub: 4,
+			once: true
 		},
 		animations: [
 			{
@@ -77,6 +77,12 @@
 					willChange: 'filter, opacity',
 					duration: 0.5,
 					stagger: 0.02
+				}
+			},
+			{
+				target: '[data-work-item]',
+				vars: {
+					pointerEvents: 'none'
 				}
 			},
 			{
