@@ -3,7 +3,7 @@
 	import { gsap } from 'gsap';
 
 	// import { animate } from '$lib/actions/animate';
-	// import { split } from '$lib/actions/textSplitter';
+	import { split } from '$lib/actions/textSplitter';
 
 	import WorkItem from '$lib/components/WorkItem.svelte';
 	import Button from '$lib/components/Button.svelte';
@@ -115,8 +115,7 @@
 
 <section data-work-section class="section work">
 	<div class="content">
-		<p class="heading" data-work-heading>
-			<!-- <p class="heading" data-work-heading use:split={{ type: 'char', className: 'char' }}> -->
+		<p class="heading" data-work-heading use:split={{ type: 'char', className: 'char' }}>
 			I have worked on projects for a wide range of clients - such as <WorkItem
 				title="Akademiska Hus,"
 				images={[AH]}
