@@ -1,4 +1,5 @@
 <script lang="ts">
+	// import { onMount } from 'svelte';
 	import { gsap } from 'gsap';
 
 	import { animate } from '$lib/actions/animate';
@@ -54,10 +55,11 @@
 		type: 'from',
 		scrollTrigger: {
 			trigger: '[data-work-section]',
-			start: 'top -=6%',
-			end: '+=100%',
-			scrub: 3,
+			start: 'top -=5%',
+			end: '+=105%',
+			markers: true,
 			pin: true,
+			scrub: 4,
 			once: true
 		},
 		animations: [
@@ -68,16 +70,16 @@
 					opacity: 0,
 					willChange: 'filter, opacity',
 					duration: 0.5,
-					stagger: 0.01
-				},
-				position: '-=0.5'
+					stagger: 0.02
+				}
 			},
 			{
 				target: '[data-work-image]',
 				vars: {
 					opacity: 0,
-					stagger: 1,
-					duration: 1
+					stagger: 4,
+					duration: 1,
+					delay: 1
 				}
 			},
 			{
@@ -85,7 +87,8 @@
 				type: 'to',
 				vars: {
 					opacity: 0,
-					duration: 0.5
+					duration: 1,
+					delay: 2
 				}
 			},
 			{
@@ -93,20 +96,26 @@
 				vars: {
 					opacity: 0,
 					yPercent: 50,
-					duration: 1,
+					duration: 2,
 					ease: 'power4.out'
-				},
-				position: '-=0.2'
+				}
 			},
 			{
 				target: '[data-work-button]',
 				vars: {
 					opacity: 0,
 					yPercent: 50,
-					duration: 1,
+					duration: 2,
 					ease: 'power4.out'
 				},
-				position: '-=0.5'
+				position: '-=1'
+			},
+			{
+				target: '[data-work-body]',
+				vars: {
+					display: 'block',
+					duration: 5
+				}
 			}
 		]
 	}}

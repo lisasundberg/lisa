@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	// import { afterNavigate } from '$app/navigation';
+	import { afterNavigate } from '$app/navigation';
 
 	import { gsap } from 'gsap';
 	import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -42,11 +42,11 @@
 		gsap.ticker.lagSmoothing(0);
 	});
 
-	// afterNavigate(() => {
-	// 	if (document.body.classList.contains(INVERTED_CLASSNAME)) {
-	// 		document.body.classList.remove(INVERTED_CLASSNAME);
-	// 	}
-	// });
+	afterNavigate(() => {
+		if (typeof document !== 'undefined' && document.body.classList.contains(INVERTED_CLASSNAME)) {
+			document.body.classList.remove(INVERTED_CLASSNAME);
+		}
+	});
 </script>
 
 <Body class={$currentTheme} />

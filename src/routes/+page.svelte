@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
 	import { browser } from '$app/environment';
 	import { gsap } from 'gsap';
 	import { animate } from '$lib/actions/animate';
@@ -11,7 +12,11 @@
 	// import ThemeNav from '$lib/components/ThemeNav.svelte';
 	import '$lib/styles/index.css';
 
-	const timeline = gsap.timeline();
+	let timeline: gsap.core.Timeline;
+
+	onMount(() => {
+		timeline = gsap.timeline();
+	});
 </script>
 
 <!-- <Background /> -->
@@ -22,7 +27,7 @@
 		type: 'from',
 		scrollTrigger: {
 			trigger: '[data-work-section]',
-			start: 'top -=6%',
+			start: 'top -=5%',
 			scrub: true,
 			onEnter: () => (browser ? document.body.classList.add(INVERTED_CLASSNAME) : null), // Add class when entering the trigger
 			onLeaveBack: () => (browser ? document.body.classList.remove(INVERTED_CLASSNAME) : null) // Remove class when scrolling back

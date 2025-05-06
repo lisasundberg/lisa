@@ -1,8 +1,6 @@
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-gsap.registerPlugin(ScrollTrigger);
-
 type AnimationType = 'from' | 'to' | 'fromTo';
 
 interface AnimationOptions extends GSAPTweenVars {
@@ -45,6 +43,8 @@ export function animate(
         ...vars
     }: AnimationOptions
 ): { destroy?: () => void } {
+    gsap.registerPlugin(ScrollTrigger);
+
     let tween: gsap.core.Tween | gsap.core.Timeline | null;
     let scrollTriggerInstance: ScrollTrigger | null = null;
 
