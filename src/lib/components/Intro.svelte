@@ -13,7 +13,7 @@
 		grid-column: main;
 		display: flex;
 		flex-direction: column;
-		min-height: 40dvh;
+		min-height: 30dvh;
 		gap: 1rem;
 	}
 

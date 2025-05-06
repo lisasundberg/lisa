@@ -27,7 +27,7 @@
 		type: 'from',
 		scrollTrigger: {
 			trigger: '[data-work-section]',
-			start: 'top -=6%',
+			start: 'top -=5%',
 			scrub: true,
 			onEnter: () => (browser ? document.body.classList.add(INVERTED_CLASSNAME) : null), // Add class when entering the trigger
 			onLeaveBack: () => (browser ? document.body.classList.remove(INVERTED_CLASSNAME) : null) // Remove class when scrolling back

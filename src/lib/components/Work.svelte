@@ -45,11 +45,6 @@
 	// }
 
 	const timeline = gsap.timeline();
-	// let timeline: gsap.core.Timeline;
-
-	// onMount(() => {
-	// 	timeline = gsap.timeline();
-	// });
 </script>
 
 <section
@@ -60,12 +55,12 @@
 		type: 'from',
 		scrollTrigger: {
 			trigger: '[data-work-section]',
-			start: 'top -=6%',
-			end: '+=256%',
-			scrub: 3,
+			start: 'top -=5%',
+			end: '+=105%',
+			markers: true,
 			pin: true,
-			once: true,
-			markers: true
+			scrub: 4,
+			once: true
 		},
 		animations: [
 			{
@@ -75,14 +70,14 @@
 					opacity: 0,
 					willChange: 'filter, opacity',
 					duration: 0.5,
-					stagger: 0.01
+					stagger: 0.02
 				}
 			},
 			{
 				target: '[data-work-image]',
 				vars: {
 					opacity: 0,
-					stagger: 2,
+					stagger: 4,
 					duration: 1,
 					delay: 1
 				}
@@ -101,7 +96,7 @@
 				vars: {
 					opacity: 0,
 					yPercent: 50,
-					duration: 1,
+					duration: 2,
 					ease: 'power4.out'
 				}
 			},
@@ -110,9 +105,10 @@
 				vars: {
 					opacity: 0,
 					yPercent: 50,
-					duration: 1,
+					duration: 2,
 					ease: 'power4.out'
-				}
+				},
+				position: '-=1'
 			},
 			{
 				target: '[data-work-body]',
