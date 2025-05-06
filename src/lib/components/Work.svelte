@@ -2,7 +2,7 @@
 	import { onMount } from 'svelte';
 	import { gsap } from 'gsap';
 
-	// import { animate } from '$lib/actions/animate';
+	import { animate } from '$lib/actions/animate';
 	// import { split } from '$lib/actions/textSplitter';
 
 	import WorkItem from '$lib/components/WorkItem.svelte';
@@ -54,72 +54,71 @@
 <section
 	data-work-section
 	class="section work"
-	use:animate={
-	// {
-	// 	timeline,
-	// 	type: 'from',
-	// 	scrollTrigger: {
-	// 		trigger: '[data-work-section]',
-	// 		start: 'top -=6%',
-	// 		end: '+=100%',
-	// 		scrub: 3,
-	// 		pin: true,
-	// 		once: true
-	// 	},
-	// 	animations: [
-	// 		{
-	// 			target: '[data-work-heading] .char',
-	// 			vars: {
-	// 				filter: 'blur(10px)',
-	// 				opacity: 0,
-	// 				willChange: 'filter, opacity',
-	// 				duration: 0.5,
-	// 				stagger: 0.01
-	// 			},
-	// 			position: '-=0.5'
-	// 		},
-	// 		{
-	// 			target: '[data-work-image]',
-	// 			vars: {
-	// 				opacity: 0,
-	// 				stagger: 1,
-	// 				duration: 1
-	// 			}
-	// 		},
-	// 		{
-	// 			target: '[data-work-image]',
-	// 			type: 'to',
-	// 			vars: {
-	// 				opacity: 0,
-	// 				duration: 0.5
-	// 			}
-	// 		},
-	// 		{
-	// 			target: '[data-work-body]',
-	// 			vars: {
-	// 				opacity: 0,
-	// 				yPercent: 50,
-	// 				duration: 1,
-	// 				ease: 'power4.out'
-	// 			},
-	// 			position: '-=0.2'
-	// 		},
-	// 		{
-	// 			target: '[data-work-button]',
-	// 			vars: {
-	// 				opacity: 0,
-	// 				yPercent: 50,
-	// 				duration: 1,
-	// 				ease: 'power4.out'
-	// 			},
-	// 			position: '-=0.5'
-	// 		}
-	// 	]
-	// }
-	}
+	use:animate={{
+		timeline,
+		type: 'from',
+		scrollTrigger: {
+			trigger: '[data-work-section]',
+			start: 'top -=6%',
+			end: '+=100%',
+			scrub: 3,
+			pin: true,
+			once: true
+		},
+		animations: [
+			// {
+			// 	target: '[data-work-heading] .char',
+			// 	vars: {
+			// 		filter: 'blur(10px)',
+			// 		opacity: 0,
+			// 		willChange: 'filter, opacity',
+			// 		duration: 0.5,
+			// 		stagger: 0.01
+			// 	},
+			// 	position: '-=0.5'
+			// },
+			{
+				target: '[data-work-image]',
+				vars: {
+					opacity: 0,
+					stagger: 1,
+					duration: 1
+				}
+			},
+			{
+				target: '[data-work-image]',
+				type: 'to',
+				vars: {
+					opacity: 0,
+					duration: 0.5
+				}
+			},
+			{
+				target: '[data-work-body]',
+				vars: {
+					opacity: 0,
+					yPercent: 50,
+					duration: 1,
+					ease: 'power4.out'
+				},
+				position: '-=0.2'
+			},
+			{
+				target: '[data-work-button]',
+				vars: {
+					opacity: 0,
+					yPercent: 50,
+					duration: 1,
+					ease: 'power4.out'
+				},
+				position: '-=0.5'
+			}
+		]
+	}}
 >
 	<div class="content">
-		<p class="heading" data-work-heading use:split={{ type: 'char', className: 'char' }}>
+		<p class="heading" data-work-heading>
+			<!-- <p class="heading" data-work-heading use:split={{ type: 'char', className: 'char' }}> -->
 			I have worked on projects for a wide range of clients - such as <WorkItem
 				title="Akademiska Hus,"
 				images={[AH]}
