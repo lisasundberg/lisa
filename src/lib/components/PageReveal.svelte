@@ -35,7 +35,7 @@
 		const charTween = gsap.fromTo(
 			chars,
 			{
-				'will-change': 'opacity, transform',
+				willChange: 'opacity, transform',
 				opacity: 0,
 				rotationX: -90,
 				yPercent: 50
@@ -45,7 +45,7 @@
 				opacity: 1,
 				rotationX: 0,
 				yPercent: 0,
-				duration: 1,
+				duration: 0.8,
 				stagger: {
 					each: 0.03,
 					from: 0
