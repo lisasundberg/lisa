@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	// import { browser } from '$app/environment';
-	// import { gsap } from 'gsap';
-	// import { animate } from '$lib/actions/animate';
+	import { browser } from '$app/environment';
+	import { gsap } from 'gsap';
+	import { animate } from '$lib/actions/animate';
 	import { INVERTED_CLASSNAME } from '$lib/stores/theme';
 
 	import Intro from '$lib/components/Intro.svelte';
@@ -21,7 +21,7 @@
 
 <!-- <Background /> -->
 <!-- <ThemeNav /> -->
-<!-- <div
+<div
 	use:animate={{
 		timeline,
 		type: 'from',
@@ -43,7 +43,7 @@
 			}
 		]
 	}}
-></div> -->
+></div>
 <HeroHeading />
 <Intro />
 <Work />
