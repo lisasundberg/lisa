@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
 	import { browser } from '$app/environment';
 	import { gsap } from 'gsap';
 	import { animate } from '$lib/actions/animate';
@@ -11,7 +12,11 @@
 	// import ThemeNav from '$lib/components/ThemeNav.svelte';
 	import '$lib/styles/index.css';
 
-	const timeline = gsap.timeline();
+	let timeline: gsap.core.Timeline;
+
+	onMount(() => {
+		timeline = gsap.timeline();
+	});
 </script>
 
 <!-- <Background /> -->

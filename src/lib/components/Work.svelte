@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
 	import { gsap } from 'gsap';
 
 	import { animate } from '$lib/actions/animate';
@@ -43,7 +44,11 @@
 	// 	console.log('mouse out', index);
 	// }
 
-	const timeline = gsap.timeline();
+	let timeline: gsap.core.Timeline;
+
+	onMount(() => {
+		timeline = gsap.timeline();
+	});
 </script>
 
 <section
