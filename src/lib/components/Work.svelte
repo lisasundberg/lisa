@@ -61,10 +61,11 @@
 		scrollTrigger: {
 			trigger: '[data-work-section]',
 			start: 'top -=6%',
-			end: '+=100%',
+			end: '+=256%',
 			scrub: 3,
 			pin: true,
-			once: true
+			once: true,
+			markers: true
 		},
 		animations: [
 			{
@@ -75,15 +76,15 @@
 					willChange: 'filter, opacity',
 					duration: 0.5,
 					stagger: 0.01
-				},
-				position: '-=0.5'
+				}
 			},
 			{
 				target: '[data-work-image]',
 				vars: {
 					opacity: 0,
-					stagger: 1,
-					duration: 1
+					stagger: 2,
+					duration: 1,
+					delay: 1
 				}
 			},
 			{
@@ -91,7 +92,8 @@
 				type: 'to',
 				vars: {
 					opacity: 0,
-					duration: 0.5
+					duration: 1,
+					delay: 2
 				}
 			},
 			{
@@ -101,8 +103,7 @@
 					yPercent: 50,
 					duration: 1,
 					ease: 'power4.out'
-				},
-				position: '-=0.2'
+				}
 			},
 			{
 				target: '[data-work-button]',
@@ -111,8 +112,14 @@
 					yPercent: 50,
 					duration: 1,
 					ease: 'power4.out'
-				},
-				position: '-=0.5'
+				}
+			},
+			{
+				target: '[data-work-body]',
+				vars: {
+					display: 'block',
+					duration: 5
+				}
 			}
 		]
 	}}
