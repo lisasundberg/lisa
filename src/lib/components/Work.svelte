@@ -218,8 +218,8 @@
 		line-height: 0.8;
 
 		&::after {
-			bottom: -0.125em;
-			height: 1px;
+			bottom: -0.125em !important;
+			height: 1px !important;
 		}
 	}
 
