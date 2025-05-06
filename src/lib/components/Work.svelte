@@ -1,5 +1,4 @@
 <script lang="ts">
-	// import { onMount } from 'svelte';
 	import { gsap } from 'gsap';
 
 	import { animate } from '$lib/actions/animate';
@@ -10,7 +9,7 @@
 
 	import Homage from '$lib/assets/homage/homage-mockup-1.jpg?enhanced';
 	import AH from '$lib/assets/akademiskahus/ah-mockup-1.jpg?enhanced';
-	import Envolve from '$lib/assets/envolve/envolve.png?enhanced';
+	import Envolve from '$lib/assets/envolve/envolve-cover.jpg?enhanced';
 
 	const images = [
 		{
@@ -57,7 +56,6 @@
 			trigger: '[data-work-section]',
 			start: 'top -=5%',
 			end: '+=105%',
-			markers: true,
 			pin: true,
 			scrub: 4,
 			once: true
