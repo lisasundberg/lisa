@@ -4,13 +4,13 @@ Trying to collect all work I've done while doing some fun coding and learning so
 Built with SvelteKit (Svelte 5) and GSAP.
 
 ## To do-list
-- [] Mobile adjustments in work section
-- [] Mobile menu
-- [] Text reveals
-- [] Fix page reveal issue with scrolltrigger
-- [] More fun contact page
-- [] Finish theme selector
-- [] Play page?
+* [ ] Mobile adjustments in work section
+* [ ] Mobile menu
+* [ ] Text reveals
+* [ ] Fix page reveal issue with scrolltrigger
+* [ ] More fun contact page
+* [ ] Finish theme selector
+* [ ] Play page?
 
 ---
 
