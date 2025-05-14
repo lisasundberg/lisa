@@ -1,14 +1,14 @@
 <script lang="ts">
 	import { gsap } from 'gsap';
-
-	import { animate } from '$lib/actions/animate';
-	import { split } from '$lib/actions/textSplitter';
+	import { SplitText } from 'gsap/SplitText';
+	import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 	import Button from '$lib/components/Button.svelte';
 
 	import Homage from '$lib/assets/homage/homage-mockup-1.jpg?enhanced';
 	import AH from '$lib/assets/akademiskahus/ah-mockup-1.jpg?enhanced';
 	import Envolve from '$lib/assets/envolve/envolve-cover.jpg?enhanced';
+	import { onMount } from 'svelte';
 	// import { onMount } from 'svelte';
 
 	const images = [
@@ -51,89 +51,89 @@
 	// 	});
 	// });
 
-	const timeline = gsap.timeline();
-</script>
+	let workSection: HTMLElement;
+	let heading: HTMLElement;
+	let splitHeading: SplitText;
+	let timeline: gsap.core.Timeline;
 
-<section
-	data-work-section
-	class="section work"
-	use:animate={{
-		timeline,
-		type: 'from',
-		scrollTrigger: {
-			trigger: '[data-work-section]',
-			start: 'top -=5%',
-			end: '+=105%',
-			pin: true,
-			scrub: 4,
-			once: true
-		},
-		animations: [
-			{
-				target: '[data-work-heading] .char',
-				vars: {
+	onMount(() => {
+		gsap.registerPlugin(SplitText);
+		gsap.registerPlugin(ScrollTrigger);
+
+		const splitParams = {
+			type: 'chars',
+			charsClass: 'work-char',
+			smartWrap: true
+		};
+
+		timeline = gsap.timeline({
+			scrollTrigger: {
+				trigger: workSection,
+				start: 'top -=5%',
+				end: '+=105%',
+				pin: true,
+				scrub: 4,
+				once: true,
+				markers: true
+			},
+			onComplete: () => {
+				splitHeading.revert();
+			}
+		});
+
+		document.fonts.ready.then(() => {
+			splitHeading = SplitText.create(heading, splitParams);
+
+			gsap.set('[data-work-item]', {
+				pointerEvents: 'none'
+			});
+
+			timeline
+				.from(splitHeading.chars, {
 					filter: 'blur(10px)',
 					opacity: 0,
 					willChange: 'filter, opacity',
 					duration: 0.5,
 					stagger: 0.02
-				}
-			},
-			{
-				target: '[data-work-item]',
-				vars: {
-					pointerEvents: 'none'
-				}
-			},
-			{
-				target: '[data-work-image]',
-				vars: {
+				})
+				.from('[data-work-image]', {
 					opacity: 0,
 					stagger: 4,
 					duration: 1,
 					delay: 1
-				}
-			},
-			{
-				target: '[data-work-image]',
-				type: 'to',
-				vars: {
+				})
+				.to('[data-work-image]', {
 					opacity: 0,
 					duration: 1,
 					delay: 2
-				}
-			},
-			{
-				target: '[data-work-body]',
-				vars: {
+				})
+				.from('[data-work-body]', {
 					opacity: 0,
 					yPercent: 50,
 					duration: 2,
 					ease: 'power4.out'
-				}
-			},
-			{
-				target: '[data-work-button]',
-				vars: {
-					opacity: 0,
-					yPercent: 50,
-					duration: 2,
-					ease: 'power4.out'
-				},
-				position: '-=1'
-			},
-			{
-				target: '[data-work-body]',
-				vars: {
+				})
+				.from(
+					'[data-work-button]',
+					{
+						opacity: 0,
+						yPercent: 50,
+						duration: 2,
+						ease: 'power4.out'
+					},
+					'-=1'
+				)
+				.from('[data-work-body]', {
 					display: 'block',
 					duration: 5
-				}
-			}
-		]
-	}}
->
+				});
+		});
+	});
+</script>
+
+<section class="section work" bind:this={workSection}>
 	<div class="content">
-		<p class="heading" data-work-heading use:split={{ type: 'char', className: 'char' }}>
+		<p class="heading" bind:this={heading}>
 			I have worked on projects for a wide range of clients - such as
 			<a class="work-item" href="/work/akademiskahus" data-work-item="0">Akademiska Hus,</a>
 			<a class="work-item" href="/work/homage" data-work-item="1">Homage</a> and
