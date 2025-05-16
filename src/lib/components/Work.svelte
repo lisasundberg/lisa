@@ -34,139 +34,124 @@
 	let splitHeading: SplitText;
 	let textTimeline: gsap.core.Timeline;
 	let bgTimeline: gsap.core.Timeline;
-	let mm: gsap.MatchMedia;
+	// let mm: gsap.MatchMedia;
 
 	function text() {
-		mm = gsap.matchMedia();
-		mm.add(
-			{
-				isMobile: '(max-width: 767px)',
-				reduceMotion: '(prefers-reduced-motion)'
+		// mm = gsap.matchMedia();
+		// mm.add(
+		// 	{
+		// 		isMobile: '(max-width: 767px)',
+		// 		isDesktop: '(min-width: 767px)'
+		// 	},
+		// 	(context) => {}
+		// );
+
+		textTimeline = gsap.timeline({
+			scrollTrigger: {
+				trigger: workSection,
+				start: 'top -=5%',
+				end: '+=105%',
+				pin: true,
+				scrub: 4,
+				once: true,
+				markers: true
 			},
-			(context) => {
-				const { isMobile, isDesktop, reduceMotion } = context;
-				console.log(isMobile, isDesktop, reduceMotion);
+			onComplete: () => {
+				// splitHeading.revert(); // Causes jump
 
-				textTimeline = gsap.timeline({
-					scrollTrigger: {
-						trigger: workSection,
-						start: isMobile ? 'top +=5%' : 'top -=5%',
-						end: isMobile ? '+95%' : '+=105%',
-						pin: true,
-						scrub: 4,
-						once: true,
-						markers: true
-					},
-					onComplete: () => {
-						// splitHeading.revert(); // Causes jump
-
-						if (textTimeline.scrollTrigger) {
-							textTimeline.scrollTrigger.kill();
-							textTimeline.kill();
-						}
-					}
-				});
-
-				const splitParams = {
-					type: 'chars, lines',
-					smartWrap: true,
-					mask: 'lines' as 'lines'
-				};
-				splitHeading = SplitText.create(heading, splitParams);
-
-				gsap.set('[data-work-item]', {
-					pointerEvents: 'none'
-				});
-
-				textTimeline
-					// .from(splitHeading.chars, {
-					// 	filter: 'blur(10px)',
-					// 	opacity: 0,
-					// 	willChange: 'filter, opacity',
-					// 	stagger: {
-					// 		amount: 2
-					// 	}
-					// })
-					.from(splitHeading.chars, {
-						yPercent: reduceMotion ? 0 : 100,
-						autoAlpha: 0,
-						stagger: reduceMotion ? 0 : 0.02,
-						duration: 0.5
-					})
-					.from('[data-work-image]', {
-						opacity: 0,
-						stagger: 4,
-						duration: 1,
-						delay: 1
-					})
-					.to('[data-work-images]', {
-						opacity: 0,
-						duration: 1,
-						delay: 2
-					})
-					.from('[data-work-body]', {
-						opacity: 0,
-						yPercent: 50,
-						duration: 2,
-						ease: 'power4.out'
-					})
-					.set('[data-work-item', {
-						pointerEvents: 'auto'
-					})
-					.from(
-						'[data-work-button]',
-						{
-							opacity: 0,
-							yPercent: 50,
-							duration: 2,
-							ease: 'power4.out'
-						},
-						'-=1'
-					)
-					.from('[data-work-body]', {
-						display: 'block',
-						duration: 5
-					});
+				if (textTimeline.scrollTrigger) {
+					textTimeline.scrollTrigger.kill();
+					textTimeline.kill();
+				}
 			}
-		);
+		});
+
+		const splitParams = {
+			type: 'chars, lines',
+			smartWrap: true,
+			mask: 'lines' as 'lines'
+		};
+		splitHeading = SplitText.create(heading, splitParams);
+
+		gsap.set('[data-work-item]', {
+			pointerEvents: 'none'
+		});
+
+		textTimeline
+			// .from(splitHeading.chars, {
+			// 	filter: 'blur(10px)',
+			// 	opacity: 0,
+			// 	willChange: 'filter, opacity',
+			// 	stagger: {
+			// 		amount: 2
+			// 	}
+			// })
+			.from(splitHeading.chars, {
+				yPercent: 100,
+				autoAlpha: 0,
+				stagger: 0.02,
+				duration: 0.5
+			})
+			.from('[data-work-image]', {
+				opacity: 0,
+				stagger: 4,
+				duration: 1,
+				delay: 1
+			})
+			.to('[data-work-images]', {
+				opacity: 0,
+				duration: 1,
+				delay: 2
+			})
+			.from('[data-work-body]', {
+				opacity: 0,
+				yPercent: 50,
+				duration: 2,
+				ease: 'power4.out'
+			})
+			.set('[data-work-item', {
+				pointerEvents: 'auto'
+			})
+			.from(
+				'[data-work-button]',
+				{
+					opacity: 0,
+					yPercent: 50,
+					duration: 2,
+					ease: 'power4.out'
+				},
+				'-=1'
+			)
+			.from('[data-work-body]', {
+				display: 'block',
+				duration: 5
+			});
+
 		return textTimeline;
 	}
 
 	function bg() {
-		mm = gsap.matchMedia();
-		mm.add(
-			{
-				isMobile: '(max-width: 767px)',
-				reduceMotion: '(prefers-reduced-motion)'
+		bgTimeline = gsap.timeline({
+			scrollTrigger: {
+				trigger: workSection,
+				start: 'top -=5%',
+				end: '+=105%',
+				scrub: 4,
+				onEnter: () => (browser ? document.body.classList.add(INVERTED_CLASSNAME) : null), // Add class when entering the trigger
+				onLeaveBack: () => (browser ? document.body.classList.remove(INVERTED_CLASSNAME) : null) // Remove class when scrolling back
 			},
-			(context) => {
-				const { isMobile, isDesktop, reduceMotion } = context;
-
-				console.log(context.isMobile);
-				bgTimeline = gsap.timeline({
-					scrollTrigger: {
-						trigger: workSection,
-						start: isMobile ? 'top +=5%' : 'top -=5%',
-						end: isMobile ? '+95%' : '+=105%',
-						scrub: 4,
-						onEnter: () => (browser ? document.body.classList.add(INVERTED_CLASSNAME) : null), // Add class when entering the trigger
-						onLeaveBack: () => (browser ? document.body.classList.remove(INVERTED_CLASSNAME) : null) // Remove class when scrolling back
-					},
-					onComplete: () => {
-						if (bgTimeline.scrollTrigger) {
-							bgTimeline.scrollTrigger.kill();
-							bgTimeline.kill();
-						}
-					}
-				});
-
-				bgTimeline.from('body', {
-					onStart: () => (browser ? document.body.classList.add(INVERTED_CLASSNAME) : null),
-					onReverseComplete: () =>
-						browser ? document.body.classList.remove(INVERTED_CLASSNAME) : null
-				});
+			onComplete: () => {
+				if (bgTimeline.scrollTrigger) {
+					bgTimeline.scrollTrigger.kill();
+					bgTimeline.kill();
+				}
 			}
-		);
+		});
+		bgTimeline.from('body', {
+			onStart: () => (browser ? document.body.classList.add(INVERTED_CLASSNAME) : null),
+			onReverseComplete: () => (browser ? document.body.classList.remove(INVERTED_CLASSNAME) : null)
+		});
+
 		return bgTimeline;
 	}
 
