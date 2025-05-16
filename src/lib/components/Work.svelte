@@ -16,12 +16,12 @@
 
 	const images = [
 		{
-			src: Homage,
-			alt: 'Homage'
-		},
-		{
 			src: AH,
 			alt: 'Akademiska Hus'
+		},
+		{
+			src: Homage,
+			alt: 'Homage'
 		},
 		{
 			src: Envolve,
@@ -260,17 +260,20 @@
 	}
 
 	.images {
+		z-index: 0;
+
 		grid-area: heading;
 		grid-column: 1 / -1;
 		display: grid;
 		grid-template-areas: 'image';
 		place-items: center;
 		justify-self: center;
-		width: min(50%, 32rem);
-		z-index: 0;
 
 		:global(picture) {
 			grid-area: image;
+		}
+		@media (width > 768px) {
+			width: min(50%, 32rem);
 		}
 	}
 
@@ -279,6 +282,22 @@
 		object-fit: cover;
 		object-position: center;
 		filter: brightness(0.75);
+
+		@media (width < 768px) {
+			position: fixed;
+
+			&.image-0 {
+				top: 5%;
+				left: calc(var(--content-margin) * -1);
+			}
+			&.image-1 {
+				right: calc(var(--content-margin) * -1);
+			}
+			&.image-2 {
+				bottom: -5%;
+				left: calc(var(--content-margin) * -1);
+			}
+		}
 	}
 
 	.heading {
