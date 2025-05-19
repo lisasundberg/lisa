@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { gsap } from 'gsap';
-	import { SplitText } from 'gsap/SplitText';
+	// import { SplitText } from 'gsap/SplitText';
 	import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-	import { INVERTED_CLASSNAME } from '$lib/stores/theme';
+	// import { INVERTED_CLASSNAME } from '$lib/stores/theme';
 
 	import Button from '$lib/components/Button.svelte';
 
@@ -29,7 +29,7 @@
 
 	let workSection: HTMLElement;
 	let heading: HTMLElement;
-	let splitHeading: SplitText;
+	// let splitHeading: SplitText;
 	let textTimeline: gsap.core.Timeline;
 	let bgTimeline: gsap.core.Timeline;
 	// let mm: gsap.MatchMedia;
@@ -65,12 +65,12 @@
 			}
 		});
 
-		const splitParams = {
-			type: 'chars, lines',
-			smartWrap: true,
-			mask: 'lines' as 'lines'
-		};
-		splitHeading = SplitText.create(heading, splitParams);
+		// const splitParams = {
+		// 	type: 'chars, lines',
+		// 	smartWrap: true,
+		// 	mask: 'lines' as 'lines'
+		// };
+		// splitHeading = SplitText.create(heading, splitParams);
 
 		gsap.set('[data-work-item]', {
 			pointerEvents: 'none'
@@ -85,12 +85,12 @@
 			// 		amount: 2
 			// 	}
 			// })
-			.from(splitHeading.chars, {
-				yPercent: 100,
-				autoAlpha: 0,
-				stagger: 0.02,
-				duration: 0.5
-			})
+			// .from(splitHeading.chars, {
+			// 	yPercent: 100,
+			// 	autoAlpha: 0,
+			// 	stagger: 0.02,
+			// 	duration: 0.5
+			// })
 			.from('[data-work-image]', {
 				opacity: 0,
 				stagger: 4,
@@ -157,14 +157,13 @@
 	}
 
 	onMount(() => {
-		if (typeof window === 'undefined') return;
-		gsap.registerPlugin(SplitText);
+		// gsap.registerPlugin(SplitText);
 		gsap.registerPlugin(ScrollTrigger);
 
-		document.fonts.ready.then(() => {
-			text();
-			bg();
-		});
+		// document.fonts.ready.then(() => {
+		text();
+		bg();
+		// });
 	});
 
 	onDestroy(() => {
