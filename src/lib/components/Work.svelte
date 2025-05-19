@@ -5,7 +5,6 @@
 
 	import { browser } from '$app/environment';
 	import { INVERTED_CLASSNAME } from '$lib/stores/theme';
-	// import { INVERTED_CLASSNAME } from '$lib/stores/theme';
 
 	import Button from '$lib/components/Button.svelte';
 
@@ -156,6 +155,7 @@
 	}
 
 	onMount(() => {
+		if (!browser) return;
 		gsap.registerPlugin(SplitText);
 		gsap.registerPlugin(ScrollTrigger);
 

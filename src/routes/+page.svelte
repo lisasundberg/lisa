@@ -11,4 +11,4 @@
 <!-- <ThemeNav /> -->
 <HeroHeading />
 <Intro />
-<!-- <Work /> -->
+<Work />
