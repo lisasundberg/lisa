@@ -156,15 +156,15 @@
 	// 	return bgTimeline;
 	// }
 
-	// onMount(() => {
-	// 	gsap.registerPlugin(SplitText);
-	// 	gsap.registerPlugin(ScrollTrigger);
+	onMount(() => {
+		gsap.registerPlugin(SplitText);
+		gsap.registerPlugin(ScrollTrigger);
 
-	// 	document.fonts.ready.then(() => {
-	// 		text();
-	// 		bg();
-	// 	});
-	// });
+		// 	document.fonts.ready.then(() => {
+		// 		text();
+		// 		bg();
+		// 	});
+	});
 
 	// onDestroy(() => {
 	// 	ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
