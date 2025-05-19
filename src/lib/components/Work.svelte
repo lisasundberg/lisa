@@ -31,7 +31,7 @@
 	let heading: HTMLElement;
 	// let splitHeading: SplitText;
 	// let textTimeline: gsap.core.Timeline;
-	// let bgTimeline: gsap.core.Timeline;
+	let bgTimeline: gsap.core.Timeline;
 	// // let mm: gsap.MatchMedia;
 
 	// function text() {
@@ -129,37 +129,38 @@
 	// 	return textTimeline;
 	// }
 
-	// function bg() {
-	// 	if (typeof window === 'undefined') return;
+	function bg() {
+		if (typeof window === 'undefined') return;
 
-	// 	bgTimeline = gsap.timeline({
-	// 		scrollTrigger: {
-	// 			trigger: workSection,
-	// 			start: 'top -=5%',
-	// 			end: '+=105%',
-	// 			scrub: 4
-	// 			// onEnter: () => document.body.classList.add(INVERTED_CLASSNAME), // Add class when entering the trigger
-	// 			// onLeaveBack: () => document.body.classList.remove(INVERTED_CLASSNAME) // Remove class when scrolling back
-	// 		},
-	// 		onComplete: () => {
-	// 			if (bgTimeline.scrollTrigger) {
-	// 				bgTimeline.scrollTrigger.kill();
-	// 				bgTimeline.kill();
-	// 			}
-	// 		}
-	// 	});
-	// 	// bgTimeline.from('body', {
-	// 	// 	onStart: () => document.body.classList.add(INVERTED_CLASSNAME),
-	// 	// 	onReverseComplete: () => document.body.classList.remove(INVERTED_CLASSNAME)
-	// 	// });
+		bgTimeline = gsap.timeline({
+			scrollTrigger: {
+				trigger: workSection,
+				start: 'top -=5%',
+				end: '+=105%',
+				scrub: 4,
+				onEnter: () => document.body.classList.add(INVERTED_CLASSNAME), // Add class when entering the trigger
+				onLeaveBack: () => document.body.classList.remove(INVERTED_CLASSNAME) // Remove class when scrolling back
+			},
+			onComplete: () => {
+				if (bgTimeline.scrollTrigger) {
+					bgTimeline.scrollTrigger.kill();
+					bgTimeline.kill();
+				}
+			}
+		});
+		bgTimeline.from('body', {
+			onStart: () => document.body.classList.add(INVERTED_CLASSNAME),
+			onReverseComplete: () => document.body.classList.remove(INVERTED_CLASSNAME)
+		});
 
-	// 	return bgTimeline;
-	// }
+		return bgTimeline;
+	}
 
 	onMount(() => {
 		gsap.registerPlugin(SplitText);
 		gsap.registerPlugin(ScrollTrigger);
 
+		bg();
 		// 	document.fonts.ready.then(() => {
 		// 		text();
 		// 		bg();
