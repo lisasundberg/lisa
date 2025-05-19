@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
 	import { gsap } from 'gsap';
 	import { pageRevealFinished } from '$lib/stores/app';
 
@@ -7,6 +8,11 @@
 	let dot: Element | null;
 	let tl: gsap.core.Timeline;
 	let themeColor: string;
+
+	//  TO DO: blink while fonts load
+	// document.fonts.ready.then(() => {
+	// 	//  then run rest of reveal
+	// });
 
 	function homeReveal(heading: HTMLDivElement) {
 		chars = [...heading.querySelectorAll('.char')];
@@ -35,7 +41,7 @@
 		const charTween = gsap.fromTo(
 			chars,
 			{
-				'will-change': 'opacity, transform',
+				willChange: 'opacity, transform',
 				opacity: 0,
 				rotationX: -90,
 				yPercent: 50
@@ -45,7 +51,7 @@
 				opacity: 1,
 				rotationX: 0,
 				yPercent: 0,
-				duration: 1,
+				duration: 0.8,
 				stagger: {
 					each: 0.03,
 					from: 0
@@ -90,7 +96,7 @@
 		});
 	}
 
-	$effect(() => {
+	onMount(() => {
 		heading = document.querySelector('.hero-heading');
 		tl = gsap.timeline({
 			onComplete: () => {
@@ -111,7 +117,7 @@
 		left: 0;
 		width: 100vw;
 		height: 100vh;
-		background-color: var(--_theme-color-primary);
+		background-color: var(--color-hyperlink-blue);
 		z-index: 9;
 	}
 </style>
