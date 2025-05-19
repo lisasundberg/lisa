@@ -139,8 +139,8 @@
 				start: 'top -=5%',
 				end: '+=105%',
 				scrub: 4,
-				onEnter: () => (browser ? document.body.classList.add(INVERTED_CLASSNAME) : null), // Add class when entering the trigger
-				onLeaveBack: () => (browser ? document.body.classList.remove(INVERTED_CLASSNAME) : null) // Remove class when scrolling back
+				onEnter: () => document.body.classList.add(INVERTED_CLASSNAME), // Add class when entering the trigger
+				onLeaveBack: () => document.body.classList.remove(INVERTED_CLASSNAME) // Remove class when scrolling back
 			},
 			onComplete: () => {
 				if (bgTimeline.scrollTrigger) {
@@ -150,8 +150,8 @@
 			}
 		});
 		bgTimeline.from('body', {
-			onStart: () => (browser ? document.body.classList.add(INVERTED_CLASSNAME) : null),
-			onReverseComplete: () => (browser ? document.body.classList.remove(INVERTED_CLASSNAME) : null)
+			onStart: () => document.body.classList.add(INVERTED_CLASSNAME),
+			onReverseComplete: () => document.body.classList.remove(INVERTED_CLASSNAME)
 		});
 
 		return bgTimeline;
