@@ -3,9 +3,7 @@
 	import { SplitText } from 'gsap/SplitText';
 	import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-	import { browser } from '$app/environment';
 	import { INVERTED_CLASSNAME } from '$lib/stores/theme';
-	// import { INVERTED_CLASSNAME } from '$lib/stores/theme';
 
 	import Button from '$lib/components/Button.svelte';
 
@@ -34,9 +32,11 @@
 	let splitHeading: SplitText;
 	let textTimeline: gsap.core.Timeline;
 	let bgTimeline: gsap.core.Timeline;
-	// let mm: gsap.MatchMedia;
+	let context: gsap.Context;
+	// // let mm: gsap.MatchMedia;
 
 	function text() {
+		if (typeof window === 'undefined') return;
 		// mm = gsap.matchMedia();
 		// mm.add(
 		// 	{
@@ -53,8 +53,7 @@
 				end: '+=105%',
 				pin: true,
 				scrub: 4,
-				once: true,
-				markers: true
+				once: true
 			},
 			onComplete: () => {
 				// splitHeading.revert(); // Causes jump
@@ -109,7 +108,7 @@
 				duration: 2,
 				ease: 'power4.out'
 			})
-			.set('[data-work-item', {
+			.set('[data-work-item]', {
 				pointerEvents: 'auto'
 			})
 			.from(
@@ -131,14 +130,16 @@
 	}
 
 	function bg() {
+		if (typeof window === 'undefined') return;
+
 		bgTimeline = gsap.timeline({
 			scrollTrigger: {
 				trigger: workSection,
 				start: 'top -=5%',
 				end: '+=105%',
 				scrub: 4,
-				onEnter: () => (browser ? document.body.classList.add(INVERTED_CLASSNAME) : null), // Add class when entering the trigger
-				onLeaveBack: () => (browser ? document.body.classList.remove(INVERTED_CLASSNAME) : null) // Remove class when scrolling back
+				onEnter: () => document.body.classList.add(INVERTED_CLASSNAME), // Add class when entering the trigger
+				onLeaveBack: () => document.body.classList.remove(INVERTED_CLASSNAME) // Remove class when scrolling back
 			},
 			onComplete: () => {
 				if (bgTimeline.scrollTrigger) {
@@ -148,25 +149,30 @@
 			}
 		});
 		bgTimeline.from('body', {
-			onStart: () => (browser ? document.body.classList.add(INVERTED_CLASSNAME) : null),
-			onReverseComplete: () => (browser ? document.body.classList.remove(INVERTED_CLASSNAME) : null)
+			onStart: () => document.body.classList.add(INVERTED_CLASSNAME),
+			onReverseComplete: () => document.body.classList.remove(INVERTED_CLASSNAME)
 		});
 
 		return bgTimeline;
 	}
 
 	onMount(() => {
+		if (typeof window === 'undefined') return;
 		gsap.registerPlugin(SplitText);
 		gsap.registerPlugin(ScrollTrigger);
 
 		document.fonts.ready.then(() => {
-			text();
-			bg();
+			context = gsap.context(() => {
+				text();
+				bg();
+			});
 		});
 	});
 
 	onDestroy(() => {
-		ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+		if (typeof window === 'undefined') return;
+
+		if (context) context.revert();
 	});
 </script>
 
