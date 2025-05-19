@@ -137,9 +137,9 @@
 				trigger: workSection,
 				start: 'top -=5%',
 				end: '+=105%',
-				scrub: 4,
-				onEnter: () => document.body.classList.add(INVERTED_CLASSNAME), // Add class when entering the trigger
-				onLeaveBack: () => document.body.classList.remove(INVERTED_CLASSNAME) // Remove class when scrolling back
+				scrub: 4
+				// onEnter: () => document.body.classList.add(INVERTED_CLASSNAME), // Add class when entering the trigger
+				// onLeaveBack: () => document.body.classList.remove(INVERTED_CLASSNAME) // Remove class when scrolling back
 			},
 			onComplete: () => {
 				if (bgTimeline.scrollTrigger) {
@@ -148,10 +148,10 @@
 				}
 			}
 		});
-		bgTimeline.from('body', {
-			onStart: () => document.body.classList.add(INVERTED_CLASSNAME),
-			onReverseComplete: () => document.body.classList.remove(INVERTED_CLASSNAME)
-		});
+		// bgTimeline.from('body', {
+		// 	onStart: () => document.body.classList.add(INVERTED_CLASSNAME),
+		// 	onReverseComplete: () => document.body.classList.remove(INVERTED_CLASSNAME)
+		// });
 
 		return bgTimeline;
 	}
