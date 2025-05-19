@@ -167,9 +167,9 @@
 		// 	});
 	});
 
-	// onDestroy(() => {
-	// 	ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-	// });
+	onDestroy(() => {
+		ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+	});
 </script>
 
 <section class="section work" bind:this={workSection}>
