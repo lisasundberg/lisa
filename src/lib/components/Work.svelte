@@ -159,8 +159,7 @@
 
 	onMount(() => {
 		if (browser) {
-			gsap.registerPlugin(SplitText);
-			gsap.registerPlugin(ScrollTrigger);
+			gsap.registerPlugin(ScrollTrigger, SplitText);
 
 			document.fonts.ready.then(() => {
 				text();
