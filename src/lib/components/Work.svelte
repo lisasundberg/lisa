@@ -160,10 +160,10 @@
 		gsap.registerPlugin(SplitText);
 		gsap.registerPlugin(ScrollTrigger);
 
-		// document.fonts.ready.then(() => {
-		text();
-		bg();
-		// });
+		document.fonts.ready.then(() => {
+			text();
+			bg();
+		});
 	});
 
 	// onDestroy(() => {
