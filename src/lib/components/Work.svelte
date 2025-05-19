@@ -1,24 +1,25 @@
 <script lang="ts">
 	import { gsap } from 'gsap';
+	import { SplitText } from 'gsap/SplitText';
+	import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-	import { animate } from '$lib/actions/animate';
-	import { split } from '$lib/actions/textSplitter';
+	import { INVERTED_CLASSNAME } from '$lib/stores/theme';
 
 	import Button from '$lib/components/Button.svelte';
 
 	import Homage from '$lib/assets/homage/homage-mockup-1.jpg?enhanced';
 	import AH from '$lib/assets/akademiskahus/ah-mockup-1.jpg?enhanced';
 	import Envolve from '$lib/assets/envolve/envolve-cover.jpg?enhanced';
-	// import { onMount } from 'svelte';
+	import { onMount, onDestroy } from 'svelte';
 
 	const images = [
 		{
-			src: Homage,
-			alt: 'Homage'
-		},
-		{
 			src: AH,
 			alt: 'Akademiska Hus'
+		},
+		{
+			src: Homage,
+			alt: 'Homage'
 		},
 		{
 			src: Envolve,
@@ -26,126 +27,162 @@
 		}
 	];
 
-	// let currentImageIndex: number | null = $state(null);
-	// function handleMouseEnter(i: number) {
-	// 	currentImageIndex = i;
+	let workSection: HTMLElement;
+	let heading: HTMLElement;
+	let splitHeading: SplitText;
+	let textTimeline: gsap.core.Timeline;
+	let bgTimeline: gsap.core.Timeline;
+	let context: gsap.Context;
+	// // let mm: gsap.MatchMedia;
 
-	// 	gsap.to(`[data-work-image="${i}]"`, { opacity: 1 });
+	function text() {
+		if (typeof window === 'undefined') return;
+		// mm = gsap.matchMedia();
+		// mm.add(
+		// 	{
+		// 		isMobile: '(max-width: 767px)',
+		// 		isDesktop: '(min-width: 767px)'
+		// 	},
+		// 	(context) => {}
+		// );
 
-	// 	console.log('in', currentImageIndex);
-	// }
-
-	// function handleMouseLeave(i: number) {
-	// 	currentImageIndex = null;
-
-	// 	gsap.to(`[data-work-image="${i}"]`, { opacity: 0 });
-	// 	console.log('out');
-	// }
-
-	// onMount(() => {
-	// 	const links = document.querySelectorAll('[data-work-item]');
-
-	// 	links.forEach((link, i) => {
-	// 		link.addEventListener('mouseenter', () => handleMouseEnter(i));
-	// 		link.addEventListener('mouseleave', () => handleMouseLeave(i));
-	// 	});
-	// });
-
-	const timeline = gsap.timeline();
-</script>
-
-<section
-	data-work-section
-	class="section work"
-	use:animate={{
-		timeline,
-		type: 'from',
-		scrollTrigger: {
-			trigger: '[data-work-section]',
-			start: 'top -=5%',
-			end: '+=105%',
-			pin: true,
-			scrub: 4,
-			once: true
-		},
-		animations: [
-			{
-				target: '[data-work-heading] .char',
-				vars: {
-					filter: 'blur(10px)',
-					opacity: 0,
-					willChange: 'filter, opacity',
-					duration: 0.5,
-					stagger: 0.02
-				}
+		textTimeline = gsap.timeline({
+			scrollTrigger: {
+				trigger: workSection,
+				start: 'top -=5%',
+				end: '+=105%',
+				pin: true,
+				scrub: 4,
+				once: true
 			},
-			{
-				target: '[data-work-item]',
-				vars: {
-					pointerEvents: 'none'
+			onComplete: () => {
+				// splitHeading.revert(); // Causes jump
+
+				if (textTimeline.scrollTrigger) {
+					textTimeline.scrollTrigger.kill();
+					textTimeline.kill();
 				}
-			},
-			{
-				target: '[data-work-image]',
-				vars: {
-					opacity: 0,
-					stagger: 4,
-					duration: 1,
-					delay: 1
-				}
-			},
-			{
-				target: '[data-work-image]',
-				type: 'to',
-				vars: {
-					opacity: 0,
-					duration: 1,
-					delay: 2
-				}
-			},
-			{
-				target: '[data-work-body]',
-				vars: {
-					opacity: 0,
-					yPercent: 50,
-					duration: 2,
-					ease: 'power4.out'
-				}
-			},
-			{
-				target: '[data-work-button]',
-				vars: {
+			}
+		});
+
+		const splitParams = {
+			type: 'chars, lines',
+			smartWrap: true,
+			mask: 'lines' as 'lines'
+		};
+		splitHeading = SplitText.create(heading, splitParams);
+
+		gsap.set('[data-work-item]', {
+			pointerEvents: 'none'
+		});
+
+		textTimeline
+			// .from(splitHeading.chars, {
+			// 	filter: 'blur(10px)',
+			// 	opacity: 0,
+			// 	willChange: 'filter, opacity',
+			// 	stagger: {
+			// 		amount: 2
+			// 	}
+			// })
+			.from(splitHeading.chars, {
+				yPercent: 100,
+				autoAlpha: 0,
+				stagger: 0.02,
+				duration: 0.5
+			})
+			.from('[data-work-image]', {
+				opacity: 0,
+				stagger: 4,
+				duration: 1,
+				delay: 1
+			})
+			.to('[data-work-images]', {
+				opacity: 0,
+				duration: 1,
+				delay: 2
+			})
+			.from('[data-work-body]', {
+				opacity: 0,
+				yPercent: 50,
+				duration: 2,
+				ease: 'power4.out'
+			})
+			.set('[data-work-item]', {
+				pointerEvents: 'auto'
+			})
+			.from(
+				'[data-work-button]',
+				{
 					opacity: 0,
 					yPercent: 50,
 					duration: 2,
 					ease: 'power4.out'
 				},
-				position: '-=1'
+				'-=1'
+			)
+			.from('[data-work-body]', {
+				display: 'block',
+				duration: 5
+			});
+
+		return textTimeline;
+	}
+
+	function bg() {
+		if (typeof window === 'undefined') return;
+
+		bgTimeline = gsap.timeline({
+			scrollTrigger: {
+				trigger: workSection,
+				start: 'top -=5%',
+				end: '+=105%',
+				scrub: 4,
+				onEnter: () => document.body.classList.add(INVERTED_CLASSNAME), // Add class when entering the trigger
+				onLeaveBack: () => document.body.classList.remove(INVERTED_CLASSNAME) // Remove class when scrolling back
 			},
-			{
-				target: '[data-work-body]',
-				vars: {
-					display: 'block',
-					duration: 5
+			onComplete: () => {
+				if (bgTimeline.scrollTrigger) {
+					bgTimeline.scrollTrigger.kill();
+					bgTimeline.kill();
 				}
 			}
-		]
-	}}
->
+		});
+		bgTimeline.from('body', {
+			onStart: () => document.body.classList.add(INVERTED_CLASSNAME),
+			onReverseComplete: () => document.body.classList.remove(INVERTED_CLASSNAME)
+		});
+
+		return bgTimeline;
+	}
+
+	onMount(() => {
+		if (typeof window === 'undefined') return;
+		gsap.registerPlugin(SplitText);
+		gsap.registerPlugin(ScrollTrigger);
+
+		document.fonts.ready.then(() => {
+			context = gsap.context(() => {
+				text();
+				bg();
+			});
+		});
+	});
+
+	onDestroy(() => {
+		if (typeof window === 'undefined') return;
+
+		if (context) context.revert();
+	});
+</script>
+
+<section class="section work" bind:this={workSection}>
 	<div class="content">
-		<p class="heading" data-work-heading use:split={{ type: 'char', className: 'char' }}>
+		<p class="heading" bind:this={heading}>
 			I have worked on projects for a wide range of clients - such as
 			<a class="work-item" href="/work/akademiskahus" data-work-item="0">Akademiska Hus,</a>
 			<a class="work-item" href="/work/homage" data-work-item="1">Homage</a> and
 			<a class="work-item" href="/work/envolve" data-work-item="2">Envolve. </a>
-			<!-- <WorkItem
-				title="Akademiska Hus,"
-				images={[AH]}
-				link="/work/akademiskahus"
-				index={0}
-			/>
-			<WorkItem title="Homage" images={[Homage]} link="/work/homage" index={1} /> and
-			<WorkItem title="Envolve." images={[Envolve]} link="/work/envolve" index={2} /> -->
 		</p>
 
 		<p class="body p-xsmall" data-work-body>
@@ -220,7 +257,6 @@
 		text-transform: none;
 		font-size: 1.25em;
 		letter-spacing: 0;
-		transition: color 0.2s linear;
 		line-height: 0.8;
 
 		&::after {
@@ -230,17 +266,20 @@
 	}
 
 	.images {
+		z-index: 0;
+
 		grid-area: heading;
 		grid-column: 1 / -1;
 		display: grid;
 		grid-template-areas: 'image';
 		place-items: center;
 		justify-self: center;
-		width: min(50%, 32rem);
-		z-index: 0;
 
 		:global(picture) {
 			grid-area: image;
+		}
+		@media (width > 768px) {
+			width: min(50%, 32rem);
 		}
 	}
 
@@ -249,6 +288,22 @@
 		object-fit: cover;
 		object-position: center;
 		filter: brightness(0.75);
+
+		@media (width < 768px) {
+			position: fixed;
+
+			&.image-0 {
+				top: 5%;
+				left: calc(var(--content-margin) * -1);
+			}
+			&.image-1 {
+				right: calc(var(--content-margin) * -1);
+			}
+			&.image-2 {
+				bottom: -5%;
+				left: calc(var(--content-margin) * -1);
+			}
+		}
 	}
 
 	.heading {
@@ -258,7 +313,7 @@
 		text-wrap: pretty;
 		font-family: var(--font-sansserif);
 		text-transform: uppercase;
-		font-size: clamp(2rem, 3.3vw, 3rem);
+		font-size: clamp(1.75rem, 3.3vw, 3rem);
 		letter-spacing: 0;
 		font-weight: 400;
 	}
