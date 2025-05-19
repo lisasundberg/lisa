@@ -32,6 +32,7 @@
 	let splitHeading: SplitText;
 	let textTimeline: gsap.core.Timeline;
 	let bgTimeline: gsap.core.Timeline;
+	let context: gsap.Context;
 	// // let mm: gsap.MatchMedia;
 
 	function text() {
@@ -156,19 +157,22 @@
 	}
 
 	onMount(() => {
+		if (typeof window === 'undefined') return;
 		gsap.registerPlugin(SplitText);
 		gsap.registerPlugin(ScrollTrigger);
 
 		document.fonts.ready.then(() => {
-			text();
-			bg();
+			context = gsap.context(() => {
+				text();
+				bg();
+			});
 		});
 	});
 
 	onDestroy(() => {
 		if (typeof window === 'undefined') return;
 
-		ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+		if (context) context.revert();
 	});
 </script>
 
