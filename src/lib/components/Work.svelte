@@ -36,6 +36,7 @@
 	// let mm: gsap.MatchMedia;
 
 	function text() {
+		if (!browser) return;
 		// mm = gsap.matchMedia();
 		// mm.add(
 		// 	{
