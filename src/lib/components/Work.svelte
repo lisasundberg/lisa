@@ -130,6 +130,8 @@
 	}
 
 	function bg() {
+		if (!browser) return;
+
 		bgTimeline = gsap.timeline({
 			scrollTrigger: {
 				trigger: workSection,
@@ -155,14 +157,15 @@
 	}
 
 	onMount(() => {
-		if (!browser) return;
-		gsap.registerPlugin(SplitText);
-		gsap.registerPlugin(ScrollTrigger);
+		if (browser) {
+			gsap.registerPlugin(SplitText);
+			gsap.registerPlugin(ScrollTrigger);
 
-		document.fonts.ready.then(() => {
-			text();
-			bg();
-		});
+			document.fonts.ready.then(() => {
+				text();
+				bg();
+			});
+		}
 	});
 
 	onDestroy(() => {
