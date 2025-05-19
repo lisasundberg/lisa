@@ -52,8 +52,7 @@
 				end: '+=105%',
 				pin: true,
 				scrub: 4,
-				once: true,
-				markers: true
+				once: true
 			},
 			onComplete: () => {
 				// splitHeading.revert(); // Causes jump
@@ -166,9 +165,11 @@
 		});
 	});
 
-	// onDestroy(() => {
-	// 	ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-	// });
+	onDestroy(() => {
+		if (typeof window === 'undefined') return;
+
+		ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+	});
 </script>
 
 <section class="section work" bind:this={workSection}>
