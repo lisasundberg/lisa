@@ -109,7 +109,7 @@
 				duration: 2,
 				ease: 'power4.out'
 			})
-			.set('[data-work-item', {
+			.set('[data-work-item]', {
 				pointerEvents: 'auto'
 			})
 			.from(
@@ -159,7 +159,8 @@
 
 	onMount(() => {
 		if (browser) {
-			gsap.registerPlugin(ScrollTrigger, SplitText);
+			gsap.registerPlugin(SplitText);
+			gsap.registerPlugin(ScrollTrigger);
 
 			document.fonts.ready.then(() => {
 				text();
