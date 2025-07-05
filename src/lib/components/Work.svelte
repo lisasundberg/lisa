@@ -248,6 +248,7 @@
 		grid-column: 1 / -1;
 		display: grid;
 		grid-template-rows: subgrid;
+		grid-template-columns: subgrid;
 		place-items: center;
 		z-index: 1;
 	}
