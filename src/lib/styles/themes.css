@@ -1,34 +1,36 @@
-.plain {
-	--theme-color-bg: var(--color-cream);
-	--theme-color-primary: var(--color-hyperlink-blue);
+@layer themes {
+	.plain {
+		--theme-color-bg: var(--color-cream);
+		--theme-color-primary: var(--color-hyperlink-blue);
 
-	&.-inverted {
-		--theme-color-bg: var(--color-hyperlink-blue);
+		&.-inverted {
+			--theme-color-bg: var(--color-hyperlink-blue);
+			--theme-color-primary: var(--color-cream);
+		}
+	}
+
+	.bokeh {
+		--_theme-color-bg: var(--color-cream);
+		--_theme-color-primary: var(--color-brown);
+	}
+
+	.donuts {
+		--theme-color-bg: var(--color-purple);
 		--theme-color-primary: var(--color-cream);
+
+		&.-inverted {
+			--theme-color-bg: var(--color-cream);
+			--theme-color-primary: var(--color-purple);
+		}
 	}
-}
 
-.bokeh {
-	--_theme-color-bg: var(--color-cream);
-	--_theme-color-primary: var(--color-brown);
-}
+	.shader {
+		--theme-color-bg: var(--color-purple);
+		--theme-color-primary: var(--color-cream);
 
-.donuts {
-	--theme-color-bg: var(--color-purple);
-	--theme-color-primary: var(--color-cream);
-
-	&.-inverted {
-		--theme-color-bg: var(--color-cream);
-		--theme-color-primary: var(--color-purple);
-	}
-}
-
-.shader {
-	--theme-color-bg: var(--color-purple);
-	--theme-color-primary: var(--color-cream);
-
-	&.-inverted {
-		--theme-color-bg: var(--color-cream);
-		--theme-color-primary: var(--color-purple);
+		&.-inverted {
+			--theme-color-bg: var(--color-cream);
+			--theme-color-primary: var(--color-purple);
+		}
 	}
 }

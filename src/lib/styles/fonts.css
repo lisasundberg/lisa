@@ -1,19 +1,21 @@
-@font-face {
-    font-family: 'pangaia-ultralight';
-    src: url('/fonts/pangaia-ultralight.woff2') format('woff2');
-}
+@layer fonts {
+    @font-face {
+        font-family: 'pangaia-ultralight';
+        src: url('/fonts/pangaia-ultralight.woff2') format('woff2');
+    }
 
-@font-face {
-    font-family: 'pangaia-ultralightitalic';
-    src: url('/fonts/pangaia-ultralightitalic.woff2') format('woff2');
-}
+    @font-face {
+        font-family: 'pangaia-ultralightitalic';
+        src: url('/fonts/pangaia-ultralightitalic.woff2') format('woff2');
+    }
 
-@font-face {
-    font-family: 'karla-regular';
-    src: url('/fonts/Karla-Regular.ttf') format('truetype');
-}
+    @font-face {
+        font-family: 'karla-regular';
+        src: url('/fonts/Karla-Regular.ttf') format('truetype');
+    }
 
-@font-face {
-    font-family: 'karla-semibold';
-    src: url('/fonts/Karla-SemiBold.ttf') format('truetype');
+    @font-face {
+        font-family: 'karla-semibold';
+        src: url('/fonts/Karla-SemiBold.ttf') format('truetype');
+    }
 }
