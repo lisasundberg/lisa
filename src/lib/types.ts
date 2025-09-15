@@ -1,4 +1,4 @@
-export type ThemeName = 'one' | 'two' | 'three' | 'four' | 'five';
+export type ThemeName = 'plain' | 'bokeh' | 'shader' | 'donuts';
 export type Theme = {
 	name: ThemeName;
 };

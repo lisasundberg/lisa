@@ -1,24 +1,34 @@
-.one {
-	--theme-color-bg: var(--color-purple);
-	--theme-color-primary: var(--color-cream);
-}
-
-.two {
-	--theme-color-bg: var(--color-purple);
-	--theme-color-primary: var(--color-cream);
-}
-
-.three {
-	--theme-color-bg: var(--color-cream);
-	--theme-color-primary: var(--color-brown);
-}
-
-.four {
-	--theme-color-bg: var(--color-brat-green);
-	--theme-color-primary: var(--color-black);
-}
-
-.five {
+.plain {
 	--theme-color-bg: var(--color-cream);
 	--theme-color-primary: var(--color-hyperlink-blue);
+
+	&.-inverted {
+		--theme-color-bg: var(--color-hyperlink-blue);
+		--theme-color-primary: var(--color-cream);
+	}
+}
+
+.bokeh {
+	--_theme-color-bg: var(--color-cream);
+	--_theme-color-primary: var(--color-brown);
+}
+
+.donuts {
+	--theme-color-bg: var(--color-purple);
+	--theme-color-primary: var(--color-cream);
+
+	&.-inverted {
+		--theme-color-bg: var(--color-cream);
+		--theme-color-primary: var(--color-purple);
+	}
+}
+
+.shader {
+	--theme-color-bg: var(--color-purple);
+	--theme-color-primary: var(--color-cream);
+
+	&.-inverted {
+		--theme-color-bg: var(--color-cream);
+		--theme-color-primary: var(--color-purple);
+	}
 }

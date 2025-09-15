@@ -1,63 +1,7 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
-	import gsap from 'gsap/dist/gsap';
-	import ScrollTrigger from 'gsap/dist/ScrollTrigger';
-
-	// onMount(() => {
-	// 	gsap.registerPlugin(ScrollTrigger);
-
-	// 	const items = gsap.utils.toArray('.item');
-	// 	const mainTimeline = gsap.timeline({
-	// 		scrollTrigger: {
-	// 			trigger: '.cv',
-	// 			start: 'top center+=20%',
-	// 			end: 'center center'
-	// 		}
-	// 	});
-
-	// 	items.forEach((item) => {
-	// 		const itemTimeline = gsap.timeline();
-	// 		const hr = item.querySelector('hr');
-	// 		const place = item.querySelector('.place');
-	// 		const activity = item.querySelector('.activity');
-	// 		const year = item.querySelector('.year');
-
-	// 		itemTimeline.fromTo(hr, { scale: 0 }, { scale: 1, duration: 0.7 });
-	// 		itemTimeline.from(place, { opacity: 0 }, '<');
-	// 		itemTimeline.fromTo(
-	// 			activity,
-	// 			{
-	// 				y: 200
-	// 			},
-	// 			{
-	// 				y: 0,
-	// 				duration: 1,
-	// 				ease: 'power2.out'
-	// 			},
-	// 			'<'
-	// 		);
-
-	// 		itemTimeline.fromTo(
-	// 			activity,
-	// 			{
-	// 				opacity: 0
-	// 			},
-	// 			{
-	// 				duration: 1,
-	// 				opacity: 1,
-	// 				ease: 'none'
-	// 			},
-	// 			'<'
-	// 		);
-	// 		itemTimeline.from(year, { opacity: 0 }, '<)');
-
-	// 		mainTimeline.add(itemTimeline, '<+0.09'); // Add the item timeline to the main timeline
-	// 	});
-	// });
-
 	const competences = [
 		{
-			name: 'HTML / CSS / JavaScript'
+			name: 'HTML + CSS + JavaScript / TypeScript'
 		},
 		{
 			name: 'Svelte'
@@ -72,7 +16,10 @@
 			name: 'Three.js'
 		},
 		{
-			name: 'A11y'
+			name: 'Accessibility'
+		},
+		{
+			name: 'Team development'
 		}
 	];
 
@@ -80,7 +27,7 @@
 		{
 			place: 'Alster, Stockholm',
 			activity: 'Frontend developer',
-			year: '2022—'
+			year: '2022—2025'
 		},
 		{
 			place: 'Another State, Stockholm',
@@ -116,7 +63,7 @@
 			year: '2012-2013'
 		}
 	];
-	
+
 	const awards = [
 		{
 			award: 'Awwwards Honorable Mention',
@@ -152,8 +99,7 @@
 			year: '2020',
 			link: 'https://www.awwwards.com/sites/homage',
 			agency: 'Another State'
-		},
-		
+		}
 	];
 </script>
 
@@ -237,29 +183,17 @@
 		gap: var(--content-gap);
 		color: var(--_theme-color-primary);
 		grid-template-areas:
-			"work"
-			"education"
-			"competences"
-			"awards";
+			'work'
+			'education'
+			'competences'
+			'awards';
 
 		@media (width >= 768px) {
 			grid-template-columns: 1fr 1fr;
-			/* grid-template-areas:
-				"work work"
-				"competences awards"
-				"education education"; */
 			grid-template-areas:
-				"work education"
-				"competences awards";
+				'work education'
+				'competences awards';
 		}
-		
-		/* @media (width > 1200px) {
-			grid-template-columns: 2fr 2fr 1fr;
-			grid-template-areas:
-				"work education ."
-				". awards competences";
-		} */
-
 	}
 
 	.column {
@@ -276,7 +210,7 @@
 		&.education {
 			grid-area: education;
 		}
-		
+
 		&.awards {
 			grid-area: awards;
 		}
@@ -290,7 +224,6 @@
 	.item {
 		display: flex;
 		flex-direction: column;
-		gap: var(--gutter);
 		position: relative;
 	}
 
@@ -311,7 +244,6 @@
 	.mask {
 		overflow: hidden;
 		display: inline-block;
-		margin-block: 0.375em;
 	}
 
 	hr {

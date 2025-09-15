@@ -3,11 +3,7 @@
 	import ExternalLink from '$lib/components/ExternalLink.svelte';
 </script>
 
-<footer
-	class="footer section"
-	id="contact"
-	style="--heading-height: {$headingHeight}"
->
+<footer class="footer section" id="contact" style="--heading-height: {$headingHeight}">
 	<section>
 		<div>
 			<h2 class="label">Get in touch</h2>
@@ -19,7 +15,7 @@
 			<li><ExternalLink href="https://www.linkedin.com/in/lisasundberg/" label="Linkedin" /></li>
 		</ul>
 	</section>
-	<!-- <small>© {new Date().getFullYear()} :-)</small> -->
+	<small>© {new Date().getFullYear()}</small>
 </footer>
 
 <style>
@@ -31,10 +27,14 @@
 		box-sizing: border-box;
 		position: relative;
 		height: calc(100dvh - var(--heading-height) * 1px);
-		padding-block: 2rem;
+		padding-block: 2em;
 		color: var(--_theme-color-primary);
 		order: 4;
 		z-index: 10;
+
+		@media (width >= 768px) {
+			padding-block: 4em;
+		}
 	}
 
 	section {
@@ -47,14 +47,7 @@
 		margin-bottom: 2rem;
 	}
 
-	ul {
-		margin-block-start: 0;
-		margin-block-end: 0;
-		padding-inline-start: 0;
-	}
-
 	li {
-		list-style: none;
 		margin-top: 0.25em;
 		padding-top: 0.25em;
 	}

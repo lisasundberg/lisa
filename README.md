@@ -1,3 +1,19 @@
+# My portfolio
+Trying to collect all work I've done while doing some fun coding and learning some new stuff.
+
+Built with SvelteKit (Svelte 5) and GSAP.
+
+## To do-list
+* [ ] Mobile adjustments in work section
+* [ ] Mobile menu
+* [ ] Text reveals
+* [ ] Fix page reveal issue with scrolltrigger
+* [ ] More fun contact page
+* [ ] Finish theme selector
+* [ ] Play page?
+
+---
+
 # create-svelte
 
 Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).
