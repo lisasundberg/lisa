@@ -1,0 +1,5 @@
+@layer reset {
+    html {
+        all: unset;
+    }
+}

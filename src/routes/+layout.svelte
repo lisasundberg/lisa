@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { afterNavigate } from '$app/navigation';
+	import { onNavigate, afterNavigate } from '$app/navigation';
 
 	import { gsap } from 'gsap';
 	import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -42,6 +42,17 @@
 		gsap.ticker.lagSmoothing(0);
 	});
 
+	onNavigate((navigation) => {
+		if (!document.startViewTransition) return;
+
+		return new Promise((resolve) => {
+			document.startViewTransition(async () => {
+				resolve();
+				await navigation.complete;
+			});
+		});
+	});
+
 	afterNavigate(() => {
 		if (typeof document !== 'undefined' && document.body.classList.contains(INVERTED_CLASSNAME)) {
 			document.body.classList.remove(INVERTED_CLASSNAME);
@@ -60,7 +71,6 @@
 	{@render children?.()}
 </main>
 <Footer />
-
 <!-- </PageTransition> -->
 
 <PageReveal />
@@ -71,5 +81,50 @@
 		position: sticky;
 		top: 0;
 		z-index: 8;
+		view-transition-name: header;
+	}
+
+	@keyframes fade-in {
+		from {
+			opacity: 0;
+		}
+	}
+
+	@keyframes fade-out {
+		to {
+			opacity: 0;
+		}
+	}
+
+	@keyframes slide-from-right {
+		from {
+			transform: translateX(30px);
+		}
+	}
+
+	@keyframes slide-to-left {
+		to {
+			transform: translateX(-30px);
+		}
+	}
+
+	:root {
+		--page-transition-duration: 0.18s;
+	}
+
+	:root::view-transition-old(root) {
+		animation: var(--page-transition-duration) linear both fade-out;
+	}
+
+	:root::view-transition-new(root) {
+		animation: var(--page-transition-duration) linear var(--page-transition-duration) both fade-in;
+	}
+
+	@media (prefers-reduced-motion) {
+		::view-transition-group(*),
+		::view-transition-old(*),
+		::view-transition-new(*) {
+			animation: none !important;
+		}
 	}
 </style>

@@ -56,7 +56,7 @@
 		},
 		{
 			year: '2023',
-			client: 'Webbdagarna / Storybook',
+			client: 'Webbdagarna / Storyblok',
 			description: 'Conference fair activation – "Hole in the wall" body tracking game',
 			tech: 'Three.js, Mediapipe'
 		},
