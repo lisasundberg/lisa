@@ -109,7 +109,7 @@
 	}
 
 	:root {
-		--page-transition-duration: 0.2s;
+		--page-transition-duration: 0.18s;
 	}
 
 	:root::view-transition-old(root) {
