@@ -1,10 +1,9 @@
-@import './typography.css';
-@import './fonts.css';
+@layer reset, globals, utils, fonts, animations, themes, typography;
+
+@import './reset.css';
 @import './globals.css';
 @import './utils.css';
+@import './fonts.css';
 @import './animations.css';
 @import './themes.css';
-
-html {
-	all: unset;
-}
+@import './typography.css';
