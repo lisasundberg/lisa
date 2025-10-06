@@ -1,4 +1,6 @@
 <script lang="ts">
+	import Image from '$lib/components/Image.svelte';
+
 	interface Props {
 		heading: string;
 		label: string;
@@ -11,7 +13,9 @@
 
 <article class="card">
 	<a href={link} class="-plain content">
-		<enhanced:img src={image} alt={heading} class="image" />
+		<div class="image">
+			<Image src={image} alt={heading} />
+		</div>
 		<div class="text">
 			<h3 class="heading h2">{heading}</h3>
 			<p class="p-small label">{label}</p>

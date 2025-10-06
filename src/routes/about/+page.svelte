@@ -1,5 +1,8 @@
 <script lang="ts">
+	import Image from '$lib/components/Image.svelte';
 	import CV from '$lib/components/CV.svelte';
+
+	import profilePic from '$lib/assets/about/lisa-bw.jpeg?enhanced';
 </script>
 
 <section class="about">
@@ -26,7 +29,7 @@
 	</div>
 
 	<div class="image">
-		<img src="images/lisa-bw.jpeg" alt="Lisa" />
+		<Image src={profilePic} alt="Lisa" />
 	</div>
 </section>
 <section class="cv">
@@ -46,12 +49,5 @@
 	.cv {
 		grid-column: main;
 		margin-top: clamp(4rem, 10vw, 16rem);
-	}
-
-	img {
-		display: block;
-		width: 100%;
-		height: auto;
-		object-fit: contain;
 	}
 </style>

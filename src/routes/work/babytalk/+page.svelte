@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Image from '$lib/components/Image.svelte';
 	import babytalk1 from '$lib/assets/babytalk/babytalk-1.png?enhanced';
 	import babytalkMockup1 from '$lib/assets/babytalk/babytalk-mockup-1.png?enhanced';
 	import babytalk2 from '$lib/assets/babytalk/babytalk-2.jpg?enhanced';
@@ -34,11 +35,12 @@
 
 	<div class="images">
 		<enhanced:img class="image" src={babytalk1} alt="Babytalk" />
-		<!-- <enhanced:img class="image" src="$lib/assets/babytalk/babytalk-mockup-2.png" alt="Babytalk" /> -->
-		<enhanced:img class="image" src={babytalkMockup1} alt="Babytalk" />
-		<enhanced:img class="image" src={babytalk2} alt="Babytalk" />
-		<enhanced:img class="image" src={babytalk3} alt="Babytalk" />
-		<enhanced:img class="image" src={babytalk4} alt="Babytalk" />
+			<Image src={babytalk1} alt="Babytalk" />
+			<!-- <Image src="$lib/assets/babytalk/babytalk-mockup-2.png" alt="Babytalk" /> -->
+			<Image src={babytalkMockup1} alt="Babytalk" />
+			<Image src={babytalk2} alt="Babytalk" />
+			<Image src={babytalk3} alt="Babytalk" />
+			<Image src={babytalk4} alt="Babytalk" />
 	</div>
 </article>
 
@@ -76,11 +78,6 @@
 		display: flex;
 		flex-direction: column;
 		gap: 1rem;
-	}
-
-	.image {
-		width: 100%;
-		height: auto;
 	}
 
 	.body {

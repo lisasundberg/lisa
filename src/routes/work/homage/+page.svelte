@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Image from '$lib/components/Image.svelte';
 	import Button from '$lib/components/Button.svelte';
 	import homage1 from '$lib/assets/homage/homage-mockup-1.jpg?enhanced';
 	import homage2 from '$lib/assets/homage/homage-mockup-2.jpg?enhanced';
@@ -39,10 +40,11 @@
 
 		<div class="images">
 			<enhanced:img class="image" src={homage1} alt="Homage" />
-			<enhanced:img class="image" src={homage2} alt="Homage" />
-			<enhanced:img class="image" src={homage3} alt="Homage" />
-			<enhanced:img class="image" src={homage4} alt="Homage" />
-			<enhanced:img class="image" src={homage5} alt="Homage" />
+				<Image src={homage1} alt="Homage" />
+				<Image src={homage2} alt="Homage" />
+				<Image src={homage3} alt="Homage" />
+				<Image src={homage4} alt="Homage" />
+				<Image src={homage5} alt="Homage" />
 		</div>
 	</div>
 
@@ -120,11 +122,6 @@
 		display: flex;
 		flex-direction: column;
 		gap: 1rem;
-	}
-
-	.image {
-		width: 100%;
-		height: auto;
 	}
 
 	.body {
