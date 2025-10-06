@@ -2,8 +2,8 @@
 	<header>
 		<h2 class="label">Hi, I'm Lisa</h2>
 		<p>
-			Frontend developer with a passion for beautiful and brand building user experiences, based in
-			Stockholm, Sweden.
+			Frontend developer with a passion for brand building user experiences, based in Stockholm,
+			Sweden.
 		</p>
 	</header>
 </section>
