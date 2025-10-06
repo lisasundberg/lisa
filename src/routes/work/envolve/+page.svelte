@@ -1,4 +1,6 @@
 <script lang="ts">
+	import ScrollReveal from '$lib/components/ScrollReveal.svelte';
+	import Image from '$lib/components/Image.svelte';
 	import envolve1 from '$lib/assets/envolve/envolve-mockup-1.jpg?enhanced';
 	import envolve2 from '$lib/assets/envolve/envolve-mockup-2.jpg?enhanced';
 	import envolve3 from '$lib/assets/envolve/envolve-mockup-3.jpg?enhanced';
@@ -32,15 +34,17 @@
 		</div>
 
 		<div class="images">
-			<enhanced:img class="image" src={envolve1} alt="Envolve" />
-			<enhanced:img class="image" src={envolve2} alt="Envolve" />
-			<enhanced:img class="image" src={envolve3} alt="Envolve" />
-			<enhanced:img class="image" src={envolve4} alt="Envolve" />
-			<enhanced:img class="image" src={envolve5} alt="Envolve" />
-			<enhanced:img class="image" src={envolve6} alt="Envolve" />
-			<enhanced:img class="image" src={envolve7} alt="Envolve" />
-			<enhanced:img class="image" src={envolve8} alt="Envolve" />
-			<enhanced:img class="image" src={envolve9} alt="Envolve" />
+			<ScrollReveal>
+				<Image src={envolve1} alt="Envolve" />
+				<Image src={envolve2} alt="Envolve" />
+				<Image src={envolve3} alt="Envolve" />
+				<Image src={envolve4} alt="Envolve" />
+				<Image src={envolve5} alt="Envolve" />
+				<Image src={envolve6} alt="Envolve" />
+				<Image src={envolve7} alt="Envolve" />
+				<Image src={envolve8} alt="Envolve" />
+				<Image src={envolve9} alt="Envolve" />
+			</ScrollReveal>
 		</div>
 	</div>
 
@@ -105,11 +109,6 @@
 		display: flex;
 		flex-direction: column;
 		gap: 1rem;
-	}
-
-	.image {
-		width: 100%;
-		height: auto;
 	}
 
 	.body {

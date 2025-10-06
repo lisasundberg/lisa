@@ -154,6 +154,11 @@
 		width: 100%;
 		height: auto;
 		object-fit: contain;
+		-webkit-user-drag: none;
+		-khtml-user-drag: none;
+		-moz-user-drag: none;
+		-o-user-drag: none;
+		user-select: none;
 	}
 
 	.split-word {
@@ -163,5 +168,9 @@
 
 	.no-scroll {
 		overflow: hidden;
+	}
+
+	figure {
+		margin: 0;
 	}
 }

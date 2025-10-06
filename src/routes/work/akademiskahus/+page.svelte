@@ -1,4 +1,6 @@
 <script lang="ts">
+	import ScrollReveal from '$lib/components/ScrollReveal.svelte';
+	import Image from '$lib/components/Image.svelte';
 	import Button from '$lib/components/Button.svelte';
 	import ah1 from '$lib/assets/akademiskahus/ah-mockup-1.jpg?enhanced';
 	import ah2 from '$lib/assets/akademiskahus/ah-mockup-2.jpg?enhanced';
@@ -38,12 +40,14 @@
 		</div>
 
 		<div class="images">
-			<enhanced:img class="image" src={ah1} alt="Akademiska Hus" />
-			<enhanced:img class="image" src={ah2} alt="Akademiska Hus" />
-			<enhanced:img class="image" src={ah3} alt="Akademiska Hus" />
-			<enhanced:img class="image" src={ah4} alt="Akademiska Hus" />
-			<enhanced:img class="image" src={ah5} alt="Akademiska Hus" />
-			<enhanced:img class="image" src={ah6} alt="Akademiska Hus" />
+			<ScrollReveal>
+				<Image src={ah1} alt="Akademiska Hus" />
+				<Image src={ah2} alt="Akademiska Hus" />
+				<Image src={ah3} alt="Akademiska Hus" />
+				<Image src={ah4} alt="Akademiska Hus" />
+				<Image src={ah5} alt="Akademiska Hus" />
+				<Image src={ah6} alt="Akademiska Hus" />
+			</ScrollReveal>
 		</div>
 	</div>
 
@@ -125,11 +129,6 @@
 		display: flex;
 		flex-direction: column;
 		gap: 1rem;
-	}
-
-	.image {
-		width: 100%;
-		height: auto;
 	}
 
 	.body {
