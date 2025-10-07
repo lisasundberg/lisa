@@ -11,12 +11,10 @@
 	}
 
 	let { className, src, alt }: Props = $props();
-
-	let container: HTMLElement;
-	let imgElement: HTMLImageElement;
-
+	let imgElement = $state<HTMLImageElement | null>(null);
 	let loading = $state(true);
 	let error = $state(false);
+	let container: HTMLElement;
 
 	function handleLoad() {
 		loading = false;
