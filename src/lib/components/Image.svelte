@@ -1,9 +1,4 @@
 <script lang="ts">
-	import { gsap } from 'gsap';
-	import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-	gsap.registerPlugin(ScrollTrigger);
-
 	interface Props {
 		className?: string;
 		src: any;
