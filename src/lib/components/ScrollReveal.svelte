@@ -19,7 +19,6 @@
 
 		gsap.set(childElements, { opacity: 0, scale: 0.9 });
 
-		// Batch all images together
 		ScrollTrigger.batch(childElements, {
 			start: 'top 80%',
 			once: true,
@@ -28,13 +27,10 @@
 					opacity: 1,
 					scale: 1,
 					transformOrigin: 'top left',
+					willChange: 'opacity, transform',
 					duration: 1,
-					stagger: 0.1,
 					ease: 'power3.out'
 				});
-				// elements.forEach((el) => {
-				// 	el.classList.add('in-view');
-				// });
 			}
 		});
 
