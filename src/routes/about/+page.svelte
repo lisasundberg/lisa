@@ -1,4 +1,5 @@
 <script lang="ts">
+	import ImageScrollReveal from '$lib/components/ImageScrollReveal.svelte';
 	import Image from '$lib/components/Image.svelte';
 	import CV from '$lib/components/CV.svelte';
 
@@ -29,9 +30,9 @@
 		</p>
 	</div>
 
-	<div class="image">
+	<ImageScrollReveal>
 		<Image src={profilePic} alt="Lisa" />
-	</div>
+	</ImageScrollReveal>
 </section>
 <section class="cv">
 	<CV />
