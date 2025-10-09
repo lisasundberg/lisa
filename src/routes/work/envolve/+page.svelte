@@ -1,5 +1,5 @@
 <script lang="ts">
-	import ScrollReveal from '$lib/components/ScrollReveal.svelte';
+	import ImageScrollReveal from '$lib/components/ImageScrollReveal.svelte';
 	import Image from '$lib/components/Image.svelte';
 	import envolve1 from '$lib/assets/envolve/envolve-mockup-1.jpg?enhanced';
 	import envolve2 from '$lib/assets/envolve/envolve-mockup-2.jpg?enhanced';
@@ -34,17 +34,15 @@
 		</div>
 
 		<div class="images">
-			<ScrollReveal>
-				<Image src={envolve1} alt="Envolve" />
-				<Image src={envolve2} alt="Envolve" />
-				<Image src={envolve3} alt="Envolve" />
-				<Image src={envolve4} alt="Envolve" />
-				<Image src={envolve5} alt="Envolve" />
-				<Image src={envolve6} alt="Envolve" />
-				<Image src={envolve7} alt="Envolve" />
-				<Image src={envolve8} alt="Envolve" />
-				<Image src={envolve9} alt="Envolve" />
-			</ScrollReveal>
+			<Image src={envolve1} alt="Envolve" />
+			<ImageScrollReveal><Image src={envolve2} alt="Envolve" /></ImageScrollReveal>
+			<ImageScrollReveal><Image src={envolve3} alt="Envolve" /></ImageScrollReveal>
+			<ImageScrollReveal><Image src={envolve4} alt="Envolve" /></ImageScrollReveal>
+			<ImageScrollReveal><Image src={envolve5} alt="Envolve" /></ImageScrollReveal>
+			<ImageScrollReveal><Image src={envolve6} alt="Envolve" /></ImageScrollReveal>
+			<ImageScrollReveal><Image src={envolve7} alt="Envolve" /></ImageScrollReveal>
+			<ImageScrollReveal><Image src={envolve8} alt="Envolve" /></ImageScrollReveal>
+			<ImageScrollReveal><Image src={envolve9} alt="Envolve" /></ImageScrollReveal>
 		</div>
 	</div>
 
