@@ -19,8 +19,7 @@
 			scrollTrigger: {
 				trigger: container,
 				start: 'top top+=68%',
-				end: 'top center',
-				markers: true
+				end: 'top center'
 			}
 		});
 
