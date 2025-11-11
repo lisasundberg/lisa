@@ -1,5 +1,5 @@
 <script lang="ts">
-	import ImageScrollReveal from '$lib/components/ImageScrollReveal.svelte';
+	import ImageScrollReveal from '$lib/reveals/ImageScrollReveal.svelte';
 	import Image from '$lib/components/Image.svelte';
 	import Button from '$lib/components/Button.svelte';
 	import ah1 from '$lib/assets/akademiskahus/ah-mockup-1.jpg?enhanced';

@@ -13,7 +13,7 @@
 	import Meta from '$lib/components/Meta.svelte';
 	import Nav from '$lib/components/Nav.svelte';
 	import Footer from '$lib/components/Footer.svelte';
-	import PageReveal from '$lib/components/PageReveal.svelte';
+	import PageReveal from '$lib/reveals/PageReveal.svelte';
 	// import PageTransition from '$lib/components/PageTransition.svelte';
 
 	import '$lib/styles/index.css';
@@ -66,12 +66,10 @@
 	<Nav />
 </header>
 
-<!-- <PageTransition url={data.pathname}> -->
 <main>
 	{@render children?.()}
 </main>
 <Footer />
-<!-- </PageTransition> -->
 
 <PageReveal />
 
@@ -93,18 +91,6 @@
 	@keyframes fade-out {
 		to {
 			opacity: 0;
-		}
-	}
-
-	@keyframes slide-from-right {
-		from {
-			transform: translateX(30px);
-		}
-	}
-
-	@keyframes slide-to-left {
-		to {
-			transform: translateX(-30px);
 		}
 	}
 

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import ImageScrollReveal from '$lib/components/ImageScrollReveal.svelte';
+	import ImageScrollReveal from '$lib/reveals/ImageScrollReveal.svelte';
 	import Image from '$lib/components/Image.svelte';
 	import envolve1 from '$lib/assets/envolve/envolve-mockup-1.jpg?enhanced';
 	import envolve2 from '$lib/assets/envolve/envolve-mockup-2.jpg?enhanced';
