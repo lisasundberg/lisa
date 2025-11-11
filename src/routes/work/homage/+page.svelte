@@ -24,28 +24,35 @@
 	onMount(() => {
 		if ((pageRevealFinished && !title) || !info || !body || !cta) return;
 
-		const splitParams = {
-			type: 'chars, lines',
-			smartWrap: true,
-			mask: 'lines' as 'lines'
-		};
+		document.fonts.ready.then(() => {
+			const splitParams = {
+				type: 'chars, lines',
+				smartWrap: true,
+				mask: 'lines' as 'lines'
+			};
 
-		splitTitle = SplitText.create(title, splitParams);
+			splitTitle = SplitText.create(title, splitParams);
 
-		const tl = gsap.timeline();
+			const tl = gsap.timeline();
 
-		tl.from(splitTitle.chars, {
-			yPercent: 70,
-			autoAlpha: 0,
-			stagger: 0.02,
-			duration: 0.7,
-			ease: 'power4.out'
-		}).from([info, body, cta], {
-			opacity: 0,
-			y: 20,
-			stagger: 0.2,
-			ease: 'power2.out',
-			duration: 1
+			tl.from(splitTitle.chars, {
+				yPercent: 70,
+				autoAlpha: 0,
+				stagger: 0.04,
+				duration: 1,
+				ease: 'power4.out',
+				delay: 0.2
+			}).from(
+				[info, body, cta],
+				{
+					opacity: 0,
+					y: 20,
+					stagger: 0.18,
+					ease: 'power2.out',
+					duration: 0.7
+				},
+				'-=0.8'
+			);
 		});
 	});
 </script>

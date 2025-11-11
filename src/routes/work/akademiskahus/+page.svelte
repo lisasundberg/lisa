@@ -1,4 +1,10 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
+	import gsap from 'gsap';
+	import { SplitText } from 'gsap/SplitText';
+
+	import { pageRevealFinished } from '$lib/stores/app';
+
 	import ImageScrollReveal from '$lib/reveals/ImageScrollReveal.svelte';
 	import Image from '$lib/components/Image.svelte';
 	import Button from '$lib/components/Button.svelte';
@@ -8,18 +14,60 @@
 	import ah4 from '$lib/assets/akademiskahus/ah-mockup-4.jpg?enhanced';
 	import ah5 from '$lib/assets/akademiskahus/ah-mockup-5.jpg?enhanced';
 	import ah6 from '$lib/assets/akademiskahus/ah-mockup-6.jpg?enhanced';
+
+	let title: HTMLElement | null;
+	let info: HTMLElement | null;
+	let body: HTMLDivElement | null;
+	let cta: HTMLDivElement | null;
+
+	let splitTitle: SplitText;
+
+	onMount(() => {
+		if ((pageRevealFinished && !title) || !info || !body || !cta) return;
+
+		document.fonts.ready.then(() => {
+			const splitParams = {
+				type: 'chars, lines',
+				smartWrap: true,
+				mask: 'lines' as 'lines'
+			};
+
+			splitTitle = SplitText.create(title, splitParams);
+
+			const tl = gsap.timeline();
+
+			tl.from(splitTitle.chars, {
+				yPercent: 70,
+				autoAlpha: 0,
+				stagger: 0.04,
+				duration: 1,
+				ease: 'power4.out',
+				delay: 0.2
+			}).from(
+				[info, body, cta],
+				{
+					opacity: 0,
+					y: 20,
+					stagger: 0.18,
+					ease: 'power2.out',
+					duration: 0.7
+				},
+				'-=0.8'
+			);
+		});
+	});
 </script>
 
 <article>
 	<div class="content">
 		<div class="text">
-			<h1>Akademiska Hus</h1>
-			<div class="info">
+			<h1 bind:this={title}>Akademiska Hus</h1>
+			<div class="info" bind:this={info}>
 				<p class="label">Project at Alster 2024</p>
 				<p class="label">My responsibility: design system development</p>
 				<p class="label">Technologies: Optimizely, Stimulus.js, CSS</p>
 			</div>
-			<div class="body">
+			<div class="body" bind:this={body}>
 				<p class="p-small">
 					Fully redesigned web ecosystem for Akademiska Hus, leading owner of university campuses in
 					Sweden.
@@ -34,7 +82,7 @@
 					implementation.
 				</p>
 			</div>
-			<div class="link">
+			<div class="link" bind:this={cta}>
 				<Button href="https://akademiskahus.se/" target="_blank">Visit page</Button>
 			</div>
 		</div>
