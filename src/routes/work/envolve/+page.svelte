@@ -1,5 +1,11 @@
 <script lang="ts">
-	import ImageScrollReveal from '$lib/components/ImageScrollReveal.svelte';
+	import { onMount } from 'svelte';
+	import gsap from 'gsap';
+	import { SplitText } from 'gsap/SplitText';
+
+	import { pageRevealFinished } from '$lib/stores/app';
+
+	import ImageScrollReveal from '$lib/reveals/ImageScrollReveal.svelte';
 	import Image from '$lib/components/Image.svelte';
 	import envolve1 from '$lib/assets/envolve/envolve-mockup-1.jpg?enhanced';
 	import envolve2 from '$lib/assets/envolve/envolve-mockup-2.jpg?enhanced';
@@ -10,18 +16,58 @@
 	import envolve7 from '$lib/assets/envolve/envolve-6.jpg?enhanced';
 	import envolve8 from '$lib/assets/envolve/envolve-mockup-7.jpg?enhanced';
 	import envolve9 from '$lib/assets/envolve/envolve-mockup-8.jpg?enhanced';
+
+	let title: HTMLElement | null;
+	let info: HTMLElement | null;
+	let body: HTMLDivElement | null;
+
+	let splitTitle: SplitText;
+
+	onMount(() => {
+		if ((pageRevealFinished && !title) || !info || !body) return;
+
+		document.fonts.ready.then(() => {
+			const splitParams = {
+				type: 'chars, lines',
+				smartWrap: true,
+				mask: 'lines' as 'lines'
+			};
+
+			splitTitle = SplitText.create(title, splitParams);
+
+			const tl = gsap.timeline();
+
+			tl.from(splitTitle.chars, {
+				yPercent: 70,
+				autoAlpha: 0,
+				stagger: 0.04,
+				duration: 1,
+				ease: 'power4.out'
+			}).from(
+				[info, body],
+				{
+					opacity: 0,
+					y: 20,
+					stagger: 0.18,
+					ease: 'power2.out',
+					duration: 0.7
+				},
+				'-=0.8'
+			);
+		});
+	});
 </script>
 
 <article>
 	<div class="content">
 		<div class="text">
-			<h1>Envolve</h1>
-			<div class="info">
+			<h1 bind:this={title}>Envolve</h1>
+			<div class="info" bind:this={info}>
 				<p class="label">Project at Another State 2019</p>
 				<p class="label">My responsibility: co-ideation, all development</p>
 				<p class="label">Technologies: React (Next.js), GSAP, Sass</p>
 			</div>
-			<div class="body">
+			<div class="body" bind:this={body}>
 				<p class="p-small">
 					Web presence for media studio Envolve. The site features scroll-triggered animations and
 					switches seamlessly between vertical- & horizontal orientation.
