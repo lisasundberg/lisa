@@ -90,7 +90,7 @@
 
 	function simpleReveal() {
 		tl.to('.curtain', {
-			duration: 0.75,
+			duration: 0.3,
 			opacity: 0,
 			pointerEvents: 'none'
 		});

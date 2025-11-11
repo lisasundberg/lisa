@@ -1,5 +1,10 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
+	import gsap from 'gsap';
+
+	import { pageRevealFinished } from '$lib/stores/app';
+
+	let title: HTMLElement | null;
 
 	// Clone with JS to prevent SEO issues
 	let clonesContainer: HTMLDivElement;
@@ -15,11 +20,33 @@
 			link.className = 'email';
 			clonesContainer.appendChild(link);
 		}
+
+		if (pageRevealFinished && !title) return;
+
+		document.fonts.ready.then(() => {
+			const tl = gsap.timeline();
+
+			tl.from(title, {
+				autoAlpha: 0,
+				duration: 0.7,
+				ease: 'linear',
+				delay: 0.2
+			}).from(
+				'.email',
+				{
+					opacity: 0,
+					stagger: 0.08,
+					ease: 'linear',
+					duration: 0.7
+				},
+				'-=0.5'
+			);
+		});
 	});
 </script>
 
 <section class="contact">
-	<p class="preamble label">
+	<p class="preamble label" bind:this={title}>
 		Here's my email again very big very many times, so there's absolutely no risk you miss it! :-)
 	</p>
 	<div class="content">

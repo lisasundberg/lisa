@@ -1,5 +1,5 @@
 <script lang="ts">
-	import ScrollReveal from '$lib/components/ScrollReveal.svelte';
+	import ScrollReveal from '$lib/reveals/ScrollReveal.svelte';
 	import Image from '$lib/components/Image.svelte';
 	import babytalk1 from '$lib/assets/babytalk/babytalk-1.png?enhanced';
 	import babytalkMockup1 from '$lib/assets/babytalk/babytalk-mockup-1.png?enhanced';
