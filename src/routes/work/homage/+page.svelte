@@ -40,8 +40,7 @@
 				autoAlpha: 0,
 				stagger: 0.04,
 				duration: 1,
-				ease: 'power4.out',
-				delay: 0.2
+				ease: 'power4.out'
 			}).from(
 				[info, body, cta],
 				{

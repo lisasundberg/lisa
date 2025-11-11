@@ -1,4 +1,10 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
+	import gsap from 'gsap';
+	import { SplitText } from 'gsap/SplitText';
+
+	import { pageRevealFinished } from '$lib/stores/app';
+
 	import Card from '$lib/components/Card.svelte';
 
 	import AH from '$lib/assets/akademiskahus/ah-mockup-1.jpg?enhanced';
@@ -231,15 +237,44 @@
 			tech: 'Craft, Stimulus.js'
 		}
 	];
+
+	let title: HTMLElement | null;
+	let splitTitle: SplitText;
+
+	onMount(() => {
+		if (pageRevealFinished && !title) return;
+
+		document.fonts.ready.then(() => {
+			const splitParams = {
+				type: 'chars, lines',
+				smartWrap: true,
+				mask: 'lines' as 'lines'
+			};
+
+			splitTitle = SplitText.create(title, splitParams);
+
+			const tl = gsap.timeline();
+
+			tl.from(splitTitle.chars, {
+				yPercent: 70,
+				autoAlpha: 0,
+				stagger: 0.04,
+				duration: 1,
+				ease: 'power4.out'
+			});
+		});
+	});
 </script>
 
-<h1 class="title">Work</h1>
+<h1 bind:this={title} class="title">Work</h1>
 
 <section class="featured">
 	<h2 class="label-bold">Selected projects</h2>
 	<div class="cases">
 		{#each featuredWork as { heading, label, link, image }}
-			<Card {heading} {label} {link} {image} />
+			<div class="card">
+				<Card {heading} {label} {link} {image} />
+			</div>
 		{/each}
 	</div>
 </section>
