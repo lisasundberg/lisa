@@ -30,34 +30,85 @@
 	let workSection: HTMLElement;
 	let heading: HTMLElement;
 	let splitHeading: SplitText;
+	let bodyText: HTMLElement;
+	let button: HTMLDivElement;
+
+	let headingTimeline: gsap.core.Timeline;
 	let textTimeline: gsap.core.Timeline;
 	let bgTimeline: gsap.core.Timeline;
 	let context: gsap.Context;
-	// // let mm: gsap.MatchMedia;
 
-	function text() {
+	let activeIndex: number | null = $state(null);
+	let imageItems: Element[] = [];
+
+	let timelineDefaults: ScrollTrigger.Vars;
+
+	function activeImageParams(i: number) {
+		return {
+			duration: 2,
+			delay: 0.3,
+			onStart: function () {
+				activeIndex = i;
+			},
+			onComplete: function () {
+				activeIndex = null;
+			},
+			onReverseComplete: function () {
+				activeIndex = null;
+			}
+		};
+	}
+
+	function handleMouseEnter(index: number) {
+		if (!textTimeline) return;
+		activeIndex = index;
+		textTimeline.pause();
+	}
+
+	function handleMouseLeave() {
+		if (!textTimeline) return;
+		activeIndex = null;
+		textTimeline.play();
+	}
+
+	function content() {
 		if (typeof window === 'undefined') return;
-		// mm = gsap.matchMedia();
-		// mm.add(
-		// 	{
-		// 		isMobile: '(max-width: 767px)',
-		// 		isDesktop: '(min-width: 767px)'
-		// 	},
-		// 	(context) => {}
-		// );
+
+		const splitParams = {
+			type: 'chars, lines',
+			smartWrap: true,
+			mask: 'lines' as 'lines'
+		};
+
+		splitHeading = SplitText.create(heading, splitParams);
+
+		headingTimeline = gsap.timeline({
+			scrollTrigger: {
+				...timelineDefaults,
+				scrub: false,
+				toggleActions: 'play none none reverse'
+			}
+		});
+
+		gsap.set('.content', { pointerEvents: 'none' });
+
+		headingTimeline
+			.from(splitHeading.chars, {
+				yPercent: 100,
+				autoAlpha: 0,
+				stagger: 0.008,
+				duration: 0.3
+			})
+			.to('.content', {
+				pointerEvents: 'auto'
+			});
 
 		textTimeline = gsap.timeline({
 			scrollTrigger: {
-				trigger: workSection,
-				start: 'top -=5%',
-				end: '+=105%',
-				pin: true,
-				scrub: 4,
-				once: true
+				...timelineDefaults,
+				pin: true
 			},
 			onComplete: () => {
-				// splitHeading.revert(); // Causes jump
-
 				if (textTimeline.scrollTrigger) {
 					textTimeline.scrollTrigger.kill();
 					textTimeline.kill();
@@ -65,65 +116,29 @@
 			}
 		});
 
-		const splitParams = {
-			type: 'chars, lines',
-			smartWrap: true,
-			mask: 'lines' as 'lines'
-		};
-		splitHeading = SplitText.create(heading, splitParams);
-
-		gsap.set('[data-work-item]', {
-			pointerEvents: 'none'
-		});
-
 		textTimeline
-			// .from(splitHeading.chars, {
-			// 	filter: 'blur(10px)',
-			// 	opacity: 0,
-			// 	willChange: 'filter, opacity',
-			// 	stagger: {
-			// 		amount: 2
-			// 	}
-			// })
-			.from(splitHeading.chars, {
-				yPercent: 100,
-				autoAlpha: 0,
-				stagger: 0.02,
-				duration: 0.5
-			})
-			.from('[data-work-image]', {
-				opacity: 0,
-				stagger: 4,
-				duration: 1,
-				delay: 1
-			})
-			.to('[data-work-images]', {
-				opacity: 0,
-				duration: 1,
-				delay: 2
-			})
-			.from('[data-work-body]', {
+			.to(imageItems[0], { ...activeImageParams(0), delay: 1 })
+			.to(imageItems[1], activeImageParams(1))
+			.to(imageItems[2], activeImageParams(2))
+			.from(bodyText, {
 				opacity: 0,
 				yPercent: 50,
-				duration: 2,
+				duration: 1.5,
 				ease: 'power4.out'
 			})
-			.set('[data-work-item]', {
-				pointerEvents: 'auto'
-			})
 			.from(
-				'[data-work-button]',
+				button,
 				{
 					opacity: 0,
 					yPercent: 50,
-					duration: 2,
+					duration: 1.5,
 					ease: 'power4.out'
 				},
 				'-=1'
 			)
-			.from('[data-work-body]', {
+			.from(bodyText, {
 				display: 'block',
-				duration: 5
+				duration: 4
 			});
 
 		return textTimeline;
@@ -134,10 +149,7 @@
 
 		bgTimeline = gsap.timeline({
 			scrollTrigger: {
-				trigger: workSection,
-				start: 'top -=5%',
-				end: '+=105%',
-				scrub: 4,
+				...timelineDefaults,
 				onEnter: () => document.body.classList.add(INVERTED_CLASSNAME), // Add class when entering the trigger
 				onLeaveBack: () => document.body.classList.remove(INVERTED_CLASSNAME) // Remove class when scrolling back
 			},
@@ -148,6 +160,7 @@
 				}
 			}
 		});
+
 		bgTimeline.from('body', {
 			onStart: () => document.body.classList.add(INVERTED_CLASSNAME),
 			onReverseComplete: () => document.body.classList.remove(INVERTED_CLASSNAME)
@@ -158,12 +171,22 @@
 
 	onMount(() => {
 		if (typeof window === 'undefined') return;
+
 		gsap.registerPlugin(SplitText);
 		gsap.registerPlugin(ScrollTrigger);
 
+		imageItems = gsap.utils.toArray('[data-work-image]');
+
+		timelineDefaults = {
+			trigger: workSection,
+			start: 'center center-=5%',
+			end: '+=600%',
+			scrub: 4
+		};
+
 		document.fonts.ready.then(() => {
 			context = gsap.context(() => {
-				text();
+				content();
 				bg();
 			});
 		});
@@ -180,17 +203,48 @@
 	<div class="content">
 		<p class="heading" bind:this={heading}>
 			I have worked on projects for a wide range of clients - such as
-			<a class="work-item" href="/work/akademiskahus" data-work-item="0">Akademiska Hus,</a>
-			<a class="work-item" href="/work/homage" data-work-item="1">Homage</a> and
-			<a class="work-item" href="/work/envolve" data-work-item="2">Envolve. </a>
+			<a
+				class="work-item"
+				href="/work/akademiskahus"
+				class:active={activeIndex === 0}
+				onmouseenter={() => handleMouseEnter(0)}
+				onkeydown={() => handleMouseEnter(0)}
+				onmouseleave={handleMouseLeave}
+				onkeyup={handleMouseLeave}
+				data-work-item="0"
+			>
+				Akademiska Hus,
+			</a>
+			<a
+				class="work-item"
+				class:active={activeIndex === 1}
+				href="/work/homage"
+				onmouseenter={() => handleMouseEnter(1)}
+				onkeydown={() => handleMouseEnter(1)}
+				onmouseleave={handleMouseLeave}
+				onkeyup={handleMouseLeave}
+				data-work-item="1">Homage</a
+			>
+			and
+			<a
+				class="work-item"
+				class:active={activeIndex === 2}
+				href="/work/envolve"
+				onmouseenter={() => handleMouseEnter(2)}
+				onkeydown={() => handleMouseEnter(2)}
+				onmouseleave={handleMouseLeave}
+				onkeyup={handleMouseLeave}
+				data-work-item="2"
+				>Envolve.
+			</a>
 		</p>
 
-		<p class="body p-xsmall" data-work-body>
+		<p class="body p-xsmall" bind:this={bodyText}>
 			Other clients include but are not limited to:<br /> H&M, Previa, Länsförsäkringar, TV4, Red Bull,
 			Urban deli, Storyblok, Bambora.
 		</p>
 
-		<div class="cta" data-work-button>
+		<div class="cta" bind:this={button}>
 			<Button href="/work">
 				See all work
 				{#snippet iconRight()}
@@ -221,6 +275,7 @@
 				{alt}
 				style="--index: {i}; --total: {images.length}"
 				class="image image-{i}"
+				class:active={activeIndex === i}
 				data-work-image={i}
 			/>
 		{/each}
@@ -261,8 +316,13 @@
 		line-height: 0.8;
 
 		&::after {
-			bottom: -0.125em !important;
-			height: 1px !important;
+			bottom: -0.125em;
+			height: 1px;
+		}
+
+		&.active {
+			transform: scaleX(1);
+			transform-origin: left;
 		}
 	}
 
@@ -289,6 +349,13 @@
 		object-fit: cover;
 		object-position: center;
 		filter: brightness(0.75);
+
+		opacity: 0;
+		transition: opacity 0.5s ease-in-out;
+
+		&.active {
+			opacity: 1;
+		}
 
 		@media (width < 768px) {
 			position: fixed;
