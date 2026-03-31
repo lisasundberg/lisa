@@ -2,6 +2,7 @@
 	import { onMount } from 'svelte';
 	import { gsap } from 'gsap';
 	import { pageRevealFinished } from '$lib/stores/app';
+	import { prefersReducedMotion } from '$lib/stores/motion';
 
 	let heading: HTMLDivElement | null;
 	let chars: Element[];
@@ -104,7 +105,7 @@
 			}
 		});
 
-		heading ? homeReveal(heading) : simpleReveal();
+		heading && !$prefersReducedMotion ? homeReveal(heading) : simpleReveal();
 	});
 </script>
 

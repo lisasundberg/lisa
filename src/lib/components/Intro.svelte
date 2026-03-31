@@ -4,6 +4,7 @@
 	import { SplitText } from 'gsap/SplitText';
 
 	import { pageRevealFinished } from '$lib/stores/app';
+	import { prefersReducedMotion } from '$lib/stores/motion';
 
 	let title: HTMLElement | null;
 	let body: HTMLDivElement | null;
@@ -11,7 +12,7 @@
 	let splitTitle: SplitText;
 
 	onMount(() => {
-		if ((pageRevealFinished && !title) || !body) return;
+		if ((pageRevealFinished && !title) || !body || $prefersReducedMotion) return;
 
 		document.fonts.ready.then(() => {
 			const splitParams = {

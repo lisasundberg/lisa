@@ -4,6 +4,7 @@
 	import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 	import { INVERTED_CLASSNAME } from '$lib/stores/theme';
+	import { prefersReducedMotion } from '$lib/stores/motion';
 
 	import Button from '$lib/components/Button.svelte';
 

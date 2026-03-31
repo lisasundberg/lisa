@@ -4,6 +4,7 @@
 	import { SplitText } from 'gsap/SplitText';
 
 	import { pageRevealFinished } from '$lib/stores/app';
+	import { prefersReducedMotion } from '$lib/stores/motion';
 
 	import ImageScrollReveal from '$lib/reveals/ImageScrollReveal.svelte';
 	import Image from '$lib/components/Image.svelte';
@@ -24,7 +25,7 @@
 	let splitTitle: SplitText;
 
 	onMount(() => {
-		if ((pageRevealFinished && !title) || !info || !body) return;
+		if ((pageRevealFinished && !title) || !info || !body || $prefersReducedMotion) return;
 
 		document.fonts.ready.then(() => {
 			const splitParams = {

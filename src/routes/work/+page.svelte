@@ -4,6 +4,7 @@
 	import { SplitText } from 'gsap/SplitText';
 
 	import { pageRevealFinished } from '$lib/stores/app';
+	import { prefersReducedMotion } from '$lib/stores/motion';
 
 	import Card from '$lib/components/Card.svelte';
 
@@ -242,7 +243,7 @@
 	let splitTitle: SplitText;
 
 	onMount(() => {
-		if (pageRevealFinished && !title) return;
+		if ((pageRevealFinished && !title) || $prefersReducedMotion) return;
 
 		document.fonts.ready.then(() => {
 			const splitParams = {
