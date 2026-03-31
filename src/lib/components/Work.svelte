@@ -255,6 +255,7 @@
 						viewBox="0 0 16 16"
 						fill="none"
 						xmlns="http://www.w3.org/2000/svg"
+						aria-hidden="true"
 					>
 						<path
 							d="M1 7.5H14.5314M9.37663 2L15 7.5L9.37663 13"
