@@ -19,7 +19,7 @@
 		chars = [...heading.querySelectorAll('.char')];
 		dot = document.querySelector('.hero-heading');
 		themeColor = getComputedStyle(document.documentElement).getPropertyValue(
-			'--_theme-color-primary'
+			'--theme-color-primary'
 		);
 		// Blink
 		if (!dot) return;
@@ -61,7 +61,7 @@
 		);
 
 		tl.timeScale(1.2);
-		tl.set(heading, { color: 'white' });
+		tl.set(heading, { color: '#fffaf7' });
 		tl.add(dotTween, '<');
 		tl.to(dot, { opacity: 1, duration: 0.5 });
 		tl.add(charTween, '<-0.1');
@@ -118,7 +118,7 @@
 		left: 0;
 		width: 100vw;
 		height: 100vh;
-		background-color: var(--color-hyperlink-blue);
+		background-color: var(--theme-color-primary);
 		z-index: 9;
 	}
 </style>
