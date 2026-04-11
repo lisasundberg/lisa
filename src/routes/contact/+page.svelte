@@ -3,6 +3,7 @@
 	import gsap from 'gsap';
 
 	import { pageRevealFinished } from '$lib/stores/app';
+	import { prefersReducedMotion } from '$lib/stores/motion';
 
 	let title: HTMLElement | null;
 
@@ -21,7 +22,7 @@
 			clonesContainer.appendChild(link);
 		}
 
-		if (pageRevealFinished && !title) return;
+		if ((pageRevealFinished && !title) || $prefersReducedMotion) return;
 
 		document.fonts.ready.then(() => {
 			const tl = gsap.timeline();

@@ -4,6 +4,7 @@
 	import { SplitText } from 'gsap/SplitText';
 
 	import { pageRevealFinished } from '$lib/stores/app';
+	import { prefersReducedMotion } from '$lib/stores/motion';
 
 	import ImageScrollReveal from '$lib/reveals/ImageScrollReveal.svelte';
 	import Image from '$lib/components/Image.svelte';
@@ -22,7 +23,7 @@
 	let splitTitle: SplitText;
 
 	onMount(() => {
-		if ((pageRevealFinished && !title) || !info || !body || !cta) return;
+		if ((pageRevealFinished && !title) || !info || !body || !cta || $prefersReducedMotion) return;
 
 		document.fonts.ready.then(() => {
 			const splitParams = {
@@ -104,6 +105,7 @@
 					viewBox="0 0 16 16"
 					fill="none"
 					xmlns="http://www.w3.org/2000/svg"
+					aria-hidden="true"
 				>
 					<path
 						d="M14.8457 8.5L1.61118 8.5M6.65285 14L1.15285 8.5L6.65285 3"

@@ -29,11 +29,6 @@
 		padding-block: 1em;
 		border-top: 1px solid var(--_theme-color-primary);
 
-		/* &:has(a:hover, a:focus-visible) {
-			background-color: var(--_theme-color-primary);
-			color: var(--_theme-color-bg);
-			} */
-
 		@media (width >= 768px) {
 			grid-template-columns: 4fr 1fr 50%;
 			transition: grid-template-columns 0.5s var(--ease-in-out-cubic);

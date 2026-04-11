@@ -1,7 +1,10 @@
 <script lang="ts">
 	const competences = [
 		{
-			name: 'HTML + CSS + JavaScript / TypeScript'
+			name: 'JavaScript / TypeScript'
+		},
+		{
+			name: 'CSS + HTML'
 		},
 		{
 			name: 'Svelte'
@@ -16,10 +19,7 @@
 			name: 'Three.js'
 		},
 		{
-			name: 'Accessibility'
-		},
-		{
-			name: 'Team development'
+			name: 'Accessibility (WCAG)'
 		}
 	];
 

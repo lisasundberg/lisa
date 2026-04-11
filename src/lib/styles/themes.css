@@ -1,11 +1,11 @@
 @layer themes {
 	.plain {
-		--theme-color-bg: var(--color-cream);
-		--theme-color-primary: var(--color-hyperlink-blue);
+		--theme-color-bg: var(--color-offwhite);
+		--theme-color-primary: var(--color-blue);
 
 		&.-inverted {
-			--theme-color-bg: var(--color-hyperlink-blue);
-			--theme-color-primary: var(--color-cream);
+			--theme-color-bg: var(--color-blue);
+			--theme-color-primary: var(--color-offwhite);
 		}
 	}
 

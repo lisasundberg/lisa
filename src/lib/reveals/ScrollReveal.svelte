@@ -3,6 +3,8 @@
 	import { gsap } from 'gsap';
 	import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
+	import { prefersReducedMotion } from '$lib/stores/motion';
+
 	interface Props {
 		children?: import('svelte').Snippet;
 	}
@@ -11,6 +13,8 @@
 	let container: HTMLElement;
 
 	onMount(() => {
+		if ($prefersReducedMotion) return;
+
 		gsap.registerPlugin(ScrollTrigger);
 
 		const childElements = container.children;

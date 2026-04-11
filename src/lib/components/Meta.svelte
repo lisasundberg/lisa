@@ -1,9 +1,9 @@
 <svelte:head>
 	<meta name="viewport" content="initial-scale=1.0, width=device-width" />
-	<meta name="title" content="Lisa Sundberg | Front end developer" />
+	<meta name="title" content="Lisa Sundberg | Design engineer" />
 	<meta
 		name="description"
-		content="Lisa Sundberg | Front end developer based in Stockholm, Sweden"
+		content="Lisa Sundberg | Design engineer / frontend developer based in Stockholm, Sweden"
 	/>
 	<link rel="canonical" href="https://www.lisasundberg.com" />
 
@@ -19,22 +19,22 @@
 	<meta name="theme-color" content="#212121" />
 
 	<!-- OG tags -->
-	<meta property="og:title" content="Lisa Sundberg - front end developer" />
+	<meta property="og:title" content="Lisa Sundberg - Design engineer" />
 	<meta property="og:url" content="https://www.lisasundberg.com" />
 	<meta property="og:type" content="website" />
 	<meta
 		property="og:description"
-		content="Lisa Sundberg | Front end developer based in Stockholm, Sweden"
+		content="Lisa Sundberg | Design engineer / frontend developer based in Stockholm, Sweden"
 	/>
 	<meta property="og:image" content="/static/img.jpg" />
 
 	<!-- Twitter card -->
 	<meta name="twitter:card" content="summary_large_image" />
-	<meta name="twitter:title" content="Lisa Sundberg - front end developer" />
+	<meta name="twitter:title" content="Lisa Sundberg - Design engineer" />
 	<meta
 		name="twitter:description"
-		content="Lisa Sundberg | Front end developer based in Stockholm, Sweden"
+		content="Lisa Sundberg | Design engineer / frontend developer based in Stockholm, Sweden"
 	/>
 
-	<title>Lisa Sundberg | Front end developer</title>
+	<title>Lisa Sundberg | Design engineer</title>
 </svelte:head>

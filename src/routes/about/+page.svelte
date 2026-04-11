@@ -4,6 +4,7 @@
 	import { SplitText } from 'gsap/SplitText';
 
 	import { pageRevealFinished } from '$lib/stores/app';
+	import { prefersReducedMotion } from '$lib/stores/motion';
 
 	import ImageScrollReveal from '$lib/reveals/ImageScrollReveal.svelte';
 	import Image from '$lib/components/Image.svelte';
@@ -15,7 +16,7 @@
 	let splitTitle: SplitText;
 
 	onMount(() => {
-		if (pageRevealFinished && !title) return;
+		if ((pageRevealFinished && !title) || $prefersReducedMotion) return;
 
 		document.fonts.ready.then(() => {
 			const splitParams = {
@@ -54,21 +55,12 @@
 		<h1 class="title" bind:this={title}>About</h1>
 
 		<p class="body p-small">
-			I am a frontend developer who loves creating user friendly and visually engaging web
-			experiences.
+			I'm a design engineer with 5+ years of experience in frontend development and a background in
+			art direction. I bridge design and code to create visually engaging, high-performing and
+			accessible digital experiences.
 		</p>
 		<p class="body p-small">
-			After over five years at digital agencies, I have extensive experience of working with
-			different clients and tech stacks. Having a background in the creative field, I am a true
-			digital multitasker, and I love to get my hands dirty in all things visual. Especially when
-			you can click on it!
-		</p>
-		<p class="body p-small">
-			Outside of coding I love to explore my creativity through knitting, gardening, DJ:ing and
-			trying to build things out of wood in my home. I also do plenty of yoga.
-		</p>
-		<p class="body p-small">
-			I am currently open to work, so if you're interested in collaborating – <a
+			I'm currently open to work, so if you're interested in collaborating – <a
 				href="mailto:hello@lisasundberg.com">drop me a line</a
 			>!
 		</p>
