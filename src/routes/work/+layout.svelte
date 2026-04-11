@@ -7,8 +7,3 @@
 </script>
 
 {@render children?.()}
-
-<!-- /* Gör detta med snippets */ -->
-<!-- imges -->
-<!-- title -->
-<!-- text -->
