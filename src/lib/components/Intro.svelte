@@ -49,8 +49,8 @@
 	<header>
 		<h2 class="label" bind:this={title}>Hi, I'm Lisa</h2>
 		<p bind:this={body}>
-			Frontend developer with a passion for brand building user experiences, based in Stockholm,
-			Sweden.
+			Design engineer / frontend developer with a passion for brand building<br /> user experiences,
+			based in<br /> Stockholm, Sweden.
 		</p>
 	</header>
 </section>
@@ -65,7 +65,7 @@
 	}
 
 	p {
-		max-width: 25ch;
+		max-width: 30ch;
 		margin-top: 0.5em;
 	}
 </style>
