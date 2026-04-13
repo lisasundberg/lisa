@@ -7,6 +7,7 @@
 	import { prefersReducedMotion } from '$lib/stores/motion';
 
 	import Card from '$lib/components/Card.svelte';
+	import Featured from '$lib/components/Featured.svelte';
 
 	import AH from '$lib/assets/akademiskahus/ah-mockup-1.jpg?enhanced';
 	import Homage from '$lib/assets/homage/homage-mockup-1.jpg?enhanced';
@@ -241,6 +242,21 @@
 
 	let title: HTMLElement | null;
 	let splitTitle: SplitText;
+	let imageEl: HTMLElement | null = $state(null);
+	let activeImage: any = $state(null);
+
+	function onMouseEnter(image: any) {
+		activeImage = image;
+		gsap.to(imageEl, { opacity: 1, scale: 1, duration: 0.35, ease: 'power3.out' });
+	}
+
+	function onMouseLeave() {
+		gsap.to(imageEl, { opacity: 0, scale: 0.88, duration: 0.3, ease: 'power2.in' });
+	}
+
+	function onMouseMove(e: MouseEvent) {
+		gsap.to(imageEl, { x: e.clientX + 20, y: e.clientY - 30, duration: 0.55, ease: 'power2.out' });
+	}
 
 	onMount(() => {
 		if ((pageRevealFinished && !title) || $prefersReducedMotion) return;
@@ -271,12 +287,17 @@
 
 <section class="featured">
 	<h2 class="label-bold">Selected projects</h2>
-	<div class="cases">
+	<div class="cases" onmouseleave={onMouseLeave} onmousemove={onMouseMove}>
 		{#each featuredWork as { heading, label, link, image }}
-			<div class="card">
-				<Card {heading} {label} {link} {image} />
+			<div class="card" onmouseenter={() => onMouseEnter(image)}>
+				<Featured {heading} {label} {link} />
 			</div>
 		{/each}
+		<div class="cursor-image" bind:this={imageEl}>
+			{#if activeImage}
+				<enhanced:img src={activeImage} alt="" />
+			{/if}
+		</div>
 	</div>
 </section>
 
@@ -315,6 +336,19 @@
 
 	.featured {
 		margin-top: 2em;
+	}
+
+	.cursor-image {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 320px;
+		aspect-ratio: 4 / 3;
+		pointer-events: none;
+		z-index: 9999;
+		will-change: transform;
+		overflow: hidden;
+		border-radius: 4px;
 	}
 
 	.archive {
