@@ -342,13 +342,13 @@
 		position: fixed;
 		top: 0;
 		left: 0;
-		width: 320px;
+		width: 33%;
+		max-width: 500px;
 		aspect-ratio: 4 / 3;
 		pointer-events: none;
 		z-index: 9999;
 		will-change: transform;
 		overflow: hidden;
-		border-radius: 4px;
 	}
 
 	.archive {
