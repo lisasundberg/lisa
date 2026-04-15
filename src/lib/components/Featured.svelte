@@ -18,6 +18,7 @@
 <style>
 	.featured {
 		border-top: 1px solid var(--_theme-color-primary);
+		position: relative;
 	}
 
 	.content {
@@ -25,10 +26,38 @@
 		justify-content: space-between;
 		align-items: center;
 		gap: 0.5em;
-		padding-block: 1em;
+		padding: 1em 0.5em;
+		transition: color 0.2s linear;
 
 		@media (width >= 768px) {
-			padding-block: 2em;
+			padding: 2em 1em;
+		}
+
+		&::after {
+			content: '';
+			display: inline-block;
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			left: 0;
+			top: 0;
+			background-color: var(--_theme-color-primary);
+			transition: scale 0.6s var(--ease-out-expo);
+			scale: 1 0;
+			transform-origin: bottom;
+			z-index: -1;
+		}
+
+		@media (hover: hover) {
+			&:hover,
+			&:focus-visible {
+				color: var(--_theme-color-bg);
+
+				&::after {
+					scale: 1;
+					transform-origin: top;
+				}
+			}
 		}
 	}
 
