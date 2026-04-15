@@ -313,7 +313,7 @@
 
 					{#if link}
 						<td class="description">
-							<a class="-plain" href={link} target="_blank" rel="noopener noreferrer">
+							<a class="link -plain" href={link} target="_blank" rel="noopener noreferrer">
 								{description} <span class="external-indicator">↗</span>
 							</a>
 						</td>
@@ -384,6 +384,7 @@
 	}
 
 	tr {
+		position: relative;
 		display: grid;
 		grid-column: 1 / -1;
 		grid-template-columns: subgrid;
@@ -448,8 +449,13 @@
 		}
 	}
 
-	a {
-		font-weight: inherit;
-		font-size: inherit;
+	.link {
+		position: static;
+
+		&::after {
+			content: '';
+			position: absolute;
+			inset: 0;
+		}
 	}
 </style>
