@@ -46,8 +46,8 @@
 	}
 
 	body {
-		--_theme-color-primary: var(--theme-color-primary, var(--color-hyperlink-blue));
-		--_theme-color-bg: var(--theme-color-bg, var(--color-cream));
+		--_theme-color-primary: var(--theme-color-primary, var(--color-blue));
+		--_theme-color-bg: var(--theme-color-bg, var(--color-offwhite));
 		width: 100vw;
 		min-height: 100dvh;
 		overflow-x: hidden;
