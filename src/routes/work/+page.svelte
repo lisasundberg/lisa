@@ -339,16 +339,19 @@
 	}
 
 	.cursor-image {
-		position: fixed;
-		top: 0;
-		left: 0;
-		width: 33%;
-		max-width: 500px;
-		aspect-ratio: 4 / 3;
-		pointer-events: none;
-		z-index: 9999;
-		will-change: transform;
-		overflow: hidden;
+		display: none;
+
+		@media (hover: hover) {
+			display: block;
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 33%;
+			max-width: 500px;
+			aspect-ratio: 4 / 3;
+			pointer-events: none;
+			z-index: 9999;
+		}
 	}
 
 	.archive {
