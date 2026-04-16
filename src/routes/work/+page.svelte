@@ -313,7 +313,7 @@
 
 					{#if link}
 						<td class="description">
-							<a class="-plain" href={link} target="_blank" rel="noopener noreferrer">
+							<a class="link -plain" href={link} target="_blank" rel="noopener noreferrer">
 								{description} <span class="external-indicator">↗</span>
 							</a>
 						</td>
@@ -339,16 +339,19 @@
 	}
 
 	.cursor-image {
-		position: fixed;
-		top: 0;
-		left: 0;
-		width: 320px;
-		aspect-ratio: 4 / 3;
-		pointer-events: none;
-		z-index: 9999;
-		will-change: transform;
-		overflow: hidden;
-		border-radius: 4px;
+		display: none;
+
+		@media (hover: hover) {
+			display: block;
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 33%;
+			max-width: 500px;
+			aspect-ratio: 4 / 3;
+			pointer-events: none;
+			z-index: 9999;
+		}
 	}
 
 	.archive {
@@ -384,6 +387,7 @@
 	}
 
 	tr {
+		position: relative;
 		display: grid;
 		grid-column: 1 / -1;
 		grid-template-columns: subgrid;
@@ -448,8 +452,13 @@
 		}
 	}
 
-	a {
-		font-weight: inherit;
-		font-size: inherit;
+	.link {
+		position: static;
+
+		&::after {
+			content: '';
+			position: absolute;
+			inset: 0;
+		}
 	}
 </style>
