@@ -118,7 +118,7 @@
 		left: 0;
 		width: 100vw;
 		height: 100vh;
-		background-color: var(--theme-color-primary);
+		background-color: var(--theme-color-primary, var(--color-blue));
 		z-index: 9;
 	}
 </style>
