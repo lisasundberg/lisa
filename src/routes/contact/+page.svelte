@@ -77,9 +77,14 @@
 		gap: var(--content-gap);
 		align-items: center;
 		margin-block: 2em;
+		font-family: var(--font-display);
 
 		@media (width >= 768px) {
 			margin-block: 4em;
+
+			a::after {
+				height: 2px;
+			}
 		}
 	}
 

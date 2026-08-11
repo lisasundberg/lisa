@@ -401,7 +401,7 @@
 	@media (hover: hover) {
 		:global(tr:has(a:hover)),
 		:global(tr:has(a:focus)) {
-			background-color: var(--_theme-color-primary);
+			background-color: var(--_theme-color-accent);
 			color: var(--_theme-color-bg);
 		}
 	}
