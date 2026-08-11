@@ -1,10 +1,10 @@
 @layer typography {
 	:root {
-		--font-display: 'pangaia-ultralight', serif;
-		--font-display-italic: 'pangaia-ultralightitalic', serif;
-		--font-sansserif: 'karla-regular', sans-serif;
-		--font-sansserif-bold: 'karla-semibold', sans-serif;
-		--font-body: 'pangaia-ultralight';
+		--font-display: 'seasonmix-light', serif;
+		--font-display-italic: 'seasonmix-lightitalic', serif;
+		--font-sansserif: 'seasonsans-regular', sans-serif;
+		--font-sansserif-semibold: 'seasonsans-semibold', sans-serif;
+		--font-body: 'seasonsans-regular';
 		--font-size-h1: clamp(2.25rem, 4vw, 3.5rem);
 		--font-size-h2: clamp(1.5rem, 3vw, 2rem);
 		--font-size-body: clamp(1.5rem, 2.5vw, 2rem);
@@ -12,12 +12,6 @@
 		--font-size-body-xsmall: clamp(0.85rem, 1.25vw, 1rem);
 		--font-size-label: 0.75rem;
 	}
-
-	/* font-family: "Karla",
-sans-serif;
-font-optical-sizing: auto;
-font-weight: 400;
-font-style: normal; */
 
 	h1,
 	h2,
@@ -91,15 +85,15 @@ font-style: normal; */
 		font-family: var(--font-sansserif);
 		text-transform: uppercase;
 		font-size: var(--font-size-label);
-		letter-spacing: -0.01em;
+		letter-spacing: 0.05em;
 		margin: 0;
 	}
 
 	.label-bold {
-		font-family: var(--font-sansserif-bold);
+		font-family: var(--font-sansserif-semibold);
 		text-transform: uppercase;
 		font-size: var(--font-size-label);
-		letter-spacing: -0.01em;
+		letter-spacing: 0.05em;
 		margin: 0;
 	}
 }

@@ -2,21 +2,17 @@
 	:root {
 		--heading-offset: 20;
 		--footer-height: 100dvh;
-		--color-purple: #6400f2;
 		--color-cream: rgb(255, 249, 238);
 		--color-greige: rgb(236 229 217);
-		--color-brat-green: #8fce23;
 		--color-green: #3fe83f;
 		--color-red: #CC341D;
-		--color-brown: #513737;
-		--color-black: #000;
-		--color-hyperlink-blue: blue;
-		--color-blue: #002bba;
+		--color-indigo: #7a58ff;
 		--color-offwhite: #fffaf7;
-		--color-pink: #fbc5ec;
+		--color-offblack: #342d2d;
 
 		--color-text-primary: var(--color-cream);
-		--color-text-secondary: #222;
+		--color-text-secondary: var(--color-offblack);
+		--color-text-accent: var(--color-indigo);
 
 		--content-margin: 2.5em;
 		--content-gap: 2.5em;
@@ -46,8 +42,9 @@
 	}
 
 	body {
-		--_theme-color-primary: var(--theme-color-primary, var(--color-blue));
+		--_theme-color-primary: var(--theme-color-primary, var(--color-offblack));
 		--_theme-color-bg: var(--theme-color-bg, var(--color-offwhite));
+		--_theme-color-accent: var(--theme-color-accent, var(--color-indigo));
 		width: 100vw;
 		min-height: 100dvh;
 		overflow-x: hidden;
@@ -115,18 +112,23 @@
 			width: 100%;
 			bottom: 0;
 			left: 0;
-			margin-top: 0.25em;
 			background-color: currentColor;
 			transform: scaleX(0);
 			transform-origin: right;
 			transition: transform 0.2s ease-in-out;
 		}
 
+		&.-tight::after {
+			bottom: 0.25em;
+		}
+
 		@media (hover: hover) {
-			&.-simple:hover {
-				text-decoration: underline;
-				text-underline-offset: 0.1em;
-				text-decoration-thickness: 1px;
+			&.-simple {
+				transition: color 0.2s linear;
+
+				&:hover {
+					color: var(--theme-color-accent);
+				}
 			}
 
 			&:hover::after,

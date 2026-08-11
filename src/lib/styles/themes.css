@@ -1,36 +1,13 @@
 @layer themes {
 	.plain {
 		--theme-color-bg: var(--color-offwhite);
-		--theme-color-primary: var(--color-blue);
+		--theme-color-primary: var(--color-offblack);
+		--theme-color-accent: var(--color-indigo);
 
 		&.-inverted {
-			--theme-color-bg: var(--color-blue);
+			--theme-color-bg: var(--color-offblack);
 			--theme-color-primary: var(--color-offwhite);
-		}
-	}
-
-	.bokeh {
-		--_theme-color-bg: var(--color-cream);
-		--_theme-color-primary: var(--color-brown);
-	}
-
-	.donuts {
-		--theme-color-bg: var(--color-purple);
-		--theme-color-primary: var(--color-cream);
-
-		&.-inverted {
-			--theme-color-bg: var(--color-cream);
-			--theme-color-primary: var(--color-purple);
-		}
-	}
-
-	.shader {
-		--theme-color-bg: var(--color-purple);
-		--theme-color-primary: var(--color-cream);
-
-		&.-inverted {
-			--theme-color-bg: var(--color-cream);
-			--theme-color-primary: var(--color-purple);
+			--theme-color-accent: var(--color-indigo);
 		}
 	}
 }
