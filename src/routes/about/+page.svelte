@@ -66,9 +66,9 @@
 		</p>
 	</div>
 
-	<!-- <ImageScrollReveal>
+	<ImageScrollReveal>
 		<Image src={profilePic} alt="Lisa" />
-	</ImageScrollReveal> -->
+	</ImageScrollReveal>
 </section>
 <section class="cv">
 	<CV />

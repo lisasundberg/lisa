@@ -7,10 +7,13 @@
 			name: 'CSS + HTML'
 		},
 		{
+			name: 'React'
+		},
+		{
 			name: 'Svelte'
 		},
 		{
-			name: 'React'
+			name: 'Figma'
 		},
 		{
 			name: 'GSAP'
@@ -183,16 +186,16 @@
 		gap: var(--content-gap);
 		color: var(--_theme-color-primary);
 		grid-template-areas:
-			'work'
-			'education'
 			'competences'
-			'awards';
+			'awards'
+			'work'
+			'education';
 
 		@media (width >= 768px) {
 			grid-template-columns: 1fr 1fr;
 			grid-template-areas:
-				'work education'
-				'competences awards';
+				'competences awards'
+				'work education';
 		}
 	}
 
