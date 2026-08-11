@@ -71,7 +71,7 @@
 		margin: 0;
 		order: 3;
 		line-height: 1;
-		z-index: 10;
+		z-index: 1000;
 		pointer-events: none;
 		transition:
 			color 0.3s linear,
