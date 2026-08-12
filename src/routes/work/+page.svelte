@@ -278,29 +278,29 @@
 		gsap.to(imageEl, { x: e.clientX + 20, y: e.clientY - 30, duration: 0.55, ease: 'power2.out' });
 	}
 
-	onMount(() => {
-		if ((pageRevealFinished && !title) || $prefersReducedMotion) return;
+	// onMount(() => {
+	// 	if ((pageRevealFinished && !title) || $prefersReducedMotion) return;
 
-		document.fonts.ready.then(() => {
-			const splitParams = {
-				type: 'chars, lines',
-				smartWrap: true,
-				mask: 'lines' as 'lines'
-			};
+	// 	document.fonts.ready.then(() => {
+	// 		const splitParams = {
+	// 			type: 'chars, lines',
+	// 			smartWrap: true,
+	// 			mask: 'lines' as 'lines'
+	// 		};
 
-			splitTitle = SplitText.create(title, splitParams);
+	// 		splitTitle = SplitText.create(title, splitParams);
 
-			const tl = gsap.timeline();
+	// 		const tl = gsap.timeline();
 
-			tl.from(splitTitle.chars, {
-				yPercent: 70,
-				autoAlpha: 0,
-				stagger: 0.04,
-				duration: 1,
-				ease: 'power4.out'
-			});
-		});
-	});
+	// 		tl.from(splitTitle.chars, {
+	// 			yPercent: 70,
+	// 			autoAlpha: 0,
+	// 			stagger: 0.04,
+	// 			duration: 1,
+	// 			ease: 'power4.out'
+	// 		});
+	// 	});
+	// });
 </script>
 
 <h1 bind:this={title} class="title">Work</h1>

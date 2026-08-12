@@ -87,9 +87,11 @@
 			},
 			'<'
 		);
+		console.log('homeReveal');
 	}
 
 	function simpleReveal() {
+		console.log('simpleReveal');
 		tl.to('.curtain', {
 			duration: 0.3,
 			opacity: 0,
