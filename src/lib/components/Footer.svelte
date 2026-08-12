@@ -15,7 +15,15 @@
 			<li><ExternalLink href="https://www.linkedin.com/in/lisasundberg/" label="Linkedin" /></li>
 		</ul>
 	</section>
-	<small>© {new Date().getFullYear()}</small>
+	<div class="sub">
+		<small
+			>This site is a work in progress, created in the small moments when my baby sleeps. If you
+			have ideas for improvements, <a class="link" href="mailto:hello@lisasundberg.com"
+				>I'd love to hear from you!</a
+			>
+		</small>
+		<small>© {new Date().getFullYear()}</small>
+	</div>
 </footer>
 
 <style>
@@ -23,6 +31,8 @@
 		grid-column: main;
 		display: grid;
 		grid-template-columns: subgrid;
+		grid-template-rows: 1fr auto 1fr;
+		grid-template-areas: 'spacer' 'content' 'sub';
 		align-content: center;
 		box-sizing: border-box;
 		position: relative;
@@ -33,11 +43,12 @@
 		z-index: 10;
 
 		@media (width >= 768px) {
-			padding-block: 4em;
+			padding-top: 0;
 		}
 	}
 
 	section {
+		grid-area: content;
 		display: grid;
 		grid-template-columns: var(--two-cols);
 		gap: var(--content-gap);
@@ -56,9 +67,15 @@
 		margin-top: 0.25em;
 	}
 
+	.sub {
+		grid-area: sub;
+		display: flex;
+		justify-content: space-between;
+		align-items: flex-end;
+		opacity: 0.5;
+	}
+
 	small {
-		position: absolute;
-		bottom: 2rem;
-		right: 0;
+		max-width: 30ch;
 	}
 </style>
