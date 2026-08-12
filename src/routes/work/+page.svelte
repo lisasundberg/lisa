@@ -12,6 +12,7 @@
 	import AH from '$lib/assets/akademiskahus/ah-mockup-1.jpg?enhanced';
 	import Homage from '$lib/assets/homage/homage-mockup-1.jpg?enhanced';
 	import Envolve from '$lib/assets/envolve/envolve.png?enhanced';
+	import { linear } from 'svelte/easing';
 
 	const featuredWork = [
 		{
@@ -71,7 +72,13 @@
 		{
 			year: '2023',
 			client: 'Homage',
-			description: 'Website (Awwwards Honorable Mention)',
+			description: 'Website redesign',
+			awards: [
+				{
+					name: 'Awwwards Honorable Mention',
+					link: 'https://www.awwwards.com/sites/homage-2'
+				}
+			],
 			tech: 'SvelteKit, GSAP',
 			link: 'https://homage.se/'
 		},
