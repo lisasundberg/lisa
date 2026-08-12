@@ -11,38 +11,38 @@
 
 	let splitTitle: SplitText;
 
-	onMount(() => {
-		if ((pageRevealFinished && !title) || !body || $prefersReducedMotion) return;
+	// onMount(() => {
+	// 	if ((pageRevealFinished && !title) || !body || $prefersReducedMotion) return;
 
-		document.fonts.ready.then(() => {
-			const splitParams = {
-				type: 'lines',
-				smartWrap: true,
-				mask: 'lines' as 'lines'
-			};
+	// 	document.fonts.ready.then(() => {
+	// 		const splitParams = {
+	// 			type: 'lines',
+	// 			smartWrap: true,
+	// 			mask: 'lines' as 'lines'
+	// 		};
 
-			splitTitle = SplitText.create(body, splitParams);
+	// 		splitTitle = SplitText.create(body, splitParams);
 
-			const tl = gsap.timeline();
+	// 		const tl = gsap.timeline();
 
-			tl.from(title, {
-				opacity: 0,
-				ease: 'linear',
-				duration: 0.7,
-				delay: 0.2
-			}).from(
-				splitTitle.lines,
-				{
-					yPercent: 50,
-					autoAlpha: 0,
-					stagger: 0.1,
-					duration: 0.7,
-					ease: 'power4.out'
-				},
-				'-=0.6'
-			);
-		});
-	});
+	// 		tl.from(title, {
+	// 			opacity: 0,
+	// 			ease: 'linear',
+	// 			duration: 0.7,
+	// 			delay: 0.2
+	// 		}).from(
+	// 			splitTitle.lines,
+	// 			{
+	// 				yPercent: 50,
+	// 				autoAlpha: 0,
+	// 				stagger: 0.1,
+	// 				duration: 0.7,
+	// 				ease: 'power4.out'
+	// 			},
+	// 			'-=0.6'
+	// 		);
+	// 	});
+	// });
 </script>
 
 <section class="section intro" id="intro">
