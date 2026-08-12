@@ -76,6 +76,7 @@
 		transition:
 			color 0.3s linear,
 			fill 0.3s linear;
+		opacity: 0;
 
 		@media (width >= 1000px) {
 			bottom: -3.99vw;
