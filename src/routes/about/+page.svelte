@@ -15,39 +15,39 @@
 	let title: HTMLElement | null;
 	let splitTitle: SplitText;
 
-	onMount(() => {
-		if ((pageRevealFinished && !title) || $prefersReducedMotion) return;
+	// onMount(() => {
+	// 	if ((pageRevealFinished && !title) || $prefersReducedMotion) return;
 
-		document.fonts.ready.then(() => {
-			const splitParams = {
-				type: 'chars, lines',
-				smartWrap: true,
-				mask: 'lines' as 'lines'
-			};
+	// 	document.fonts.ready.then(() => {
+	// 		const splitParams = {
+	// 			type: 'chars, lines',
+	// 			smartWrap: true,
+	// 			mask: 'lines' as 'lines'
+	// 		};
 
-			splitTitle = SplitText.create(title, splitParams);
+	// 		splitTitle = SplitText.create(title, splitParams);
 
-			const tl = gsap.timeline();
+	// 		const tl = gsap.timeline();
 
-			tl.from(splitTitle.chars, {
-				yPercent: 70,
-				autoAlpha: 0,
-				stagger: 0.04,
-				duration: 1,
-				ease: 'power4.out'
-			}).from(
-				'.body',
-				{
-					opacity: 0,
-					y: 20,
-					stagger: 0.05,
-					ease: 'power2.out',
-					duration: 0.7
-				},
-				'-=0.8'
-			);
-		});
-	});
+	// 		tl.from(splitTitle.chars, {
+	// 			yPercent: 70,
+	// 			autoAlpha: 0,
+	// 			stagger: 0.04,
+	// 			duration: 1,
+	// 			ease: 'power4.out'
+	// 		}).from(
+	// 			'.body',
+	// 			{
+	// 				opacity: 0,
+	// 				y: 20,
+	// 				stagger: 0.05,
+	// 				ease: 'power2.out',
+	// 				duration: 0.7
+	// 			},
+	// 			'-=0.8'
+	// 		);
+	// 	});
+	// });
 </script>
 
 <section class="about">
