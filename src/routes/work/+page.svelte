@@ -6,8 +6,8 @@
 	import { pageRevealFinished } from '$lib/stores/app';
 	import { prefersReducedMotion } from '$lib/stores/motion';
 
-	import Card from '$lib/components/Card.svelte';
 	import Featured from '$lib/components/Featured.svelte';
+	import Pill from '$lib/components/Pill.svelte';
 
 	import AH from '$lib/assets/akademiskahus/ah-mockup-1.jpg?enhanced';
 	import Homage from '$lib/assets/homage/homage-mockup-1.jpg?enhanced';
@@ -78,7 +78,17 @@
 		{
 			year: '2023',
 			client: 'Alster',
-			description: 'Website (Awwwards honorable mention, CSSDA special kudos)',
+			description: 'Website',
+			awards: [
+				{
+					name: 'Awwwards honorable mention',
+					link: 'https://www.awwwards.com/sites/alster'
+				},
+				{
+					name: 'CSSDA special kudos',
+					link: 'https://www.cssdesignawards.com/sites/alster/42896/'
+				}
+			],
 			tech: 'SvelteKit, GSAP',
 			link: 'https://alster.se/'
 		},
@@ -208,7 +218,17 @@
 		{
 			year: '2019',
 			client: 'Homage',
-			description: 'Website (Awwwards honorable mention + mobile excellence)',
+			description: 'Website',
+			awards: [
+				{
+					name: 'Awwwards honorable mention',
+					link: 'https://www.awwwards.com/sites/homage'
+				},
+				{
+					name: 'Awwwards mobile excellence',
+					link: 'https://www.awwwards.com/sites/homage'
+				}
+			],
 			tech: 'React',
 			link: 'https://www.awwwards.com/sites/homage'
 		},
@@ -306,19 +326,37 @@
 	<p class="p-small">Pretty much all the projects I've worked on, big and small</p>
 	<table class="work-index">
 		<tbody>
-			{#each experiences as { year, client, description, link, tech }}
+			{#each experiences as { year, client, description, awards, link, tech }}
 				<tr>
 					<td class="year">{year}<span class="client -mobile">, {client}</span></td>
 					<td class="client -desktop">{client}</td>
 
 					{#if link}
 						<td class="description">
-							<a class="link -plain" href={link} target="_blank" rel="noopener noreferrer">
+							<a class="link -plain" href={link} target="_blank">
 								{description} <span class="external-indicator">↗</span>
+								{#if awards}
+									<span class="awards">
+										{#each awards as { name }}
+											<Pill>{name}</Pill>
+										{/each}
+									</span>
+								{/if}
 							</a>
 						</td>
 					{:else}
-						<td class="description">{description}</td>
+						<td class="description">
+							{description}
+							{#if awards}
+								<span class="awards">
+									{#each awards as { name }}
+										<span class="pill">
+											{name}
+										</span>
+									{/each}
+								</span>
+							{/if}</td
+						>
 					{/if}
 					<td class="tech -mobile label">{tech}</td>
 					<td class="tech -desktop">{tech}</td>
@@ -410,6 +448,10 @@
 		text-align: left;
 		padding: 0.75em 0;
 
+		&.tech {
+			align-content: end;
+		}
+
 		&:not(&.label) {
 			font-size: var(--font-size-body-xsmall);
 		}
@@ -438,6 +480,23 @@
 
 		@media (width >= 768px) {
 			padding: 0.375em;
+		}
+	}
+
+	.external-indicator {
+		margin-left: 0.25em;
+	}
+
+	.awards {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5em;
+		margin-top: 1em;
+
+		@media (width >= 768px) {
+			display: inline-flex;
+			margin-top: 0;
+			margin-left: 1em;
 		}
 	}
 
