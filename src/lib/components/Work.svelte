@@ -384,8 +384,7 @@
 		font-family: var(--font-sansserif);
 		text-transform: uppercase;
 		font-size: clamp(1.75rem, 3.3vw, 3rem);
-		letter-spacing: 0;
-		font-weight: 400;
+		letter-spacing: 0.0125em;
 	}
 
 	.body {
