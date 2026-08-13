@@ -18,8 +18,8 @@
 	<div class="sub">
 		<small
 			>This site is a work in progress, created in the small moments when my baby sleeps. If you
-			have ideas for improvements, <a class="link" href="mailto:hello@lisasundberg.com"
-				>I'd love to hear from you!</a
+			have feedback, <a class="link" href="mailto:hello@lisasundberg.com"
+				>don't hesitate to reach out!</a
 			>
 		</small>
 		<small>© {new Date().getFullYear()}</small>
@@ -76,6 +76,6 @@
 	}
 
 	small {
-		max-width: 30ch;
+		max-width: 27ch;
 	}
 </style>
