@@ -88,11 +88,11 @@
 			description: 'Website',
 			awards: [
 				{
-					name: 'Awwwards honorable mention',
+					name: 'Awwwards Honorable Mention',
 					link: 'https://www.awwwards.com/sites/alster'
 				},
 				{
-					name: 'CSSDA special kudos',
+					name: 'CSSDA Special Kudos',
 					link: 'https://www.cssdesignawards.com/sites/alster/42896/'
 				}
 			],
@@ -228,11 +228,11 @@
 			description: 'Website',
 			awards: [
 				{
-					name: 'Awwwards honorable mention',
+					name: 'Awwwards Honorable Mention',
 					link: 'https://www.awwwards.com/sites/homage'
 				},
 				{
-					name: 'Awwwards mobile excellence',
+					name: 'Awwwards Mobile Excellence',
 					link: 'https://www.awwwards.com/sites/homage'
 				}
 			],
