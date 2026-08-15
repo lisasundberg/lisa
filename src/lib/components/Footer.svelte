@@ -10,7 +10,6 @@
 			<p><a href="mailto:hello@lisasundberg.com">hello@lisasundberg.com</a></p>
 		</div>
 		<ul>
-			<li><ExternalLink href="https://codepen.io/lisasundae/" label="Codepen" /></li>
 			<li><ExternalLink href="https://github.com/lisasundberg" label="Github" /></li>
 			<li><ExternalLink href="https://www.linkedin.com/in/lisasundberg/" label="Linkedin" /></li>
 		</ul>

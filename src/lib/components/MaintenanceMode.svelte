@@ -5,7 +5,6 @@
 <main class="maintenance-mode">
 	<div class="content">
 		<div>
-			<!-- <h1>Lisa Sundberg</h1> -->
 			<h1 class="label-bold">Lisa Sundberg</h1>
 			<h2 class="label">Frontend developer</h2>
 		</div>

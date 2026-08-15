@@ -12,11 +12,6 @@
 			id: 'about',
 			label: 'About',
 			slug: '/about'
-		},
-		{
-			id: 'contact',
-			label: 'Contact',
-			slug: '/contact'
 		}
 	];
 </script>
