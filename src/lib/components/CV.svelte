@@ -102,6 +102,20 @@
 			year: '2020',
 			link: 'https://www.awwwards.com/sites/homage',
 			agency: 'Another State'
+		},
+		{
+			award: 'CSSDA Special Kudos',
+			project: 'Homage',
+			year: '2020',
+			link: 'https://www.cssdesignawards.com/sites/homage/36576/',
+			agency: 'Another State'
+		},
+		{
+			award: 'CSSDA Special Kudos',
+			project: 'Envolve',
+			year: '2019',
+			link: 'https://www.cssdesignawards.com/sites/envolve/35817/',
+			agency: 'Another State'
 		}
 	];
 </script>
