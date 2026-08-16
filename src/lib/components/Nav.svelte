@@ -46,7 +46,7 @@
 	ul {
 		width: 100%;
 		display: flex;
-		justify-content: space-between;
+		justify-content: space-around;
 		align-items: center;
 		gap: 1rem;
 		margin: 0;
