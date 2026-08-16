@@ -8,7 +8,7 @@
 	let chars: Element[];
 	let dot: Element | null;
 	let tl: gsap.core.Timeline;
-	let themeColor: string;
+	let themeColorBg: string;
 
 	//  TO DO: blink while fonts load
 	// document.fonts.ready.then(() => {
@@ -18,9 +18,9 @@
 	function homeReveal(heading: HTMLDivElement) {
 		chars = [...heading.querySelectorAll('.char')];
 		dot = document.querySelector('.hero-heading');
-		themeColor = getComputedStyle(document.documentElement).getPropertyValue(
-			'--theme-color-primary'
-		);
+
+		themeColorBg = '#fffaf7';
+
 		// Blink
 		if (!dot) return;
 		const dotTween = gsap.fromTo(
@@ -44,13 +44,11 @@
 			{
 				willChange: 'opacity, transform',
 				opacity: 0,
-				rotationX: -90,
-				yPercent: 50
+				yPercent: 25
 			},
 			{
 				ease: 'cubic-bezier(.215,.61,.355,1)',
 				opacity: 1,
-				rotationX: 0,
 				yPercent: 0,
 				duration: 0.8,
 				stagger: {
@@ -60,8 +58,8 @@
 			}
 		);
 
-		tl.timeScale(1.2);
-		tl.set(heading, { color: '#fffaf7' });
+		tl.timeScale(1.5);
+		tl.set(heading, { color: themeColorBg, zIndex: 1000 });
 		tl.add(dotTween, '<');
 		tl.to(dot, { opacity: 1, duration: 0.5 });
 		tl.add(charTween, '<-0.1');
@@ -81,17 +79,15 @@
 		tl.to(
 			heading,
 			{
-				color: themeColor,
-				duration: 1,
+				color: 'unset',
+				duration: 0.2,
 				delay: 0.8
 			},
 			'<'
 		);
-		console.log('homeReveal');
 	}
 
 	function simpleReveal() {
-		console.log('simpleReveal');
 		tl.to('.curtain', {
 			duration: 0.3,
 			opacity: 0,
@@ -101,6 +97,7 @@
 
 	onMount(() => {
 		heading = document.querySelector('.hero-heading');
+
 		tl = gsap.timeline({
 			onComplete: () => {
 				pageRevealFinished.set(true);

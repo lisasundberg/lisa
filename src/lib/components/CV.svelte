@@ -102,6 +102,20 @@
 			year: '2020',
 			link: 'https://www.awwwards.com/sites/homage',
 			agency: 'Another State'
+		},
+		{
+			award: 'CSSDA Special Kudos',
+			project: 'Homage',
+			year: '2020',
+			link: 'https://www.cssdesignawards.com/sites/homage/36576/',
+			agency: 'Another State'
+		},
+		{
+			award: 'CSSDA Special Kudos',
+			project: 'Envolve',
+			year: '2019',
+			link: 'https://www.cssdesignawards.com/sites/envolve/35817/',
+			agency: 'Another State'
 		}
 	];
 </script>
@@ -187,15 +201,16 @@
 		color: var(--_theme-color-primary);
 		grid-template-areas:
 			'competences'
-			'awards'
 			'work'
-			'education';
+			'education'
+			'awards';
 
 		@media (width >= 768px) {
 			grid-template-columns: 1fr 1fr;
 			grid-template-areas:
-				'competences awards'
-				'work education';
+				'competences .'
+				'work education'
+				'. awards';
 		}
 	}
 
