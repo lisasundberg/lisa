@@ -201,15 +201,16 @@
 		color: var(--_theme-color-primary);
 		grid-template-areas:
 			'competences'
-			'awards'
 			'work'
-			'education';
+			'education'
+			'awards';
 
 		@media (width >= 768px) {
 			grid-template-columns: 1fr 1fr;
 			grid-template-areas:
-				'competences awards'
-				'work education';
+				'competences .'
+				'work education'
+				'. awards';
 		}
 	}
 
