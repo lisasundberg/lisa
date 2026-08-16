@@ -66,7 +66,7 @@
 		</p>
 	</div>
 
-	<ImageScrollReveal>
+	<ImageScrollReveal delay={0.2}>
 		<Image src={profilePic} alt="Lisa" />
 	</ImageScrollReveal>
 </section>

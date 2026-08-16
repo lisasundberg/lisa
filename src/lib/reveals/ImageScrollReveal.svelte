@@ -7,11 +7,11 @@
 
 	interface Props {
 		children?: import('svelte').Snippet;
+		delay?: number;
 	}
 
-	let { children }: Props = $props();
+	const { children, delay }: Props = $props();
 	let container: HTMLElement;
-	let mask: HTMLElement;
 	let inner: HTMLElement;
 
 	onMount(() => {
@@ -33,7 +33,8 @@
 			{
 				clipPath: 'inset(0% 0% 0%)',
 				duration: 0.75,
-				ease: 'power4.out'
+				ease: 'power4.out',
+				delay: delay || 0
 			}
 		).from(
 			inner,
