@@ -369,7 +369,9 @@
 
 <section class="archive">
 	<h2 class="label-bold">Archive / index</h2>
-	<p class="p-small">Pretty much all the projects I've worked on, big and small</p>
+	<p class="p-small">
+		Pretty much all the projects I've worked on, big and small.<br /> Linked if still available online.
+	</p>
 	<table class="work-index">
 		<tbody>
 			{#each experiences as { year, client, description, awards, link, tech }}
