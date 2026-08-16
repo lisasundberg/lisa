@@ -12,7 +12,6 @@
 	import AH from '$lib/assets/akademiskahus/ah-mockup-1.jpg?enhanced';
 	import Homage from '$lib/assets/homage/homage-mockup-1.jpg?enhanced';
 	import Envolve from '$lib/assets/envolve/envolve.png?enhanced';
-	import { linear } from 'svelte/easing';
 
 	const featuredWork = [
 		{
@@ -153,6 +152,12 @@
 			year: '2021',
 			client: 'Wirepas',
 			description: 'Website',
+			awards: [
+				{
+					name: 'Awwwards Honorable Mention',
+					link: 'https://www.awwwards.com/sites/wirepas'
+				}
+			],
 			tech: 'React (Gatsby), Hubspot',
 			link: 'https://wirepas.com/'
 		},
@@ -234,6 +239,10 @@
 				{
 					name: 'Awwwards Mobile Excellence',
 					link: 'https://www.awwwards.com/sites/homage'
+				},
+				{
+					name: 'CSSDA Special Kudos',
+					link: 'https://www.cssdesignawards.com/sites/homage/36576/'
 				}
 			],
 			tech: 'React',
@@ -242,6 +251,16 @@
 		{
 			year: '2019',
 			client: 'Envolve',
+			awards: [
+				{
+					name: 'CSSDA Special Kudos',
+					link: 'https://www.cssdesignawards.com/sites/envolve/35817/'
+				},
+				{
+					name: 'Awwwards Nominee',
+					link: 'https://www.awwwards.com/sites/envolve'
+				}
+			],
 			description: 'Website',
 			tech: 'React, GSAP'
 		},
@@ -250,6 +269,16 @@
 			year: '2019',
 			client: 'Unicef / H&M Foundation',
 			description: '“Babytalk for Parents” activation/game',
+			awards: [
+				{
+					name: 'Webby nominee',
+					link: 'https://winners.webbyawards.com/2020/apps-software/voice-features/best-writing/120793/baby-talk-for-parents'
+				},
+				{
+					name: 'Awwwards Honorable Mention',
+					link: 'https://www.awwwards.com/sites/baby-talk-for-dads'
+				}
+			],
 			tech: 'React',
 			link: 'https://babytalkforparents.org/'
 		},
@@ -263,6 +292,16 @@
 			year: '2018',
 			client: 'Bambora',
 			description: 'Website',
+			awards: [
+				{
+					name: 'Awwwards Honorable Mention',
+					link: 'https://www.awwwards.com/sites/bambora'
+				},
+				{
+					name: 'CSSDA Special Kudos',
+					link: 'https://www.cssdesignawards.com/sites/bambora/34723/'
+				}
+			],
 			tech: 'Craft, Stimulus.js'
 		}
 	];
@@ -314,9 +353,9 @@
 
 <section class="featured">
 	<h2 class="label-bold">Selected projects</h2>
-	<div class="cases" onmouseleave={onMouseLeave} onmousemove={onMouseMove}>
+	<div class="cases" role="region" onmouseleave={onMouseLeave} onmousemove={onMouseMove}>
 		{#each featuredWork as { heading, label, link, image }}
-			<div class="card" onmouseenter={() => onMouseEnter(image)}>
+			<div class="card" role="button" tabindex="0" onmouseenter={() => onMouseEnter(image)}>
 				<Featured {heading} {label} {link} />
 			</div>
 		{/each}
@@ -357,9 +396,7 @@
 							{#if awards}
 								<span class="awards">
 									{#each awards as { name }}
-										<span class="pill">
-											{name}
-										</span>
+										<Pill>{name}</Pill>
 									{/each}
 								</span>
 							{/if}</td
@@ -444,8 +481,8 @@
 	}
 
 	@media (hover: hover) {
-		:global(tr:has(a:hover)),
-		:global(tr:has(a:focus)) {
+		:global(tr:has(.link:hover)),
+		:global(tr:has(.link:focus)) {
 			background-color: var(--_theme-color-accent);
 			color: var(--_theme-color-bg);
 		}
