@@ -71,12 +71,11 @@
 		margin: 0;
 		order: 3;
 		line-height: 1;
-		z-index: 1000;
+		z-index: 998;
 		pointer-events: none;
 		transition:
 			color 0.3s linear,
 			fill 0.3s linear;
-		opacity: 0;
 
 		@media (width >= 1000px) {
 			bottom: -3.99vw;
