@@ -15,39 +15,45 @@
 	let title: HTMLElement | null;
 	let splitTitle: SplitText;
 
-	// onMount(() => {
-	// 	if ((pageRevealFinished && !title) || $prefersReducedMotion) return;
+	onMount(() => {
+		if ((pageRevealFinished && !title) || $prefersReducedMotion) return;
 
-	// 	document.fonts.ready.then(() => {
-	// 		const splitParams = {
-	// 			type: 'chars, lines',
-	// 			smartWrap: true,
-	// 			mask: 'lines' as 'lines'
-	// 		};
+		const splitParams = {
+			type: 'chars, lines',
+			smartWrap: true,
+			mask: 'lines' as 'lines'
+		};
 
-	// 		splitTitle = SplitText.create(title, splitParams);
+		const tl = gsap.timeline();
 
-	// 		const tl = gsap.timeline();
+		const titleParams = {
+			yPercent: 70,
+			autoAlpha: 0,
+			stagger: 0.04,
+			duration: 1,
+			ease: 'power4.out'
+		};
 
-	// 		tl.from(splitTitle.chars, {
-	// 			yPercent: 70,
-	// 			autoAlpha: 0,
-	// 			stagger: 0.04,
-	// 			duration: 1,
-	// 			ease: 'power4.out'
-	// 		}).from(
-	// 			'.body',
-	// 			{
-	// 				opacity: 0,
-	// 				y: 20,
-	// 				stagger: 0.05,
-	// 				ease: 'power2.out',
-	// 				duration: 0.7
-	// 			},
-	// 			'-=0.8'
-	// 		);
-	// 	});
-	// });
+		const bodyParams = {
+			opacity: 0,
+			yPercent: 10,
+			stagger: 0.1,
+			ease: 'power2.out',
+			duration: 0.5
+		};
+
+		document.fonts.ready.then(() => {
+			splitTitle = SplitText.create(title, splitParams);
+
+			tl.from(splitTitle.chars, titleParams)
+				.from('.body', bodyParams, '<=0.2')
+				.from('.cv', { opacity: 0 }, '<0.2');
+			// Nåt sånt efter?
+			// .call(() => {
+			// 	introRevealFinished.set(true);
+			// });
+		});
+	});
 </script>
 
 <section class="about">
@@ -66,7 +72,7 @@
 		</p>
 	</div>
 
-	<ImageScrollReveal delay={0.2}>
+	<ImageScrollReveal delay={0.3}>
 		<Image src={profilePic} alt="Lisa" />
 	</ImageScrollReveal>
 </section>
