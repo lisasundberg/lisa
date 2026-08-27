@@ -73,8 +73,6 @@
 </main>
 <Footer />
 
-<PageReveal />
-
 <style>
 	header {
 		grid-column: full;

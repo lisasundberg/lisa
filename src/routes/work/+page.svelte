@@ -12,6 +12,7 @@
 	import AH from '$lib/assets/akademiskahus/ah-mockup-1.jpg?enhanced';
 	import Homage from '$lib/assets/homage/homage-mockup-1.jpg?enhanced';
 	import Envolve from '$lib/assets/envolve/envolve.png?enhanced';
+	// import Webbdagarna from '$lib/assets/webbdagarna/webbdagarna-mockup-1.jpg?enhanced';
 
 	const featuredWork = [
 		{
@@ -30,6 +31,12 @@
 			heading: 'Envolve',
 			label: 'React, GSAP',
 			link: '/work/envolve',
+			image: Envolve
+		},
+		{
+			heading: 'Webbdagarna / Storyblok',
+			label: 'Three.js, Mediapipe',
+			link: '/work/webbdagarna',
 			image: Envolve
 		}
 	];
@@ -323,30 +330,6 @@
 	function onMouseMove(e: MouseEvent) {
 		gsap.to(imageEl, { x: e.clientX + 20, y: e.clientY - 30, duration: 0.55, ease: 'power2.out' });
 	}
-
-	// onMount(() => {
-	// 	if ((pageRevealFinished && !title) || $prefersReducedMotion) return;
-
-	// 	document.fonts.ready.then(() => {
-	// 		const splitParams = {
-	// 			type: 'chars, lines',
-	// 			smartWrap: true,
-	// 			mask: 'lines' as 'lines'
-	// 		};
-
-	// 		splitTitle = SplitText.create(title, splitParams);
-
-	// 		const tl = gsap.timeline();
-
-	// 		tl.from(splitTitle.chars, {
-	// 			yPercent: 70,
-	// 			autoAlpha: 0,
-	// 			stagger: 0.04,
-	// 			duration: 1,
-	// 			ease: 'power4.out'
-	// 		});
-	// 	});
-	// });
 </script>
 
 <h1 bind:this={title} class="title">Work</h1>
@@ -355,7 +338,12 @@
 	<h2 class="label-bold">Selected projects</h2>
 	<div class="cases" role="region" onmouseleave={onMouseLeave} onmousemove={onMouseMove}>
 		{#each featuredWork as { heading, label, link, image }}
-			<div class="card" role="button" tabindex="0" onmouseenter={() => onMouseEnter(image)}>
+			<div
+				class="featured-item"
+				role="button"
+				tabindex="0"
+				onmouseenter={() => onMouseEnter(image)}
+			>
 				<Featured {heading} {label} {link} />
 			</div>
 		{/each}

@@ -5,6 +5,7 @@
 
 	import { INVERTED_CLASSNAME } from '$lib/stores/theme';
 	import { prefersReducedMotion } from '$lib/stores/motion';
+	import { pageRevealFinished } from '$lib/stores/app';
 
 	import Button from '$lib/components/Button.svelte';
 
@@ -191,6 +192,10 @@
 				bg();
 			});
 		});
+
+		return () => {
+			if (context) context.revert();
+		};
 	});
 
 	onDestroy(() => {
