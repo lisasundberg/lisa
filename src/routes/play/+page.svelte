@@ -5,6 +5,9 @@
 		<li>
 			<a href="/play/splitting">Splitting</a>
 		</li>
+		<li>
+			<a href="/play/svg">SVG</a>
+		</li>
 	</ul>
 </section>
 
