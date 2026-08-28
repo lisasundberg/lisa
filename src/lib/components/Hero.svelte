@@ -6,24 +6,25 @@
 	let context: gsap.Context;
 
 	onMount(() => {
+		const textReveal = {
+			yPercent: 0,
+			autoAlpha: 1,
+			ease: 'power4.out',
+			duration: 0.5
+		};
+
 		document.fonts.ready.then(() => {
 			context = gsap.context(() => {
 				const text = gsap.utils.toArray<HTMLElement>('.text');
 
-				gsap.fromTo(
-					text,
-					{
+				gsap
+					.timeline()
+					.set(text, {
 						yPercent: 100,
 						autoAlpha: 0
-					},
-					{
-						yPercent: 0,
-						autoAlpha: 1,
-						duration: 0.7,
-						stagger: 0.1,
-						ease: 'power4.out'
-					}
-				);
+					})
+					.to(['.-hello .text', '.-name .text'], textReveal)
+					.to(['.-intro .text', '.-title .text'], textReveal);
 			}, intro);
 		});
 	});
@@ -63,18 +64,19 @@
 	.mask {
 		display: inline-block;
 		overflow: hidden;
+		height: fit-content;
 
 		&.-hello {
-			margin-top: 0.2em;
+			margin-top: 0.7em;
 		}
 
 		&.-intro {
 			margin-top: auto;
-			margin-bottom: 0.35em;
+			margin-bottom: 0.9em;
 		}
 
 		&.-title {
-			margin-top: -0.375em;
+			margin-top: -1.75em;
 		}
 	}
 
