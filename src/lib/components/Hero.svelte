@@ -4,6 +4,7 @@
 	import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 	import { EASE_REVEAL } from '$lib/gsap/eases';
+	import { pageRevealFinished } from '$lib/stores/app';
 
 	let intro: HTMLElement;
 	let context: gsap.Context;
@@ -22,7 +23,9 @@
 		document.fonts.ready.then(() => {
 			context = gsap.context(() => {
 				gsap
-					.timeline()
+					.timeline({
+						onComplete: () => pageRevealFinished.set(true)
+					})
 					.set('.text', {
 						yPercent: 100,
 						autoAlpha: 0

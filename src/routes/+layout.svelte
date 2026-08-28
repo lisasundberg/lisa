@@ -63,7 +63,7 @@
 	});
 </script>
 
-<Body class={$currentTheme} />
+<Body class="{$currentTheme} {$pageRevealFinished ? 'page-reveal-finished' : ''}" />
 <Meta />
 <header>
 	<Nav />
@@ -82,6 +82,16 @@
 		top: 0;
 		z-index: 8;
 		view-transition-name: header;
+		opacity: 0;
+		translate: 0 -0.5em;
+		transition:
+			opacity 0.5s var(--ease-in-out-cubic),
+			translate 0.6s var(--ease-in-out-cubic);
+
+		:global(.page-reveal-finished &) {
+			opacity: 1;
+			translate: 0;
+		}
 	}
 
 	@keyframes fade-in {
