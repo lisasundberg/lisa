@@ -36,7 +36,6 @@
 				gsap
 					.timeline({
 						scrollTrigger: {
-							markers: true,
 							start: 'top top',
 							end: 'top+=300px',
 							scrub: true
@@ -84,7 +83,7 @@
 	}
 
 	.text {
-		/* opacity: 0; */
+		visibility: hidden;
 		margin-block: 0;
 		text-box-trim: trim-both;
 	}
@@ -95,7 +94,7 @@
 		height: fit-content;
 
 		&.-hello {
-			margin-top: 0.7em;
+			margin-top: 1em;
 		}
 
 		&.-intro {
@@ -104,7 +103,11 @@
 		}
 
 		&.-title {
-			margin-top: -1.75em;
+			margin-top: -1em;
+
+			@media (width>768px) {
+				margin-top: -1.75em;
+			}
 		}
 	}
 
