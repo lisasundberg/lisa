@@ -5,6 +5,7 @@
 		--font-sansserif: 'seasonsans-regular', sans-serif;
 		--font-sansserif-semibold: 'seasonsans-semibold', sans-serif;
 		--font-body: 'seasonsans-regular';
+		--font-size-display: clamp(3rem, 7vw, 6rem);
 		--font-size-h1: clamp(2.25rem, 4vw, 3.5rem);
 		--font-size-h2: clamp(1.5rem, 3vw, 2rem);
 		--font-size-body: clamp(1.5rem, 2.5vw, 2rem);
