@@ -1,30 +1,48 @@
 <script lang="ts">
 	import { onDestroy, onMount } from 'svelte';
 	import { gsap } from 'gsap';
+	import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+	import { EASE_REVEAL } from '$lib/gsap/eases';
 
 	let intro: HTMLElement;
 	let context: gsap.Context;
 
 	onMount(() => {
+		// bryt ut
 		const textReveal = {
 			yPercent: 0,
 			autoAlpha: 1,
-			ease: 'power4.out',
-			duration: 0.5
+			ease: EASE_REVEAL,
+			duration: 1
 		};
+
+		gsap.registerPlugin(ScrollTrigger);
 
 		document.fonts.ready.then(() => {
 			context = gsap.context(() => {
-				const text = gsap.utils.toArray<HTMLElement>('.text');
-
 				gsap
 					.timeline()
-					.set(text, {
+					.set('.text', {
 						yPercent: 100,
 						autoAlpha: 0
 					})
 					.to(['.-hello .text', '.-name .text'], textReveal)
-					.to(['.-intro .text', '.-title .text'], textReveal);
+					.to(['.-intro .text', '.-title .text'], textReveal, '-=0.5');
+
+				gsap
+					.timeline({
+						scrollTrigger: {
+							markers: true,
+							start: 'top top',
+							end: 'top+=300px',
+							scrub: true
+						}
+					})
+					.to('.heading', { scale: 0.75, transformOrigin: 'left' })
+					.to('.preamble', { autoAlpha: 0 }, '<')
+					.to('.-name', { x: '-8em' }, '<')
+					.to('.-title', { y: '-1vw' }, '<');
 			}, intro);
 		});
 	});
@@ -45,8 +63,15 @@
 </section>
 
 <style>
+	:global(main) {
+		min-height: 300dvh;
+		padding-top: 35dvh;
+	}
+
 	.intro {
-		margin-block: 25dvh;
+		position: sticky;
+		top: 0;
+		height: fit-content;
 	}
 
 	.row {
@@ -56,7 +81,7 @@
 	}
 
 	.text {
-		opacity: 0;
+		/* opacity: 0; */
 		margin-block: 0;
 		text-box-trim: trim-both;
 	}
