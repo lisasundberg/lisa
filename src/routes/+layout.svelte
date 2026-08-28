@@ -15,6 +15,7 @@
 	import Nav from '$lib/components/Nav.svelte';
 	import Footer from '$lib/components/Footer.svelte';
 	import PageReveal from '$lib/reveals/PageReveal.svelte';
+	import MouseGlow from '$lib/components/MouseGlow.svelte';
 
 	import '$lib/styles/index.css';
 
@@ -72,6 +73,7 @@
 	{@render children?.()}
 </main>
 <Footer />
+<MouseGlow />
 
 <style>
 	header {
