@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/stores';
+	import TextLogo from './TextLogo.svelte';
 	import OpenToWork from './OpenToWork.svelte';
 
 	const links = [
@@ -27,8 +28,9 @@
 				stroke-linecap="round"
 			/>
 		</svg> -->
+		<TextLogo />
 	</a>
-	<ul>
+	<!-- <ul>
 		{#each links as { id, label, slug }}
 			<li>
 				<a class="link -plain" class:active={$page.url.pathname === `/${id}`} href={slug}>
@@ -38,10 +40,10 @@
 				</a>
 			</li>
 		{/each}
-	</ul>
-	<div class="open-to-work">
+	</ul> -->
+	<!-- <div class="open-to-work">
 		<OpenToWork active />
-	</div>
+	</div> -->
 </nav>
 
 <style>

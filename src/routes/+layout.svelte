@@ -63,7 +63,7 @@
 	});
 </script>
 
-<Body class="{$currentTheme} {$pageRevealFinished ? 'page-reveal-finished' : ''}" />
+<Body class="{$currentTheme} {$pageRevealFinished ? '' : ' loading'}" />
 <Meta />
 <header>
 	<Nav />
@@ -81,16 +81,16 @@
 		position: sticky;
 		top: 0;
 		z-index: 8;
-		view-transition-name: header;
-		opacity: 0;
-		translate: 0 -0.5em;
+		opacity: 1;
+		translate: 0;
 		transition:
 			opacity 0.5s var(--ease-in-out-cubic),
 			translate 0.6s var(--ease-in-out-cubic);
+		view-transition-name: header;
 
-		:global(.page-reveal-finished &) {
-			opacity: 1;
-			translate: 0;
+		:global(.loading) {
+			opacity: 0;
+			translate: 0 -0.5em;
 		}
 	}
 

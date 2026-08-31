@@ -129,7 +129,7 @@
 
 	.heading {
 		font-size: var(--font-size-display);
-		line-height: 1.2;
+		line-height: 1;
 		margin: 0;
 
 		.-role & {
