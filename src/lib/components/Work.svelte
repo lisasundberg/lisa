@@ -346,7 +346,7 @@
 		:global(picture) {
 			grid-area: image;
 		}
-		@media (width > 768px) {
+		@media (width >= 768px) {
 			width: min(50%, 32rem);
 		}
 	}

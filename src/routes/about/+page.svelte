@@ -57,9 +57,8 @@
 </script>
 
 <section class="about">
+	<h1 class="title" bind:this={title}>About</h1>
 	<div class="intro">
-		<h1 class="title" bind:this={title}>About</h1>
-
 		<p class="body p-small">
 			I have 5+ years of experience in frontend development and a background in art direction. I
 			bridge design and code to create visually engaging, high-performing and accessible digital
@@ -72,9 +71,9 @@
 		</p>
 	</div>
 
-	<ImageScrollReveal delay={0.3}>
+	<!-- <ImageScrollReveal delay={0.3}>
 		<Image src={profilePic} alt="Lisa" />
-	</ImageScrollReveal>
+	</ImageScrollReveal> -->
 </section>
 <section class="cv">
 	<CV />
@@ -88,6 +87,16 @@
 		gap: var(--content-gap);
 		align-items: center;
 		z-index: 0;
+	}
+
+	.intro {
+		grid-column: 1 / 2;
+	}
+
+	.title {
+		grid-column: 2 / 3;
+		font-size: var(--font-size-display);
+		text-align: right;
 	}
 
 	.cv {

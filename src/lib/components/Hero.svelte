@@ -38,14 +38,14 @@
 						scrollTrigger: {
 							start: 'top top',
 							end: 'top+=300px',
-							scrub: true
+							scrub: 3
 						}
 					})
 					.to(['.mask.-hello', '.mask.-intro'], { width: 0 })
 					.to('.preamble', { autoAlpha: 0, duration: 0.1 }, '<')
-					.to('.heading', { scale: 0.75, transformOrigin: 'left' }, '<')
+					.to('.heading', { scale: 0.5, transformOrigin: 'left' }, '<')
 					.to('.row', { gap: 0 }, '<')
-					.to('.-role', { yPercent: -20 }, '<');
+					.to('.-role', { yPercent: -30 }, '<');
 			}, intro);
 		});
 	});
@@ -85,7 +85,7 @@
 		display: flex;
 		flex-direction: column;
 
-		@media (width > 768px) {
+		@media (width >= 768px) {
 			flex-direction: row;
 			gap: 0.8em;
 		}
@@ -115,7 +115,7 @@
 		&.-role {
 			margin-top: -1em;
 
-			@media (width>768px) {
+			@media (width >= 768px) {
 				margin-top: -1.75em;
 			}
 		}

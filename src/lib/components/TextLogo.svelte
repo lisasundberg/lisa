@@ -8,16 +8,13 @@
 
 <style>
 	.heading {
-		font-size: var(--font-size-display);
+		font-size: var(--font-size-h1);
 		line-height: 1;
 		margin: 0;
-		scale: 0.75;
 		transform-origin: top left;
-		mix-blend-mode: difference;
 
 		&.-role {
 			font-family: var(--font-display-italic);
-			margin-top: -5%;
 		}
 	}
 </style>
