@@ -31,7 +31,7 @@
 						autoAlpha: 0
 					})
 					.to(['.-hello .text', '.-name .text'], textReveal)
-					.to(['.-intro .text', '.-title .text'], textReveal, '-=0.5');
+					.to(['.-intro .text', '.-role .text'], textReveal, '-=0.5');
 
 				gsap
 					.timeline({
@@ -41,10 +41,11 @@
 							scrub: true
 						}
 					})
-					.to('.heading', { scale: 0.75, transformOrigin: 'left' })
-					.to('.preamble', { autoAlpha: 0 }, '<')
-					.to('.-name', { x: '-8em' }, '<')
-					.to('.-title', { y: '-1vw' }, '<');
+					.to(['.mask.-hello', '.mask.-intro'], { width: 0 })
+					.to('.preamble', { autoAlpha: 0, duration: 0.1 }, '<')
+					.to('.heading', { scale: 0.75, transformOrigin: 'left' }, '<')
+					.to('.row', { gap: 0 }, '<')
+					.to('.-role', { yPercent: -20 }, '<');
 			}, intro);
 		});
 	});
@@ -60,7 +61,7 @@
 	</div>
 
 	<div class="row">
-		<div class="mask -title"><h2 class="text heading">design engineer</h2></div>
+		<div class="mask -role"><h2 class="text heading">design engineer</h2></div>
 	</div>
 </section>
 
@@ -78,8 +79,12 @@
 
 	.row {
 		display: flex;
-		flex-wrap: wrap;
-		gap: 0.8em;
+		flex-direction: column;
+
+		@media (width > 768px) {
+			flex-direction: row;
+			gap: 0.8em;
+		}
 	}
 
 	.text {
@@ -92,6 +97,7 @@
 		display: inline-block;
 		overflow: hidden;
 		height: fit-content;
+		text-wrap: nowrap;
 
 		&.-hello {
 			margin-top: 1em;
@@ -99,10 +105,10 @@
 
 		&.-intro {
 			margin-top: auto;
-			margin-bottom: 0.9em;
+			margin-bottom: 1.1em;
 		}
 
-		&.-title {
+		&.-role {
 			margin-top: -1em;
 
 			@media (width>768px) {
@@ -122,7 +128,7 @@
 		line-height: 1.2;
 		margin: 0;
 
-		.-title & {
+		.-role & {
 			font-family: var(--font-display-italic);
 		}
 	}
