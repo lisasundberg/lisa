@@ -53,22 +53,26 @@
 	onDestroy(() => context?.revert());
 </script>
 
-<section class="intro" bind:this={intro}>
-	<div class="row">
-		<div class="mask -hello"><p class="text preamble">Hello, my name is</p></div>
-		<div class="mask -name"><h1 class="text heading">Lisa Sundberg</h1></div>
-		<div class="mask -intro"><p class="text preamble">and I'm a</p></div>
-	</div>
+<section class="hero">
+	<div class="intro" bind:this={intro}>
+		<div class="row">
+			<div class="mask -hello"><p class="text preamble">Hello, my name is</p></div>
+			<div class="mask -name"><h1 class="text heading">Lisa Sundberg</h1></div>
+			<div class="mask -intro"><p class="text preamble">and I'm a</p></div>
+		</div>
 
-	<div class="row">
-		<div class="mask -role"><h2 class="text heading">design engineer</h2></div>
+		<div class="row">
+			<div class="mask -role"><h2 class="text heading">design engineer</h2></div>
+		</div>
 	</div>
 </section>
 
 <style>
-	:global(main) {
-		min-height: 300dvh;
-		padding-top: 35dvh;
+	.hero {
+		min-height: 75dvh;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
 	}
 
 	.intro {
