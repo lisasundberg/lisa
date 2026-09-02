@@ -5,5 +5,19 @@
 	import '$lib/styles/index.css';
 </script>
 
-<Hero />
+<section class="hero">
+	<Hero />
+</section>
+
 <!-- <Work /> -->
+
+<style>
+	.hero {
+		grid-column: main;
+		margin-inline: var(--content-margin);
+		min-height: 75dvh;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+	}
+</style>
