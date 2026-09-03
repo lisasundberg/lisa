@@ -38,14 +38,14 @@
 						scrollTrigger: {
 							start: 'top top',
 							end: 'top+=300px',
-							scrub: 3
+							scrub: true
 						}
 					})
 					.to(['.mask.-hello', '.mask.-intro'], { width: 0 })
 					.to('.preamble', { autoAlpha: 0, duration: 0.1 }, '<')
 					.to('.heading', { scale: 0.5, transformOrigin: 'left' }, '<')
 					.to('.row', { gap: 0 }, '<')
-					.to('.-role', { yPercent: -30 }, '<');
+					.to('.-role', { yPercent: -40 }, '<');
 			}, intro);
 		});
 	});

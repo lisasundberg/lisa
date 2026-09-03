@@ -28,7 +28,10 @@
 				stroke-linecap="round"
 			/>
 		</svg> -->
-		<TextLogo />
+
+		{#if $page.url.pathname !== '/'}
+			<TextLogo />
+		{/if}
 	</a>
 	<!-- <ul>
 		{#each links as { id, label, slug }}
