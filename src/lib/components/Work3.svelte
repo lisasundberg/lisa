@@ -1,5 +1,8 @@
 <script lang="ts">
+	import { gsap } from 'gsap';
+
 	import Button from '$lib/components/Button.svelte';
+	import { pointerFollow } from '$lib/actions/pointerFollow';
 
 	import Homage from '$lib/assets/homage/homage-mockup-1.jpg?enhanced';
 	import AH from '$lib/assets/akademiskahus/ah-mockup-1.jpg?enhanced';
@@ -24,6 +27,7 @@
 	];
 
 	let activeIndex: number | null = $state(null);
+	let sectionEl: HTMLElement = $state()!;
 
 	function handleMouseEnter(index: number) {
 		activeIndex = index;
@@ -32,10 +36,33 @@
 	function handleMouseLeave() {
 		activeIndex = null;
 	}
+
+	const FOLLOW_STRENGTH = 0.1;
+	const MAX_OFFSET = 40;
+
+	function computeImagesFollow(event: PointerEvent, rect: DOMRect | undefined) {
+		if (!rect) return { x: 0, y: 0 };
+
+		const relX = event.clientX - (rect.left + rect.width / 2);
+		const relY = event.clientY - (rect.top + rect.height / 2);
+
+		return {
+			x: gsap.utils.clamp(-MAX_OFFSET, MAX_OFFSET, relX * FOLLOW_STRENGTH),
+			y: gsap.utils.clamp(-MAX_OFFSET, MAX_OFFSET, relY * FOLLOW_STRENGTH)
+		};
+	}
 </script>
 
-<section class="work">
-	<div class="images" data-work-images>
+<section class="work" bind:this={sectionEl}>
+	<div
+		class="images"
+		data-work-images
+		use:pointerFollow={{
+			zone: sectionEl,
+			resetOnLeave: true,
+			compute: computeImagesFollow
+		}}
+	>
 		{#each cases as { src, title }, i}
 			<enhanced:img
 				{src}
@@ -105,7 +132,6 @@
 			'button';
 		gap: var(--content-margin);
 		min-height: 100dvh;
-		z-index: 1;
 	}
 
 	.content {
@@ -113,7 +139,6 @@
 		grid-column: 1 / -1;
 		display: grid;
 		grid-template-rows: subgrid;
-		z-index: 1;
 	}
 
 	.cases {
@@ -132,12 +157,12 @@
 
 	.work-item {
 		font-family: var(--font-display);
-		font-size: var(--font-size-display);
+		font-size: 10vw;
+		color: var(--theme-color-bg);
+		mix-blend-mode: difference;
 	}
 
 	.images {
-		z-index: 0;
-
 		grid-area: cases;
 		grid-column: 1 / -1;
 		display: grid;
@@ -149,7 +174,7 @@
 			grid-area: image;
 		}
 		@media (width >= 768px) {
-			width: min(50%, 32rem);
+			width: min(50%, 36rem);
 		}
 	}
 

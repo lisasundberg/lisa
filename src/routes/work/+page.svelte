@@ -2,9 +2,11 @@
 	import { onMount } from 'svelte';
 	import gsap from 'gsap';
 	import { SplitText } from 'gsap/SplitText';
+	import type { Picture } from 'vite-imagetools';
 
 	import { pageRevealFinished } from '$lib/stores/app';
 	import { prefersReducedMotion } from '$lib/stores/motion';
+	import { pointerFollow } from '$lib/actions/pointerFollow';
 
 	import Featured from '$lib/components/Featured.svelte';
 	import Pill from '$lib/components/Pill.svelte';
@@ -315,10 +317,11 @@
 
 	let title: HTMLElement | null;
 	let splitTitle: SplitText;
+	let casesEl: HTMLElement = $state()!;
 	let imageEl: HTMLElement | null = $state(null);
-	let activeImage: any = $state(null);
+	let activeImage: Picture | null = $state(null);
 
-	function onMouseEnter(image: any) {
+	function onMouseEnter(image: Picture) {
 		activeImage = image;
 		gsap.to(imageEl, { opacity: 1, scale: 1, duration: 0.35, ease: 'power3.out' });
 	}
@@ -327,8 +330,8 @@
 		gsap.to(imageEl, { opacity: 0, scale: 0.88, duration: 0.3, ease: 'power2.in' });
 	}
 
-	function onMouseMove(e: MouseEvent) {
-		gsap.to(imageEl, { x: e.clientX + 20, y: e.clientY - 30, duration: 0.55, ease: 'power2.out' });
+	function computeCursorImageFollow(event: PointerEvent) {
+		return { x: event.clientX + 20, y: event.clientY - 30 };
 	}
 </script>
 
@@ -336,7 +339,7 @@
 
 <section class="featured">
 	<h2 class="label-bold">Selected projects</h2>
-	<div class="cases" role="region" onmouseleave={onMouseLeave} onmousemove={onMouseMove}>
+	<div class="cases" role="region" bind:this={casesEl} onmouseleave={onMouseLeave}>
 		{#each featuredWork as { heading, label, link, image }}
 			<div
 				class="featured-item"
@@ -347,7 +350,16 @@
 				<Featured {heading} {label} {link} />
 			</div>
 		{/each}
-		<div class="cursor-image" bind:this={imageEl}>
+		<div
+			class="cursor-image"
+			bind:this={imageEl}
+			use:pointerFollow={{
+				zone: casesEl,
+				duration: 0.55,
+				ease: 'power2.out',
+				compute: computeCursorImageFollow
+			}}
+		>
 			{#if activeImage}
 				<enhanced:img src={activeImage} alt="" />
 			{/if}
