@@ -1,28 +1,7 @@
 <script lang="ts">
 	import Button from '$lib/components/Button.svelte';
 	import { pointerFollow } from '$lib/actions/pointerFollow';
-
-	import Homage from '$lib/assets/homage/homage-mockup-1.jpg?enhanced';
-	import AH from '$lib/assets/akademiskahus/ah-mockup-1.jpg?enhanced';
-	import Envolve from '$lib/assets/envolve/envolve-cover.jpg?enhanced';
-
-	const cases = [
-		{
-			src: Homage,
-			title: 'Homage',
-			slug: 'homage'
-		},
-		{
-			src: AH,
-			title: 'Akademiska Hus',
-			slug: 'akademiskahus'
-		},
-		{
-			src: Envolve,
-			title: 'Envolve',
-			slug: 'envolve'
-		}
-	];
+	import { workCases as cases } from '$lib/data/work-cases';
 
 	let activeIndex: number | null = $state(null);
 	let sectionEl: HTMLElement = $state()!;
