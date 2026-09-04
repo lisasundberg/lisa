@@ -31,11 +31,20 @@ export const pointerFollow: Action<HTMLElement, PointerFollowOptions> = (node, o
 		yTo(y);
 	};
 
+	// Snap straight to the pointer on entry so the follower doesn't visibly travel from its
+	// last (or default) position across the screen — only in-zone movement should tween.
+	const handlePointerEnter = (event: Event) => {
+		const rect = zone instanceof HTMLElement ? zone.getBoundingClientRect() : undefined;
+		const { x, y } = options.compute(event as PointerEvent, rect);
+		gsap.set(node, { x, y });
+	};
+
 	const handlePointerLeave = () => {
 		xTo(0);
 		yTo(0);
 	};
 
+	zone.addEventListener('pointerenter', handlePointerEnter);
 	zone.addEventListener('pointermove', handlePointerMove);
 	if (options.resetOnLeave) {
 		zone.addEventListener('pointerleave', handlePointerLeave);
@@ -43,6 +52,7 @@ export const pointerFollow: Action<HTMLElement, PointerFollowOptions> = (node, o
 
 	return {
 		destroy() {
+			zone.removeEventListener('pointerenter', handlePointerEnter);
 			zone.removeEventListener('pointermove', handlePointerMove);
 			if (options.resetOnLeave) {
 				zone.removeEventListener('pointerleave', handlePointerLeave);

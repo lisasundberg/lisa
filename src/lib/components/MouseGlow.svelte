@@ -34,7 +34,7 @@
 		left: 0;
 		width: min(70vw, 900px);
 		aspect-ratio: 1;
-		z-index: -1;
+		z-index: -3;
 		pointer-events: none;
 		background: radial-gradient(
 			circle,
