@@ -69,9 +69,6 @@
 		<ul class="cases">
 			{#each cases as { title, slug }, i}
 				<div class="work-item">
-					<!-- <div class="label-wrapper -tech">
-						<span class="label">React</span>
-					</div> -->
 					<a
 						class="link -plain"
 						href={`/work/${slug}`}
@@ -84,9 +81,6 @@
 					>
 						{title}
 					</a>
-					<!-- <div class="label-wrapper -year">
-						<span class="label">2024</span>
-					</div> -->
 				</div>
 			{/each}
 		</ul>
@@ -181,24 +175,6 @@
 		display: flex;
 		flex-grow: 0;
 	}
-
-	/* .label {
-		display: inline-block;
-		opacity: 0;
-		translate: 0 1em;
-
-		@media (hover: hover) {
-			transition:
-				translate 0.3s var(--ease-in-out-cubic),
-				opacity 0.3s linear;
-
-			.work-item:hover &,
-			.work-item:focus-within & {
-				translate: 0 0.5em;
-				opacity: 1;
-			}
-		}
-	} */
 
 	.images {
 		display: none;
