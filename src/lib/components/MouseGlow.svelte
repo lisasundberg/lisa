@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { onDestroy, onMount } from 'svelte';
+	import { onMount } from 'svelte';
 	import { gsap } from 'gsap';
 
-	import { prefersReducedMotion } from '$lib/stores/motion';
+	import { pointerFollow } from '$lib/actions/pointerFollow';
 
 	let glow: HTMLDivElement;
 
@@ -13,24 +13,19 @@
 			x: window.innerWidth / 2,
 			y: window.innerHeight / 2
 		});
-
-		if ($prefersReducedMotion) return;
-
-		const xTo = gsap.quickTo(glow, 'x', { duration: 0.8, ease: 'power3' });
-		const yTo = gsap.quickTo(glow, 'y', { duration: 0.8, ease: 'power3' });
-
-		const handlePointerMove = (event: PointerEvent) => {
-			xTo(event.clientX);
-			yTo(event.clientY);
-		};
-
-		window.addEventListener('pointermove', handlePointerMove);
-
-		onDestroy(() => window.removeEventListener('pointermove', handlePointerMove));
 	});
 </script>
 
-<div class="glow" bind:this={glow} aria-hidden="true"></div>
+<div
+	class="glow"
+	bind:this={glow}
+	aria-hidden="true"
+	use:pointerFollow={{
+		zone: 'window',
+		duration: 0.8,
+		compute: (event) => ({ x: event.clientX, y: event.clientY })
+	}}
+></div>
 
 <style>
 	.glow {
@@ -39,7 +34,7 @@
 		left: 0;
 		width: min(70vw, 900px);
 		aspect-ratio: 1;
-		z-index: -1;
+		z-index: -3;
 		pointer-events: none;
 		background: radial-gradient(
 			circle,

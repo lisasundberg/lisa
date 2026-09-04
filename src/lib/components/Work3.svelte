@@ -1,29 +1,10 @@
 <script lang="ts">
 	import Button from '$lib/components/Button.svelte';
-
-	import Homage from '$lib/assets/homage/homage-mockup-1.jpg?enhanced';
-	import AH from '$lib/assets/akademiskahus/ah-mockup-1.jpg?enhanced';
-	import Envolve from '$lib/assets/envolve/envolve-cover.jpg?enhanced';
-
-	const cases = [
-		{
-			src: AH,
-			title: 'Akademiska Hus',
-			slug: 'akademiskahus'
-		},
-		{
-			src: Homage,
-			title: 'Homage',
-			slug: 'homage'
-		},
-		{
-			src: Envolve,
-			title: 'Envolve',
-			slug: 'envolve'
-		}
-	];
+	import { pointerFollow } from '$lib/actions/pointerFollow';
+	import { workCases as cases } from '$lib/data/work-cases';
 
 	let activeIndex: number | null = $state(null);
+	let sectionEl: HTMLElement = $state()!;
 
 	function handleMouseEnter(index: number) {
 		activeIndex = index;
@@ -32,10 +13,23 @@
 	function handleMouseLeave() {
 		activeIndex = null;
 	}
+
+	function computeImagesFollow(event: PointerEvent) {
+		return { x: event.clientX, y: event.clientY };
+	}
 </script>
 
-<section class="work">
-	<div class="images" data-work-images>
+<section class="work" class:hovered={activeIndex !== null} bind:this={sectionEl}>
+	<div
+		class="images"
+		data-work-images
+		use:pointerFollow={{
+			zone: sectionEl,
+			duration: 0.55,
+			ease: 'power2.out',
+			compute: computeImagesFollow
+		}}
+	>
 		{#each cases as { src, title }, i}
 			<enhanced:img
 				{src}
@@ -53,44 +47,45 @@
 
 		<ul class="cases">
 			{#each cases as { title, slug }, i}
-				<a
-					class="work-item"
-					href={`/work/${slug}`}
-					class:active={activeIndex === i}
-					onmouseenter={() => handleMouseEnter(i)}
-					onkeydown={() => handleMouseEnter(0)}
-					onmouseleave={handleMouseLeave}
-					onkeyup={handleMouseLeave}
-					data-work-item={i}
-				>
-					{title}
-				</a>
+				<div class="work-item">
+					<a
+						class="link -plain"
+						href={`/work/${slug}`}
+						class:active={activeIndex === i}
+						onmouseenter={() => handleMouseEnter(i)}
+						onkeydown={() => handleMouseEnter(0)}
+						onmouseleave={handleMouseLeave}
+						onkeyup={handleMouseLeave}
+						data-work-item={i}
+					>
+						{title}
+					</a>
+				</div>
 			{/each}
 		</ul>
-
-		<div class="cta">
-			<Button href="/work">
-				See all work
-				{#snippet iconRight()}
-					<svg
-						width="16"
-						height="16"
-						viewBox="0 0 16 16"
-						fill="none"
-						xmlns="http://www.w3.org/2000/svg"
-						aria-hidden="true"
-					>
-						<path
-							d="M1 7.5H14.5314M9.37663 2L15 7.5L9.37663 13"
-							stroke="currentColor"
-							stroke-width="1.2"
-							stroke-linecap="round"
-							stroke-linejoin="round"
-						/>
-					</svg>
-				{/snippet}
-			</Button>
-		</div>
+	</div>
+	<div class="cta">
+		<Button href="/work">
+			See all work
+			{#snippet iconRight()}
+				<svg
+					width="16"
+					height="16"
+					viewBox="0 0 16 16"
+					fill="none"
+					xmlns="http://www.w3.org/2000/svg"
+					aria-hidden="true"
+				>
+					<path
+						d="M1 7.5H14.5314M9.37663 2L15 7.5L9.37663 13"
+						stroke="currentColor"
+						stroke-width="1.2"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+					/>
+				</svg>
+			{/snippet}
+		</Button>
 	</div>
 </section>
 
@@ -105,7 +100,6 @@
 			'button';
 		gap: var(--content-margin);
 		min-height: 100dvh;
-		z-index: 1;
 	}
 
 	.content {
@@ -113,7 +107,6 @@
 		grid-column: 1 / -1;
 		display: grid;
 		grid-template-rows: subgrid;
-		z-index: 1;
 	}
 
 	.cases {
@@ -128,28 +121,57 @@
 		grid-area: preamble;
 		grid-column: 1 / -1;
 		text-align: center;
+
+		@media (hover: hover) {
+			.hovered & {
+				z-index: -2;
+			}
+		}
 	}
 
 	.work-item {
+		display: flex;
+		align-items: center;
+		gap: 0.35em;
 		font-family: var(--font-display);
-		font-size: var(--font-size-display);
+		font-size: 10vw;
+		color: var(--theme-color-bg);
+		mix-blend-mode: difference;
+
+		@media (hover: hover) {
+			.link {
+				translate: 0 0;
+				transition: translate 0.65s var(--ease-out-expo);
+				&:hover,
+				&:focus-within {
+					translate: 0.1em 0;
+				}
+			}
+		}
+	}
+
+	.label-wrapper {
+		display: flex;
+		flex-grow: 0;
 	}
 
 	.images {
-		z-index: 0;
-
-		grid-area: cases;
-		grid-column: 1 / -1;
-		display: grid;
-		grid-template-areas: 'image';
-		place-items: center;
-		justify-self: center;
+		display: none;
 
 		:global(picture) {
 			grid-area: image;
 		}
-		@media (width >= 768px) {
-			width: min(50%, 32rem);
+
+		@media (hover: hover) {
+			display: grid;
+			grid-template-areas: 'image';
+			position: fixed;
+			top: 0;
+			left: 0;
+			translate: -50% -50%;
+			width: min(50%, 36rem);
+			pointer-events: none;
+			z-index: -1;
 		}
 	}
 
@@ -171,5 +193,11 @@
 		grid-area: button;
 		grid-column: 1 / -1;
 		place-self: center;
+
+		@media (hover: hover) {
+			.hovered & {
+				z-index: -2;
+			}
+		}
 	}
 </style>
