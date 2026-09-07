@@ -29,7 +29,7 @@
 	];
 
 	const SCROLL_START = 'center center-=5%';
-	const SCROLL_END = '+=500%';
+	const SCROLL_END = '+=250%';
 	const CATCH_UP_DURATION = 1.5;
 
 	let workSection: HTMLElement;
@@ -53,7 +53,7 @@
 	function activeImageParams(i: number) {
 		return {
 			duration: 2,
-			delay: 0.3,
+			delay: 0.5,
 			onStart: () => {
 				scrollActiveIndex = i;
 			},
