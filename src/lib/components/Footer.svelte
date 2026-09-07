@@ -63,7 +63,7 @@
 	.sub {
 		grid-area: sub;
 		display: flex;
-		justify-content: space-between;
+		justify-content: flex-end;
 		align-items: flex-end;
 		opacity: 0.5;
 	}
