@@ -379,31 +379,23 @@
 					<td class="year">{year}<span class="client -mobile">, {client}</span></td>
 					<td class="client -desktop">{client}</td>
 
-					{#if link}
-						<td class="description">
+					<td class="description">
+						{#if link}
 							<a class="link -plain" href={link} target="_blank">
-								{description} <span class="external-indicator">↗</span>
-								{#if awards}
-									<span class="awards">
-										{#each awards as { name }}
-											<Pill>{name}</Pill>
-										{/each}
-									</span>
-								{/if}
+								{description} <span class="external-indicator" aria-hidden="true">↗</span>
+								<span class="visually-hidden">(opens in new tab)</span>
 							</a>
-						</td>
-					{:else}
-						<td class="description">
+						{:else}
 							{description}
-							{#if awards}
-								<span class="awards">
-									{#each awards as { name }}
-										<Pill>{name}</Pill>
-									{/each}
-								</span>
-							{/if}</td
-						>
-					{/if}
+						{/if}
+						{#if awards}
+							<span class="awards">
+								{#each awards as { name, link }}
+									<Pill {link}>{name}</Pill>
+								{/each}
+							</span>
+						{/if}
+					</td>
 					<td class="tech -mobile label">{tech}</td>
 					<td class="tech -desktop">{tech}</td>
 				</tr>
