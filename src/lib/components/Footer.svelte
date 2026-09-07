@@ -15,12 +15,6 @@
 		</ul>
 	</section>
 	<div class="sub">
-		<small
-			>This site is a work in progress, created in the small moments when my baby sleeps. If you
-			have feedback, <a class="link" href="mailto:hello@lisasundberg.com"
-				>don't hesitate to reach out!</a
-			>
-		</small>
 		<small>© {new Date().getFullYear()}</small>
 	</div>
 </footer>
