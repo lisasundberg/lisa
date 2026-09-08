@@ -57,7 +57,7 @@
 </script>
 
 <section class="about">
-	<h1 class="title" bind:this={title}>About</h1>
+	<!-- <h1 class="title" bind:this={title}>About</h1> -->
 	<div class="intro">
 		<p class="body p-small">
 			I have 5+ years of experience in frontend development and a background in art direction. I

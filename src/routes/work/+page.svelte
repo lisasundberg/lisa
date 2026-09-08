@@ -335,7 +335,7 @@
 	}
 </script>
 
-<h1 bind:this={title} class="title">Work</h1>
+<!-- <h1 bind:this={title} class="title">Work</h1> -->
 
 <section class="featured">
 	<h2 class="label-bold">Selected projects</h2>
