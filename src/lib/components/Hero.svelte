@@ -1,84 +1,74 @@
 <script lang="ts">
 	import { onDestroy, onMount } from 'svelte';
 	import { gsap } from 'gsap';
-	import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 	import { EASE_REVEAL } from '$lib/gsap/eases';
 	import { pageRevealFinished } from '$lib/stores/app';
+	import { prefersReducedMotion } from '$lib/stores/motion';
 
-	let intro: HTMLElement;
-	let context: gsap.Context;
+	let container: HTMLElement;
+	let heroName: HTMLElement;
+	let heroRole: HTMLElement;
+	let preambleHello: HTMLElement;
+	let preambleIntro: HTMLElement;
+	let ctx: gsap.Context;
 
 	onMount(() => {
-		// bryt ut
-		const textReveal = {
-			yPercent: 0,
-			autoAlpha: 1,
-			ease: EASE_REVEAL,
-			duration: 1
-		};
-
-		gsap.registerPlugin(ScrollTrigger);
-
 		document.fonts.ready.then(() => {
-			context = gsap.context(() => {
+			if ($prefersReducedMotion) {
+				gsap.set(container.querySelectorAll('.text'), { yPercent: 0, autoAlpha: 1 });
+
+				pageRevealFinished.set(true);
+
+				return;
+			}
+
+			ctx = gsap.context(() => {
 				gsap
 					.timeline({
+						defaults: { yPercent: 0, autoAlpha: 1, ease: EASE_REVEAL },
 						onComplete: () => pageRevealFinished.set(true)
 					})
-					.set('.text', {
-						yPercent: 100,
-						autoAlpha: 0
-					})
-					.to(['.-hello .text', '.-name .text'], textReveal)
-					.to(['.-intro .text', '.-role .text'], textReveal, '-=0.5');
-
-				gsap
-					.timeline({
-						scrollTrigger: {
-							start: 'top top',
-							end: 'top+=300px',
-							scrub: true
-						}
-					})
-					.to(['.mask.-hello', '.mask.-intro'], { width: 0 })
-					.to('.preamble', { autoAlpha: 0, duration: 0.1 }, '<')
-					.to('.heading', { scale: 0.5, transformOrigin: 'left' }, '<')
-					.to('.row', { gap: 0 }, '<')
-					.to('.-role', { yPercent: -40 }, '<');
-			}, intro);
+					.set('.text', { yPercent: 100, autoAlpha: 0 })
+					.to(heroName, { duration: 1 })
+					.to(preambleHello, { duration: 1.2 }, '<')
+					.to(heroRole, { duration: 1 }, '-=0.5')
+					.to(preambleIntro, { duration: 1.2 }, '<');
+			}, container);
 		});
 	});
 
-	onDestroy(() => context?.revert());
+	onDestroy(() => ctx?.revert());
 </script>
 
 <section class="hero">
-	<div class="intro" bind:this={intro}>
+	<div class="intro" bind:this={container}>
 		<div class="row">
-			<div class="mask -hello"><p class="text preamble">Hello, my name is</p></div>
-			<div class="mask -name"><h1 class="text heading">Lisa Sundberg</h1></div>
-			<div class="mask -intro"><p class="text preamble">and I'm a</p></div>
+			<div class="mask -hello">
+				<p class="text preamble" bind:this={preambleHello}>Hello, my name is</p>
+			</div>
+			<div class="mask -name">
+				<h1 class="text heading" bind:this={heroName} data-flip-id="logo-name">Lisa Sundberg</h1>
+			</div>
+			<div class="mask -intro">
+				<p class="text preamble" bind:this={preambleIntro}>and I'm a</p>
+			</div>
 		</div>
 
 		<div class="row">
-			<div class="mask -role"><h2 class="text heading">design engineer</h2></div>
+			<div class="mask -role">
+				<h2 class="text heading" bind:this={heroRole} data-flip-id="logo-role">design engineer</h2>
+			</div>
 		</div>
 	</div>
 </section>
 
 <style>
 	.hero {
-		min-height: 75dvh;
+		height: 100dvh;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
-	}
-
-	.intro {
-		position: sticky;
-		top: 0;
-		height: fit-content;
 	}
 
 	.row {
@@ -87,53 +77,33 @@
 
 		@media (width >= 768px) {
 			flex-direction: row;
-			gap: 0.8em;
+			gap: 0 0.8em;
 		}
 	}
 
 	.text {
+		margin: 0;
 		visibility: hidden;
-		margin-block: 0;
-		text-box-trim: trim-both;
 	}
 
 	.mask {
 		display: inline-block;
 		overflow: hidden;
-		height: fit-content;
 		text-wrap: nowrap;
-
-		&.-hello {
-			margin-top: 1em;
-		}
-
-		&.-intro {
-			margin-top: auto;
-			margin-bottom: 1.1em;
-		}
-
-		&.-role {
-			margin-top: -1em;
-
-			@media (width >= 768px) {
-				margin-top: -1.75em;
-			}
-		}
-	}
-
-	.preamble {
-		font-family: var(--font-display);
-		font-size: var(--font-size-body-small);
-		margin: 0;
 	}
 
 	.heading {
 		font-size: var(--font-size-display);
-		line-height: 1;
+		line-height: 1.15;
 		margin: 0;
 
 		.-role & {
 			font-family: var(--font-display-italic);
 		}
+	}
+
+	.preamble {
+		font-size: var(--font-size-preamble);
+		margin: 0;
 	}
 </style>
