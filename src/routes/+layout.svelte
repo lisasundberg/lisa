@@ -60,6 +60,10 @@
 		if (typeof document !== 'undefined' && document.body.classList.contains(INVERTED_CLASSNAME)) {
 			document.body.classList.remove(INVERTED_CLASSNAME);
 		}
+
+		// route content has swapped in, but layout may not have committed yet -
+		// wait a frame so ScrollTrigger measures the new page, not the old one
+		requestAnimationFrame(() => ScrollTrigger.refresh());
 	});
 </script>
 

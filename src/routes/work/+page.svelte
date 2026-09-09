@@ -474,8 +474,8 @@
 		border-bottom: 1px solid var(--_theme-color-primary);
 		padding-inline: 0.5em;
 		transition:
-			color 0.2s ease-in-out,
-			background-color 0.2s ease-in-out;
+			color 0.2s linear,
+			background-color 0.2s linear;
 	}
 
 	@media (hover: hover) {

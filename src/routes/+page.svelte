@@ -7,7 +7,9 @@
 	import '$lib/styles/index.css';
 </script>
 
-<Hero />
+<section class="hero">
+	<Hero />
+</section>
 {#if $isTouch}
 	<WorkTouch />
 {:else}

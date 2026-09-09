@@ -96,7 +96,13 @@
 		});
 	});
 
-	onDestroy(() => ctx?.revert());
+	onDestroy(() => {
+		context?.revert();
+		// hero may have been reparented into the nav's .logo slot by the Flip
+		// animation above; Svelte's own teardown can't reach it there, so it
+		// has to be removed explicitly or it's left orphaned in the header.
+		hero?.remove();
+	});
 </script>
 
 <div class="hero" bind:this={hero}>

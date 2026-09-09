@@ -19,36 +19,36 @@
 
 		gsap.registerPlugin(ScrollTrigger);
 
-		const tl = gsap.timeline({
-			scrollTrigger: {
-				trigger: container,
-				start: 'top bottom-=28%',
-				end: 'top center'
-			}
-		});
+		const context = gsap.context(() => {
+			const tl = gsap.timeline({
+				scrollTrigger: {
+					trigger: container,
+					start: 'top bottom-=28%',
+					end: 'top center'
+				}
+			});
 
-		tl.fromTo(
-			container,
-			{ clipPath: 'inset(0% 0% 100%)' },
-			{
-				clipPath: 'inset(0% 0% 0%)',
-				duration: 0.75,
-				ease: 'power4.out',
-				delay: delay || 0
-			}
-		).from(
-			inner,
-			{
-				scale: 1.15,
-				duration: 1.4,
-				ease: 'power4.out'
-			},
-			'<'
-		);
+			tl.fromTo(
+				container,
+				{ clipPath: 'inset(0% 0% 100%)' },
+				{
+					clipPath: 'inset(0% 0% 0%)',
+					duration: 0.75,
+					ease: 'power4.out',
+					delay: delay || 0
+				}
+			).from(
+				inner,
+				{
+					scale: 1.15,
+					duration: 1.4,
+					ease: 'power4.out'
+				},
+				'<'
+			);
+		}, container);
 
-		return () => {
-			ScrollTrigger.getAll().forEach((t) => t.kill());
-		};
+		return () => context.revert();
 	});
 </script>
 

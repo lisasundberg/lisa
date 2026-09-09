@@ -21,26 +21,26 @@
 
 		if (childElements.length === 0) return;
 
-		gsap.set(childElements, { opacity: 0, scale: 0.9 });
+		const context = gsap.context(() => {
+			gsap.set(childElements, { opacity: 0, scale: 0.9 });
 
-		ScrollTrigger.batch(childElements, {
-			start: 'top 80%',
-			once: true,
-			onEnter: (elements) => {
-				gsap.to(elements, {
-					opacity: 1,
-					scale: 1,
-					transformOrigin: 'top left',
-					willChange: 'opacity, transform',
-					duration: 1,
-					ease: 'power3.out'
-				});
-			}
-		});
+			ScrollTrigger.batch(childElements, {
+				start: 'top 80%',
+				once: true,
+				onEnter: (elements) => {
+					gsap.to(elements, {
+						opacity: 1,
+						scale: 1,
+						transformOrigin: 'top left',
+						willChange: 'opacity, transform',
+						duration: 1,
+						ease: 'power3.out'
+					});
+				}
+			});
+		}, container);
 
-		return () => {
-			ScrollTrigger.getAll().forEach((t) => t.kill());
-		};
+		return () => context.revert();
 	});
 </script>
 
