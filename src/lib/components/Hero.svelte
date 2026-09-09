@@ -6,16 +6,18 @@
 
 	import { EASE_REVEAL } from '$lib/gsap/eases';
 	import { pageRevealFinished } from '$lib/stores/app';
+	import { prefersReducedMotion } from '$lib/stores/motion';
+	import { get } from 'svelte/store';
 
 	let hero: HTMLElement;
+	let heroSection: HTMLElement | null;
 	let header: HTMLElement | null;
-	let main: HTMLElement | null;
 	let logo: HTMLElement | null;
 	let context: gsap.Context;
 
 	onMount(() => {
+		heroSection = document.querySelector('section.hero');
 		header = document.querySelector('header');
-		main = document.querySelector('main');
 		logo = document.querySelector('.logo');
 
 		// bryt ut
@@ -30,6 +32,7 @@
 
 		document.fonts.ready.then(() => {
 			context = gsap.context(() => {
+				//////////
 				gsap
 					.timeline({
 						onComplete: () => pageRevealFinished.set(true)
@@ -39,8 +42,8 @@
 						autoAlpha: 0
 					})
 					.to(['.-hello .text', '.-name .text'], textReveal)
-					.to(['.-intro .text', '.-role .text'], textReveal, '-=0.5');
-
+					.to(['.-intro .text', '.-role .text'], textReveal, '-=0.7');
+				//////////////////
 				// gsap
 				// 	.timeline({
 				// 		scrollTrigger: {
@@ -54,37 +57,39 @@
 				// 	.to('.heading', { scale: 0.5, transformOrigin: 'left' }, '<')
 				// 	.to('.row', { gap: 0 }, '<')
 				// 	.to('.-role', { yPercent: -30 }, '<');
-
 				///////////////
+				// Shrink the hero into the header's logo slot, scrubbed by scroll.
+				// The reparent + class toggle happen once, synchronously, up front:
+				// Flip diffs the before/after rects and fakes the "jump" with transform
+				// offsets, then a scrubbed tween unwinds those offsets as the user scrolls.
+				if (!heroSection || !header || !logo || get(prefersReducedMotion)) return;
 
-				// const state = Flip.getState(hero, {
-				// 	props: 'fontSize'
-				// });
+				const flipTargets = [
+					hero,
+					...hero.querySelectorAll<HTMLElement>('.mask, .heading, .preamble')
+				];
 
-				// if (!logo || !main) return;
+				const state = Flip.getState(flipTargets, { props: 'fontSize, gap' });
 
-				// if (hero.parentNode === main) {
-				// 	logo.appendChild(hero);
-				// } else {
-				// 	main.appendChild(hero);
-				// }
+				hero.classList.add('-in-header');
 
-				// const flipTween = Flip.from(state, {
-				// 	duration: 3,
-				// 	ease: 'power1.inOut',
-				// 	absolute: true
-				// });
+				logo.appendChild(hero);
 
-				// ScrollTrigger.create({
-				// 	trigger: header,
-				// 	start: 'top top',
-				// 	endTrigger: hero,
-				// 	end: 'top top',
-				// 	markers: true,
-				// 	scrub: true,
-				// 	animation: flipTween
-				// });
+				const flipTween = Flip.from(state, {
+					targets: flipTargets,
+					duration: 1,
+					absolute: hero,
+					nested: true
+				});
 
+				ScrollTrigger.create({
+					start: 'top top',
+					endTrigger: hero,
+					end: 'bottom top',
+					scrub: true,
+					animation: flipTween,
+					markers: true
+				});
 				///////////////
 			}, hero);
 		});
@@ -110,6 +115,10 @@
 		position: sticky;
 		top: 0;
 		height: fit-content;
+
+		&:global(.-in-header) {
+			position: static;
+		}
 	}
 
 	.row {
@@ -120,10 +129,14 @@
 			flex-direction: row;
 			gap: 0.8em;
 		}
+
+		:global(.-in-header) & {
+			gap: 0;
+		}
 	}
 
 	.text {
-		visibility: hidden;
+		/* visibility: hidden; */
 		margin-block: 0;
 		text-box-trim: trim-both;
 	}
@@ -134,7 +147,7 @@
 		height: fit-content;
 		text-wrap: nowrap;
 
-		&.-hello {
+		/* &.-hello {
 			margin-top: 1em;
 		}
 
@@ -149,7 +162,12 @@
 			@media (width >= 768px) {
 				margin-top: -1.75em;
 			}
-		}
+		} */
+	}
+
+	:global(.-in-header) .mask.-hello,
+	:global(.-in-header) .mask.-intro {
+		width: 0;
 	}
 
 	.preamble {
@@ -162,9 +180,15 @@
 		font-size: var(--font-size-display);
 		line-height: 0.8;
 		margin: 0;
+		transform-origin: top left;
 
 		.-role & {
 			font-family: var(--font-display-italic);
 		}
+	}
+
+	:global(.-in-header) .heading {
+		font-size: var(--font-size-h2);
+		line-height: 1;
 	}
 </style>
