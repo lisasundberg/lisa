@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import TextLogo from './TextLogo.svelte';
-	import OpenToWork from './OpenToWork.svelte';
 
 	const links = [
 		{
@@ -33,48 +32,33 @@
 			<TextLogo />
 		{/if}
 	</a>
-	<!-- <ul>
+	<ul class="list">
 		{#each links as { id, label, slug }}
 			<li>
 				<a class="link -plain" class:active={$page.url.pathname === `/${id}`} href={slug}>
 					<div class="link-content">
-						<span class="label">{label}</span>
+						<span class="link-label">{label}</span>
 					</div>
 				</a>
 			</li>
 		{/each}
-	</ul> -->
-	<!-- <div class="open-to-work">
-		<OpenToWork active />
-	</div> -->
+	</ul>
 </nav>
 
 <style>
 	.nav {
 		display: flex;
-		align-items: center;
+		justify-content: space-between;
 		gap: var(--content-gap);
 		padding: 1.5rem var(--content-margin);
 		color: var(--_theme-color-primary);
 	}
 
-	ul {
-		width: 100%;
-		display: flex;
-		justify-content: space-around;
-		align-items: center;
-		gap: 1rem;
-		margin: 0;
-		padding-inline: 0;
-	}
-
-	li {
-		list-style: none;
+	.list {
+		margin-left: auto;
 	}
 
 	.link {
-		padding: 1em 0;
-
 		&.active,
 		&:hover,
 		&:focus-visible {
@@ -104,19 +88,19 @@
 		}
 	}
 
-	.label {
+	.link-label {
+		font-family: var(--font-display);
+		font-size: var(--font-size-h1);
 		grid-area: label;
+		line-height: 1;
+		text-align: right;
+
+		.active & {
+			font-family: var(--font-display-italic);
+		}
 	}
 
 	.logo {
 		flex-grow: 0;
-	}
-
-	.open-to-work {
-		flex-shrink: 0;
-
-		@media (width < 768px) {
-			display: none;
-		}
 	}
 </style>

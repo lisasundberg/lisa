@@ -35,6 +35,7 @@
 				//////////
 				gsap
 					.timeline({
+						defaults: { yPercent: 0, autoAlpha: 1, ease: EASE_REVEAL },
 						onComplete: () => pageRevealFinished.set(true)
 					})
 					.set('.text', {
@@ -95,7 +96,7 @@
 		});
 	});
 
-	onDestroy(() => context?.revert());
+	onDestroy(() => ctx?.revert());
 </script>
 
 <div class="hero" bind:this={hero}>
@@ -127,7 +128,7 @@
 
 		@media (width >= 768px) {
 			flex-direction: row;
-			gap: 0.8em;
+			gap: 0 0.8em;
 		}
 
 		:global(.-in-header) & {
@@ -144,7 +145,6 @@
 	.mask {
 		display: inline-block;
 		overflow: hidden;
-		height: fit-content;
 		text-wrap: nowrap;
 
 		/* &.-hello {
