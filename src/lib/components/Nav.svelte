@@ -1,6 +1,13 @@
 <script lang="ts">
+	import { onMount, onDestroy } from 'svelte';
+	import { gsap } from 'gsap';
+	import { ScrollTrigger } from 'gsap/ScrollTrigger';
 	import { page } from '$app/stores';
+	import { prefersReducedMotion } from '$lib/stores/motion';
+	import { EASE_REVEAL } from '$lib/gsap/eases';
 	import TextLogo from './TextLogo.svelte';
+
+	const SCROLL_REVEAL_OFFSET = 20;
 
 	const links = [
 		{
@@ -14,9 +21,66 @@
 			slug: '/about'
 		}
 	];
+
+	let nav: HTMLElement;
+	let ctx: gsap.Context;
+	let scrollTrigger: ScrollTrigger;
+
+	const isHome = $derived($page.url.pathname === '/');
+
+	function reveal() {
+		gsap.to(nav, {
+			autoAlpha: 1,
+			yPercent: 0,
+			duration: $prefersReducedMotion ? 0 : 0.8,
+			ease: EASE_REVEAL
+		});
+	}
+
+	function hide() {
+		gsap.to(nav, {
+			autoAlpha: 0,
+			yPercent: $prefersReducedMotion ? 0 : -100,
+			duration: $prefersReducedMotion ? 0 : 0.5,
+			ease: EASE_REVEAL
+		});
+	}
+
+	function syncVisibility() {
+		if (!scrollTrigger) return;
+
+		if (isHome) {
+			scrollTrigger.enable();
+		} else {
+			scrollTrigger.disable();
+			gsap.set(nav, { autoAlpha: 1, yPercent: 0 });
+		}
+	}
+
+	onMount(() => {
+		gsap.registerPlugin(ScrollTrigger);
+
+		ctx = gsap.context(() => {
+			gsap.set(nav, { autoAlpha: 0, yPercent: $prefersReducedMotion ? 0 : -100 });
+
+			scrollTrigger = ScrollTrigger.create({
+				start: SCROLL_REVEAL_OFFSET,
+				onEnter: reveal,
+				onLeaveBack: hide
+			});
+
+			syncVisibility();
+		}, nav);
+	});
+
+	$effect(() => {
+		syncVisibility();
+	});
+
+	onDestroy(() => ctx?.revert());
 </script>
 
-<nav class="nav">
+<nav class="nav" bind:this={nav}>
 	<a class="logo -plain" href="/">
 		<TextLogo />
 	</a>
@@ -40,6 +104,8 @@
 		gap: var(--content-gap);
 		padding: 1.5rem var(--content-margin);
 		color: var(--_theme-color-primary);
+		visibility: hidden;
+		opacity: 0;
 	}
 
 	.list {
@@ -78,7 +144,7 @@
 
 	.link-label {
 		font-family: var(--font-display);
-		font-size: var(--font-size-h1);
+		font-size: var(--font-size-h2);
 		grid-area: label;
 		line-height: 1;
 		text-align: right;

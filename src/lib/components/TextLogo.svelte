@@ -8,7 +8,7 @@
 
 <style>
 	.heading {
-		font-size: var(--font-size-h1);
+		font-size: var(--font-size-h2);
 		line-height: 1;
 		margin: 0;
 		transform-origin: top left;
