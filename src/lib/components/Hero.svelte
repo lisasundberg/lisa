@@ -32,7 +32,7 @@
 					.set('.text', { yPercent: 100, autoAlpha: 0 })
 					.to(heroName, { duration: 1 })
 					.to(preambleHello, { duration: 1.2 }, '<')
-					.to(heroRole, { duration: 1 }, '-=0.5')
+					.to(heroRole, { duration: 1 }, '-=0.7')
 					.to(preambleIntro, { duration: 1.2 }, '<');
 			}, container);
 		});
@@ -65,7 +65,7 @@
 
 <style>
 	.hero {
-		height: 100dvh;
+		height: calc(100dvh - 100px);
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
@@ -79,21 +79,36 @@
 			flex-direction: row;
 			gap: 0 0.8em;
 		}
+
+		& + & {
+			margin-top: -3%;
+		}
 	}
 
 	.text {
 		margin: 0;
 		visibility: hidden;
+		opacity: 0;
 	}
 
 	.mask {
 		display: inline-block;
+		height: fit-content;
 		overflow: hidden;
 		text-wrap: nowrap;
+
+		&.-hello {
+			margin-top: 2%;
+		}
+
+		&.-intro {
+			margin-top: auto;
+			margin-bottom: 2%;
+		}
 	}
 
 	.heading {
-		font-size: var(--font-size-display);
+		font-size: 10vw;
 		line-height: 1.15;
 		margin: 0;
 
@@ -104,6 +119,7 @@
 
 	.preamble {
 		font-size: var(--font-size-preamble);
+		font-family: var(--font-display);
 		margin: 0;
 	}
 </style>
