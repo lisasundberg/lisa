@@ -34,12 +34,6 @@
 			label: 'React, GSAP',
 			link: '/work/envolve',
 			image: Envolve
-		},
-		{
-			heading: 'Webbdagarna / Storyblok',
-			label: 'Three.js, Mediapipe',
-			link: '/work/webbdagarna',
-			image: Envolve
 		}
 	];
 
