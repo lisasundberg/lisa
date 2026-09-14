@@ -438,6 +438,7 @@
 
 	.cases {
 		margin-top: 2em;
+		border-bottom: 1px solid var(--_theme-color-primary);
 	}
 
 	.work-index {
