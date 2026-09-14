@@ -15,7 +15,7 @@
 		--color-text-secondary: var(--color-offblack);
 		--color-text-accent: var(--color-indigo);
 
-		--content-margin: 2.5em;
+		--content-margin: 1.25em;
 		--content-gap: 2.5em;
 		--content-padding-top: clamp(8rem, 20vw, 10rem);
 		--card-padding: clamp(3rem, 5.25vw, 6rem);
@@ -35,6 +35,7 @@
 		--border-radius: 12px;
 
 		@media (width >=768px) {
+			--content-margin: 2.5em;
 			--content-gap: 4em;
 			--two-cols: 1fr 1fr;
 		}

@@ -399,14 +399,14 @@
 </section>
 
 <style>
-	.title {
+	/* .title {
 		grid-column: main;
 		font-family: var(--font-display);
 		font-size: var(--font-size-display);
 		text-align: right;
 		position: sticky;
 		top: 0;
-	}
+	} */
 
 	.featured {
 		margin-top: 2em;
