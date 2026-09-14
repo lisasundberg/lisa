@@ -70,8 +70,8 @@
 				<p class="p-small">Web presence for Stockholm based brand experience agency Homage.</p>
 				<p class="p-small">
 					On this short and intense project I collaborated closely with design from start to end. We
-					worked in total around two weeks to create an unconventional website with the purpose to
-					showcase work and attract new clients as well as staff.
+					worked in total around two-three weeks to create an unconventional website with the
+					purpose to showcase work and attract new clients as well as staff.
 				</p>
 
 				<p class="p-small">
