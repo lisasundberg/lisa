@@ -17,6 +17,7 @@
 
 		--content-margin: 2.5em;
 		--content-gap: 2.5em;
+		--content-padding-top: clamp(8rem, 20vw, 10rem);
 		--card-padding: clamp(3rem, 5.25vw, 6rem);
 		--main-grid: [full-start] minmax(var(--content-margin), 1fr) [main-start] minmax(auto, max(80vw, 90rem)) [main-end] minmax(var(--content-margin), 1fr) [full-end];
 
@@ -63,7 +64,6 @@
 		display: grid;
 		grid-template-columns: subgrid;
 		grid-column: full;
-		/* padding-top: clamp(8rem, 20vw, 10rem); */
 	}
 
 	:where(section) {

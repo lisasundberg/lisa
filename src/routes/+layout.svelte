@@ -28,6 +28,10 @@
 
 	let { children, data }: Props = $props();
 
+	let currentPage = $derived(
+		`${data.pathname === '/' ? 'home' : data.pathname.replace(/^\/|\/$/g, '').replace(/\//g, '-')}`
+	);
+
 	let lenis: Lenis;
 
 	onMount(() => {
@@ -63,7 +67,7 @@
 	});
 </script>
 
-<Body class="{$currentTheme} {$pageRevealFinished ? '' : ' loading'}" />
+<Body class="{currentPage} {$currentTheme} {$pageRevealFinished ? '' : ' loading'}" />
 <Meta />
 <header>
 	<Nav />
@@ -123,6 +127,14 @@
 		::view-transition-old(*),
 		::view-transition-new(*) {
 			animation: none !important;
+		}
+	}
+
+	main {
+		padding-top: var(--content-padding-top);
+
+		:global(.home) & {
+			padding-top: 0;
 		}
 	}
 </style>
