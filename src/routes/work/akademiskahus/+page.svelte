@@ -164,10 +164,14 @@
 	}
 
 	.text {
-		@media (width >=768px) {
+		@media (width >= 768px) {
 			position: sticky;
-			top: 6em;
+			top: 20dvh;
 			width: 50%;
+		}
+
+		@media (height < 600px) {
+			position: initial;
 		}
 	}
 
