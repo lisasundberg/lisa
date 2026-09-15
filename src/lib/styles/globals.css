@@ -60,6 +60,9 @@
 		transition: background-color 0.4s linear, color 0.4s linear;
 	}
 
+	::selection {
+		background-color: var(--color-yellow);
+	}
 
 	main {
 		display: grid;
