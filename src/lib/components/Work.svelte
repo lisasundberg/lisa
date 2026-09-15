@@ -8,6 +8,7 @@
 	import { pageRevealFinished } from '$lib/stores/app';
 
 	import Button from '$lib/components/Button.svelte';
+	import Arrow from '$lib/components/Arrow.svelte';
 
 	import Homage from '$lib/assets/homage/homage-mockup-1.jpg?enhanced';
 	import AH from '$lib/assets/akademiskahus/ah-mockup-1.jpg?enhanced';
@@ -254,22 +255,7 @@
 			<Button href="/work">
 				See all work
 				{#snippet iconRight()}
-					<svg
-						width="16"
-						height="16"
-						viewBox="0 0 16 16"
-						fill="none"
-						xmlns="http://www.w3.org/2000/svg"
-						aria-hidden="true"
-					>
-						<path
-							d="M1 7.5H14.5314M9.37663 2L15 7.5L9.37663 13"
-							stroke="currentColor"
-							stroke-width="1.2"
-							stroke-linecap="round"
-							stroke-linejoin="round"
-						/>
-					</svg>
+					<Arrow right />
 				{/snippet}
 			</Button>
 		</div>

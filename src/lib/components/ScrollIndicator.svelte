@@ -6,6 +6,7 @@
 	import { EASE_REVEAL } from '$lib/gsap/eases';
 	import { pageRevealFinished } from '$lib/stores/app';
 	import { prefersReducedMotion } from '$lib/stores/motion';
+	import Arrow from '$lib/components/Arrow.svelte';
 
 	// Matches Nav.svelte's SCROLL_REVEAL_OFFSET so the indicator toggles in sync with the nav.
 	const NAV_REVEAL_OFFSET = 20;
@@ -59,22 +60,7 @@
 </script>
 
 <div class="scroll-indicator" bind:this={indicator} aria-hidden="true">
-	<svg
-		class="arrow"
-		width="16"
-		height="16"
-		viewBox="0 0 16 16"
-		fill="none"
-		xmlns="http://www.w3.org/2000/svg"
-	>
-		<path
-			d="M1 7.5H14.5314M9.37663 2L15 7.5L9.37663 13"
-			stroke="currentColor"
-			stroke-width="1.2"
-			stroke-linecap="round"
-			stroke-linejoin="round"
-		/>
-	</svg>
+	<Arrow down />
 </div>
 
 <style>
@@ -91,9 +77,5 @@
 		border-radius: 50%;
 		visibility: hidden;
 		opacity: 0;
-	}
-
-	.arrow {
-		rotate: 90deg;
 	}
 </style>
