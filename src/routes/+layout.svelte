@@ -82,8 +82,9 @@
 <style>
 	header {
 		grid-column: full;
-		position: sticky;
+		position: fixed;
 		top: 0;
+		width: 100%;
 		z-index: 8;
 		opacity: 1;
 		translate: 0;

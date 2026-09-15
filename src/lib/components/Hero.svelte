@@ -65,7 +65,7 @@
 
 <style>
 	.hero {
-		height: calc(100dvh - 100px);
+		height: 100dvh;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
