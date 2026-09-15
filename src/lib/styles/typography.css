@@ -9,8 +9,8 @@
 		--font-size-h1: clamp(2.25rem, 4vw, 3.5rem);
 		--font-size-h2: clamp(1.5rem, 3vw, 2rem);
 		--font-size-body: clamp(1.5rem, 2.5vw, 2rem);
-		--font-size-body-small: clamp(1rem, 1.25vw, 1.125rem);
-		--font-size-body-xsmall: clamp(0.85rem, 1vw, 1rem);
+		--font-size-body-small: clamp(1.125rem, 1.5vw, 1.25rem);
+		--font-size-body-xsmall: clamp(0.85rem, 1.25vw, 1rem);
 		--font-size-label: 0.75rem;
 	}
 
