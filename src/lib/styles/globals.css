@@ -1,14 +1,10 @@
 @layer globals {
 	:root {
-		--heading-offset: 20;
-		--footer-height: 100dvh;
-		--color-cream: rgb(255, 249, 238);
-		--color-greige: rgb(236 229 217);
 		--color-green: #3fe83f;
 		--color-yellow: #F8FF2F;
 		--color-red: #CC341D;
 		--color-indigo: #7a58ff;
-		--color-offwhite: #fffaf7;
+		--color-offwhite: #ffffee;
 		--color-offblack: #2c2323;
 
 		--color-text-primary: var(--color-cream);
