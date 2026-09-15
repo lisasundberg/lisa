@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
+	import { onDestroy, onMount } from 'svelte';
 	import type { Snippet } from 'svelte';
 	import type { Picture } from 'vite-imagetools';
 
@@ -40,40 +40,51 @@
 	let bodyEl: HTMLDivElement | null = null;
 	let ctaEl: HTMLDivElement | null = $state(null);
 
-	let splitTitle: SplitText;
+	let ctx: gsap.Context | undefined;
+	let destroyed = false;
 
 	onMount(() => {
 		if (!titleEl || !infoEl || !bodyEl || $prefersReducedMotion) return;
 
 		document.fonts.ready.then(() => {
-			const splitParams = {
-				type: 'chars, lines',
-				smartWrap: true,
-				mask: 'lines' as const
-			};
+			if (destroyed || !titleEl || !infoEl || !bodyEl) return;
 
-			splitTitle = SplitText.create(titleEl, splitParams);
+			ctx = gsap.context(() => {
+				const splitParams = {
+					type: 'chars, lines',
+					smartWrap: true,
+					mask: 'lines' as const
+				};
 
-			const tl = gsap.timeline();
+				const splitTitle = SplitText.create(titleEl, splitParams);
 
-			tl.from(splitTitle.chars, {
-				yPercent: 70,
-				autoAlpha: 0,
-				stagger: 0.04,
-				duration: 1,
-				ease: 'power4.out'
-			}).from(
-				[infoEl, bodyEl, ...(ctaEl ? [ctaEl] : [])],
-				{
-					opacity: 0,
-					y: 20,
-					stagger: 0.18,
-					ease: 'power2.out',
-					duration: 0.7
-				},
-				'-=0.8'
-			);
+				gsap
+					.timeline()
+					.from(splitTitle.chars, {
+						yPercent: 70,
+						autoAlpha: 0,
+						stagger: 0.04,
+						duration: 1,
+						ease: 'power4.out'
+					})
+					.from(
+						[infoEl, bodyEl, ...(ctaEl ? [ctaEl] : [])],
+						{
+							opacity: 0,
+							y: 20,
+							stagger: 0.18,
+							ease: 'power2.out',
+							duration: 0.7
+						},
+						'-=0.8'
+					);
+			});
 		});
+	});
+
+	onDestroy(() => {
+		destroyed = true;
+		ctx?.revert();
 	});
 </script>
 
