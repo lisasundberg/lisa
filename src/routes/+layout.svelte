@@ -45,6 +45,8 @@
 		});
 
 		gsap.ticker.lagSmoothing(0);
+
+		ScrollTrigger.addEventListener('refresh', () => lenis.resize());
 	});
 
 	onNavigate((navigation) => {
