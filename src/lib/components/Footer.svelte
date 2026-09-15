@@ -32,8 +32,6 @@
 		height: 100dvh;
 		padding-block: 2em;
 		color: var(--_theme-color-primary);
-		order: 4;
-		z-index: 10;
 	}
 
 	section {
