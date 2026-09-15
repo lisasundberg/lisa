@@ -9,9 +9,9 @@
 </script>
 
 <article class="featured">
-	<a href={link} class="-plain content">
+	<a href={link} class="-plain link">
 		<h3 class="heading h2">{heading}</h3>
-		<p class="p-small label">{label}</p>
+		<p class="tech label">{label}</p>
 	</a>
 </article>
 
@@ -21,7 +21,7 @@
 		position: relative;
 	}
 
-	.content {
+	.link {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
@@ -30,7 +30,7 @@
 		transition: color 0.2s linear;
 
 		@media (width >= 768px) {
-			padding: 2em 1em;
+			padding: 2em 0;
 		}
 
 		&::after {
@@ -61,12 +61,28 @@
 		}
 	}
 
-	p {
+	.tech {
 		text-align: right;
+		transition: translate 0.6s var(--ease-out-expo);
+
+		@media (hover: hover) {
+			.link:hover &,
+			.link:focus-visible & {
+				translate: -1rem 0;
+			}
+		}
 	}
 
 	.heading {
 		font-family: var(--font-display);
 		line-height: 1;
+		transition: translate 0.6s var(--ease-out-expo);
+
+		@media (hover: hover) {
+			.link:hover &,
+			.link:focus-visible & {
+				translate: 1rem 0;
+			}
+		}
 	}
 </style>
