@@ -66,7 +66,7 @@
 	}
 
 	.heading {
-		font-family: var(--font-body);
+		font-family: var(--font-display);
 		line-height: 1;
 	}
 </style>

@@ -34,12 +34,6 @@
 			label: 'React, GSAP',
 			link: '/work/envolve',
 			image: Envolve
-		},
-		{
-			heading: 'Webbdagarna / Storyblok',
-			label: 'Three.js, Mediapipe',
-			link: '/work/webbdagarna',
-			image: Envolve
 		}
 	];
 
@@ -405,14 +399,14 @@
 </section>
 
 <style>
-	.title {
+	/* .title {
 		grid-column: main;
 		font-family: var(--font-display);
 		font-size: var(--font-size-display);
 		text-align: right;
 		position: sticky;
 		top: 0;
-	}
+	} */
 
 	.featured {
 		margin-top: 2em;
@@ -444,6 +438,7 @@
 
 	.cases {
 		margin-top: 2em;
+		border-bottom: 1px solid var(--_theme-color-primary);
 	}
 
 	.work-index {
