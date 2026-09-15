@@ -23,19 +23,20 @@
 					scrollTrigger: {
 						trigger: footer,
 						start: 'top bottom',
-						end: 'top top',
-						scrub: true
+						end: 'top top+=50px',
+						scrub: true,
+						markers: true
 					}
 				})
 				.fromTo(
 					title,
-					{ xPercent: -20, filter: 'blur(50px)' },
+					{ xPercent: -50, filter: 'blur(50px)' },
 					{ xPercent: 0, filter: 'blur(0px)' },
 					0
 				)
 				.fromTo(
 					email,
-					{ xPercent: 20, filter: 'blur(50px)' },
+					{ xPercent: 50, filter: 'blur(50px)' },
 					{ xPercent: 0, filter: 'blur(0px)' },
 					0
 				);
