@@ -40,16 +40,28 @@
 					.to(heroRole, { duration: 1 }, '-=0.9')
 					.to(preambleIntro, { duration: 1.2 }, '<');
 
-				gsap
-					.timeline({
-						scrollTrigger: {
-							start: 0,
-							end: 1000,
-							scrub: true
-						}
-					})
-					.to(rowTop, { xPercent: -20, filter: 'blur(50px)' }, 0)
-					.to(rowBottom, { xPercent: 20, filter: 'blur(50px)' }, 0);
+				const mm = gsap.matchMedia();
+
+				mm.add(
+					{
+						isMobile: '(width < 768px)',
+						isDesktop: '(width >= 768px)'
+					},
+					(context) => {
+						const { isMobile } = context.conditions as { isMobile: boolean };
+
+						gsap
+							.timeline({
+								scrollTrigger: {
+									start: 0,
+									end: 1000,
+									scrub: true
+								}
+							})
+							.to(rowTop, { xPercent: isMobile ? -10 : -20, filter: 'blur(50px)' }, 0)
+							.to(rowBottom, { xPercent: isMobile ? 10 : 20, filter: 'blur(50px)' }, 0);
+					}
+				);
 			}, container);
 		});
 	});
