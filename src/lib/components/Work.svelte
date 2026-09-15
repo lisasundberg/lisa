@@ -39,6 +39,7 @@
 	let textTimeline: gsap.core.Timeline;
 	let bgTimeline: gsap.core.Timeline;
 	let context: gsap.Context;
+	let destroyed = false;
 
 	let activeIndex: number | null = $state(null);
 	let imageItems: Element[] = [];
@@ -187,20 +188,19 @@
 		};
 
 		document.fonts.ready.then(() => {
+			if (destroyed) return;
+
 			context = gsap.context(() => {
 				content();
 				bg();
 			});
 		});
-
-		return () => {
-			if (context) context.revert();
-		};
 	});
 
 	onDestroy(() => {
 		if (typeof window === 'undefined') return;
 
+		destroyed = true;
 		if (context) context.revert();
 	});
 </script>
