@@ -12,7 +12,6 @@
 
 	let indicator: HTMLElement;
 	let ctx: gsap.Context;
-	let unsubscribe: () => void;
 	let scrollTrigger: ScrollTrigger | undefined;
 
 	function show() {
@@ -38,23 +37,23 @@
 
 		ctx = gsap.context(() => {
 			gsap.set(indicator, { autoAlpha: 0 });
+		});
+	});
 
-			unsubscribe = pageRevealFinished.subscribe((finished) => {
-				if (!finished) return;
+	$effect(() => {
+		if (!$pageRevealFinished || scrollTrigger) return;
 
-				show();
+		show();
 
-				scrollTrigger ??= ScrollTrigger.create({
-					start: NAV_REVEAL_OFFSET,
-					onEnter: hide,
-					onLeaveBack: show
-				});
-			});
+		scrollTrigger = ScrollTrigger.create({
+			start: NAV_REVEAL_OFFSET,
+			onEnter: hide,
+			onLeaveBack: show
 		});
 	});
 
 	onDestroy(() => {
-		unsubscribe?.();
+		scrollTrigger?.kill();
 		ctx?.revert();
 	});
 </script>
