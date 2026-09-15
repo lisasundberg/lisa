@@ -134,7 +134,7 @@
 		align-items: center;
 		gap: 0.35em;
 		font-family: var(--font-display);
-		font-size: 10vw;
+		font-size: var(--font-size-display-large);
 		color: var(--theme-color-bg);
 		mix-blend-mode: difference;
 

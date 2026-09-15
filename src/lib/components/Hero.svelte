@@ -124,7 +124,7 @@
 	}
 
 	.heading {
-		font-size: 10vw;
+		font-size: var(--font-size-display-large);
 		line-height: 1.15;
 		margin: 0;
 
