@@ -19,7 +19,7 @@
 <style>
 	.pill {
 		display: inline-block;
-		border: 1px solid currentColor;
+		outline: 1px solid currentColor;
 		border-radius: 1em;
 		font-size: 0.75em;
 		padding: 0.125em 0.75em;
@@ -27,16 +27,13 @@
 		&.-link {
 			position: relative;
 			z-index: 1;
-			transition:
-				background-color 0.2s linear,
-				border-color 0.2s linear,
-				color 0.2s linear;
+			transition: all 0.15s linear;
 
 			@media (hover: hover) {
 				&:hover,
 				&:focus-visible {
 					background-color: var(--_theme-color-accent);
-					border-color: var(--_theme-color-accent);
+					outline-color: var(--_theme-color-accent);
 					color: var(--_theme-color-bg);
 				}
 			}
