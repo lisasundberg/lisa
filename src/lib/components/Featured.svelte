@@ -51,7 +51,7 @@
 		@media (hover: hover) {
 			&:hover,
 			&:focus-visible {
-				color: var(--_theme-color-bg);
+				color: var(--color-light-yellow);
 
 				&::after {
 					scale: 1;
