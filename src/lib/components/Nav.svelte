@@ -87,7 +87,11 @@
 	<ul class="list">
 		{#each links as { id, label, slug }}
 			<li>
-				<a class="link -plain" class:active={$page.url.pathname === `/${id}`} href={slug}>
+				<a
+					class="link -plain"
+					class:active={$page.url.pathname === slug || $page.url.pathname.startsWith(`${slug}/`)}
+					href={slug}
+				>
 					<div class="link-content">
 						<span class="link-label">{label}</span>
 					</div>
