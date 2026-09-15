@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { onDestroy, onMount } from 'svelte';
 	import { gsap } from 'gsap';
+	import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 	import { EASE_REVEAL } from '$lib/gsap/eases';
 	import { pageRevealFinished } from '$lib/stores/app';
@@ -11,6 +12,8 @@
 	let heroRole: HTMLElement;
 	let preambleHello: HTMLElement;
 	let preambleIntro: HTMLElement;
+	let rowTop: HTMLElement;
+	let rowBottom: HTMLElement;
 	let ctx: gsap.Context;
 
 	onMount(() => {
@@ -23,6 +26,8 @@
 				return;
 			}
 
+			gsap.registerPlugin(ScrollTrigger);
+
 			ctx = gsap.context(() => {
 				gsap
 					.timeline({
@@ -32,8 +37,19 @@
 					.set('.text', { yPercent: 100, autoAlpha: 0 })
 					.to(heroName, { duration: 1 })
 					.to(preambleHello, { duration: 1.2 }, '<')
-					.to(heroRole, { duration: 1 }, '-=0.7')
+					.to(heroRole, { duration: 1 }, '-=0.9')
 					.to(preambleIntro, { duration: 1.2 }, '<');
+
+				gsap
+					.timeline({
+						scrollTrigger: {
+							start: 0,
+							end: 1000,
+							scrub: true
+						}
+					})
+					.to(rowTop, { xPercent: -20, filter: 'blur(50px)' }, 0)
+					.to(rowBottom, { xPercent: 20, filter: 'blur(50px)' }, 0);
 			}, container);
 		});
 	});
@@ -43,7 +59,7 @@
 
 <section class="hero">
 	<div class="intro" bind:this={container}>
-		<div class="row">
+		<div class="row" bind:this={rowTop}>
 			<div class="mask -hello">
 				<p class="text preamble" bind:this={preambleHello}>Hello, my name is</p>
 			</div>
@@ -55,7 +71,7 @@
 			</div>
 		</div>
 
-		<div class="row">
+		<div class="row" bind:this={rowBottom}>
 			<div class="mask -role">
 				<h2 class="text heading" bind:this={heroRole} data-flip-id="logo-role">design engineer</h2>
 			</div>
@@ -65,7 +81,7 @@
 
 <style>
 	.hero {
-		height: calc(100dvh - 100px);
+		height: 100dvh;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;

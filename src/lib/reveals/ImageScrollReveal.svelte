@@ -22,8 +22,10 @@
 		const tl = gsap.timeline({
 			scrollTrigger: {
 				trigger: container,
-				start: 'top bottom-=28%',
-				end: 'top center'
+				start: 'top bottom-=25%',
+				end: 'top center',
+				once: true,
+				markers: true
 			}
 		});
 
@@ -47,7 +49,8 @@
 		);
 
 		return () => {
-			ScrollTrigger.getAll().forEach((t) => t.kill());
+			tl.scrollTrigger?.kill();
+			tl.kill();
 		};
 	});
 </script>

@@ -17,7 +17,7 @@
 
 		--content-margin: 1.25em;
 		--content-gap: 2.5em;
-		--content-padding-top: clamp(8rem, 20vw, 10rem);
+		--content-padding-top: clamp(10rem, 25vw, 20rem);
 		--card-padding: clamp(3rem, 5.25vw, 6rem);
 		--main-grid: [full-start] minmax(var(--content-margin), 1fr) [main-start] minmax(auto, max(80vw, 90rem)) [main-end] minmax(var(--content-margin), 1fr) [full-end];
 

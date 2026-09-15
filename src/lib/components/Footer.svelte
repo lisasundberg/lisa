@@ -1,9 +1,64 @@
 <script lang="ts">
+	import { onDestroy, onMount } from 'svelte';
+	import { gsap } from 'gsap';
+	import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
 	import { headingHeight } from '$lib/stores/app';
+	import { prefersReducedMotion } from '$lib/stores/motion';
 	import ExternalLink from '$lib/components/ExternalLink.svelte';
+
+	let footer: HTMLElement;
+	let title: HTMLElement;
+	let email: HTMLElement;
+	let ctx: gsap.Context;
+
+	onMount(() => {
+		if ($prefersReducedMotion) return;
+
+		gsap.registerPlugin(ScrollTrigger);
+
+		ctx = gsap.context(() => {
+			gsap
+				.timeline({
+					scrollTrigger: {
+						trigger: footer,
+						start: 'top bottom',
+						end: 'top top+=50px',
+						scrub: true,
+						markers: true
+					}
+				})
+				.fromTo(
+					title,
+					{ xPercent: -50, filter: 'blur(50px)' },
+					{ xPercent: 0, filter: 'blur(0px)' },
+					0
+				)
+				.fromTo(
+					email,
+					{ xPercent: 50, filter: 'blur(50px)' },
+					{ xPercent: 0, filter: 'blur(0px)' },
+					0
+				);
+		}, footer);
+	});
+
+	onDestroy(() => ctx?.revert());
 </script>
 
-<footer class="footer section" id="contact" style="--heading-height: {$headingHeight}">
+<footer class="footer section" style="--heading-height: {$headingHeight}" bind:this={footer}>
+	<section class="content">
+		<h2 class="title" bind:this={title}>get in touch</h2>
+		<p class="email" bind:this={email}>
+			<a href="mailto:hello@lisasundberg.com">hello@lisasundberg.com</a>
+		</p>
+	</section>
+	<div class="sub">
+		<small>© {new Date().getFullYear()}</small>
+	</div>
+</footer>
+
+<!-- <footer class="footer section" id="contact" style="--heading-height: {$headingHeight}">
 	<section>
 		<h2 class="title label">Get in touch</h2>
 		<p class="email"><a href="mailto:hello@lisasundberg.com">hello@lisasundberg.com</a></p>
@@ -17,9 +72,26 @@
 	<div class="sub">
 		<small>© {new Date().getFullYear()}</small>
 	</div>
-</footer>
+</footer> -->
 
 <style>
+	.content {
+		grid-area: content;
+		line-height: 0.8;
+		margin: auto;
+	}
+
+	.title {
+		font-family: var(--font-display-italic);
+		font-size: var(--font-size-display);
+	}
+
+	.email {
+		font-family: var(--font-display);
+		font-size: var(--font-size-display);
+		/* margin-left: 0.675em; */
+	}
+
 	.footer {
 		grid-column: main;
 		display: grid;
@@ -34,7 +106,7 @@
 		color: var(--_theme-color-primary);
 	}
 
-	section {
+	/* section {
 		grid-area: content;
 		display: grid;
 		grid-template-columns: var(--two-cols);
@@ -43,7 +115,7 @@
 			'title'
 			'email'
 			'list';
-		gap: 0.5em var(--content-gap);
+		gap: 0 var(--content-gap);
 		width: 100%;
 		margin: auto;
 		padding-block: 10dvh;
@@ -53,7 +125,7 @@
 				'title .'
 				'email list';
 		}
-	}
+	} */
 
 	.title {
 		grid-area: title;
