@@ -84,8 +84,8 @@
 		bottom: 2rem;
 		left: 50%;
 		translate: -50% 0;
-		width: 2.75rem;
-		height: 2.75rem;
+		width: 2.5rem;
+		height: 2.5rem;
 		display: grid;
 		place-items: center;
 		border: 1px solid currentColor;
