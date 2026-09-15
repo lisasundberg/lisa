@@ -60,7 +60,7 @@
 	<!-- <h1 class="title" bind:this={title}>About</h1> -->
 	<div class="intro">
 		<p class="body p-small">
-			I have 5+ years of experience in frontend development and a background in art direction. I
+			I have six years of experience in frontend development and a background in art direction. I
 			bridge design and code to create visually engaging, high-performing and accessible digital
 			experiences.
 		</p>
