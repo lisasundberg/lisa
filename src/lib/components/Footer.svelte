@@ -24,8 +24,7 @@
 						trigger: footer,
 						start: 'top bottom',
 						end: 'top top+=50px',
-						scrub: true,
-						markers: true
+						scrub: true
 					}
 				})
 				.fromTo(

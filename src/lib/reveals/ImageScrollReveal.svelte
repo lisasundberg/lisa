@@ -24,8 +24,7 @@
 				trigger: container,
 				start: 'top bottom-=25%',
 				end: 'top center',
-				once: true,
-				markers: true
+				once: true
 			}
 		});
 
