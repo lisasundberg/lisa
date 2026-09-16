@@ -1,16 +1,16 @@
 <script lang="ts">
-	import { onDestroy, onMount } from 'svelte';
+	import { onDestroy } from 'svelte';
 	import type { Snippet } from 'svelte';
 	import type { Picture } from 'vite-imagetools';
 
 	import gsap from 'gsap';
-	import { SplitText } from 'gsap/SplitText';
 
 	import { prefersReducedMotion } from '$lib/stores/motion';
 
 	import ImageScrollReveal from '$lib/reveals/ImageScrollReveal.svelte';
 	import Image from '$lib/components/Image.svelte';
 	import Arrow from '$lib/components/Arrow.svelte';
+	import { EASE_REVEAL } from '$lib/gsap/eases';
 
 	interface Props {
 		title: Snippet;
@@ -36,6 +36,7 @@
 		nextLink
 	}: Props = $props();
 
+	let textEl: HTMLDivElement | null = null;
 	let titleEl: HTMLElement | null = null;
 	let infoEl: HTMLDivElement | null = null;
 	let bodyEl: HTMLDivElement | null = null;
@@ -43,42 +44,76 @@
 
 	let ctx: gsap.Context | undefined;
 	let destroyed = false;
+	let hidden = false;
 
-	onMount(() => {
-		if (!titleEl || !infoEl || !bodyEl || $prefersReducedMotion) return;
+	$effect(() => {
+		if (!textEl || !titleEl || !infoEl || !bodyEl || destroyed || hidden) return;
+
+		if ($prefersReducedMotion) {
+			ctx = gsap.context(() => {
+				gsap.set(textEl, { opacity: 1 });
+			});
+			return;
+		}
+
+		hidden = true;
+
+		const infoParagraphs = infoEl.querySelectorAll('p');
+		const bodyParagraphs = bodyEl.querySelectorAll('p');
+
+		// Hide everything synchronously so nothing flashes before it animates in.
+		ctx = gsap.context(() => {
+			gsap.set(textEl, { opacity: 1 });
+			gsap.set(titleEl, { yPercent: 100, autoAlpha: 0 });
+			gsap.set(infoParagraphs, { y: 20, autoAlpha: 0 });
+			gsap.set(bodyParagraphs, { y: 20, autoAlpha: 0 });
+			if (ctaEl) gsap.set(ctaEl, { y: 20, autoAlpha: 0 });
+		});
 
 		document.fonts.ready.then(() => {
-			if (destroyed || !titleEl || !infoEl || !bodyEl) return;
+			if (destroyed) return;
 
-			ctx = gsap.context(() => {
-				const splitParams = {
-					type: 'chars, lines',
-					smartWrap: true,
-					mask: 'lines' as const
-				};
-
-				const splitTitle = SplitText.create(titleEl, splitParams);
-
-				gsap
-					.timeline()
-					.from(splitTitle.chars, {
-						yPercent: 70,
-						autoAlpha: 0,
-						stagger: 0.04,
-						duration: 1,
-						ease: 'power4.out'
+			ctx?.add(() => {
+				const tl = gsap
+					.timeline({
+						ease: 'Power3.easeOut',
+						duration: 0.2
 					})
-					.from(
-						[infoEl, bodyEl, ...(ctaEl ? [ctaEl] : [])],
+					.to(titleEl, {
+						yPercent: 0,
+						autoAlpha: 1,
+						duration: 1.2,
+						ease: EASE_REVEAL
+					})
+					.to(
+						infoParagraphs,
 						{
-							opacity: 0,
-							y: 20,
-							stagger: 0.18,
-							ease: 'power2.out',
-							duration: 0.7
+							y: 0,
+							autoAlpha: 1,
+							stagger: 0.06
+						},
+						'-=0.9'
+					)
+					.to(
+						bodyParagraphs,
+						{
+							y: 0,
+							autoAlpha: 1,
+							stagger: 0.06
 						},
 						'-=0.8'
 					);
+
+				if (ctaEl) {
+					tl.to(
+						ctaEl,
+						{
+							y: 0,
+							autoAlpha: 1
+						},
+						'-=0.5'
+					);
+				}
 			});
 		});
 	});
@@ -90,8 +125,10 @@
 </script>
 
 <div class="content">
-	<div class="text">
-		<h1 bind:this={titleEl}>{@render title()}</h1>
+	<div class="text" bind:this={textEl}>
+		<div class="mask">
+			<h1 bind:this={titleEl}>{@render title()}</h1>
+		</div>
 		<div class="info" bind:this={infoEl}>
 			{@render info()}
 		</div>
@@ -152,6 +189,8 @@
 	}
 
 	.text {
+		opacity: 0;
+
 		@media (width >= 768px) {
 			position: sticky;
 			top: 20dvh;
@@ -161,6 +200,12 @@
 		@media (height < 600px) {
 			position: initial;
 		}
+	}
+
+	.mask {
+		display: inline-block;
+		height: fit-content;
+		overflow: hidden;
 	}
 
 	.info {
