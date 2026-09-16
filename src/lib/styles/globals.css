@@ -42,6 +42,14 @@
 		view-transition-name: root;
 	}
 
+	* {
+		box-sizing: border-box;
+	}
+
+	html {
+		overflow-x: hidden;
+	}
+
 	body {
 		--_theme-color-primary: var(--theme-color-primary, var(--color-offblack));
 		--_theme-color-bg: var(--theme-color-bg, var(--color-offwhite));
@@ -113,7 +121,7 @@
 			position: absolute;
 			height: 1px;
 			width: 100%;
-			bottom: 0;
+			bottom: -0.125em;
 			left: 0;
 			background-color: currentColor;
 			transform: scaleX(0);

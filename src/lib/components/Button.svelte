@@ -83,7 +83,6 @@
 	.button {
 		--columns-collapsed: max-content max-content 0fr;
 		--columns-expanded: max-content max-content 1fr;
-		box-sizing: border-box;
 		display: inline-grid;
 		height: 2.625rem;
 		grid-template-columns: var(--columns-collapsed);

@@ -4,6 +4,7 @@
 	import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 	import { headingHeight } from '$lib/stores/app';
+	import { EASE_REVEAL } from '$lib/gsap/eases';
 	import { prefersReducedMotion } from '$lib/stores/motion';
 	import ExternalLink from '$lib/components/ExternalLink.svelte';
 
@@ -18,13 +19,27 @@
 		gsap.registerPlugin(ScrollTrigger);
 
 		ctx = gsap.context(() => {
+			const linkReveal = gsap.from('.mask a', {
+				yPercent: 125,
+				duration: 0.4,
+				ease: EASE_REVEAL,
+				paused: true
+			});
+
 			gsap
 				.timeline({
 					scrollTrigger: {
 						trigger: footer,
 						start: 'top bottom',
 						end: 'top top+=50px',
-						scrub: true
+						scrub: true,
+						once: true
+					},
+					onComplete: () => {
+						linkReveal.play();
+					},
+					onReverseComplete: () => {
+						linkReveal.reverse();
 					}
 				})
 				.fromTo(
@@ -49,112 +64,85 @@
 	<section class="content">
 		<h2 class="title" bind:this={title}>get in touch</h2>
 		<p class="email" bind:this={email}>
-			<a href="mailto:hello@lisasundberg.com">hello@lisasundberg.com</a>
+			<a class="-tight" href="mailto:hello@lisasundberg.com">hello@lisasundberg.com</a>
 		</p>
+
+		<ul class="list">
+			<li class="mask"><a href="https://github.com/lisasundberg">Github</a></li>
+
+			<li class="mask"><a href="https://www.linkedin.com/in/lisasundberg/">Linkedin</a></li>
+
+			<li class="mask"><a href="https://codepen.io/lisasundae">CodePen</a></li>
+		</ul>
 	</section>
 	<div class="sub">
 		<small>© {new Date().getFullYear()}</small>
 	</div>
 </footer>
 
-<!-- <footer class="footer section" id="contact" style="--heading-height: {$headingHeight}">
-	<section>
-		<h2 class="title label">Get in touch</h2>
-		<p class="email"><a href="mailto:hello@lisasundberg.com">hello@lisasundberg.com</a></p>
-
-		<ul class="list">
-			<li><ExternalLink href="https://github.com/lisasundberg" label="Github" /></li>
-			<li><ExternalLink href="https://www.linkedin.com/in/lisasundberg/" label="Linkedin" /></li>
-			<li><ExternalLink href="https://codepen.io/lisasundae" label="CodePen" /></li>
-		</ul>
-	</section>
-	<div class="sub">
-		<small>© {new Date().getFullYear()}</small>
-	</div>
-</footer> -->
-
 <style>
-	.content {
-		grid-area: content;
-		line-height: 0.8;
-		margin: auto;
-	}
-
-	.title {
-		font-family: var(--font-display-italic);
-		font-size: var(--font-size-display);
-	}
-
-	.email {
-		font-family: var(--font-display);
-		font-size: var(--font-size-display);
-		/* margin-left: 0.675em; */
-	}
-
 	.footer {
-		grid-column: main;
+		grid-column: full;
 		display: grid;
 		grid-template-columns: subgrid;
 		grid-template-rows: 1fr auto 1fr;
 		grid-template-areas: 'spacer' 'content' 'sub';
 		align-content: center;
-		box-sizing: border-box;
 		position: relative;
 		height: 100dvh;
 		padding-block: 2em;
+		overflow-x: clip;
 		color: var(--_theme-color-primary);
 	}
 
-	/* section {
-		grid-area: content;
-		display: grid;
-		grid-template-columns: var(--two-cols);
-		grid-template-rows: repeat(2, max-content);
-		grid-template-areas:
-			'title'
-			'email'
-			'list';
-		gap: 0 var(--content-gap);
-		width: 100%;
+	.content {
+		grid-column: main;
+		grid-row: content;
+		line-height: 0.8;
 		margin: auto;
-		padding-block: 10dvh;
-
-		@media (width >= 768px) {
-			grid-template-areas:
-				'title .'
-				'email list';
-		}
-	} */
+	}
 
 	.title {
 		grid-area: title;
+		margin-left: -1ch;
+		font-family: var(--font-display-italic);
+		font-size: var(--font-size-h2);
+
+		@media (width >= 768px) {
+			font-size: var(--font-size-display);
+		}
 	}
 
 	.email {
 		grid-area: email;
-	}
-
-	.list {
-		grid-area: list;
-		display: flex;
-		flex-direction: column;
-		gap: 0.5em;
-		margin-top: 1.5em;
+		font-family: var(--font-display);
+		font-size: var(--font-size-h2);
 
 		@media (width >= 768px) {
-			margin-top: 0;
+			font-size: var(--font-size-display);
 		}
 	}
 
+	.list {
+		display: flex;
+		flex-direction: row;
+		gap: 0.5em;
+		margin-top: 1em;
+		margin-left: 0.125em;
+	}
+
+	.mask {
+		overflow: hidden;
+		padding-bottom: 0.2em;
+	}
+
 	.sub {
-		grid-area: sub;
+		grid-column: full;
+		grid-row: sub;
 		display: flex;
 		justify-content: flex-end;
 		align-items: flex-end;
 		opacity: 0.5;
-	}
-
-	small {
-		max-width: 27ch;
+		padding-inline: var(--content-margin);
 	}
 </style>
