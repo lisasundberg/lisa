@@ -66,6 +66,8 @@
 		if (typeof document !== 'undefined' && document.body.classList.contains(INVERTED_CLASSNAME)) {
 			document.body.classList.remove(INVERTED_CLASSNAME);
 		}
+
+		requestAnimationFrame(() => ScrollTrigger.refresh());
 	});
 </script>
 
