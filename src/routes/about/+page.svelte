@@ -8,6 +8,11 @@
 
 	// import ImageScrollReveal from '$lib/reveals/ImageScrollReveal.svelte';
 	// import Image from '$lib/components/Image.svelte';
+	import { onDestroy } from 'svelte';
+	import gsap from 'gsap';
+
+	import { prefersReducedMotion } from '$lib/stores/motion';
+
 	import CV from '$lib/components/CV.svelte';
 
 	// import profilePic from '$lib/assets/about/lisa-bw.jpeg?enhanced';
@@ -15,39 +20,57 @@
 	// let title: HTMLElement | null;
 	// let splitTitle: SplitText;
 
-	// onMount(() => {
-	// if ((pageRevealFinished && !title) || $prefersReducedMotion) return;
-	// const splitParams = {
-	// 	type: 'chars, lines',
-	// 	smartWrap: true,
-	// 	mask: 'lines' as 'lines'
-	// };
-	// const tl = gsap.timeline();
-	// const titleParams = {
-	// 	yPercent: 70,
-	// 	autoAlpha: 0,
-	// 	stagger: 0.04,
-	// 	duration: 1,
-	// 	ease: 'power4.out'
-	// };
-	// const bodyParams = {
-	// 	opacity: 0,
-	// 	yPercent: 10,
-	// 	stagger: 0.1,
-	// 	ease: 'power2.out',
-	// 	duration: 0.5
-	// };
-	// document.fonts.ready.then(() => {
-	// 	splitTitle = SplitText.create(title, splitParams);
-	// 	tl.from(splitTitle.chars, titleParams)
-	// 		.from('.body', bodyParams, '<=0.2')
-	// 		.from('.cv', { opacity: 0 }, '<0.2');
+	// let introEl: HTMLDivElement | null = null;
+
+	// let ctx: gsap.Context | undefined;
+	// let destroyed = false;
+	// let hidden = false;
+
+	// $effect(() => {
+	// 	if (!introEl || destroyed || hidden) return;
+
+	// 	if ($prefersReducedMotion) {
+	// 		ctx = gsap.context(() => {
+	// 			gsap.set(introEl, { opacity: 1 });
+	// 		});
+	// 		return;
+	// 	}
+
+	// 	hidden = true;
+
+	// 	const paragraphs = introEl.querySelectorAll('p');
+
+	// 	// Hide everything synchronously so nothing flashes before it animates in.
+	// 	ctx = gsap.context(() => {
+	// 		gsap.set(introEl, { opacity: 1 });
+	// 		gsap.set(paragraphs, { y: 20, autoAlpha: 0 });
+	// 	});
+
+	// 	document.fonts.ready.then(() => {
+	// 		if (destroyed) return;
+
+	// 		ctx?.add(() => {
+	// 			gsap.to(paragraphs, {
+	// 				y: 0,
+	// 				autoAlpha: 1,
+	// 				stagger: 0.08,
+	// 				ease: 'Power3.easeOut',
+	// 				duration: 0.5,
+	// 				delay: 0.3
+	// 			});
+	// 		});
+	// 	});
 	// });
+
+	// onDestroy(() => {
+	// 	destroyed = true;
+	// 	ctx?.revert();
 	// });
 </script>
 
 <section class="about">
 	<!-- <h1 class="title" bind:this={title}>About</h1> -->
+	<!-- <div class="intro" bind:this={introEl}> -->
 	<div class="intro">
 		<p class="body p-small">
 			I have six years of experience in frontend development and a background in art direction. I
@@ -118,6 +141,7 @@
 
 	.intro {
 		grid-column: 1 / 2;
+		opacity: 0;
 	}
 
 	.cv {
