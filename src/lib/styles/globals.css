@@ -42,6 +42,14 @@
 		view-transition-name: root;
 	}
 
+	* {
+		box-sizing: border-box;
+	}
+
+	html {
+		overflow-x: hidden;
+	}
+
 	body {
 		--_theme-color-primary: var(--theme-color-primary, var(--color-offblack));
 		--_theme-color-bg: var(--theme-color-bg, var(--color-offwhite));
