@@ -81,6 +81,20 @@
 </footer>
 
 <style>
+	.footer {
+		grid-column: full;
+		display: grid;
+		grid-template-columns: subgrid;
+		grid-template-rows: 1fr auto 1fr;
+		grid-template-areas: 'spacer' 'content' 'sub';
+		align-content: center;
+		position: relative;
+		height: 100dvh;
+		padding-block: 2em;
+		overflow-x: clip;
+		color: var(--_theme-color-primary);
+	}
+
 	.content {
 		grid-column: main;
 		grid-row: content;
@@ -89,6 +103,8 @@
 	}
 
 	.title {
+		grid-area: title;
+		margin-left: -1ch;
 		font-family: var(--font-display-italic);
 		font-size: var(--font-size-h2);
 
@@ -98,35 +114,13 @@
 	}
 
 	.email {
+		grid-area: email;
 		font-family: var(--font-display);
 		font-size: var(--font-size-h2);
 
 		@media (width >= 768px) {
 			font-size: var(--font-size-display);
 		}
-	}
-
-	.footer {
-		grid-column: full;
-		display: grid;
-		grid-template-columns: subgrid;
-		grid-template-rows: 1fr auto 1fr;
-		grid-template-areas: 'spacer' 'content' 'sub';
-		align-content: center;
-		box-sizing: border-box;
-		position: relative;
-		height: 100dvh;
-		padding-block: 2em;
-		color: var(--_theme-color-primary);
-	}
-
-	.title {
-		grid-area: title;
-		margin-left: -1ch;
-	}
-
-	.email {
-		grid-area: email;
 	}
 
 	.list {
