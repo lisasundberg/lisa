@@ -90,12 +90,20 @@
 
 	.title {
 		font-family: var(--font-display-italic);
-		font-size: var(--font-size-display);
+		font-size: var(--font-size-h2);
+
+		@media (width >= 768px) {
+			font-size: var(--font-size-display);
+		}
 	}
 
 	.email {
 		font-family: var(--font-display);
-		font-size: var(--font-size-display);
+		font-size: var(--font-size-h2);
+
+		@media (width >= 768px) {
+			font-size: var(--font-size-display);
+		}
 	}
 
 	.footer {
