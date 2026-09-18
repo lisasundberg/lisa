@@ -21,8 +21,7 @@ This is a **SvelteKit 2 / Svelte 5** personal portfolio site deployed to Netlify
 
 - **GSAP** (with `ScrollTrigger`, `SplitText`) is the primary animation engine
 - **Lenis** handles smooth scrolling; it's initialized in `+layout.svelte` and its scroll is forwarded to GSAP's ScrollTrigger ticker
-- **Three.js** via **Threlte** and **Shader Park** power the background effects
-- The custom Svelte action in `src/lib/actions/animate.ts` wraps GSAP timelines and ScrollTrigger for declarative use in components
+
 
 ### Routing & Layouts
 
@@ -30,21 +29,15 @@ This is a **SvelteKit 2 / Svelte 5** personal portfolio site deployed to Netlify
 - `+layout.svelte` (root) sets up Lenis, GSAP plugins, View Transitions API, and wraps everything in `<Nav>`, `<PageReveal>`, and `<Footer>`
 - `+layout.ts` passes the current `pathname` as layout data so child routes can consume it
 
-### Themes & Backgrounds
-
-- Theme state lives in `src/lib/stores/theme.ts` (`currentTheme`, `INVERTED_CLASSNAME`)
-- `src/lib/components/Background.svelte` switches between background variants based on the active theme
-- Background variants are in `src/lib/components/Backgrounds/`: `Bokeh.svelte`, `Shader.svelte`, `Donuts.svelte`
-- CSS themes are defined in `src/lib/styles/themes.css`
 
 ### State
 
 - `src/lib/stores/app.ts` — global app state: `pageRevealFinished`, `headingHeight`
 - `src/lib/stores/theme.ts` — theme state
 
+
 ### Page Reveals & Transitions
 
-- `src/lib/reveals/PageReveal.svelte` — page load reveal animation
 - `src/lib/reveals/PageTransition.svelte` — route-change transitions (uses View Transitions API)
 - `src/lib/reveals/ScrollReveal.svelte` / `ImageScrollReveal.svelte` — scroll-triggered reveal animations
 
