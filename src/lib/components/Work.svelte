@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { gsap } from 'gsap';
-	import { SplitText } from 'gsap/SplitText';
-	import { ScrollTrigger } from 'gsap/ScrollTrigger';
+	import SplitText from 'gsap/SplitText';
+	import ScrollTrigger from 'gsap/ScrollTrigger';
 
 	import { INVERTED_CLASSNAME } from '$lib/stores/theme';
 	import { prefersReducedMotion } from '$lib/stores/motion';

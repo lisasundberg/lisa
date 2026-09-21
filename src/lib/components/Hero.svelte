@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { onDestroy, onMount } from 'svelte';
 	import { gsap } from 'gsap';
-	import { ScrollTrigger } from 'gsap/ScrollTrigger';
+	import ScrollTrigger from 'gsap/ScrollTrigger';
 
 	import { EASE_REVEAL } from '$lib/gsap/eases';
 	import { pageRevealFinished } from '$lib/stores/app';

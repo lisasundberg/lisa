@@ -1,5 +1,5 @@
 import { gsap } from 'gsap';
-import { CustomEase } from 'gsap/CustomEase';
+import CustomEase from 'gsap/CustomEase';
 
 gsap.registerPlugin(CustomEase);
 

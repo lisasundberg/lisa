@@ -2,7 +2,7 @@
 	import { onMount } from 'svelte';
 	import { pageRevealFinished } from '$lib/stores/app';
 	import { gsap } from 'gsap';
-	import { DrawSVGPlugin } from 'gsap/DrawSVGPlugin';
+	import DrawSVGPlugin from 'gsap/DrawSVGPlugin';
 
 	let path: SVGPathElement;
 	let bg: HTMLDivElement;

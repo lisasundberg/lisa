@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import gsap from 'gsap';
-	import { SplitText } from 'gsap/SplitText';
+	import SplitText from 'gsap/SplitText';
 
 	import { pageRevealFinished } from '$lib/stores/app';
 	import { prefersReducedMotion } from '$lib/stores/motion';
