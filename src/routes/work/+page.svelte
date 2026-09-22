@@ -328,7 +328,7 @@
 	}
 
 	function onMouseLeave() {
-		gsap.to(imageEl, { opacity: 0, scale: 0.88, duration: 0.3, ease: 'power2.in' });
+		gsap.to(imageEl, { opacity: 0, duration: 0.3, ease: 'power2.in' });
 	}
 
 	function computeCursorImageFollow(event: PointerEvent) {
