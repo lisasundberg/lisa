@@ -1,77 +1,98 @@
 <script lang="ts">
-	// import { onMount } from 'svelte';
-	// import gsap from 'gsap';
-	// import { SplitText } from 'gsap/SplitText';
-
-	// import { pageRevealFinished } from '$lib/stores/app';
-	// import { prefersReducedMotion } from '$lib/stores/motion';
-
-	// import ImageScrollReveal from '$lib/reveals/ImageScrollReveal.svelte';
-	// import Image from '$lib/components/Image.svelte';
-	import { onDestroy } from 'svelte';
+	import { onMount } from 'svelte';
 	import gsap from 'gsap';
+	import SplitText from 'gsap/SplitText';
 
+	import { pageRevealFinished } from '$lib/stores/app';
 	import { prefersReducedMotion } from '$lib/stores/motion';
+
+	import ImageScrollReveal from '$lib/reveals/ImageScrollReveal.svelte';
+	import Image from '$lib/components/Image.svelte';
+	import { onDestroy } from 'svelte';
 
 	import CV from '$lib/components/CV.svelte';
 
-	// import profilePic from '$lib/assets/about/lisa-bw.jpeg?enhanced';
+	import profilePic from '$lib/assets/about/lisa-bw.jpeg?enhanced';
 
-	// let title: HTMLElement | null;
-	// let splitTitle: SplitText;
+	let title: HTMLElement | null;
+	let splitTitle: SplitText;
 
-	// let introEl: HTMLDivElement | null = null;
+	let intro: HTMLDivElement | null = null;
+	let cv: HTMLElement | null = null;
 
-	// let ctx: gsap.Context | undefined;
-	// let destroyed = false;
-	// let hidden = false;
+	let ctx: gsap.Context | undefined;
+	let destroyed = false;
+	let hidden = false;
 
-	// $effect(() => {
-	// 	if (!introEl || destroyed || hidden) return;
+	$effect(() => {
+		if (!intro || destroyed || hidden) return;
 
-	// 	if ($prefersReducedMotion) {
-	// 		ctx = gsap.context(() => {
-	// 			gsap.set(introEl, { opacity: 1 });
-	// 		});
-	// 		return;
-	// 	}
+		if ($prefersReducedMotion) {
+			ctx = gsap.context(() => {
+				gsap.set(intro, { opacity: 1 });
+			});
+			return;
+		}
 
-	// 	hidden = true;
+		hidden = true;
 
-	// 	const paragraphs = introEl.querySelectorAll('p');
+		const paragraphs = intro.querySelectorAll('p');
 
-	// 	// Hide everything synchronously so nothing flashes before it animates in.
-	// 	ctx = gsap.context(() => {
-	// 		gsap.set(introEl, { opacity: 1 });
-	// 		gsap.set(paragraphs, { y: 20, autoAlpha: 0 });
-	// 	});
+		// Hide everything synchronously so nothing flashes before it animates in.
+		ctx = gsap.context(() => {
+			gsap.set(intro, { opacity: 1 });
+			gsap.set(paragraphs, { y: 20, autoAlpha: 0 });
+			gsap.set(cv, { autoAlpha: 0 });
+		});
 
-	// 	document.fonts.ready.then(() => {
-	// 		if (destroyed) return;
+		document.fonts.ready.then(() => {
+			if (destroyed) return;
 
-	// 		ctx?.add(() => {
-	// 			gsap.to(paragraphs, {
-	// 				y: 0,
-	// 				autoAlpha: 1,
-	// 				stagger: 0.08,
-	// 				ease: 'Power3.easeOut',
-	// 				duration: 0.5,
-	// 				delay: 0.3
-	// 			});
-	// 		});
-	// 	});
-	// });
+			ctx?.add(() => {
+				const tl = gsap.timeline();
 
-	// onDestroy(() => {
-	// 	destroyed = true;
-	// 	ctx?.revert();
-	// });
+				tl.to(
+					paragraphs,
+					{
+						y: 0,
+						stagger: 0.08,
+						ease: 'expo.inOut',
+						duration: 1
+					},
+					0
+				)
+					.to(
+						paragraphs,
+						{
+							autoAlpha: 1,
+							stagger: 0.08,
+							ease: 'linear',
+							duration: 0.5,
+							delay: 0.4
+						},
+						0
+					)
+					.to(
+						cv,
+						{
+							autoAlpha: 1
+						},
+						'<+=0.16'
+					);
+			});
+		});
+	});
+
+	onDestroy(() => {
+		destroyed = true;
+		ctx?.revert();
+	});
 </script>
 
 <section class="about">
 	<!-- <h1 class="title" bind:this={title}>About</h1> -->
-	<!-- <div class="intro" bind:this={introEl}> -->
-	<div class="intro">
+	<div class="intro" bind:this={intro}>
+		<!-- <div class="intro"> -->
 		<p class="body p-small">
 			I have six years of experience in frontend development and a background in art direction. I
 			bridge design and code to create visually engaging, high-performing and accessible digital
@@ -90,7 +111,7 @@
 		<Image src={profilePic} alt="Lisa" />
 	</ImageScrollReveal> -->
 </section>
-<section class="cv">
+<section class="cv" bind:this={cv}>
 	<CV />
 </section>
 
@@ -145,6 +166,7 @@
 	}
 
 	.cv {
+		visibility: hidden;
 		grid-column: main;
 		margin-top: clamp(4rem, 10vw, 16rem);
 	}
