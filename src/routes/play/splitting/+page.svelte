@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { gsap } from 'gsap';
-	import { SplitText } from 'gsap/SplitText';
+	import SplitText from 'gsap/SplitText';
 	import { onMount } from 'svelte';
 
 	let split1: SplitText;

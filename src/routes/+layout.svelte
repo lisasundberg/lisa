@@ -3,7 +3,7 @@
 	import { onNavigate, afterNavigate } from '$app/navigation';
 
 	import { gsap } from 'gsap';
-	import { ScrollTrigger } from 'gsap/ScrollTrigger';
+	import ScrollTrigger from 'gsap/ScrollTrigger';
 	import { Body } from 'svelte-body';
 	import Lenis from 'lenis';
 	import 'lenis/dist/lenis.css';
