@@ -99,11 +99,19 @@
 		justify-content: center;
 	}
 
+	.intro {
+		margin-bottom: 3em;
+
+		@media (width >= 900px) {
+			margin-bottom: 0;
+		}
+	}
+
 	.row {
 		display: flex;
 		flex-direction: column;
 
-		@media (width >= 768px) {
+		@media (width >= 667px) {
 			flex-direction: row;
 			gap: 0 0.8em;
 		}
