@@ -39,6 +39,13 @@
 
 	const experiences = [
 		{
+			year: '2025',
+			client: 'Personal project',
+			description: 'Portfolio site, 2025 version',
+			tech: 'SvelteKit, GSAP',
+			link: 'https://2025.lisasundberg.com'
+		},
+		{
 			year: '2024',
 			client: 'Alster',
 			description: 'AI chat bot for customer service',
