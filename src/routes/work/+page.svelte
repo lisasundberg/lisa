@@ -339,7 +339,7 @@
 <!-- <h1 bind:this={title} class="title">Work</h1> -->
 
 <section class="featured">
-	<h2 class="label-bold">Selected projects</h2>
+	<h2 class="label">Selected projects</h2>
 	<div class="cases" role="region" bind:this={casesEl} onmouseleave={onMouseLeave}>
 		{#each featuredWork as { heading, label, link, image }}
 			<div
@@ -369,8 +369,8 @@
 </section>
 
 <section class="archive">
-	<h2 class="label-bold">Archive / index</h2>
-	<p class="p-small">
+	<h2 class="label">Archive / index</h2>
+	<p class="p-xsmall">
 		Pretty much all the projects I've worked on, big and small.<br /> Linked if still available online.
 	</p>
 	<table class="work-index">

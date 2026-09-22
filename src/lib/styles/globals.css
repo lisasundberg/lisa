@@ -47,7 +47,7 @@
 	}
 
 	html {
-		overflow-x: hidden;
+		overflow-x: clip;
 	}
 
 	body {
@@ -56,7 +56,7 @@
 		--_theme-color-accent: var(--theme-color-accent, var(--color-indigo));
 		width: 100vw;
 		min-height: 100dvh;
-		overflow-x: hidden;
+		overflow-x: clip;
 		display: grid;
 		grid-template-columns: var(--main-grid);
 		margin: 0;
