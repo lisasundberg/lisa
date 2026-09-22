@@ -76,7 +76,7 @@
 				<p class="text preamble" bind:this={preambleHello}>Hello, my name is</p>
 			</div>
 			<div class="mask -name">
-				<h1 class="text heading" bind:this={heroName} data-flip-id="logo-name">Lisa Sundberg</h1>
+				<h1 class="text heading" bind:this={heroName}>Lisa Sundberg</h1>
 			</div>
 			<div class="mask -intro">
 				<p class="text preamble" bind:this={preambleIntro}>and I'm a</p>
@@ -85,7 +85,7 @@
 
 		<div class="row" bind:this={rowBottom}>
 			<div class="mask -role">
-				<h2 class="text heading" bind:this={heroRole} data-flip-id="logo-role">design engineer</h2>
+				<h2 class="text heading" bind:this={heroRole}>design engineer</h2>
 			</div>
 		</div>
 	</div>
@@ -93,7 +93,7 @@
 
 <style>
 	.hero {
-		height: 100vh;
+		height: 100dvh;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;

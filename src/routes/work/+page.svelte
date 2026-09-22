@@ -39,6 +39,13 @@
 
 	const experiences = [
 		{
+			year: '2025',
+			client: 'Personal project',
+			description: 'Portfolio site, 2025 version',
+			tech: 'SvelteKit, GSAP',
+			link: 'https://2025.lisasundberg.com'
+		},
+		{
 			year: '2024',
 			client: 'Alster',
 			description: 'AI chat bot for customer service',
@@ -321,7 +328,7 @@
 	}
 
 	function onMouseLeave() {
-		gsap.to(imageEl, { opacity: 0, scale: 0.88, duration: 0.3, ease: 'power2.in' });
+		gsap.to(imageEl, { opacity: 0, duration: 0.3, ease: 'power2.in' });
 	}
 
 	function computeCursorImageFollow(event: PointerEvent) {
@@ -375,12 +382,12 @@
 
 					<td class="description">
 						{#if link}
-							<a class="link -plain" href={link} target="_blank">
+							<a class="project-name link -plain" href={link} target="_blank">
 								{description} <span class="external-indicator" aria-hidden="true">↗</span>
 								<span class="visually-hidden">(opens in new tab)</span>
 							</a>
 						{:else}
-							{description}
+							<span class="project-name">{description}</span>
 						{/if}
 						{#if awards}
 							<span class="awards">
@@ -520,6 +527,17 @@
 		}
 	}
 
+	.project-name {
+		position: static;
+		margin-right: 1em;
+
+		&::after {
+			content: '';
+			position: absolute;
+			inset: 0;
+		}
+	}
+
 	.external-indicator {
 		margin-left: 0.25em;
 	}
@@ -533,7 +551,6 @@
 		@media (width >= 768px) {
 			display: inline-flex;
 			margin-top: 0;
-			margin-left: 1em;
 		}
 	}
 
@@ -545,16 +562,6 @@
 	.-desktop {
 		@media (width < 768px) {
 			display: none;
-		}
-	}
-
-	.link {
-		position: static;
-
-		&::after {
-			content: '';
-			position: absolute;
-			inset: 0;
 		}
 	}
 </style>

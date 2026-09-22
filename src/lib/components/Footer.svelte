@@ -78,7 +78,7 @@
 				<span class="divider" aria-hidden="true">/</span>
 			</li>
 
-			<li class="mask"><a class="link" href="https://codepen.io/lisasundae">CodePen</a></li>
+			<li class="mask"><a class="link" href="https://codepen.io/lisasundae">Codepen</a></li>
 		</ul>
 	</section>
 	<div class="sub">
