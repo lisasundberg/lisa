@@ -22,7 +22,8 @@
 	}
 
 	.link {
-		display: flex;
+		display: grid;
+		grid-template-columns: max-content min-content;
 		justify-content: space-between;
 		align-items: center;
 		gap: 0.5em;
@@ -31,6 +32,7 @@
 
 		@media (width >= 768px) {
 			padding: 2em 0;
+			grid-template-columns: max-content max-content;
 		}
 
 		&::after {

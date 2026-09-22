@@ -19,7 +19,7 @@
 		gsap.registerPlugin(ScrollTrigger);
 
 		ctx = gsap.context(() => {
-			const linkReveal = gsap.from('.mask a', {
+			const linkReveal = gsap.from('.mask a, .mask .divider', {
 				yPercent: 125,
 				duration: 0.4,
 				ease: EASE_REVEAL,
@@ -68,11 +68,17 @@
 		</p>
 
 		<ul class="list">
-			<li class="mask"><a href="https://github.com/lisasundberg">Github</a></li>
+			<li class="mask">
+				<a class="link" href="https://github.com/lisasundberg">Github</a>
+				<span class="divider" aria-hidden="true">/</span>
+			</li>
 
-			<li class="mask"><a href="https://www.linkedin.com/in/lisasundberg/">Linkedin</a></li>
+			<li class="mask">
+				<a class="link" href="https://www.linkedin.com/in/lisasundberg/">Linkedin</a>
+				<span class="divider" aria-hidden="true">/</span>
+			</li>
 
-			<li class="mask"><a href="https://codepen.io/lisasundae">CodePen</a></li>
+			<li class="mask"><a class="link" href="https://codepen.io/lisasundae">CodePen</a></li>
 		</ul>
 	</section>
 	<div class="sub">
@@ -134,6 +140,8 @@
 	.mask {
 		overflow: hidden;
 		padding-bottom: 0.2em;
+		display: flex;
+		gap: 0.5em;
 	}
 
 	.sub {
