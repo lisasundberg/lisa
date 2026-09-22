@@ -81,10 +81,11 @@
 
 <style>
 	.button {
-		box-sizing: border-box;
+		--columns-collapsed: max-content max-content 0fr;
+		--columns-expanded: max-content max-content 1fr;
 		display: inline-grid;
 		height: 2.625rem;
-		grid-template-columns: min-content auto 0fr;
+		grid-template-columns: var(--columns-collapsed);
 		grid-template-areas: 'icon-left label icon-right';
 		gap: 0.5em;
 		align-items: center;
@@ -101,10 +102,14 @@
 		@media (hover: hover) {
 			&:hover,
 			&:focus-visible {
-				grid-template-columns: min-content auto 1fr;
+				grid-template-columns: var(--columns-expanded);
 				background-color: var(--_theme-color-primary);
 				color: var(--_theme-color-bg);
 			}
+		}
+
+		@media (hover: none) {
+			grid-template-columns: var(--columns-expanded);
 		}
 	}
 
@@ -142,17 +147,25 @@
 	}
 
 	.-external {
-		& svg {
-			transform: translate(-100%, 100%);
-			transition: transform 0.15s var(--ease-in-out-sine);
+		svg {
+			translate: -100% 100%;
+			transition: translate 0.15s var(--ease-in-out-sine);
 		}
 
-		&:hover {
-			& svg {
-				transform: translate(0, 0);
-				transition-duration: 0.32s;
-				transition-timing-function: var(--ease-out-expo);
-				transition-delay: 0.08s;
+		@media (hover: hover) {
+			&:hover {
+				svg {
+					translate: 0 0;
+					transition-duration: 0.32s;
+					transition-timing-function: var(--ease-out-expo);
+					transition-delay: 0.08s;
+				}
+			}
+		}
+
+		@media (hover: none) {
+			svg {
+				translate: 0 0;
 			}
 		}
 	}
