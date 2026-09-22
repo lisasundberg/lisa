@@ -1,17 +1,17 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { gsap } from 'gsap';
-	import { ScrollTrigger } from 'gsap/ScrollTrigger';
+	import ScrollTrigger from 'gsap/ScrollTrigger';
 
 	import { prefersReducedMotion } from '$lib/stores/motion';
 
 	interface Props {
 		children?: import('svelte').Snippet;
+		delay?: number;
 	}
 
-	let { children }: Props = $props();
+	const { children, delay }: Props = $props();
 	let container: HTMLElement;
-	let mask: HTMLElement;
 	let inner: HTMLElement;
 
 	onMount(() => {
@@ -22,8 +22,9 @@
 		const tl = gsap.timeline({
 			scrollTrigger: {
 				trigger: container,
-				start: 'top bottom-=28%',
-				end: 'top center'
+				start: 'top bottom-=25%',
+				end: 'top center',
+				once: true
 			}
 		});
 
@@ -33,7 +34,8 @@
 			{
 				clipPath: 'inset(0% 0% 0%)',
 				duration: 0.75,
-				ease: 'power4.out'
+				ease: 'power4.out',
+				delay: delay || 0
 			}
 		).from(
 			inner,
@@ -46,7 +48,8 @@
 		);
 
 		return () => {
-			ScrollTrigger.getAll().forEach((t) => t.kill());
+			tl.scrollTrigger?.kill();
+			tl.kill();
 		};
 	});
 </script>

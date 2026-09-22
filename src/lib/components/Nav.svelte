@@ -1,6 +1,13 @@
 <script lang="ts">
+	import { onMount, onDestroy } from 'svelte';
+	import { gsap } from 'gsap';
+	import ScrollTrigger from 'gsap/ScrollTrigger';
 	import { page } from '$app/stores';
-	import OpenToWork from './OpenToWork.svelte';
+	import { prefersReducedMotion } from '$lib/stores/motion';
+	import { EASE_REVEAL } from '$lib/gsap/eases';
+	import TextLogo from './TextLogo.svelte';
+
+	const SCROLL_REVEAL_OFFSET = 20;
 
 	const links = [
 		{
@@ -14,52 +21,102 @@
 			slug: '/about'
 		}
 	];
+
+	let nav: HTMLElement;
+	let ctx: gsap.Context;
+	let scrollTrigger: ScrollTrigger;
+
+	const isHome = $derived($page.url.pathname === '/');
+
+	function reveal() {
+		gsap.to(nav, {
+			autoAlpha: 1,
+			yPercent: 0,
+			duration: $prefersReducedMotion ? 0 : 0.8,
+			ease: EASE_REVEAL
+		});
+	}
+
+	function hide() {
+		gsap.to(nav, {
+			autoAlpha: 0,
+			yPercent: $prefersReducedMotion ? 0 : -100,
+			duration: $prefersReducedMotion ? 0 : 0.5,
+			ease: EASE_REVEAL
+		});
+	}
+
+	function syncVisibility() {
+		if (!scrollTrigger) return;
+
+		if (isHome) {
+			scrollTrigger.enable();
+		} else {
+			scrollTrigger.disable();
+			gsap.set(nav, { autoAlpha: 1, yPercent: 0 });
+		}
+	}
+
+	onMount(() => {
+		gsap.registerPlugin(ScrollTrigger);
+
+		ctx = gsap.context(() => {
+			gsap.set(nav, { autoAlpha: 0, yPercent: $prefersReducedMotion ? 0 : -100 });
+
+			scrollTrigger = ScrollTrigger.create({
+				start: SCROLL_REVEAL_OFFSET,
+				onEnter: reveal,
+				onLeaveBack: hide
+			});
+
+			syncVisibility();
+		}, nav);
+	});
+
+	$effect(() => {
+		syncVisibility();
+	});
+
+	onDestroy(() => ctx?.revert());
 </script>
 
-<nav class="nav">
-	<a class="logo -plain" href="/">LS</a>
-	<ul>
+<nav class="nav" bind:this={nav}>
+	<a class="logo -plain" href="/">
+		<TextLogo />
+	</a>
+	<ul class="list">
 		{#each links as { id, label, slug }}
 			<li>
-				<a class="link -plain" class:active={$page.url.pathname === `/${id}`} href={slug}>
+				<a
+					class="link -plain"
+					class:active={$page.url.pathname === slug || $page.url.pathname.startsWith(`${slug}/`)}
+					href={slug}
+				>
 					<div class="link-content">
-						<span class="label">{label}</span>
+						<span class="link-label">{label}</span>
 					</div>
 				</a>
 			</li>
 		{/each}
 	</ul>
-	<div class="open-to-work">
-		<OpenToWork active />
-	</div>
 </nav>
 
 <style>
 	.nav {
 		display: flex;
-		align-items: center;
+		justify-content: space-between;
 		gap: var(--content-gap);
 		padding: 1.5rem var(--content-margin);
 		color: var(--_theme-color-primary);
+		visibility: hidden;
+		opacity: 0;
 	}
 
-	ul {
-		width: 100%;
-		display: flex;
-		justify-content: space-around;
-		align-items: center;
-		gap: 1rem;
-		margin: 0;
-		padding-inline: 0;
-	}
-
-	li {
-		list-style: none;
+	.list {
+		margin-left: auto;
 	}
 
 	.link {
-		padding: 1em 0;
-
 		&.active,
 		&:hover,
 		&:focus-visible {
@@ -89,8 +146,16 @@
 		}
 	}
 
-	.label {
+	.link-label {
+		font-family: var(--font-display);
+		font-size: var(--font-size-h2);
 		grid-area: label;
+		line-height: 1;
+		text-align: right;
+
+		.active & {
+			font-family: var(--font-display-italic);
+		}
 	}
 
 	.logo {
@@ -98,13 +163,5 @@
 		font-weight: 100;
 		font-size: 1.5rem;
 		flex-grow: 0;
-	}
-
-	.open-to-work {
-		flex-shrink: 0;
-
-		@media (width < 768px) {
-			display: none;
-		}
 	}
 </style>

@@ -1,10 +1,12 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import gsap from 'gsap';
-	import { SplitText } from 'gsap/SplitText';
+	import SplitText from 'gsap/SplitText';
+	import type { Picture } from 'vite-imagetools';
 
 	import { pageRevealFinished } from '$lib/stores/app';
 	import { prefersReducedMotion } from '$lib/stores/motion';
+	import { pointerFollow } from '$lib/actions/pointerFollow';
 
 	import Featured from '$lib/components/Featured.svelte';
 	import Pill from '$lib/components/Pill.svelte';
@@ -12,6 +14,7 @@
 	import AH from '$lib/assets/akademiskahus/ah-mockup-1.jpg?enhanced';
 	import Homage from '$lib/assets/homage/homage-mockup-1.jpg?enhanced';
 	import Envolve from '$lib/assets/envolve/envolve.png?enhanced';
+	// import Webbdagarna from '$lib/assets/webbdagarna/webbdagarna-mockup-1.jpg?enhanced';
 
 	const featuredWork = [
 		{
@@ -35,6 +38,13 @@
 	];
 
 	const experiences = [
+		{
+			year: '2025',
+			client: 'Personal project',
+			description: 'Portfolio site, 2025 version',
+			tech: 'SvelteKit, GSAP',
+			link: 'https://2025.lisasundberg.com'
+		},
 		{
 			year: '2024',
 			client: 'Alster',
@@ -308,58 +318,49 @@
 
 	let title: HTMLElement | null;
 	let splitTitle: SplitText;
+	let casesEl: HTMLElement = $state()!;
 	let imageEl: HTMLElement | null = $state(null);
-	let activeImage: any = $state(null);
+	let activeImage: Picture | null = $state(null);
 
-	function onMouseEnter(image: any) {
+	function onMouseEnter(image: Picture) {
 		activeImage = image;
 		gsap.to(imageEl, { opacity: 1, scale: 1, duration: 0.35, ease: 'power3.out' });
 	}
 
 	function onMouseLeave() {
-		gsap.to(imageEl, { opacity: 0, scale: 0.88, duration: 0.3, ease: 'power2.in' });
+		gsap.to(imageEl, { opacity: 0, duration: 0.3, ease: 'power2.in' });
 	}
 
-	function onMouseMove(e: MouseEvent) {
-		gsap.to(imageEl, { x: e.clientX + 20, y: e.clientY - 30, duration: 0.55, ease: 'power2.out' });
+	function computeCursorImageFollow(event: PointerEvent) {
+		return { x: event.clientX + 20, y: event.clientY - 30 };
 	}
-
-	// onMount(() => {
-	// 	if ((pageRevealFinished && !title) || $prefersReducedMotion) return;
-
-	// 	document.fonts.ready.then(() => {
-	// 		const splitParams = {
-	// 			type: 'chars, lines',
-	// 			smartWrap: true,
-	// 			mask: 'lines' as 'lines'
-	// 		};
-
-	// 		splitTitle = SplitText.create(title, splitParams);
-
-	// 		const tl = gsap.timeline();
-
-	// 		tl.from(splitTitle.chars, {
-	// 			yPercent: 70,
-	// 			autoAlpha: 0,
-	// 			stagger: 0.04,
-	// 			duration: 1,
-	// 			ease: 'power4.out'
-	// 		});
-	// 	});
-	// });
 </script>
 
-<h1 bind:this={title} class="title">Work</h1>
+<!-- <h1 bind:this={title} class="title">Work</h1> -->
 
 <section class="featured">
-	<h2 class="label-bold">Selected projects</h2>
-	<div class="cases" role="region" onmouseleave={onMouseLeave} onmousemove={onMouseMove}>
+	<h2 class="label">Selected projects</h2>
+	<div class="cases" role="region" bind:this={casesEl} onmouseleave={onMouseLeave}>
 		{#each featuredWork as { heading, label, link, image }}
-			<div class="card" role="button" tabindex="0" onmouseenter={() => onMouseEnter(image)}>
+			<div
+				class="featured-item"
+				role="button"
+				tabindex="0"
+				onmouseenter={() => onMouseEnter(image)}
+			>
 				<Featured {heading} {label} {link} />
 			</div>
 		{/each}
-		<div class="cursor-image" bind:this={imageEl}>
+		<div
+			class="cursor-image"
+			bind:this={imageEl}
+			use:pointerFollow={{
+				zone: casesEl,
+				duration: 0.55,
+				ease: 'power2.out',
+				compute: computeCursorImageFollow
+			}}
+		>
 			{#if activeImage}
 				<enhanced:img src={activeImage} alt="" />
 			{/if}
@@ -368,8 +369,8 @@
 </section>
 
 <section class="archive">
-	<h2 class="label-bold">Archive / index</h2>
-	<p class="p-small">
+	<h2 class="label">Archive / index</h2>
+	<p class="p-xsmall">
 		Pretty much all the projects I've worked on, big and small.<br /> Linked if still available online.
 	</p>
 	<table class="work-index">
@@ -379,31 +380,23 @@
 					<td class="year">{year}<span class="client -mobile">, {client}</span></td>
 					<td class="client -desktop">{client}</td>
 
-					{#if link}
-						<td class="description">
-							<a class="link -plain" href={link} target="_blank">
-								{description} <span class="external-indicator">↗</span>
-								{#if awards}
-									<span class="awards">
-										{#each awards as { name }}
-											<Pill>{name}</Pill>
-										{/each}
-									</span>
-								{/if}
+					<td class="description">
+						{#if link}
+							<a class="project-name link -plain" href={link} target="_blank">
+								{description} <span class="external-indicator" aria-hidden="true">↗</span>
+								<span class="visually-hidden">(opens in new tab)</span>
 							</a>
-						</td>
-					{:else}
-						<td class="description">
-							{description}
-							{#if awards}
-								<span class="awards">
-									{#each awards as { name }}
-										<Pill>{name}</Pill>
-									{/each}
-								</span>
-							{/if}</td
-						>
-					{/if}
+						{:else}
+							<span class="project-name">{description}</span>
+						{/if}
+						{#if awards}
+							<span class="awards">
+								{#each awards as { name, link }}
+									<Pill {link}>{name}</Pill>
+								{/each}
+							</span>
+						{/if}
+					</td>
 					<td class="tech -mobile label">{tech}</td>
 					<td class="tech -desktop">{tech}</td>
 				</tr>
@@ -413,10 +406,14 @@
 </section>
 
 <style>
-	.title {
-		font-family: var(--font-display);
+	/* .title {
 		grid-column: main;
-	}
+		font-family: var(--font-display);
+		font-size: var(--font-size-display);
+		text-align: right;
+		position: sticky;
+		top: 0;
+	} */
 
 	.featured {
 		margin-top: 2em;
@@ -448,6 +445,7 @@
 
 	.cases {
 		margin-top: 2em;
+		border-bottom: 1px solid var(--_theme-color-primary);
 	}
 
 	.work-index {
@@ -529,6 +527,17 @@
 		}
 	}
 
+	.project-name {
+		position: static;
+		margin-right: 1em;
+
+		&::after {
+			content: '';
+			position: absolute;
+			inset: 0;
+		}
+	}
+
 	.external-indicator {
 		margin-left: 0.25em;
 	}
@@ -542,7 +551,6 @@
 		@media (width >= 768px) {
 			display: inline-flex;
 			margin-top: 0;
-			margin-left: 1em;
 		}
 	}
 
@@ -554,16 +562,6 @@
 	.-desktop {
 		@media (width < 768px) {
 			display: none;
-		}
-	}
-
-	.link {
-		position: static;
-
-		&::after {
-			content: '';
-			position: absolute;
-			inset: 0;
 		}
 	}
 </style>

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { gsap } from 'gsap';
-	import { ScrollTrigger } from 'gsap/ScrollTrigger';
+	import ScrollTrigger from 'gsap/ScrollTrigger';
 
 	import { prefersReducedMotion } from '$lib/stores/motion';
 
@@ -23,7 +23,7 @@
 
 		gsap.set(childElements, { opacity: 0, scale: 0.9 });
 
-		ScrollTrigger.batch(childElements, {
+		const triggers = ScrollTrigger.batch(childElements, {
 			start: 'top 80%',
 			once: true,
 			onEnter: (elements) => {
@@ -39,7 +39,7 @@
 		});
 
 		return () => {
-			ScrollTrigger.getAll().forEach((t) => t.kill());
+			triggers.forEach((t) => t.kill());
 		};
 	});
 </script>

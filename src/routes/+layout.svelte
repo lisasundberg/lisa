@@ -3,7 +3,7 @@
 	import { onNavigate, afterNavigate } from '$app/navigation';
 
 	import { gsap } from 'gsap';
-	import { ScrollTrigger } from 'gsap/ScrollTrigger';
+	import ScrollTrigger from 'gsap/ScrollTrigger';
 	import { Body } from 'svelte-body';
 	import Lenis from 'lenis';
 	import 'lenis/dist/lenis.css';
@@ -15,6 +15,7 @@
 	import Nav from '$lib/components/Nav.svelte';
 	import Footer from '$lib/components/Footer.svelte';
 	import PageReveal from '$lib/reveals/PageReveal.svelte';
+	import MouseGlow from '$lib/components/MouseGlow.svelte';
 
 	import '$lib/styles/index.css';
 
@@ -26,6 +27,10 @@
 	}
 
 	let { children, data }: Props = $props();
+
+	let currentPage = $derived(
+		`${data.pathname === '/' ? 'home' : data.pathname.replace(/^\/|\/$/g, '').replace(/\//g, '-')}`
+	);
 
 	let lenis: Lenis;
 
@@ -40,6 +45,8 @@
 		});
 
 		gsap.ticker.lagSmoothing(0);
+
+		ScrollTrigger.addEventListener('refresh', () => lenis.resize());
 	});
 
 	onNavigate((navigation) => {
@@ -59,10 +66,12 @@
 		if (typeof document !== 'undefined' && document.body.classList.contains(INVERTED_CLASSNAME)) {
 			document.body.classList.remove(INVERTED_CLASSNAME);
 		}
+
+		requestAnimationFrame(() => ScrollTrigger.refresh());
 	});
 </script>
 
-<Body class={$currentTheme} />
+<Body class="{currentPage} {$currentTheme} {$pageRevealFinished ? '' : ' loading'}" />
 <Meta />
 <header>
 	<Nav />
@@ -72,16 +81,26 @@
 	{@render children?.()}
 </main>
 <Footer />
-
-<PageReveal />
+<MouseGlow />
 
 <style>
 	header {
 		grid-column: full;
-		position: sticky;
+		position: fixed;
 		top: 0;
+		width: 100%;
 		z-index: 8;
+		opacity: 1;
+		translate: 0;
+		transition:
+			opacity 0.5s var(--ease-in-out-cubic),
+			translate 0.6s var(--ease-in-out-cubic);
 		view-transition-name: header;
+
+		:global(.loading) {
+			opacity: 0;
+			translate: 0 -0.5em;
+		}
 	}
 
 	@keyframes fade-in {
@@ -113,6 +132,14 @@
 		::view-transition-old(*),
 		::view-transition-new(*) {
 			animation: none !important;
+		}
+	}
+
+	main {
+		padding-top: var(--content-padding-top);
+
+		:global(.home) & {
+			padding-top: 0;
 		}
 	}
 </style>

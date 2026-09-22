@@ -1,21 +1,22 @@
 @layer globals {
 	:root {
-		--heading-offset: 20;
-		--footer-height: 100dvh;
-		--color-cream: rgb(255, 249, 238);
-		--color-greige: rgb(236 229 217);
 		--color-green: #3fe83f;
+		--color-yellow: #f8ff2f;
 		--color-red: #CC341D;
 		--color-indigo: #7a58ff;
 		--color-offwhite: #fffaf7;
-		--color-offblack: #342d2d;
+		--color-light-yellow: #ffffee;
+		--color-offblack: #2c2323;
 
-		--color-text-primary: var(--color-cream);
-		--color-text-secondary: var(--color-offblack);
-		--color-text-accent: var(--color-indigo);
+		/* --color-yellow-hsl: hsl(62, 100%, 59%);
+		--color-yellow-rgb: 248, 255, 47;
+		--color-yellow-rgb: rgb(248, 255, 47);
+		--color-light-yellow: rgba(var(--color-yellow-rgb), 0.3);
+		--color-offwhite: rgba(var(--color-yellow-rgb), 0.1); */
 
-		--content-margin: 2.5em;
+		--content-margin: 1.25em;
 		--content-gap: 2.5em;
+		--content-padding-top: clamp(10rem, 25vw, 20rem);
 		--card-padding: clamp(3rem, 5.25vw, 6rem);
 		--main-grid: [full-start] minmax(var(--content-margin), 1fr) [main-start] minmax(auto, max(80vw, 90rem)) [main-end] minmax(var(--content-margin), 1fr) [full-end];
 
@@ -33,12 +34,20 @@
 		--border-radius: 12px;
 
 		@media (width >=768px) {
-			--font-size-label: 0.85rem;
+			--content-margin: 2.5em;
 			--content-gap: 4em;
 			--two-cols: 1fr 1fr;
 		}
 
 		view-transition-name: root;
+	}
+
+	* {
+		box-sizing: border-box;
+	}
+
+	html {
+		overflow-x: clip;
 	}
 
 	body {
@@ -47,7 +56,7 @@
 		--_theme-color-accent: var(--theme-color-accent, var(--color-indigo));
 		width: 100vw;
 		min-height: 100dvh;
-		overflow-x: hidden;
+		overflow-x: clip;
 		display: grid;
 		grid-template-columns: var(--main-grid);
 		margin: 0;
@@ -58,12 +67,14 @@
 		transition: background-color 0.4s linear, color 0.4s linear;
 	}
 
+	::selection {
+		background-color: var(--color-yellow);
+	}
 
 	main {
 		display: grid;
 		grid-template-columns: subgrid;
 		grid-column: full;
-		padding-top: clamp(2rem, 8vw, 6rem);
 	}
 
 	:where(section) {
@@ -110,7 +121,7 @@
 			position: absolute;
 			height: 1px;
 			width: 100%;
-			bottom: 0;
+			bottom: -0.125em;
 			left: 0;
 			background-color: currentColor;
 			transform: scaleX(0);

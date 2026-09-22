@@ -2,6 +2,18 @@
 	.plain {
 		--theme-color-bg: var(--color-offwhite);
 		--theme-color-primary: var(--color-offblack);
+		--theme-color-accent: var(--color-offblack);
+
+		&.-inverted {
+			--theme-color-bg: var(--color-offblack);
+			--theme-color-primary: var(--color-offwhite);
+			--theme-color-accent: var(--color-offblack);
+		}
+	}
+
+	.purple {
+		--theme-color-bg: var(--color-offwhite);
+		--theme-color-primary: var(--color-offblack);
 		--theme-color-accent: var(--color-indigo);
 
 		&.-inverted {
