@@ -65,13 +65,12 @@
 
 <style>
 	.scroll-indicator {
-		--size: 2.5rem;
 		position: fixed;
-		top: calc(100vh - 2rem - var(--size));
+		bottom: 2rem;
 		left: 50%;
 		translate: -50% 0;
-		width: var(--size);
-		height: var(--size);
+		width: 2.5rem;
+		height: 2.5rem;
 		display: grid;
 		place-items: center;
 		border: 1px solid currentColor;
