@@ -135,11 +135,19 @@
 
 		&.-hello {
 			margin-top: 2%;
+
+			@media (width < 667px) {
+				display: none;
+			}
 		}
 
 		&.-intro {
 			margin-top: auto;
 			margin-bottom: 2%;
+
+			@media (width < 667px) {
+				display: none;
+			}
 		}
 	}
 
