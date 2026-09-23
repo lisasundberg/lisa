@@ -77,7 +77,7 @@
 				const tl = gsap
 					.timeline({
 						ease: 'Power3.easeOut',
-						duration: 0.2
+						duration: 0.15
 					})
 					.to(titleEl, {
 						yPercent: 0,
@@ -90,7 +90,7 @@
 						{
 							y: 0,
 							autoAlpha: 1,
-							stagger: 0.06
+							stagger: 0.05
 						},
 						'-=0.9'
 					)
@@ -99,7 +99,7 @@
 						{
 							y: 0,
 							autoAlpha: 1,
-							stagger: 0.06
+							stagger: 0.05
 						},
 						'-=0.8'
 					);
