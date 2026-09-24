@@ -13,11 +13,13 @@ export interface PointerFollowOptions {
 	ease?: string;
 	/** Ease x/y back to 0 when the pointer leaves the zone. */
 	resetOnLeave?: boolean;
+	/** Skip attaching any listeners, e.g. when another mechanism drives the node. */
+	disabled?: boolean;
 }
 
 // Positioning math is left to `compute` so callers can do cursor-attached, offset-cursor, or clamped-parallax follow with the same mechanics.
 export const pointerFollow: Action<HTMLElement, PointerFollowOptions> = (node, options) => {
-	if (get(prefersReducedMotion)) return;
+	if (options.disabled || get(prefersReducedMotion)) return;
 
 	const zone = options.zone === 'window' ? window : (options.zone ?? node);
 	const tweenVars = { duration: options.duration ?? 0.6, ease: options.ease ?? 'power3' };
