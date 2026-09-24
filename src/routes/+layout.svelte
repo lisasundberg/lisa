@@ -9,12 +9,11 @@
 	import 'lenis/dist/lenis.css';
 
 	import { currentTheme, INVERTED_CLASSNAME } from '$lib/stores/theme';
-	import { pageRevealFinished } from '$lib/stores/app';
+	import { pageReady, pageRevealFinished } from '$lib/stores/app';
 
 	import Meta from '$lib/components/Meta.svelte';
 	import Nav from '$lib/components/Nav.svelte';
 	import Footer from '$lib/components/Footer.svelte';
-	import PageReveal from '$lib/reveals/PageReveal.svelte';
 	import MouseGlow from '$lib/components/MouseGlow.svelte';
 
 	import '$lib/styles/index.css';
@@ -35,6 +34,8 @@
 	let lenis: Lenis;
 
 	onMount(() => {
+		document.fonts.ready.then(() => pageReady.set(true));
+
 		lenis = new Lenis();
 		gsap.registerPlugin(ScrollTrigger);
 
