@@ -20,7 +20,7 @@
 
 		ctx = gsap.context(() => {
 			const linkReveal = gsap.from('.mask a, .mask .divider', {
-				yPercent: 125,
+				yPercent: 130,
 				duration: 0.4,
 				ease: EASE_REVEAL,
 				paused: true

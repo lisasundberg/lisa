@@ -1,10 +1,10 @@
 <script lang="ts">
-	import { onDestroy, onMount } from 'svelte';
+	import { untrack } from 'svelte';
 	import { gsap } from 'gsap';
 	import ScrollTrigger from 'gsap/ScrollTrigger';
 
 	import { EASE_REVEAL } from '$lib/gsap/eases';
-	import { pageRevealFinished } from '$lib/stores/app';
+	import { pageReady, pageRevealFinished } from '$lib/stores/app';
 	import { prefersReducedMotion } from '$lib/stores/motion';
 
 	let container: HTMLElement;
@@ -16,8 +16,10 @@
 	let rowBottom: HTMLElement;
 	let ctx: gsap.Context;
 
-	onMount(() => {
-		document.fonts.ready.then(() => {
+	$effect(() => {
+		if (!$pageReady) return;
+
+		untrack(() => {
 			if ($prefersReducedMotion) {
 				gsap.set(container.querySelectorAll('.text'), { yPercent: 0, autoAlpha: 1 });
 
@@ -64,9 +66,9 @@
 				);
 			}, container);
 		});
-	});
 
-	onDestroy(() => ctx?.revert());
+		return () => ctx?.revert();
+	});
 </script>
 
 <section class="hero">
