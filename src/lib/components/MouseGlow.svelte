@@ -19,7 +19,7 @@
 		});
 
 		// Touch has no hover, so instead of following a pointer the glow drifts with page scroll:
-		// down the viewport and swaying side to side over the full scroll length.
+		// down and back up the viewport while swaying side to side over the full scroll length.
 		const mm = gsap.matchMedia();
 
 		mm.add('(hover: none) and (prefers-reduced-motion: no-preference)', () => {
@@ -35,13 +35,20 @@
 
 			const timeline = gsap.timeline({ defaults: { ease: 'none' }, scrollTrigger });
 
-			timeline.fromTo(glow, { y: () => height() * 0.2 }, { y: () => height() * 0.8 }, 0);
+			// Starts and ends at the center of the screen (the end sits behind the footer text).
+			const drift = [
+				{ y: () => height() * 0.8, ease: 'sine.inOut' },
+				{ y: () => height() * 0.5, ease: 'sine.inOut' }
+			];
+
+			timeline.to(glow, { keyframes: drift }, 0);
 
 			const sway = [
 				{ x: () => width() * 0.3, ease: 'sine.inOut' },
 				{ x: () => width() * 0.7, ease: 'sine.inOut' },
 				{ x: () => width() * 0.3, ease: 'sine.inOut' },
-				{ x: () => width() * 0.7, ease: 'sine.inOut' }
+				{ x: () => width() * 0.7, ease: 'sine.inOut' },
+				{ x: () => width() * 0.5, ease: 'sine.inOut' }
 			];
 
 			timeline.to(glow, { keyframes: sway }, 0);
@@ -72,6 +79,8 @@
 		aspect-ratio: 1;
 		z-index: -3;
 		pointer-events: none;
+		/* Same spot as the gsap.set in onMount, so the server-rendered glow is already centered before JS runs. */
+		transform: translate(calc(50vw - 50%), calc(50dvh - 50%));
 		background: radial-gradient(
 			circle,
 			color-mix(in srgb, var(--color-yellow) 55%, transparent) 0%,
