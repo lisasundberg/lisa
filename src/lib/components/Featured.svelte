@@ -3,14 +3,15 @@
 		heading: string;
 		label: string;
 		link: string;
+		onmouseenter?: () => void;
 	}
 
-	let { heading, label, link }: Props = $props();
+	let { heading, label, link, onmouseenter }: Props = $props();
 </script>
 
 <article class="featured">
 	<span class="line" aria-hidden="true"></span>
-	<a href={link} class="-plain link">
+	<a href={link} class="-plain link" {onmouseenter}>
 		<div class="mask -heading">
 			<h3 class="heading h2">{heading}</h3>
 		</div>
