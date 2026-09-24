@@ -125,6 +125,9 @@
 </script>
 
 <div class="content">
+	<div class="featured-image">
+		<ImageScrollReveal><Image src={images[0]} {alt} /></ImageScrollReveal>
+	</div>
 	<div class="text" bind:this={textEl}>
 		<div class="mask">
 			<h1 bind:this={titleEl}>{@render title()}</h1>
@@ -144,11 +147,9 @@
 
 	<div class="images">
 		{#each images as image, i (i)}
-			{#if i === 0}
-				<Image src={image} {alt} />
-			{:else}
+			<div class="image">
 				<ImageScrollReveal><Image src={image} {alt} /></ImageScrollReveal>
-			{/if}
+			</div>
 		{/each}
 	</div>
 </div>
@@ -181,10 +182,37 @@
 		display: flex;
 		flex-direction: column;
 		align-items: flex-start;
-		gap: var(--content-margin);
+		gap: 2em;
 
 		@media (width >= 768px) {
 			flex-direction: row-reverse;
+			gap: var(--content-margin);
+		}
+	}
+
+	.images {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+		margin-top: 1em;
+
+		@media (width >= 768px) {
+			margin-top: 0;
+		}
+	}
+
+	.image {
+		@media (width < 768px) {
+			&:nth-child(1) {
+				display: none;
+			}
+		}
+	}
+
+	.featured-image {
+		@media (width >= 768px) {
+			display: none;
 		}
 	}
 
@@ -217,14 +245,11 @@
 	}
 
 	.link {
-		margin-top: 3em;
-	}
+		margin-top: 1.5em;
 
-	.images {
-		width: 100%;
-		display: flex;
-		flex-direction: column;
-		gap: 1rem;
+		@media (width >= 768px) {
+			margin-top: 3em;
+		}
 	}
 
 	footer {
