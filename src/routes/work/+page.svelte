@@ -1,7 +1,6 @@
 <script lang="ts">
-	import { onMount, untrack } from 'svelte';
+	import { untrack } from 'svelte';
 	import gsap from 'gsap';
-	import SplitText from 'gsap/SplitText';
 	import type { Picture } from 'vite-imagetools';
 
 	import { EASE_REVEAL } from '$lib/gsap/eases';
@@ -15,7 +14,6 @@
 	import AH from '$lib/assets/akademiskahus/ah-mockup-1.jpg?enhanced';
 	import Homage from '$lib/assets/homage/homage-mockup-1.jpg?enhanced';
 	import Envolve from '$lib/assets/envolve/envolve.png?enhanced';
-	// import Webbdagarna from '$lib/assets/webbdagarna/webbdagarna-mockup-1.jpg?enhanced';
 
 	const featuredWork = [
 		{
@@ -317,9 +315,9 @@
 		}
 	];
 
-	let title: HTMLElement | null;
-	let splitTitle: SplitText;
+	let titleEl: HTMLElement = $state()!;
 	let casesEl: HTMLElement = $state()!;
+	let archiveEl: HTMLElement = $state()!;
 	let imageEl: HTMLElement | null = $state(null);
 	let activeImage: Picture | null = $state(null);
 
@@ -333,8 +331,12 @@
 				const items = gsap.utils.toArray<HTMLElement>('.featured-item');
 				const bottomLine = casesEl.querySelector('.cases-line');
 				const step = 0.1;
+				const itemsStart = 0.3;
 
 				const timeline = gsap.timeline();
+
+				gsap.set(titleEl, { yPercent: 100, visibility: 'visible' });
+				timeline.to(titleEl, { yPercent: 0, duration: 0.6, ease: 'Power3.easeOut' }, 0);
 
 				// One timeline per item (line, heading, label), staggered on the main timeline
 				items.forEach((item, index) => {
@@ -350,15 +352,18 @@
 					itemTimeline.to(heading, { yPercent: 0, duration: 0.6 }, '<0.2');
 					itemTimeline.to(label, { yPercent: 0, duration: 0.6 }, '<0.1');
 
-					timeline.add(itemTimeline, index * step);
+					timeline.add(itemTimeline, itemsStart + index * step);
 				});
 
 				gsap.set(bottomLine, { scaleX: 0.25, autoAlpha: 0 });
 				timeline.to(
 					bottomLine,
 					{ scaleX: 1, duration: 0.8, autoAlpha: 1, ease: 'Power3.easeOut' },
-					items.length * step
+					itemsStart + items.length * step
 				);
+
+				// No position, so it starts once everything above has finished
+				timeline.to(archiveEl, { opacity: 1, duration: 0.3, ease: 'linear' }, '<=0.3');
 			}, casesEl);
 		});
 
@@ -379,10 +384,10 @@
 	}
 </script>
 
-<!-- <h1 bind:this={title} class="title">Work</h1> -->
-
 <section class="featured">
-	<h2 class="label">Selected projects</h2>
+	<div class="mask">
+		<h2 class="title label" bind:this={titleEl}>Selected projects</h2>
+	</div>
 	<div class="cases" role="region" bind:this={casesEl} onmouseleave={onMouseLeave}>
 		{#each featuredWork as { heading, label, link, image }}
 			<div
@@ -412,7 +417,7 @@
 	</div>
 </section>
 
-<section class="archive">
+<section class="archive" bind:this={archiveEl}>
 	<h2 class="label">Archive / index</h2>
 	<p class="p-xsmall">
 		Pretty much all the projects I've worked on, big and small.<br /> Linked if still available online.
@@ -450,17 +455,21 @@
 </section>
 
 <style>
-	/* .title {
-		grid-column: main;
-		font-family: var(--font-display);
-		font-size: var(--font-size-display);
-		text-align: right;
-		position: sticky;
-		top: 0;
-	} */
-
 	.featured {
 		margin-top: 2em;
+	}
+
+	/* Clips the title while it slides up. Descender room is cancelled out to keep the layout. */
+	.mask {
+		overflow: hidden;
+		padding-bottom: 0.1em;
+		margin-bottom: -0.1em;
+	}
+
+	.title {
+		@media (prefers-reduced-motion: no-preference) {
+			visibility: hidden;
+		}
 	}
 
 	.cursor-image {
@@ -481,6 +490,10 @@
 
 	.archive {
 		margin-top: 5em;
+
+		@media (prefers-reduced-motion: no-preference) {
+			opacity: 0;
+		}
 
 		p {
 			margin-top: 0.5em;
