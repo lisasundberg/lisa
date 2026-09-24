@@ -1,10 +1,11 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
+	import { onMount, untrack } from 'svelte';
 	import gsap from 'gsap';
 	import SplitText from 'gsap/SplitText';
 	import type { Picture } from 'vite-imagetools';
 
-	import { pageRevealFinished } from '$lib/stores/app';
+	import { EASE_REVEAL } from '$lib/gsap/eases';
+	import { pageReady, pageRevealFinished } from '$lib/stores/app';
 	import { prefersReducedMotion } from '$lib/stores/motion';
 	import { pointerFollow } from '$lib/actions/pointerFollow';
 
@@ -322,6 +323,48 @@
 	let imageEl: HTMLElement | null = $state(null);
 	let activeImage: Picture | null = $state(null);
 
+	$effect(() => {
+		if (!$pageReady || $prefersReducedMotion) return;
+
+		let ctx: gsap.Context;
+
+		untrack(() => {
+			ctx = gsap.context(() => {
+				const items = gsap.utils.toArray<HTMLElement>('.featured-item');
+				const bottomLine = casesEl.querySelector('.cases-line');
+				const step = 0.1;
+
+				const timeline = gsap.timeline();
+
+				// One timeline per item (line, heading, label), staggered on the main timeline
+				items.forEach((item, index) => {
+					const line = item.querySelector('.line');
+					const heading = item.querySelector('.heading');
+					const label = item.querySelector('.tech');
+
+					gsap.set(line, { scaleX: 0.25, autoAlpha: 0 });
+					gsap.set([heading, label], { yPercent: 100, visibility: 'visible' });
+
+					const itemTimeline = gsap.timeline({ defaults: { ease: 'Power3.easeOut' } });
+					itemTimeline.to(line, { scaleX: 1, autoAlpha: 1, duration: 0.8 });
+					itemTimeline.to(heading, { yPercent: 0, duration: 0.6 }, '<0.2');
+					itemTimeline.to(label, { yPercent: 0, duration: 0.6 }, '<0.1');
+
+					timeline.add(itemTimeline, index * step);
+				});
+
+				gsap.set(bottomLine, { scaleX: 0.25, autoAlpha: 0 });
+				timeline.to(
+					bottomLine,
+					{ scaleX: 1, duration: 0.8, autoAlpha: 1, ease: 'Power3.easeOut' },
+					items.length * step
+				);
+			}, casesEl);
+		});
+
+		return () => ctx?.revert();
+	});
+
 	function onMouseEnter(image: Picture) {
 		activeImage = image;
 		gsap.to(imageEl, { opacity: 1, scale: 1, duration: 0.35, ease: 'power3.out' });
@@ -351,6 +394,7 @@
 				<Featured {heading} {label} {link} />
 			</div>
 		{/each}
+		<span class="cases-line" aria-hidden="true"></span>
 		<div
 			class="cursor-image"
 			bind:this={imageEl}
@@ -445,7 +489,18 @@
 
 	.cases {
 		margin-top: 2em;
-		border-bottom: 1px solid var(--_theme-color-primary);
+	}
+
+	/* Bottom border, drawn in after the lines inside Featured */
+	.cases-line {
+		display: block;
+		height: 1px;
+		background-color: var(--_theme-color-primary);
+		transform-origin: left;
+
+		@media (prefers-reduced-motion: no-preference) {
+			visibility: hidden;
+		}
 	}
 
 	.work-index {
