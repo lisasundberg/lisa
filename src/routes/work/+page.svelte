@@ -3,317 +3,14 @@
 	import gsap from 'gsap';
 	import type { Picture } from 'vite-imagetools';
 
-	import { EASE_REVEAL } from '$lib/gsap/eases';
-	import { pageReady, pageRevealFinished } from '$lib/stores/app';
+	import { pageReady } from '$lib/stores/app';
 	import { prefersReducedMotion } from '$lib/stores/motion';
 	import { pointerFollow } from '$lib/actions/pointerFollow';
+	import { featuredWork } from '$lib/data/featured-work';
+	import { experiences } from '$lib/data/experiences';
 
 	import Featured from '$lib/components/Featured.svelte';
 	import Pill from '$lib/components/Pill.svelte';
-
-	import AH from '$lib/assets/akademiskahus/ah-mockup-1.jpg?enhanced';
-	import Homage from '$lib/assets/homage/homage-mockup-1.jpg?enhanced';
-	import Envolve from '$lib/assets/envolve/envolve.png?enhanced';
-
-	const featuredWork = [
-		{
-			heading: 'Homage',
-			label: 'SvelteKit, GSAP',
-			link: '/work/homage',
-			image: Homage
-		},
-		{
-			heading: 'Akademiska Hus',
-			label: 'Optimizely, Stimulus.js',
-			link: '/work/akademiskahus',
-			image: AH
-		},
-		{
-			heading: 'Envolve',
-			label: 'React, GSAP',
-			link: '/work/envolve',
-			image: Envolve
-		}
-	];
-
-	const experiences = [
-		{
-			year: '2025',
-			client: 'Personal project',
-			description: 'Portfolio site, 2025 version',
-			tech: 'SvelteKit, GSAP',
-			link: 'https://2025.lisasundberg.com'
-		},
-		{
-			year: '2024',
-			client: 'Alster',
-			description: 'AI chat bot for customer service',
-			tech: 'React (Next.js), Open AI'
-		},
-		{
-			year: '2024',
-			client: 'Akademiska Hus',
-			description: 'Web platform',
-			tech: 'Optimizely, Stimulus.js',
-			link: 'https://www.akademiskahus.se/'
-		},
-		{
-			year: '2023',
-			client: 'Akademiska Hus',
-			description: 'Landing pages for specific spaces',
-			tech: 'SvelteKit, GSAP',
-			link: 'https://nobelsvag3.se/'
-		},
-		{
-			year: '2023',
-			client: 'A Working Lab / Akademiska Hus',
-			description: 'Website / booking system',
-			tech: 'Optimizely, Svelte',
-			link: 'https://www.aworkinglab.se/'
-		},
-		{
-			year: '2023',
-			client: 'Webbdagarna / Storyblok',
-			description: 'Conference fair activation – "Hole in the wall" body tracking game',
-			tech: 'Three.js, Mediapipe'
-		},
-		{
-			year: '2023',
-			client: 'Homage',
-			description: 'Website redesign',
-			awards: [
-				{
-					name: 'Awwwards Honorable Mention',
-					link: 'https://www.awwwards.com/sites/homage-2'
-				}
-			],
-			tech: 'SvelteKit, GSAP',
-			link: 'https://homage.se/'
-		},
-		{
-			year: '2023',
-			client: 'Alster',
-			description: 'Website',
-			awards: [
-				{
-					name: 'Awwwards Honorable Mention',
-					link: 'https://www.awwwards.com/sites/alster'
-				},
-				{
-					name: 'CSSDA Special Kudos',
-					link: 'https://www.cssdesignawards.com/sites/alster/42896/'
-				}
-			],
-			tech: 'SvelteKit, GSAP',
-			link: 'https://alster.se/'
-		},
-		{
-			year: '2022',
-			client: 'Alster',
-			description: 'Landing page',
-			tech: 'Three.js'
-		},
-		{
-			year: '2022',
-			client: 'Previa / Falck',
-			description: 'Reskin',
-			tech: 'CSS'
-		},
-		{
-			year: '2022',
-			client: 'Styrelseakademien',
-			description: 'Web platform / shop',
-			tech: 'React (Next.js), Storyblok'
-		},
-		{
-			year: '2021',
-			client: 'Babybjörn',
-			description: 'E-commerce site',
-			tech: 'React (Gatsby), Material UI, Storyblok',
-			link: 'https://www.babybjorn.se/'
-		},
-		{
-			year: '2021',
-			client: 'Trustly',
-			description: 'Animations',
-			tech: 'React'
-		},
-		{
-			year: '2021',
-			client: 'The Band Socks',
-			description: 'E-commerce site',
-			tech: 'Shopify'
-		},
-		{
-			year: '2021',
-			client: 'PBX',
-			description: 'Landing page',
-			tech: 'HTML, CSS'
-		},
-		{
-			year: '2021',
-			client: 'Amphi Produktion',
-			description: '"Vän med virus" campaign site',
-			tech: 'React, Framer motion',
-			link: 'https://vmv.noaksark.org/'
-		},
-		{
-			year: '2021',
-			client: 'Wirepas',
-			description: 'Website',
-			awards: [
-				{
-					name: 'Awwwards Honorable Mention',
-					link: 'https://www.awwwards.com/sites/wirepas'
-				}
-			],
-			tech: 'React (Gatsby), Hubspot',
-			link: 'https://wirepas.com/'
-		},
-		{
-			year: '2021',
-			client: 'Neonode',
-			description: 'Website',
-			tech: 'React (Gatsby)',
-			link: 'https://neonode.com/'
-		},
-		{
-			year: '2021',
-			client: 'H&M',
-			description: 'Brand experience website',
-			tech: 'React'
-		},
-		{
-			year: '2020',
-			client: 'Chef & The Craftsman',
-			description: 'E-commerce site',
-			tech: 'Shopify'
-		},
-		{
-			year: '2020',
-			client: 'Urban Deli',
-			description: 'E-commerce site',
-			tech: 'Shopify'
-		},
-		{
-			year: '2020',
-			client: 'SAS',
-			description: 'Campaign site',
-			tech: 'React'
-		},
-		{
-			year: '2020',
-			client: 'Länsförsäkringar',
-			description: 'Quiz for selecting health insurance',
-			tech: 'React'
-		},
-		{
-			year: '2020',
-			client: 'Mistr',
-			description: 'E-commerce site',
-			tech: 'Shopify (headless)'
-		},
-		{
-			year: '2020',
-			client: 'Red Bull',
-			description: '"Secret gig" campaign site'
-		},
-		{
-			year: '2020',
-			client: 'Utellus',
-			description: '"Solvärdering" project',
-			tech: 'React'
-		},
-		{
-			year: '2019',
-			client: 'H&M Foundation',
-			description: '"Unfounded" project',
-			tech: 'React, Contentful'
-		},
-		{
-			year: '2019',
-			client: 'TV4',
-			description: '"Så mycket bättre" activation/quiz at Way Out West festival',
-			tech: 'React'
-		},
-		{
-			year: '2019',
-			client: 'Homage',
-			description: 'Website',
-			awards: [
-				{
-					name: 'Awwwards Honorable Mention',
-					link: 'https://www.awwwards.com/sites/homage'
-				},
-				{
-					name: 'Awwwards Mobile Excellence',
-					link: 'https://www.awwwards.com/sites/homage'
-				},
-				{
-					name: 'CSSDA Special Kudos',
-					link: 'https://www.cssdesignawards.com/sites/homage/36576/'
-				}
-			],
-			tech: 'React',
-			link: 'https://www.awwwards.com/sites/homage'
-		},
-		{
-			year: '2019',
-			client: 'Envolve',
-			awards: [
-				{
-					name: 'CSSDA Special Kudos',
-					link: 'https://www.cssdesignawards.com/sites/envolve/35817/'
-				},
-				{
-					name: 'Awwwards Nominee',
-					link: 'https://www.awwwards.com/sites/envolve'
-				}
-			],
-			description: 'Website',
-			tech: 'React, GSAP'
-		},
-
-		{
-			year: '2019',
-			client: 'Unicef / H&M Foundation',
-			description: '“Babytalk for Parents” activation/game',
-			awards: [
-				{
-					name: 'Webby nominee',
-					link: 'https://winners.webbyawards.com/2020/apps-software/voice-features/best-writing/120793/baby-talk-for-parents'
-				},
-				{
-					name: 'Awwwards Honorable Mention',
-					link: 'https://www.awwwards.com/sites/baby-talk-for-dads'
-				}
-			],
-			tech: 'React',
-			link: 'https://babytalkforparents.org/'
-		},
-		{
-			year: '2019',
-			client: 'Bores',
-			description: 'Website (graduation project)',
-			tech: 'Craft, Stimulus.js'
-		},
-		{
-			year: '2018',
-			client: 'Bambora',
-			description: 'Website',
-			awards: [
-				{
-					name: 'Awwwards Honorable Mention',
-					link: 'https://www.awwwards.com/sites/bambora'
-				},
-				{
-					name: 'CSSDA Special Kudos',
-					link: 'https://www.cssdesignawards.com/sites/bambora/34723/'
-				}
-			],
-			tech: 'Craft, Stimulus.js'
-		}
-	];
 
 	let titleEl: HTMLElement = $state()!;
 	let casesEl: HTMLElement = $state()!;
@@ -333,10 +30,16 @@
 				const step = 0.1;
 				const itemsStart = 0.3;
 
-				const timeline = gsap.timeline();
+				const timeline = gsap.timeline({ defaults: { ease: 'power3.out' } });
 
-				gsap.set(titleEl, { yPercent: 100, visibility: 'visible' });
-				timeline.to(titleEl, { yPercent: 0, duration: 0.6, ease: 'Power3.easeOut' }, 0);
+				// fromTo sets the start state immediately, so nothing flashes before it animates.
+				// GSAP mutates the vars it is given, so every call gets its own copy.
+				const maskFrom = { yPercent: 100, visibility: 'visible' };
+				const maskTo = { yPercent: 0, visibility: 'visible', duration: 0.6 };
+				const lineFrom = { scaleX: 0.25, autoAlpha: 0 };
+				const lineTo = { scaleX: 1, autoAlpha: 1, duration: 0.8 };
+
+				timeline.fromTo(titleEl, { ...maskFrom }, { ...maskTo }, 0);
 
 				// One timeline per item (line, heading, label), staggered on the main timeline
 				items.forEach((item, index) => {
@@ -344,25 +47,18 @@
 					const heading = item.querySelector('.heading');
 					const label = item.querySelector('.tech');
 
-					gsap.set(line, { scaleX: 0.25, autoAlpha: 0 });
-					gsap.set([heading, label], { yPercent: 100, visibility: 'visible' });
-
-					const itemTimeline = gsap.timeline({ defaults: { ease: 'Power3.easeOut' } });
-					itemTimeline.to(line, { scaleX: 1, autoAlpha: 1, duration: 0.8 });
-					itemTimeline.to(heading, { yPercent: 0, duration: 0.6 }, '<0.2');
-					itemTimeline.to(label, { yPercent: 0, duration: 0.6 }, '<0.1');
+					const itemTimeline = gsap.timeline({ defaults: { ease: 'power3.out' } });
+					itemTimeline.fromTo(line, { ...lineFrom }, { ...lineTo });
+					itemTimeline.fromTo(heading, { ...maskFrom }, { ...maskTo }, '<0.2');
+					itemTimeline.fromTo(label, { ...maskFrom }, { ...maskTo }, '<0.1');
 
 					timeline.add(itemTimeline, itemsStart + index * step);
 				});
 
-				gsap.set(bottomLine, { scaleX: 0.25, autoAlpha: 0 });
-				timeline.to(
-					bottomLine,
-					{ scaleX: 1, duration: 0.8, autoAlpha: 1, ease: 'Power3.easeOut' },
-					itemsStart + items.length * step
-				);
+				const bottomStart = itemsStart + items.length * step;
+				timeline.fromTo(bottomLine, { ...lineFrom }, { ...lineTo }, bottomStart);
 
-				// No position, so it starts once everything above has finished
+				// Overlaps the end of the bottom line
 				timeline.to(archiveEl, { opacity: 1, duration: 0.3, ease: 'linear' }, '<=0.3');
 			}, casesEl);
 		});
@@ -389,14 +85,9 @@
 		<h2 class="title label" bind:this={titleEl}>Selected projects</h2>
 	</div>
 	<div class="cases" role="region" bind:this={casesEl} onmouseleave={onMouseLeave}>
-		{#each featuredWork as { heading, label, link, image }}
-			<div
-				class="featured-item"
-				role="button"
-				tabindex="0"
-				onmouseenter={() => onMouseEnter(image)}
-			>
-				<Featured {heading} {label} {link} />
+		{#each featuredWork as { heading, label, link, image } (link)}
+			<div class="featured-item">
+				<Featured {heading} {label} {link} onmouseenter={() => onMouseEnter(image)} />
 			</div>
 		{/each}
 		<span class="cases-line" aria-hidden="true"></span>
